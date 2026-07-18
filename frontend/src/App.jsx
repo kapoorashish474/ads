@@ -12,7 +12,8 @@ import ScopePage from './pages/ScopePage'
 import Learnings from './pages/Learnings'
 
 export default function App() {
-  const basename = (import.meta.env.BASE_URL || '/').replace(/\/$/, '') || undefined
+  const base = import.meta.env.BASE_URL ?? '/'
+  const basename = base === '/' ? undefined : base.replace(/\/$/, '')
 
   return (
     <BrowserRouter basename={basename}>

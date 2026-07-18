@@ -1,4 +1,6 @@
-const USE_STATIC = import.meta.env.VITE_USE_STATIC_DATA === 'true';
+const USE_STATIC =
+  import.meta.env.VITE_USE_STATIC_DATA === 'true' ||
+  (import.meta.env.PROD && import.meta.env.BASE_URL !== '/');
 const BASE = import.meta.env.BASE_URL || '/';
 
 const API_URL =

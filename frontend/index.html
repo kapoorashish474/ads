@@ -8,6 +8,17 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      #root:empty::after {
+        content: 'Loading Intel…';
+        display: grid;
+        place-items: center;
+        min-height: 100vh;
+        color: #93a0b8;
+        font-family: 'IBM Plex Sans', system-ui, sans-serif;
+        background: #070b14;
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>
