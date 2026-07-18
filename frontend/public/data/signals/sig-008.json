@@ -1,0 +1,38 @@
+{
+  "signal": {
+    "id": "sig-008",
+    "title": "Criteo Q2: Retail Media ARR up 18% YoY",
+    "competitorId": "criteo",
+    "competitorName": "Criteo",
+    "sourceId": "sec-filings",
+    "sourceName": "SEC / Earnings",
+    "sourceType": "press_releases",
+    "sourceUrl": "https://www.sec.gov/example-criteo-q2",
+    "publishedAt": "2026-07-08T21:00:00Z",
+    "ingestedAt": "2026-07-08T21:30:00Z",
+    "category": "financial",
+    "tags": [
+      "retail media",
+      "ARR"
+    ],
+    "summary": "Hard financial evidence of retail media pull; validates adjacent category growth that Kargo should address or partner into.",
+    "confidence": 0.97,
+    "evidenceStrength": "strong",
+    "impactOnKargo": "high",
+    "rawExcerpt": "Retail Media net revenue increased 18% year over year, driven by onsite and offsite commerce media…"
+  },
+  "source": {
+    "id": "sec-filings",
+    "name": "SEC / Earnings",
+    "category": "financial",
+    "type": "press_releases",
+    "description": "10-K, 10-Q, and earnings transcripts for public competitors.",
+    "url": "https://www.sec.gov",
+    "cadence": "On filing",
+    "coverage": "TTD, CRTO, and adjacent public names",
+    "reliability": 0.96,
+    "signalsIngested": 19,
+    "lastSync": "2026-07-15T16:20:00Z",
+    "status": "active"
+  }
+}

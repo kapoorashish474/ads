@@ -1,0 +1,239 @@
+{
+  "opportunity": {
+    "id": "opp-002",
+    "title": "Generative studio for Kargo formats",
+    "priority": "high",
+    "confidence": 0.87,
+    "effort": "Medium",
+    "impact": "High",
+    "horizon": "0–6 months",
+    "category": "product",
+    "thesis": "Competitors productize brief → variants → score. Own that loop inside Kargo units.",
+    "whyItMatters": "Creative speed is becoming a buying criterion, not a service add-on.",
+    "move": "Generate format-native variants with predicted attention scoring.",
+    "kargoGap": "creative velocity",
+    "expectedImpact": "Faster self-serve; lock formats as the generation target.",
+    "recommendedActions": [
+      "Generate inside proprietary templates",
+      "Score variants on predicted attention",
+      "Agency flow: brief → 10 variants → approve"
+    ],
+    "evidenceIds": [
+      "sig-002",
+      "sig-009",
+      "sig-006"
+    ],
+    "competitorsPressuring": [
+      "stackadapt",
+      "adcreative-ai",
+      "the-trade-desk"
+    ],
+    "capabilityDelta": -8,
+    "status": "open"
+  },
+  "evidence": [
+    {
+      "id": "sig-002",
+      "title": "StackAdapt launches “AdaptAI Creative Studio” beta",
+      "competitorId": "stackadapt",
+      "competitorName": "StackAdapt",
+      "sourceId": "pr-newswire",
+      "sourceName": "Press Releases",
+      "sourceType": "press_releases",
+      "sourceUrl": "https://www.prnewswire.com/example-stackadapt-adaptai",
+      "publishedAt": "2026-07-16T09:00:00Z",
+      "ingestedAt": "2026-07-16T09:12:00Z",
+      "category": "product_launch",
+      "tags": [
+        "generative creative",
+        "self-serve"
+      ],
+      "summary": "Self-serve generative creative with performance prediction for display and CTV—signals a chance for Kargo to productize format-native generation.",
+      "confidence": 0.94,
+      "evidenceStrength": "strong",
+      "impactOnKargo": "high",
+      "rawExcerpt": "AdaptAI Creative Studio lets marketers generate, score, and iterate ad variants with predicted attention and CTR…"
+    },
+    {
+      "id": "sig-009",
+      "title": "AdCreative.ai posts 40 open roles across EU and US",
+      "competitorId": "adcreative-ai",
+      "competitorName": "AdCreative.ai",
+      "sourceId": "greenhouse-boards",
+      "sourceName": "Company Career Boards",
+      "sourceType": "job_postings",
+      "sourceUrl": "https://boards.greenhouse.io/example-adcreative",
+      "publishedAt": "2026-07-13T08:00:00Z",
+      "ingestedAt": "2026-07-13T09:15:00Z",
+      "category": "investment",
+      "tags": [
+        "hiring",
+        "generative creative"
+      ],
+      "summary": "Aggressive hiring velocity for a generative creative pure-play; indicates product-market fit and GTM scale-up.",
+      "confidence": 0.85,
+      "evidenceStrength": "strong",
+      "impactOnKargo": "medium",
+      "rawExcerpt": "Open roles: Senior Prompt Engineer, Creative ML, Enterprise AE (NY, London, Berlin)…"
+    },
+    {
+      "id": "sig-006",
+      "title": "TTD eng blog: “Feature store for real-time creative selection”",
+      "competitorId": "the-trade-desk",
+      "competitorName": "The Trade Desk",
+      "sourceId": "eng-blogs",
+      "sourceName": "Engineering Blogs",
+      "sourceType": "engineering_blogs",
+      "sourceUrl": "https://www.thetradedesk.com/us/news/example-feature-store",
+      "publishedAt": "2026-07-12T10:00:00Z",
+      "ingestedAt": "2026-07-12T11:05:00Z",
+      "category": "capability",
+      "tags": [
+        "creative",
+        "ML infra",
+        "CTV"
+      ],
+      "summary": "Technical post confirms investment in low-latency creative ranking—blurs line between DSP optimization and creative intelligence.",
+      "confidence": 0.89,
+      "evidenceStrength": "strong",
+      "impactOnKargo": "high",
+      "rawExcerpt": "We describe a feature store that serves creative embeddings to bid-time models under 8ms p99…"
+    }
+  ],
+  "competitors": [
+    {
+      "id": "stackadapt",
+      "name": "StackAdapt",
+      "shortName": "SA",
+      "tier": "direct",
+      "category": "DSP",
+      "watchLevel": "focus",
+      "focus": [
+        "Programmatic",
+        "Native",
+        "CTV",
+        "AI creative",
+        "Self-serve"
+      ],
+      "hq": "Toronto, Canada",
+      "employees": "1,000+",
+      "summary": "Fast-growing full-funnel DSP investing heavily in AI creative tooling and self-serve mid-market expansion.",
+      "capabilityScores": {
+        "creative": 78,
+        "identity": 70,
+        "ctv": 82,
+        "retailMedia": 60,
+        "aiOptimization": 85,
+        "measurement": 74,
+        "mobileHighImpact": 62
+      },
+      "recentMoves": 5,
+      "opportunityScore": 78
+    },
+    {
+      "id": "adcreative-ai",
+      "name": "AdCreative.ai",
+      "shortName": "ACAI",
+      "tier": "startup",
+      "category": "AI Creative",
+      "watchLevel": "watch",
+      "focus": [
+        "Generative ads",
+        "Performance prediction",
+        "SMB"
+      ],
+      "hq": "Remote / EU",
+      "employees": "100–200",
+      "summary": "Emerging generative creative stack; signals where mid-market buyers expect AI-first ad production.",
+      "capabilityScores": {
+        "creative": 90,
+        "identity": 30,
+        "ctv": 25,
+        "retailMedia": 35,
+        "aiOptimization": 72,
+        "measurement": 55,
+        "mobileHighImpact": 40
+      },
+      "recentMoves": 3,
+      "opportunityScore": 65
+    },
+    {
+      "id": "the-trade-desk",
+      "name": "The Trade Desk",
+      "shortName": "TTD",
+      "tier": "direct",
+      "category": "DSP",
+      "watchLevel": "focus",
+      "focus": [
+        "CTV",
+        "UID2",
+        "Kokai",
+        "OpenPath",
+        "AI bidding"
+      ],
+      "hq": "Ventura, CA",
+      "employees": "3,000+",
+      "summary": "Largest independent DSP pushing AI-driven optimization (Kokai) and identity (UID2) across CTV and open web.",
+      "capabilityScores": {
+        "creative": 72,
+        "identity": 94,
+        "ctv": 96,
+        "retailMedia": 68,
+        "aiOptimization": 93,
+        "measurement": 88,
+        "mobileHighImpact": 55
+      },
+      "recentMoves": 6,
+      "opportunityScore": 86
+    }
+  ],
+  "sources": [
+    {
+      "id": "pr-newswire",
+      "name": "Press Releases",
+      "type": "press_releases",
+      "url": "https://www.prnewswire.com/example-stackadapt-adaptai"
+    },
+    {
+      "id": "greenhouse-boards",
+      "name": "Company Career Boards",
+      "type": "job_postings",
+      "url": "https://boards.greenhouse.io/example-adcreative"
+    },
+    {
+      "id": "eng-blogs",
+      "name": "Engineering Blogs",
+      "type": "engineering_blogs",
+      "url": "https://www.thetradedesk.com/us/news/example-feature-store"
+    }
+  ],
+  "learnings": [
+    {
+      "id": "learn-002",
+      "from": "StackAdapt",
+      "role": "Direct competitor",
+      "title": "Generative creative is now a product surface",
+      "lesson": "AdaptAI Studio makes “brief → variants → score” a self-serve loop.",
+      "quickWin": "Generate variants inside Kargo formats with predicted attention scores.",
+      "effort": "Medium",
+      "impact": "High",
+      "opportunityId": "opp-002",
+      "evidenceIds": [
+        "sig-002",
+        "sig-009"
+      ],
+      "sourceNames": [
+        "Press Releases",
+        "Company Career Boards"
+      ],
+      "confidence": 0.9
+    }
+  ],
+  "confidenceBreakdown": {
+    "overall": 0.87,
+    "evidenceCount": 3,
+    "strongEvidence": 3,
+    "avgSignalConfidence": 0.89,
+    "note": "Public sources only. Confidence = corroboration across independent marked sources."
+  }
+}

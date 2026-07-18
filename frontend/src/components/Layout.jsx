@@ -1,4 +1,5 @@
 import { NavLink, Outlet } from 'react-router-dom'
+import { APP_NAME, APP_TAGLINE } from '../brand'
 import './Layout.css'
 
 const links = [
@@ -18,10 +19,10 @@ export default function Layout() {
       <div className="shell__glow" aria-hidden="true" />
       <header className="topbar">
         <div className="brand">
-          <span className="brand__mark">K</span>
+          <span className="brand__mark">I</span>
           <div className="brand__text">
-            <strong>Kargo Intel</strong>
-            <span>Public competitive radar</span>
+            <strong>{APP_NAME}</strong>
+            <span>{APP_TAGLINE}</span>
           </div>
         </div>
         <nav className="nav" aria-label="Primary">

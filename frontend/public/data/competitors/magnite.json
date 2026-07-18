@@ -1,0 +1,205 @@
+{
+  "competitor": {
+    "id": "magnite",
+    "name": "Magnite",
+    "shortName": "MGNI",
+    "tier": "adjacent",
+    "category": "SSP",
+    "watchLevel": "watch",
+    "focus": [
+      "CTV supply",
+      "ClearLine",
+      "Publisher tools"
+    ],
+    "hq": "New York, NY",
+    "employees": "1,000+",
+    "summary": "Supply-side CTV leader; partnerships and formats matter more than head-to-head DSP competition for Kargo.",
+    "capabilityScores": {
+      "creative": 64,
+      "identity": 66,
+      "ctv": 92,
+      "retailMedia": 40,
+      "aiOptimization": 58,
+      "measurement": 70,
+      "mobileHighImpact": 50
+    },
+    "recentMoves": 3,
+    "opportunityScore": 54
+  },
+  "kargo": {
+    "id": "kargo",
+    "name": "Baseline",
+    "capabilityScores": {
+      "creative": 92,
+      "identity": 68,
+      "ctv": 78,
+      "retailMedia": 55,
+      "aiOptimization": 62,
+      "measurement": 76,
+      "mobileHighImpact": 96
+    },
+    "strengths": [
+      "High-impact mobile & omnichannel creative formats",
+      "Premium publisher network & brand safety",
+      "Brand lift / attention-oriented measurement partnerships"
+    ],
+    "gaps": [
+      "Self-serve AI optimization parity vs TTD Kokai / StackAdapt",
+      "Retail media graph depth vs Criteo / Amazon",
+      "Generative creative production velocity"
+    ]
+  },
+  "comparison": [
+    {
+      "dimension": "creative",
+      "label": "Creative",
+      "kargo": 92,
+      "competitor": 64,
+      "delta": 28
+    },
+    {
+      "dimension": "identity",
+      "label": "Identity",
+      "kargo": 68,
+      "competitor": 66,
+      "delta": 2
+    },
+    {
+      "dimension": "ctv",
+      "label": "Ctv",
+      "kargo": 78,
+      "competitor": 92,
+      "delta": -14
+    },
+    {
+      "dimension": "retailMedia",
+      "label": "Retail Media",
+      "kargo": 55,
+      "competitor": 40,
+      "delta": 15
+    },
+    {
+      "dimension": "aiOptimization",
+      "label": "Ai Optimization",
+      "kargo": 62,
+      "competitor": 58,
+      "delta": 4
+    },
+    {
+      "dimension": "measurement",
+      "label": "Measurement",
+      "kargo": 76,
+      "competitor": 70,
+      "delta": 6
+    },
+    {
+      "dimension": "mobileHighImpact",
+      "label": "Mobile High Impact",
+      "kargo": 96,
+      "competitor": 50,
+      "delta": 46
+    }
+  ],
+  "signals": [
+    {
+      "id": "sig-012",
+      "title": "Magnite ClearLine adds shoppable CTV templates",
+      "competitorId": "magnite",
+      "competitorName": "Magnite",
+      "sourceId": "eng-blogs",
+      "sourceName": "Engineering Blogs",
+      "sourceType": "engineering_blogs",
+      "sourceUrl": "https://www.magnite.com/blog/example-shoppable-ctv",
+      "publishedAt": "2026-07-05T13:00:00Z",
+      "ingestedAt": "2026-07-05T14:10:00Z",
+      "category": "capability",
+      "tags": [
+        "CTV",
+        "commerce",
+        "formats"
+      ],
+      "summary": "Supply-side shoppable CTV formats create an opening for Kargo creative + measurement to plug into premium CTV paths.",
+      "confidence": 0.81,
+      "evidenceStrength": "moderate",
+      "impactOnKargo": "low",
+      "rawExcerpt": "Publishers using ClearLine can offer interactive shoppable overlays on CTV inventory…"
+    }
+  ],
+  "opportunities": [
+    {
+      "id": "opp-006",
+      "title": "Partner ClearLine shoppable CTV",
+      "priority": "low",
+      "confidence": 0.78,
+      "effort": "Low",
+      "impact": "Medium",
+      "horizon": "0–6 months",
+      "category": "partnership",
+      "thesis": "Magnite published shoppable CTV templates — creative can ride supply.",
+      "whyItMatters": "Fast commerce-CTV path without SSP plumbing.",
+      "move": "Pilot one CPG brand already on Kargo mobile.",
+      "kargoGap": "ctv commerce",
+      "expectedImpact": "Low-cost entry to shoppable CTV.",
+      "recommendedActions": [
+        "ClearLine integration spike",
+        "One CPG pilot"
+      ],
+      "evidenceIds": [
+        "sig-012"
+      ],
+      "competitorsPressuring": [
+        "magnite"
+      ],
+      "capabilityDelta": 10,
+      "status": "open"
+    }
+  ],
+  "quarterlyMoves": [
+    {
+      "id": "q-2026-q1-003",
+      "quarter": "2026-Q1",
+      "competitorId": "magnite",
+      "competitorName": "Magnite",
+      "type": "product",
+      "title": "ClearLine shoppable CTV templates",
+      "oneLiner": "Public eng post on interactive CTV overlays.",
+      "sourceName": "Engineering Blogs",
+      "sourceUrl": "https://www.magnite.com/blog",
+      "sourceType": "engineering_blogs",
+      "confidence": 0.81,
+      "signalIds": [
+        "sig-012"
+      ],
+      "impactOnKargo": "low"
+    }
+  ],
+  "learnings": [
+    {
+      "id": "learn-006",
+      "from": "Magnite",
+      "role": "Adjacent SSP",
+      "title": "Shoppable CTV is a supply-side opening",
+      "lesson": "ClearLine templates are public; creative can plug in without SSP build.",
+      "quickWin": "Pilot one CPG brand on ClearLine shoppable CTV + Kargo measurement.",
+      "effort": "Low",
+      "impact": "Medium",
+      "opportunityId": "opp-006",
+      "evidenceIds": [
+        "sig-012"
+      ],
+      "sourceNames": [
+        "Engineering Blogs"
+      ],
+      "confidence": 0.78
+    }
+  ],
+  "llmBrief": {
+    "confidence": 0.81,
+    "summary": "Magnite: adjacent SSP. Watch level: watch. 1 public signals. Opportunity score 54/100.",
+    "watchFor": [
+      "CTV supply",
+      "ClearLine",
+      "Publisher tools"
+    ]
+  }
+}

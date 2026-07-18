@@ -156,7 +156,7 @@ function dashboardSummary() {
   const quarterMoves = quarterlyMoves.filter((m) => m.quarter === latestQuarter);
 
   return {
-    headline: 'What should Kargo build next to stay ahead?',
+    headline: 'What should we build next to stay ahead?',
     policy: 'Public sources only — every claim is source-marked with confidence.',
     generatedAt: new Date().toISOString(),
     metrics: {

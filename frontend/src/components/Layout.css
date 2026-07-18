@@ -53,7 +53,7 @@
   width: 2.25rem;
   height: 2.25rem;
   border-radius: 0.65rem;
-  background: linear-gradient(135deg, var(--kargo) 0%, #4f8cff 100%);
+  background: linear-gradient(135deg, var(--accent-brand) 0%, #4f8cff 100%);
   color: white;
   font-family: var(--display);
   font-weight: 800;

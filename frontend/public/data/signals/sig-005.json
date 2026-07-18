@@ -1,0 +1,39 @@
+{
+  "signal": {
+    "id": "sig-005",
+    "title": "Underscore AI raises $28M Series A for agentic bidding",
+    "competitorId": "underscored-ai",
+    "competitorName": "Underscore AI",
+    "sourceId": "crunchbase",
+    "sourceName": "Funding Announcements",
+    "sourceType": "funding",
+    "sourceUrl": "https://news.crunchbase.com/example-underscore-ai",
+    "publishedAt": "2026-07-15T16:00:00Z",
+    "ingestedAt": "2026-07-15T16:22:00Z",
+    "category": "funding",
+    "tags": [
+      "AI infra",
+      "agents",
+      "startup"
+    ],
+    "summary": "Capital influx into LLM-based bidding agents suggests next-wave optimization stacks may bypass traditional DSP UI workflows.",
+    "confidence": 0.93,
+    "evidenceStrength": "strong",
+    "impactOnKargo": "medium",
+    "rawExcerpt": "Underscore AI closed a $28M Series A to build autonomous media-buying agents that negotiate goals in natural language…"
+  },
+  "source": {
+    "id": "crunchbase",
+    "name": "Funding Announcements",
+    "category": "capital",
+    "type": "funding",
+    "description": "Seed through growth rounds for emerging ad tech and AI infra startups.",
+    "url": "https://news.crunchbase.com",
+    "cadence": "Hourly",
+    "coverage": "Ad tech, retail media, generative creative, identity",
+    "reliability": 0.9,
+    "signalsIngested": 27,
+    "lastSync": "2026-07-18T12:55:00Z",
+    "status": "active"
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "opportunity": {
+    "id": "opp-004",
+    "title": "Own attention → brand outcomes",
+    "priority": "medium",
+    "confidence": 0.74,
+    "effort": "Low",
+    "impact": "Medium",
+    "horizon": "0–6 months",
+    "category": "positioning",
+    "thesis": "DSPs now pitch attention pacing. Clarify Kargo’s public methodology first.",
+    "whyItMatters": "Category language Kargo helped popularize is being commoditized.",
+    "move": "One public method card + sales evidence pack vs DSP attention claims.",
+    "kargoGap": "measurement storytelling",
+    "expectedImpact": "Keep attention narrative tied to high-impact proof.",
+    "recommendedActions": [
+      "Single attention + validation dashboard",
+      "Public method card with intervals",
+      "Sales evidence packs"
+    ],
+    "evidenceIds": [
+      "sig-007"
+    ],
+    "competitorsPressuring": [
+      "stackadapt"
+    ],
+    "capabilityDelta": -5,
+    "status": "open"
+  },
+  "evidence": [
+    {
+      "id": "sig-007",
+      "title": "IAB AdsCon: StackAdapt talk on “Attention-predicted pacing”",
+      "competitorId": "stackadapt",
+      "competitorName": "StackAdapt",
+      "sourceId": "conferences",
+      "sourceName": "Conference Talks",
+      "sourceType": "conference_talks",
+      "sourceUrl": "https://www.iab.com/events/example-attention-pacing",
+      "publishedAt": "2026-06-28T15:30:00Z",
+      "ingestedAt": "2026-06-29T08:00:00Z",
+      "category": "thought_leadership",
+      "tags": [
+        "attention",
+        "measurement",
+        "pacing"
+      ],
+      "summary": "Public roadmap language around attention-based pacing overlaps Kargo’s brand-lift / attention positioning.",
+      "confidence": 0.72,
+      "evidenceStrength": "moderate",
+      "impactOnKargo": "medium",
+      "rawExcerpt": "Session abstract: How predicted attention scores can reallocate daily budgets without sacrificing reach goals…"
+    }
+  ],
+  "competitors": [
+    {
+      "id": "stackadapt",
+      "name": "StackAdapt",
+      "shortName": "SA",
+      "tier": "direct",
+      "category": "DSP",
+      "watchLevel": "focus",
+      "focus": [
+        "Programmatic",
+        "Native",
+        "CTV",
+        "AI creative",
+        "Self-serve"
+      ],
+      "hq": "Toronto, Canada",
+      "employees": "1,000+",
+      "summary": "Fast-growing full-funnel DSP investing heavily in AI creative tooling and self-serve mid-market expansion.",
+      "capabilityScores": {
+        "creative": 78,
+        "identity": 70,
+        "ctv": 82,
+        "retailMedia": 60,
+        "aiOptimization": 85,
+        "measurement": 74,
+        "mobileHighImpact": 62
+      },
+      "recentMoves": 5,
+      "opportunityScore": 78
+    }
+  ],
+  "sources": [
+    {
+      "id": "conferences",
+      "name": "Conference Talks",
+      "type": "conference_talks",
+      "url": "https://www.iab.com/events/example-attention-pacing"
+    }
+  ],
+  "learnings": [
+    {
+      "id": "learn-004",
+      "from": "MNTN / StackAdapt",
+      "role": "Adjacent peer",
+      "title": "Attention language is being copied",
+      "lesson": "Conference abstracts now pitch attention-based pacing as DSP default.",
+      "quickWin": "Publish a short public method card: attention → brand outcomes for high-impact.",
+      "effort": "Low",
+      "impact": "Medium",
+      "opportunityId": "opp-004",
+      "evidenceIds": [
+        "sig-007"
+      ],
+      "sourceNames": [
+        "Conference Talks"
+      ],
+      "confidence": 0.74
+    }
+  ],
+  "confidenceBreakdown": {
+    "overall": 0.74,
+    "evidenceCount": 1,
+    "strongEvidence": 0,
+    "avgSignalConfidence": 0.72,
+    "note": "Public sources only. Confidence = corroboration across independent marked sources."
+  }
+}

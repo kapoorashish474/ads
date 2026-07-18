@@ -1,0 +1,39 @@
+{
+  "signal": {
+    "id": "sig-001",
+    "title": "Trade Desk hiring 12 ML Engineers for “Kokai Decisioning”",
+    "competitorId": "the-trade-desk",
+    "competitorName": "The Trade Desk",
+    "sourceId": "linkedin-jobs",
+    "sourceName": "LinkedIn Job Postings",
+    "sourceType": "job_postings",
+    "sourceUrl": "https://www.linkedin.com/jobs/view/example-kokai-ml",
+    "publishedAt": "2026-07-17T14:20:00Z",
+    "ingestedAt": "2026-07-17T15:01:00Z",
+    "category": "investment",
+    "tags": [
+      "AI",
+      "bidding",
+      "Kokai"
+    ],
+    "summary": "Cluster of senior ML roles referencing real-time decisioning, feature stores, and advertiser goal translation—signals continued Kokai investment.",
+    "confidence": 0.91,
+    "evidenceStrength": "strong",
+    "impactOnKargo": "high",
+    "rawExcerpt": "Build and productionize models that translate advertiser objectives into bid / budget decisions within the Kokai platform…"
+  },
+  "source": {
+    "id": "linkedin-jobs",
+    "name": "LinkedIn Job Postings",
+    "category": "hiring",
+    "type": "job_postings",
+    "description": "Engineering, product, and GTM role openings that reveal capability bets.",
+    "url": "https://www.linkedin.com/jobs",
+    "cadence": "Hourly",
+    "coverage": "Direct competitors + AI infra + retail media",
+    "reliability": 0.82,
+    "signalsIngested": 148,
+    "lastSync": "2026-07-18T13:40:00Z",
+    "status": "active"
+  }
+}

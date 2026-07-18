@@ -25,7 +25,7 @@ app.use(express.json());
 app.get('/api/health', (_req, res) => {
   res.json({
     status: 'ok',
-    service: 'kargo-intel',
+    service: 'intel',
     message: 'Competitive intelligence API running',
     dataPolicy: 'public-sources-only',
   });
@@ -99,7 +99,7 @@ app.get('/api/sources', (_req, res) => {
   res.json({
     dataPolicy: 'public-sources-only',
     notice:
-      'Kargo Intel uses only publicly available sources. No confidential, internal, or customer data is stored or displayed.',
+      'Intel uses only publicly available sources. No confidential, internal, or customer data is stored or displayed.',
     count: sources.length,
     sources: sources.map((s) => ({
       ...s,
@@ -112,7 +112,7 @@ app.get('/api/analysis/gaps', (_req, res) => {
   res.json({
     ...scopeMap(),
     method:
-      'Scope to improve = peer max − Kargo. Derived from public signal clusters only — not private data.',
+      'Scope to improve = peer max − baseline. Derived from public signal clusters only — not private data.',
   });
 });
 
@@ -145,5 +145,5 @@ app.get('/api/evidence', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Kargo Intel API running on http://localhost:${PORT}`);
+  console.log(`Intel API running on http://localhost:${PORT}`);
 });

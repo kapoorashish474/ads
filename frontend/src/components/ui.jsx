@@ -14,7 +14,7 @@ export function PriorityBadge({ priority }) {
 }
 
 export function ImpactBadge({ impact }) {
-  return <span className={`pill pill--impact-${impact}`}>{impact} impact</span>
+  return <span className={`pill pill--impact-${impact}`}>{impact} relevance</span>
 }
 
 export function SourceChip({ name, type, url }) {

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { SUBJECT_LABEL } from '../brand'
 import { api } from '../api'
 import { Loading, ErrorState } from '../components/ui'
 import { CapabilityRadar, ScopeBars } from '../components/Charts'
@@ -18,9 +19,9 @@ export default function ScopePage() {
 
   const radarSeries = [
     {
-      id: 'kargo',
-      name: 'Kargo',
-      tone: 'kargo',
+      id: 'baseline',
+      name: SUBJECT_LABEL,
+      tone: 'baseline',
       points: Object.entries(data.kargo.capabilityScores).map(([dimension, value]) => ({
         label: dimension.replace(/([A-Z])/g, ' $1').replace(/^./, (s) => s.toUpperCase()).split(' ')[0],
         value,

@@ -1,0 +1,217 @@
+{
+  "policy": "Public sources only. Every move is source-marked.",
+  "quarters": [
+    "2026-Q2",
+    "2026-Q1",
+    "2025-Q4"
+  ],
+  "selected": "2026-Q2",
+  "count": 12,
+  "moves": [
+    {
+      "id": "q-2026-q2-003",
+      "quarter": "2026-Q2",
+      "competitorId": "criteo",
+      "competitorName": "Criteo",
+      "type": "financial",
+      "title": "Retail Media ARR +18% YoY",
+      "oneLiner": "Q2 public earnings: commerce media still compounding.",
+      "sourceName": "SEC / Earnings",
+      "sourceUrl": "https://www.sec.gov",
+      "sourceType": "press_releases",
+      "confidence": 0.97,
+      "signalIds": [
+        "sig-008"
+      ],
+      "impactOnKargo": "high"
+    },
+    {
+      "id": "q-2026-q2-002",
+      "quarter": "2026-Q2",
+      "competitorId": "stackadapt",
+      "competitorName": "StackAdapt",
+      "type": "product",
+      "title": "AdaptAI Creative Studio beta",
+      "oneLiner": "Public launch of generative creative with predicted CTR.",
+      "sourceName": "Press Releases",
+      "sourceUrl": "https://www.prnewswire.com",
+      "sourceType": "press_releases",
+      "confidence": 0.94,
+      "signalIds": [
+        "sig-002"
+      ],
+      "impactOnKargo": "high"
+    },
+    {
+      "id": "q-2026-q2-004",
+      "quarter": "2026-Q2",
+      "competitorId": "underscored-ai",
+      "competitorName": "Underscore AI",
+      "type": "funding",
+      "title": "$28M Series A — agentic bidding",
+      "oneLiner": "Public funding round for LLM media-buying agents.",
+      "sourceName": "Funding Announcements",
+      "sourceUrl": "https://news.crunchbase.com",
+      "sourceType": "funding",
+      "confidence": 0.93,
+      "signalIds": [
+        "sig-005"
+      ],
+      "impactOnKargo": "medium"
+    },
+    {
+      "id": "q-2026-q2-005",
+      "quarter": "2026-Q2",
+      "competitorId": "dv360",
+      "competitorName": "Google DV360",
+      "type": "product",
+      "title": "AI Max for Video expansion",
+      "oneLiner": "More markets get automated video optimization.",
+      "sourceName": "Press Releases",
+      "sourceUrl": "https://blog.google",
+      "sourceType": "press_releases",
+      "confidence": 0.92,
+      "signalIds": [
+        "sig-011"
+      ],
+      "impactOnKargo": "high"
+    },
+    {
+      "id": "q-2026-q2-001",
+      "quarter": "2026-Q2",
+      "competitorId": "the-trade-desk",
+      "competitorName": "The Trade Desk",
+      "type": "product",
+      "title": "Kokai decisioning hiring surge",
+      "oneLiner": "12+ public ML roles tied to real-time bid decisioning.",
+      "sourceName": "LinkedIn Job Postings",
+      "sourceUrl": "https://www.linkedin.com/jobs",
+      "sourceType": "job_postings",
+      "confidence": 0.91,
+      "signalIds": [
+        "sig-001",
+        "sig-006"
+      ],
+      "impactOnKargo": "high"
+    },
+    {
+      "id": "q-2025-q4-001",
+      "quarter": "2025-Q4",
+      "competitorId": "criteo",
+      "competitorName": "Criteo",
+      "type": "partnership",
+      "title": "Walmart Connect offsite expansion",
+      "oneLiner": "Public retail-media wire: offsite shopper activation.",
+      "sourceName": "Retail Media Wire",
+      "sourceUrl": "https://www.adexchanger.com",
+      "sourceType": "press_releases",
+      "confidence": 0.9,
+      "signalIds": [
+        "sig-010"
+      ],
+      "impactOnKargo": "medium"
+    },
+    {
+      "id": "q-2025-q4-002",
+      "quarter": "2025-Q4",
+      "competitorId": "the-trade-desk",
+      "competitorName": "The Trade Desk",
+      "type": "product",
+      "title": "Creative feature-store eng post",
+      "oneLiner": "Public blog: sub-8ms creative ranking infra.",
+      "sourceName": "Engineering Blogs",
+      "sourceUrl": "https://www.thetradedesk.com/us/news",
+      "sourceType": "engineering_blogs",
+      "confidence": 0.89,
+      "signalIds": [
+        "sig-006"
+      ],
+      "impactOnKargo": "high"
+    },
+    {
+      "id": "q-2026-q1-001",
+      "quarter": "2026-Q1",
+      "competitorId": "criteo",
+      "competitorName": "Criteo",
+      "type": "ip",
+      "title": "Shopper-graph patent published",
+      "oneLiner": "USPTO: linking in-store and open-web events.",
+      "sourceName": "USPTO Patents",
+      "sourceUrl": "https://patents.google.com",
+      "sourceType": "patents",
+      "confidence": 0.88,
+      "signalIds": [
+        "sig-003"
+      ],
+      "impactOnKargo": "medium"
+    },
+    {
+      "id": "q-2026-q1-004",
+      "quarter": "2026-Q1",
+      "competitorId": "adcreative-ai",
+      "competitorName": "AdCreative.ai",
+      "type": "hiring",
+      "title": "40 open generative-creative roles",
+      "oneLiner": "Public ATS boards show rapid EU/US hiring.",
+      "sourceName": "Company Career Boards",
+      "sourceUrl": "https://boards.greenhouse.io",
+      "sourceType": "job_postings",
+      "confidence": 0.85,
+      "signalIds": [
+        "sig-009"
+      ],
+      "impactOnKargo": "medium"
+    },
+    {
+      "id": "q-2026-q1-003",
+      "quarter": "2026-Q1",
+      "competitorId": "magnite",
+      "competitorName": "Magnite",
+      "type": "product",
+      "title": "ClearLine shoppable CTV templates",
+      "oneLiner": "Public eng post on interactive CTV overlays.",
+      "sourceName": "Engineering Blogs",
+      "sourceUrl": "https://www.magnite.com/blog",
+      "sourceType": "engineering_blogs",
+      "confidence": 0.81,
+      "signalIds": [
+        "sig-012"
+      ],
+      "impactOnKargo": "low"
+    },
+    {
+      "id": "q-2026-q2-006",
+      "quarter": "2026-Q2",
+      "competitorId": "amazon-ads",
+      "competitorName": "Amazon Ads",
+      "type": "customer_proof",
+      "title": "AMC + streaming TV case study",
+      "oneLiner": "Published 22% ROAS lift claim on AMC audiences.",
+      "sourceName": "Customer Case Studies",
+      "sourceUrl": "https://advertising.amazon.com",
+      "sourceType": "case_studies",
+      "confidence": 0.76,
+      "signalIds": [
+        "sig-004"
+      ],
+      "impactOnKargo": "medium"
+    },
+    {
+      "id": "q-2026-q1-002",
+      "quarter": "2026-Q1",
+      "competitorId": "stackadapt",
+      "competitorName": "StackAdapt",
+      "type": "talk",
+      "title": "Attention-predicted pacing talk",
+      "oneLiner": "IAB session abstract on attention-based budgets.",
+      "sourceName": "Conference Talks",
+      "sourceUrl": "https://www.iab.com",
+      "sourceType": "conference_talks",
+      "confidence": 0.72,
+      "signalIds": [
+        "sig-007"
+      ],
+      "impactOnKargo": "medium"
+    }
+  ]
+}

@@ -1,0 +1,320 @@
+{
+  "competitor": {
+    "id": "the-trade-desk",
+    "name": "The Trade Desk",
+    "shortName": "TTD",
+    "tier": "direct",
+    "category": "DSP",
+    "watchLevel": "focus",
+    "focus": [
+      "CTV",
+      "UID2",
+      "Kokai",
+      "OpenPath",
+      "AI bidding"
+    ],
+    "hq": "Ventura, CA",
+    "employees": "3,000+",
+    "summary": "Largest independent DSP pushing AI-driven optimization (Kokai) and identity (UID2) across CTV and open web.",
+    "capabilityScores": {
+      "creative": 72,
+      "identity": 94,
+      "ctv": 96,
+      "retailMedia": 68,
+      "aiOptimization": 93,
+      "measurement": 88,
+      "mobileHighImpact": 55
+    },
+    "recentMoves": 6,
+    "opportunityScore": 86
+  },
+  "kargo": {
+    "id": "kargo",
+    "name": "Baseline",
+    "capabilityScores": {
+      "creative": 92,
+      "identity": 68,
+      "ctv": 78,
+      "retailMedia": 55,
+      "aiOptimization": 62,
+      "measurement": 76,
+      "mobileHighImpact": 96
+    },
+    "strengths": [
+      "High-impact mobile & omnichannel creative formats",
+      "Premium publisher network & brand safety",
+      "Brand lift / attention-oriented measurement partnerships"
+    ],
+    "gaps": [
+      "Self-serve AI optimization parity vs TTD Kokai / StackAdapt",
+      "Retail media graph depth vs Criteo / Amazon",
+      "Generative creative production velocity"
+    ]
+  },
+  "comparison": [
+    {
+      "dimension": "creative",
+      "label": "Creative",
+      "kargo": 92,
+      "competitor": 72,
+      "delta": 20
+    },
+    {
+      "dimension": "identity",
+      "label": "Identity",
+      "kargo": 68,
+      "competitor": 94,
+      "delta": -26
+    },
+    {
+      "dimension": "ctv",
+      "label": "Ctv",
+      "kargo": 78,
+      "competitor": 96,
+      "delta": -18
+    },
+    {
+      "dimension": "retailMedia",
+      "label": "Retail Media",
+      "kargo": 55,
+      "competitor": 68,
+      "delta": -13
+    },
+    {
+      "dimension": "aiOptimization",
+      "label": "Ai Optimization",
+      "kargo": 62,
+      "competitor": 93,
+      "delta": -31
+    },
+    {
+      "dimension": "measurement",
+      "label": "Measurement",
+      "kargo": 76,
+      "competitor": 88,
+      "delta": -12
+    },
+    {
+      "dimension": "mobileHighImpact",
+      "label": "Mobile High Impact",
+      "kargo": 96,
+      "competitor": 55,
+      "delta": 41
+    }
+  ],
+  "signals": [
+    {
+      "id": "sig-001",
+      "title": "Trade Desk hiring 12 ML Engineers for “Kokai Decisioning”",
+      "competitorId": "the-trade-desk",
+      "competitorName": "The Trade Desk",
+      "sourceId": "linkedin-jobs",
+      "sourceName": "LinkedIn Job Postings",
+      "sourceType": "job_postings",
+      "sourceUrl": "https://www.linkedin.com/jobs/view/example-kokai-ml",
+      "publishedAt": "2026-07-17T14:20:00Z",
+      "ingestedAt": "2026-07-17T15:01:00Z",
+      "category": "investment",
+      "tags": [
+        "AI",
+        "bidding",
+        "Kokai"
+      ],
+      "summary": "Cluster of senior ML roles referencing real-time decisioning, feature stores, and advertiser goal translation—signals continued Kokai investment.",
+      "confidence": 0.91,
+      "evidenceStrength": "strong",
+      "impactOnKargo": "high",
+      "rawExcerpt": "Build and productionize models that translate advertiser objectives into bid / budget decisions within the Kokai platform…"
+    },
+    {
+      "id": "sig-006",
+      "title": "TTD eng blog: “Feature store for real-time creative selection”",
+      "competitorId": "the-trade-desk",
+      "competitorName": "The Trade Desk",
+      "sourceId": "eng-blogs",
+      "sourceName": "Engineering Blogs",
+      "sourceType": "engineering_blogs",
+      "sourceUrl": "https://www.thetradedesk.com/us/news/example-feature-store",
+      "publishedAt": "2026-07-12T10:00:00Z",
+      "ingestedAt": "2026-07-12T11:05:00Z",
+      "category": "capability",
+      "tags": [
+        "creative",
+        "ML infra",
+        "CTV"
+      ],
+      "summary": "Technical post confirms investment in low-latency creative ranking—blurs line between DSP optimization and creative intelligence.",
+      "confidence": 0.89,
+      "evidenceStrength": "strong",
+      "impactOnKargo": "high",
+      "rawExcerpt": "We describe a feature store that serves creative embeddings to bid-time models under 8ms p99…"
+    }
+  ],
+  "opportunities": [
+    {
+      "id": "opp-001",
+      "title": "Ship goal-based AI optimization",
+      "priority": "critical",
+      "confidence": 0.91,
+      "effort": "Medium",
+      "impact": "High",
+      "horizon": "0–6 months",
+      "category": "product",
+      "thesis": "Buyers now expect goal → optimize. Creative strength needs a decisioning layer.",
+      "whyItMatters": "TTD / StackAdapt / DV360 are resetting the AI-DSP narrative.",
+      "move": "Closed beta: goal → format/placement optimizer for high-impact units.",
+      "kargoGap": "aiOptimization",
+      "expectedImpact": "Defend budgets shifting to “AI DSP” stories.",
+      "recommendedActions": [
+        "Beta: goal → format/placement optimizer",
+        "Optimize on attention + brand lift",
+        "Publish public case proof in 90 days"
+      ],
+      "evidenceIds": [
+        "sig-001",
+        "sig-002",
+        "sig-006",
+        "sig-011"
+      ],
+      "competitorsPressuring": [
+        "the-trade-desk",
+        "stackadapt",
+        "dv360"
+      ],
+      "capabilityDelta": -31,
+      "status": "open"
+    },
+    {
+      "id": "opp-002",
+      "title": "Generative studio for Kargo formats",
+      "priority": "high",
+      "confidence": 0.87,
+      "effort": "Medium",
+      "impact": "High",
+      "horizon": "0–6 months",
+      "category": "product",
+      "thesis": "Competitors productize brief → variants → score. Own that loop inside Kargo units.",
+      "whyItMatters": "Creative speed is becoming a buying criterion, not a service add-on.",
+      "move": "Generate format-native variants with predicted attention scoring.",
+      "kargoGap": "creative velocity",
+      "expectedImpact": "Faster self-serve; lock formats as the generation target.",
+      "recommendedActions": [
+        "Generate inside proprietary templates",
+        "Score variants on predicted attention",
+        "Agency flow: brief → 10 variants → approve"
+      ],
+      "evidenceIds": [
+        "sig-002",
+        "sig-009",
+        "sig-006"
+      ],
+      "competitorsPressuring": [
+        "stackadapt",
+        "adcreative-ai",
+        "the-trade-desk"
+      ],
+      "capabilityDelta": -8,
+      "status": "open"
+    },
+    {
+      "id": "opp-005",
+      "title": "Pilot a brand-safe buying agent",
+      "priority": "medium",
+      "confidence": 0.69,
+      "effort": "High",
+      "impact": "Medium",
+      "horizon": "12–18 months",
+      "category": "moonshot",
+      "thesis": "Public capital is chasing agentic buying. Narrow to premium Kargo inventory.",
+      "whyItMatters": "Agents may bypass classic DSP UIs over the next cycle.",
+      "move": "Internal spike: NL plan → Kargo inventory with safety guardrails.",
+      "kargoGap": "aiOptimization",
+      "expectedImpact": "Future-proof against agentic DSP disruption.",
+      "recommendedActions": [
+        "Internal LLM planning spike",
+        "Guardrails: safety, format fit, attention floors",
+        "Watch startup acqui-hire / partnership"
+      ],
+      "evidenceIds": [
+        "sig-005",
+        "sig-001"
+      ],
+      "competitorsPressuring": [
+        "underscored-ai",
+        "the-trade-desk"
+      ],
+      "capabilityDelta": -26,
+      "status": "watching"
+    }
+  ],
+  "quarterlyMoves": [
+    {
+      "id": "q-2026-q2-001",
+      "quarter": "2026-Q2",
+      "competitorId": "the-trade-desk",
+      "competitorName": "The Trade Desk",
+      "type": "product",
+      "title": "Kokai decisioning hiring surge",
+      "oneLiner": "12+ public ML roles tied to real-time bid decisioning.",
+      "sourceName": "LinkedIn Job Postings",
+      "sourceUrl": "https://www.linkedin.com/jobs",
+      "sourceType": "job_postings",
+      "confidence": 0.91,
+      "signalIds": [
+        "sig-001",
+        "sig-006"
+      ],
+      "impactOnKargo": "high"
+    },
+    {
+      "id": "q-2025-q4-002",
+      "quarter": "2025-Q4",
+      "competitorId": "the-trade-desk",
+      "competitorName": "The Trade Desk",
+      "type": "product",
+      "title": "Creative feature-store eng post",
+      "oneLiner": "Public blog: sub-8ms creative ranking infra.",
+      "sourceName": "Engineering Blogs",
+      "sourceUrl": "https://www.thetradedesk.com/us/news",
+      "sourceType": "engineering_blogs",
+      "confidence": 0.89,
+      "signalIds": [
+        "sig-006"
+      ],
+      "impactOnKargo": "high"
+    }
+  ],
+  "learnings": [
+    {
+      "id": "learn-001",
+      "from": "The Trade Desk",
+      "role": "Direct competitor",
+      "title": "Goal-in, optimize-out is table stakes",
+      "lesson": "Kokai + public ML hiring show buyers expect AI to translate goals into bids.",
+      "quickWin": "Ship a closed beta: brand goal → high-impact format/placement optimizer.",
+      "effort": "Medium",
+      "impact": "High",
+      "opportunityId": "opp-001",
+      "evidenceIds": [
+        "sig-001",
+        "sig-006"
+      ],
+      "sourceNames": [
+        "LinkedIn Job Postings",
+        "Engineering Blogs"
+      ],
+      "confidence": 0.91
+    }
+  ],
+  "llmBrief": {
+    "confidence": 0.9,
+    "summary": "The Trade Desk: direct DSP. Watch level: focus. 2 public signals. Opportunity score 86/100.",
+    "watchFor": [
+      "CTV",
+      "UID2",
+      "Kokai",
+      "OpenPath",
+      "AI bidding"
+    ]
+  }
+}

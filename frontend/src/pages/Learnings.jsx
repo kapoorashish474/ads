@@ -19,7 +19,7 @@ export default function Learnings() {
       <header className="page-head">
         <div>
           <p className="eyebrow">from → lesson → quick win</p>
-          <h1>Learnings for Kargo</h1>
+          <h1>Strategic playbooks</h1>
           <p className="lede lede--short">Public peer moves, distilled to one action each.</p>
         </div>
       </header>

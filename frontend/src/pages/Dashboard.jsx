@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { SUBJECT_LABEL } from '../brand'
 import { api } from '../api'
 import { ConfidenceBadge, Loading, ErrorState, PriorityBadge } from '../components/ui'
 import EvidenceDrawer from '../components/EvidenceDrawer'
@@ -51,9 +52,9 @@ export default function Dashboard() {
   const radarSeries = data.radar
     ? [
         {
-          id: 'kargo',
-          name: 'Kargo',
-          tone: 'kargo',
+          id: 'baseline',
+          name: SUBJECT_LABEL,
+          tone: 'baseline',
           points: data.radar.kargo.map((p) => ({ label: p.label, value: p.value })),
         },
         {
@@ -69,7 +70,7 @@ export default function Dashboard() {
     <div className="page page--dashboard">
       <section className="hero-panel hero-panel--tight animate-in">
         <div className="policy-chip">Public sources only · every claim is marked</div>
-        <p className="eyebrow">Kargo radar</p>
+        <p className="eyebrow">Capability radar</p>
         <h1>{data.headline}</h1>
         <p className="lede lede--short">Three moves with public evidence. Scope to improve, not speculation.</p>
       </section>
@@ -105,7 +106,7 @@ export default function Dashboard() {
           <header className="panel__head">
             <div>
               <h2>Capability radar</h2>
-              <p className="muted">Kargo vs peer best (public scores)</p>
+              <p className="muted">{SUBJECT_LABEL} vs peer best (public scores)</p>
             </div>
             <Link to="/scope">Scope map</Link>
           </header>

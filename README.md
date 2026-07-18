@@ -1,13 +1,13 @@
-# Kargo Intel
+# Intel
 
-Public-source competitive intelligence for **Kargo**. Answers: *What should Kargo build next to stay ahead?*
+Public-source competitive intelligence dashboard. Answers: *What should we build next to stay ahead?*
 
 **Data policy:** public sources only. No confidential, internal, or customer data. Every claim is source-marked with a confidence score.
 
 ## Stack
 
-- **Frontend:** React + Vite (`frontend/`)
-- **Backend:** Express API (`backend/`)
+- **Frontend:** React + Vite (`Frontend/`)
+- **Backend:** Express API (`Backend/`)
 
 ## Run with Docker
 
@@ -16,7 +16,13 @@ docker compose up --build -d
 ```
 
 - App: http://localhost:5173
-- API: http://localhost:5000
+- API: http://localhost:5001/api/health
+
+## GitHub Pages
+
+Live: https://kapoorashish474.github.io/ads/
+
+Pushes to `main` build static data and deploy via GitHub Actions.
 
 ## Surfaces
 
@@ -31,21 +37,6 @@ docker compose up --build -d
 | **Signals** | Public ingest feed |
 | **Sources** | Marked public origins |
 
-## API
-
-| Path | Description |
-|------|-------------|
-| `GET /api/dashboard` | Radar payload |
-| `GET /api/quarters` | Quarterly public moves |
-| `GET /api/scope-map` | Scope to improve + radar inputs |
-| `GET /api/learnings` | Peer playbooks |
-| `GET /api/evidence?ids=` | Evidence bundle |
-| `GET /api/opportunities` | Recommended moves |
-| `GET /api/signals` | Signal feed |
-| `GET /api/sources` | Source catalog |
-| `GET /api/competitors` | Peer map |
-
 ## Git
 
-Remote: https://github.com/Kapoorashish474/ads  
-Author identity for publishes: `kapoorashish474` / `kapoorashish474@gmail.com`
+Remote: https://github.com/kapoorashish474/ads

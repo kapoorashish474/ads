@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
+import { SUBJECT_LABEL } from '../brand'
 import { api } from '../api'
 import { Loading, ErrorState } from '../components/ui'
 import { RankList } from '../components/Charts'
@@ -39,7 +40,7 @@ export default function Competitors() {
           <p className="eyebrow">Direct · Adjacent · Emerging</p>
           <h1>Peer map</h1>
           <p className="lede lede--short">
-            Track peers against Kargo’s baseline. Opportunity score ranks where learning is richest.
+            Track peers against your baseline. Opportunity score ranks where learning is richest.
           </p>
         </div>
         <div className="filters">
@@ -62,10 +63,10 @@ export default function Competitors() {
           <RankList items={ranked} />
         </section>
 
-        <div className="kargo-baseline panel">
+        <div className="baseline-panel panel">
           <div>
             <p className="eyebrow">Baseline</p>
-            <h2>Kargo</h2>
+            <h2>{SUBJECT_LABEL}</h2>
             <p className="muted">Your reference frame for every comparison.</p>
           </div>
           <div className="score-strip">

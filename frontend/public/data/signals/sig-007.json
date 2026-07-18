@@ -1,0 +1,39 @@
+{
+  "signal": {
+    "id": "sig-007",
+    "title": "IAB AdsCon: StackAdapt talk on “Attention-predicted pacing”",
+    "competitorId": "stackadapt",
+    "competitorName": "StackAdapt",
+    "sourceId": "conferences",
+    "sourceName": "Conference Talks",
+    "sourceType": "conference_talks",
+    "sourceUrl": "https://www.iab.com/events/example-attention-pacing",
+    "publishedAt": "2026-06-28T15:30:00Z",
+    "ingestedAt": "2026-06-29T08:00:00Z",
+    "category": "thought_leadership",
+    "tags": [
+      "attention",
+      "measurement",
+      "pacing"
+    ],
+    "summary": "Public roadmap language around attention-based pacing overlaps Kargo’s brand-lift / attention positioning.",
+    "confidence": 0.72,
+    "evidenceStrength": "moderate",
+    "impactOnKargo": "medium",
+    "rawExcerpt": "Session abstract: How predicted attention scores can reallocate daily budgets without sacrificing reach goals…"
+  },
+  "source": {
+    "id": "conferences",
+    "name": "Conference Talks",
+    "category": "thought_leadership",
+    "type": "conference_talks",
+    "description": "Session titles and abstracts from IAB, Digiday, CES, Cannes, and AdsCon.",
+    "url": "https://www.iab.com",
+    "cadence": "Weekly + event burst",
+    "coverage": "Industry events + YouTube uploads",
+    "reliability": 0.77,
+    "signalsIngested": 38,
+    "lastSync": "2026-07-16T18:00:00Z",
+    "status": "active"
+  }
+}

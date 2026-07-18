@@ -1,6 +1,7 @@
 /**
  * Capability radar + compare charts — visual first, minimal text.
  */
+import { SUBJECT_LABEL } from '../brand'
 
 function polar(cx, cy, r, angleDeg) {
   const a = ((angleDeg - 90) * Math.PI) / 180
@@ -84,9 +85,9 @@ export function ScopeBars({ rows = [], onSelect }) {
               </div>
               <div className="scope-dual">
                 <div className="scope-dual__col">
-                  <span>Kargo</span>
+                  <span>{SUBJECT_LABEL}</span>
                   <div className="bar__track">
-                    <i style={{ width: `${kargo}%` }} className="bar__fill bar__fill--kargo" />
+                    <i style={{ width: `${kargo}%` }} className="bar__fill bar__fill--baseline" />
                   </div>
                   <em>{kargo}</em>
                 </div>
@@ -146,7 +147,7 @@ export function RankList({ items = [], valueKey = 'value', labelKey = 'label', m
             <div className="bar__track">
               <i
                 style={{ width: `${((item[valueKey] || 0) / top) * 100}%` }}
-                className="bar__fill bar__fill--kargo"
+                className="bar__fill bar__fill--baseline"
               />
             </div>
             {item.hint && <span className="muted">{item.hint}</span>}

@@ -1,0 +1,339 @@
+{
+  "policy": "Public sources only.",
+  "evidence": [
+    {
+      "id": "sig-001",
+      "title": "Trade Desk hiring 12 ML Engineers for “Kokai Decisioning”",
+      "competitorId": "the-trade-desk",
+      "competitorName": "The Trade Desk",
+      "sourceId": "linkedin-jobs",
+      "sourceName": "LinkedIn Job Postings",
+      "sourceType": "job_postings",
+      "sourceUrl": "https://www.linkedin.com/jobs/view/example-kokai-ml",
+      "publishedAt": "2026-07-17T14:20:00Z",
+      "ingestedAt": "2026-07-17T15:01:00Z",
+      "category": "investment",
+      "tags": [
+        "AI",
+        "bidding",
+        "Kokai"
+      ],
+      "summary": "Cluster of senior ML roles referencing real-time decisioning, feature stores, and advertiser goal translation—signals continued Kokai investment.",
+      "confidence": 0.91,
+      "evidenceStrength": "strong",
+      "impactOnKargo": "high",
+      "rawExcerpt": "Build and productionize models that translate advertiser objectives into bid / budget decisions within the Kokai platform…"
+    },
+    {
+      "id": "sig-002",
+      "title": "StackAdapt launches “AdaptAI Creative Studio” beta",
+      "competitorId": "stackadapt",
+      "competitorName": "StackAdapt",
+      "sourceId": "pr-newswire",
+      "sourceName": "Press Releases",
+      "sourceType": "press_releases",
+      "sourceUrl": "https://www.prnewswire.com/example-stackadapt-adaptai",
+      "publishedAt": "2026-07-16T09:00:00Z",
+      "ingestedAt": "2026-07-16T09:12:00Z",
+      "category": "product_launch",
+      "tags": [
+        "generative creative",
+        "self-serve"
+      ],
+      "summary": "Self-serve generative creative with performance prediction for display and CTV—signals a chance for Kargo to productize format-native generation.",
+      "confidence": 0.94,
+      "evidenceStrength": "strong",
+      "impactOnKargo": "high",
+      "rawExcerpt": "AdaptAI Creative Studio lets marketers generate, score, and iterate ad variants with predicted attention and CTR…"
+    },
+    {
+      "id": "sig-003",
+      "title": "Criteo patent: “Shopper graph linking in-store and open-web events”",
+      "competitorId": "criteo",
+      "competitorName": "Criteo",
+      "sourceId": "uspto",
+      "sourceName": "USPTO Patents",
+      "sourceType": "patents",
+      "sourceUrl": "https://patents.google.com/patent/example-criteo-graph",
+      "publishedAt": "2026-07-10T00:00:00Z",
+      "ingestedAt": "2026-07-11T06:30:00Z",
+      "category": "ip",
+      "tags": [
+        "retail media",
+        "identity",
+        "first-party"
+      ],
+      "summary": "IP filing reinforces Criteo’s commerce identity graph; highlights an opportunity for Kargo to bridge retail audiences into high-impact offsite creative.",
+      "confidence": 0.88,
+      "evidenceStrength": "strong",
+      "impactOnKargo": "medium",
+      "rawExcerpt": "Methods for linking hashed transaction identifiers with anonymized open-web engagement events for bid-time audience resolution…"
+    },
+    {
+      "id": "sig-004",
+      "title": "Amazon Ads case study: AMC + streaming TV drives 22% ROAS lift",
+      "competitorId": "amazon-ads",
+      "competitorName": "Amazon Ads",
+      "sourceId": "case-studies",
+      "sourceName": "Customer Case Studies",
+      "sourceType": "case_studies",
+      "sourceUrl": "https://advertising.amazon.com/library/example-amc-stv",
+      "publishedAt": "2026-07-14T12:00:00Z",
+      "ingestedAt": "2026-07-14T12:40:00Z",
+      "category": "customer_proof",
+      "tags": [
+        "retail media",
+        "CTV",
+        "measurement"
+      ],
+      "summary": "Published outcome claims strengthen Amazon’s closed-loop narrative; brands may consolidate spend inside AMC-measured environments.",
+      "confidence": 0.76,
+      "evidenceStrength": "moderate",
+      "impactOnKargo": "medium",
+      "rawExcerpt": "Using AMC audiences activated across streaming TV and sponsored display, the brand reported a 22% ROAS lift…"
+    },
+    {
+      "id": "sig-005",
+      "title": "Underscore AI raises $28M Series A for agentic bidding",
+      "competitorId": "underscored-ai",
+      "competitorName": "Underscore AI",
+      "sourceId": "crunchbase",
+      "sourceName": "Funding Announcements",
+      "sourceType": "funding",
+      "sourceUrl": "https://news.crunchbase.com/example-underscore-ai",
+      "publishedAt": "2026-07-15T16:00:00Z",
+      "ingestedAt": "2026-07-15T16:22:00Z",
+      "category": "funding",
+      "tags": [
+        "AI infra",
+        "agents",
+        "startup"
+      ],
+      "summary": "Capital influx into LLM-based bidding agents suggests next-wave optimization stacks may bypass traditional DSP UI workflows.",
+      "confidence": 0.93,
+      "evidenceStrength": "strong",
+      "impactOnKargo": "medium",
+      "rawExcerpt": "Underscore AI closed a $28M Series A to build autonomous media-buying agents that negotiate goals in natural language…"
+    },
+    {
+      "id": "sig-006",
+      "title": "TTD eng blog: “Feature store for real-time creative selection”",
+      "competitorId": "the-trade-desk",
+      "competitorName": "The Trade Desk",
+      "sourceId": "eng-blogs",
+      "sourceName": "Engineering Blogs",
+      "sourceType": "engineering_blogs",
+      "sourceUrl": "https://www.thetradedesk.com/us/news/example-feature-store",
+      "publishedAt": "2026-07-12T10:00:00Z",
+      "ingestedAt": "2026-07-12T11:05:00Z",
+      "category": "capability",
+      "tags": [
+        "creative",
+        "ML infra",
+        "CTV"
+      ],
+      "summary": "Technical post confirms investment in low-latency creative ranking—blurs line between DSP optimization and creative intelligence.",
+      "confidence": 0.89,
+      "evidenceStrength": "strong",
+      "impactOnKargo": "high",
+      "rawExcerpt": "We describe a feature store that serves creative embeddings to bid-time models under 8ms p99…"
+    },
+    {
+      "id": "sig-007",
+      "title": "IAB AdsCon: StackAdapt talk on “Attention-predicted pacing”",
+      "competitorId": "stackadapt",
+      "competitorName": "StackAdapt",
+      "sourceId": "conferences",
+      "sourceName": "Conference Talks",
+      "sourceType": "conference_talks",
+      "sourceUrl": "https://www.iab.com/events/example-attention-pacing",
+      "publishedAt": "2026-06-28T15:30:00Z",
+      "ingestedAt": "2026-06-29T08:00:00Z",
+      "category": "thought_leadership",
+      "tags": [
+        "attention",
+        "measurement",
+        "pacing"
+      ],
+      "summary": "Public roadmap language around attention-based pacing overlaps Kargo’s brand-lift / attention positioning.",
+      "confidence": 0.72,
+      "evidenceStrength": "moderate",
+      "impactOnKargo": "medium",
+      "rawExcerpt": "Session abstract: How predicted attention scores can reallocate daily budgets without sacrificing reach goals…"
+    },
+    {
+      "id": "sig-008",
+      "title": "Criteo Q2: Retail Media ARR up 18% YoY",
+      "competitorId": "criteo",
+      "competitorName": "Criteo",
+      "sourceId": "sec-filings",
+      "sourceName": "SEC / Earnings",
+      "sourceType": "press_releases",
+      "sourceUrl": "https://www.sec.gov/example-criteo-q2",
+      "publishedAt": "2026-07-08T21:00:00Z",
+      "ingestedAt": "2026-07-08T21:30:00Z",
+      "category": "financial",
+      "tags": [
+        "retail media",
+        "ARR"
+      ],
+      "summary": "Hard financial evidence of retail media pull; validates adjacent category growth that Kargo should address or partner into.",
+      "confidence": 0.97,
+      "evidenceStrength": "strong",
+      "impactOnKargo": "high",
+      "rawExcerpt": "Retail Media net revenue increased 18% year over year, driven by onsite and offsite commerce media…"
+    },
+    {
+      "id": "sig-009",
+      "title": "AdCreative.ai posts 40 open roles across EU and US",
+      "competitorId": "adcreative-ai",
+      "competitorName": "AdCreative.ai",
+      "sourceId": "greenhouse-boards",
+      "sourceName": "Company Career Boards",
+      "sourceType": "job_postings",
+      "sourceUrl": "https://boards.greenhouse.io/example-adcreative",
+      "publishedAt": "2026-07-13T08:00:00Z",
+      "ingestedAt": "2026-07-13T09:15:00Z",
+      "category": "investment",
+      "tags": [
+        "hiring",
+        "generative creative"
+      ],
+      "summary": "Aggressive hiring velocity for a generative creative pure-play; indicates product-market fit and GTM scale-up.",
+      "confidence": 0.85,
+      "evidenceStrength": "strong",
+      "impactOnKargo": "medium",
+      "rawExcerpt": "Open roles: Senior Prompt Engineer, Creative ML, Enterprise AE (NY, London, Berlin)…"
+    },
+    {
+      "id": "sig-010",
+      "title": "Walmart Connect + Criteo expand offsite retail media inventory",
+      "competitorId": "criteo",
+      "competitorName": "Criteo",
+      "sourceId": "retail-media-wire",
+      "sourceName": "Retail Media Wire",
+      "sourceType": "press_releases",
+      "sourceUrl": "https://www.adexchanger.com/example-walmart-criteo",
+      "publishedAt": "2026-07-11T11:00:00Z",
+      "ingestedAt": "2026-07-11T11:25:00Z",
+      "category": "partnership",
+      "tags": [
+        "retail media",
+        "offsite"
+      ],
+      "summary": "Partnership deepens offsite commerce media—another pull of brand budgets toward closed retail graphs.",
+      "confidence": 0.9,
+      "evidenceStrength": "strong",
+      "impactOnKargo": "medium",
+      "rawExcerpt": "Walmart Connect advertisers can activate shopper audiences across Criteo’s offsite network with unified reporting…"
+    },
+    {
+      "id": "sig-011",
+      "title": "DV360 “AI Max for Video” rolled to more markets",
+      "competitorId": "dv360",
+      "competitorName": "Google DV360",
+      "sourceId": "pr-newswire",
+      "sourceName": "Press Releases",
+      "sourceType": "press_releases",
+      "sourceUrl": "https://blog.google/example-ai-max-video",
+      "publishedAt": "2026-07-09T07:00:00Z",
+      "ingestedAt": "2026-07-09T07:40:00Z",
+      "category": "product_launch",
+      "tags": [
+        "AI",
+        "video",
+        "YouTube"
+      ],
+      "summary": "Google expands automated video optimization; raises the bar for “set goals, get outcomes” buying experiences.",
+      "confidence": 0.92,
+      "evidenceStrength": "strong",
+      "impactOnKargo": "high",
+      "rawExcerpt": "AI Max for Video now available in additional markets, using generative assets and automated targeting…"
+    },
+    {
+      "id": "sig-012",
+      "title": "Magnite ClearLine adds shoppable CTV templates",
+      "competitorId": "magnite",
+      "competitorName": "Magnite",
+      "sourceId": "eng-blogs",
+      "sourceName": "Engineering Blogs",
+      "sourceType": "engineering_blogs",
+      "sourceUrl": "https://www.magnite.com/blog/example-shoppable-ctv",
+      "publishedAt": "2026-07-05T13:00:00Z",
+      "ingestedAt": "2026-07-05T14:10:00Z",
+      "category": "capability",
+      "tags": [
+        "CTV",
+        "commerce",
+        "formats"
+      ],
+      "summary": "Supply-side shoppable CTV formats create an opening for Kargo creative + measurement to plug into premium CTV paths.",
+      "confidence": 0.81,
+      "evidenceStrength": "moderate",
+      "impactOnKargo": "low",
+      "rawExcerpt": "Publishers using ClearLine can offer interactive shoppable overlays on CTV inventory…"
+    }
+  ],
+  "sources": [
+    {
+      "id": "linkedin-jobs",
+      "name": "LinkedIn Job Postings",
+      "type": "job_postings",
+      "url": "https://www.linkedin.com/jobs/view/example-kokai-ml"
+    },
+    {
+      "id": "pr-newswire",
+      "name": "Press Releases",
+      "type": "press_releases",
+      "url": "https://blog.google/example-ai-max-video"
+    },
+    {
+      "id": "uspto",
+      "name": "USPTO Patents",
+      "type": "patents",
+      "url": "https://patents.google.com/patent/example-criteo-graph"
+    },
+    {
+      "id": "case-studies",
+      "name": "Customer Case Studies",
+      "type": "case_studies",
+      "url": "https://advertising.amazon.com/library/example-amc-stv"
+    },
+    {
+      "id": "crunchbase",
+      "name": "Funding Announcements",
+      "type": "funding",
+      "url": "https://news.crunchbase.com/example-underscore-ai"
+    },
+    {
+      "id": "eng-blogs",
+      "name": "Engineering Blogs",
+      "type": "engineering_blogs",
+      "url": "https://www.magnite.com/blog/example-shoppable-ctv"
+    },
+    {
+      "id": "conferences",
+      "name": "Conference Talks",
+      "type": "conference_talks",
+      "url": "https://www.iab.com/events/example-attention-pacing"
+    },
+    {
+      "id": "sec-filings",
+      "name": "SEC / Earnings",
+      "type": "press_releases",
+      "url": "https://www.sec.gov/example-criteo-q2"
+    },
+    {
+      "id": "greenhouse-boards",
+      "name": "Company Career Boards",
+      "type": "job_postings",
+      "url": "https://boards.greenhouse.io/example-adcreative"
+    },
+    {
+      "id": "retail-media-wire",
+      "name": "Retail Media Wire",
+      "type": "press_releases",
+      "url": "https://www.adexchanger.com/example-walmart-criteo"
+    }
+  ]
+}

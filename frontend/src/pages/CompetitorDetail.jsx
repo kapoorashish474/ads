@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import { SUBJECT_LABEL } from '../brand'
 import { api } from '../api'
 import { Loading, ErrorState, ConfidenceBadge, PriorityBadge, ImpactBadge, formatDate } from '../components/ui'
 
@@ -54,7 +55,7 @@ export default function CompetitorDetail() {
       </section>
 
       <section className="panel animate-in animate-in--3">
-        <h2>Kargo vs {c.shortName}</h2>
+        <h2>{SUBJECT_LABEL} vs {c.shortName}</h2>
         <ul className="compare-list">
           {comparison.map((row) => (
             <li key={row.dimension}>
@@ -62,9 +63,9 @@ export default function CompetitorDetail() {
                 <strong>{row.label}</strong>
                 <div className="compare-bars">
                   <div className="bar">
-                    <span>Kargo</span>
+                    <span>{SUBJECT_LABEL}</span>
                     <div className="bar__track">
-                      <i style={{ width: `${row.kargo}%` }} className="bar__fill bar__fill--kargo" />
+                      <i style={{ width: `${row.kargo}%` }} className="bar__fill bar__fill--baseline" />
                     </div>
                     <em>{row.kargo}</em>
                   </div>

@@ -1,0 +1,38 @@
+{
+  "signal": {
+    "id": "sig-002",
+    "title": "StackAdapt launches “AdaptAI Creative Studio” beta",
+    "competitorId": "stackadapt",
+    "competitorName": "StackAdapt",
+    "sourceId": "pr-newswire",
+    "sourceName": "Press Releases",
+    "sourceType": "press_releases",
+    "sourceUrl": "https://www.prnewswire.com/example-stackadapt-adaptai",
+    "publishedAt": "2026-07-16T09:00:00Z",
+    "ingestedAt": "2026-07-16T09:12:00Z",
+    "category": "product_launch",
+    "tags": [
+      "generative creative",
+      "self-serve"
+    ],
+    "summary": "Self-serve generative creative with performance prediction for display and CTV—signals a chance for Kargo to productize format-native generation.",
+    "confidence": 0.94,
+    "evidenceStrength": "strong",
+    "impactOnKargo": "high",
+    "rawExcerpt": "AdaptAI Creative Studio lets marketers generate, score, and iterate ad variants with predicted attention and CTR…"
+  },
+  "source": {
+    "id": "pr-newswire",
+    "name": "Press Releases",
+    "category": "announcements",
+    "type": "press_releases",
+    "description": "Product launches, partnerships, and market expansion announcements.",
+    "url": "https://www.prnewswire.com",
+    "cadence": "Hourly",
+    "coverage": "Ad tech + retail media + AI vendors",
+    "reliability": 0.86,
+    "signalsIngested": 73,
+    "lastSync": "2026-07-18T14:05:00Z",
+    "status": "active"
+  }
+}

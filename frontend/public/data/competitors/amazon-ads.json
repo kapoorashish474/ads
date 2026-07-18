@@ -1,0 +1,193 @@
+{
+  "competitor": {
+    "id": "amazon-ads",
+    "name": "Amazon Ads",
+    "shortName": "AMZ",
+    "tier": "adjacent",
+    "category": "Retail Media",
+    "watchLevel": "focus",
+    "focus": [
+      "Sponsored ads",
+      "DSP",
+      "AMC",
+      "Streaming TV"
+    ],
+    "hq": "Seattle, WA",
+    "employees": "N/A",
+    "summary": "Retail media gravity well; AMC and streaming TV expand Amazon from shelf to living room.",
+    "capabilityScores": {
+      "creative": 62,
+      "identity": 88,
+      "ctv": 85,
+      "retailMedia": 99,
+      "aiOptimization": 87,
+      "measurement": 92,
+      "mobileHighImpact": 45
+    },
+    "recentMoves": 5,
+    "opportunityScore": 74
+  },
+  "kargo": {
+    "id": "kargo",
+    "name": "Baseline",
+    "capabilityScores": {
+      "creative": 92,
+      "identity": 68,
+      "ctv": 78,
+      "retailMedia": 55,
+      "aiOptimization": 62,
+      "measurement": 76,
+      "mobileHighImpact": 96
+    },
+    "strengths": [
+      "High-impact mobile & omnichannel creative formats",
+      "Premium publisher network & brand safety",
+      "Brand lift / attention-oriented measurement partnerships"
+    ],
+    "gaps": [
+      "Self-serve AI optimization parity vs TTD Kokai / StackAdapt",
+      "Retail media graph depth vs Criteo / Amazon",
+      "Generative creative production velocity"
+    ]
+  },
+  "comparison": [
+    {
+      "dimension": "creative",
+      "label": "Creative",
+      "kargo": 92,
+      "competitor": 62,
+      "delta": 30
+    },
+    {
+      "dimension": "identity",
+      "label": "Identity",
+      "kargo": 68,
+      "competitor": 88,
+      "delta": -20
+    },
+    {
+      "dimension": "ctv",
+      "label": "Ctv",
+      "kargo": 78,
+      "competitor": 85,
+      "delta": -7
+    },
+    {
+      "dimension": "retailMedia",
+      "label": "Retail Media",
+      "kargo": 55,
+      "competitor": 99,
+      "delta": -44
+    },
+    {
+      "dimension": "aiOptimization",
+      "label": "Ai Optimization",
+      "kargo": 62,
+      "competitor": 87,
+      "delta": -25
+    },
+    {
+      "dimension": "measurement",
+      "label": "Measurement",
+      "kargo": 76,
+      "competitor": 92,
+      "delta": -16
+    },
+    {
+      "dimension": "mobileHighImpact",
+      "label": "Mobile High Impact",
+      "kargo": 96,
+      "competitor": 45,
+      "delta": 51
+    }
+  ],
+  "signals": [
+    {
+      "id": "sig-004",
+      "title": "Amazon Ads case study: AMC + streaming TV drives 22% ROAS lift",
+      "competitorId": "amazon-ads",
+      "competitorName": "Amazon Ads",
+      "sourceId": "case-studies",
+      "sourceName": "Customer Case Studies",
+      "sourceType": "case_studies",
+      "sourceUrl": "https://advertising.amazon.com/library/example-amc-stv",
+      "publishedAt": "2026-07-14T12:00:00Z",
+      "ingestedAt": "2026-07-14T12:40:00Z",
+      "category": "customer_proof",
+      "tags": [
+        "retail media",
+        "CTV",
+        "measurement"
+      ],
+      "summary": "Published outcome claims strengthen Amazon’s closed-loop narrative; brands may consolidate spend inside AMC-measured environments.",
+      "confidence": 0.76,
+      "evidenceStrength": "moderate",
+      "impactOnKargo": "medium",
+      "rawExcerpt": "Using AMC audiences activated across streaming TV and sponsored display, the brand reported a 22% ROAS lift…"
+    }
+  ],
+  "opportunities": [
+    {
+      "id": "opp-003",
+      "title": "Bridge retail media offsite",
+      "priority": "high",
+      "confidence": 0.88,
+      "effort": "Low",
+      "impact": "High",
+      "horizon": "6–12 months",
+      "category": "market",
+      "thesis": "Retail media pulls brand dollars. Kargo should activate shopper audiences offsite.",
+      "whyItMatters": "Public Criteo ARR and RMN offsite deals show where budgets are going.",
+      "move": "Partner 1–2 RMNs for high-impact offsite; skip rebuilding onsite retail.",
+      "kargoGap": "retailMedia",
+      "expectedImpact": "Capture brand spend leaving pure open web.",
+      "recommendedActions": [
+        "RMN partnership for offsite activation",
+        "Shoppable / product-synced formats",
+        "Co-publish one closed-loop case study"
+      ],
+      "evidenceIds": [
+        "sig-003",
+        "sig-008",
+        "sig-010",
+        "sig-004"
+      ],
+      "competitorsPressuring": [
+        "criteo",
+        "amazon-ads"
+      ],
+      "capabilityDelta": -40,
+      "status": "open"
+    }
+  ],
+  "quarterlyMoves": [
+    {
+      "id": "q-2026-q2-006",
+      "quarter": "2026-Q2",
+      "competitorId": "amazon-ads",
+      "competitorName": "Amazon Ads",
+      "type": "customer_proof",
+      "title": "AMC + streaming TV case study",
+      "oneLiner": "Published 22% ROAS lift claim on AMC audiences.",
+      "sourceName": "Customer Case Studies",
+      "sourceUrl": "https://advertising.amazon.com",
+      "sourceType": "case_studies",
+      "confidence": 0.76,
+      "signalIds": [
+        "sig-004"
+      ],
+      "impactOnKargo": "medium"
+    }
+  ],
+  "learnings": [],
+  "llmBrief": {
+    "confidence": 0.76,
+    "summary": "Amazon Ads: adjacent Retail Media. Watch level: focus. 1 public signals. Opportunity score 74/100.",
+    "watchFor": [
+      "Sponsored ads",
+      "DSP",
+      "AMC",
+      "Streaming TV"
+    ]
+  }
+}

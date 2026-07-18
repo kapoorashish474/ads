@@ -1,0 +1,179 @@
+{
+  "opportunity": {
+    "id": "opp-005",
+    "title": "Pilot a brand-safe buying agent",
+    "priority": "medium",
+    "confidence": 0.69,
+    "effort": "High",
+    "impact": "Medium",
+    "horizon": "12–18 months",
+    "category": "moonshot",
+    "thesis": "Public capital is chasing agentic buying. Narrow to premium Kargo inventory.",
+    "whyItMatters": "Agents may bypass classic DSP UIs over the next cycle.",
+    "move": "Internal spike: NL plan → Kargo inventory with safety guardrails.",
+    "kargoGap": "aiOptimization",
+    "expectedImpact": "Future-proof against agentic DSP disruption.",
+    "recommendedActions": [
+      "Internal LLM planning spike",
+      "Guardrails: safety, format fit, attention floors",
+      "Watch startup acqui-hire / partnership"
+    ],
+    "evidenceIds": [
+      "sig-005",
+      "sig-001"
+    ],
+    "competitorsPressuring": [
+      "underscored-ai",
+      "the-trade-desk"
+    ],
+    "capabilityDelta": -26,
+    "status": "watching"
+  },
+  "evidence": [
+    {
+      "id": "sig-005",
+      "title": "Underscore AI raises $28M Series A for agentic bidding",
+      "competitorId": "underscored-ai",
+      "competitorName": "Underscore AI",
+      "sourceId": "crunchbase",
+      "sourceName": "Funding Announcements",
+      "sourceType": "funding",
+      "sourceUrl": "https://news.crunchbase.com/example-underscore-ai",
+      "publishedAt": "2026-07-15T16:00:00Z",
+      "ingestedAt": "2026-07-15T16:22:00Z",
+      "category": "funding",
+      "tags": [
+        "AI infra",
+        "agents",
+        "startup"
+      ],
+      "summary": "Capital influx into LLM-based bidding agents suggests next-wave optimization stacks may bypass traditional DSP UI workflows.",
+      "confidence": 0.93,
+      "evidenceStrength": "strong",
+      "impactOnKargo": "medium",
+      "rawExcerpt": "Underscore AI closed a $28M Series A to build autonomous media-buying agents that negotiate goals in natural language…"
+    },
+    {
+      "id": "sig-001",
+      "title": "Trade Desk hiring 12 ML Engineers for “Kokai Decisioning”",
+      "competitorId": "the-trade-desk",
+      "competitorName": "The Trade Desk",
+      "sourceId": "linkedin-jobs",
+      "sourceName": "LinkedIn Job Postings",
+      "sourceType": "job_postings",
+      "sourceUrl": "https://www.linkedin.com/jobs/view/example-kokai-ml",
+      "publishedAt": "2026-07-17T14:20:00Z",
+      "ingestedAt": "2026-07-17T15:01:00Z",
+      "category": "investment",
+      "tags": [
+        "AI",
+        "bidding",
+        "Kokai"
+      ],
+      "summary": "Cluster of senior ML roles referencing real-time decisioning, feature stores, and advertiser goal translation—signals continued Kokai investment.",
+      "confidence": 0.91,
+      "evidenceStrength": "strong",
+      "impactOnKargo": "high",
+      "rawExcerpt": "Build and productionize models that translate advertiser objectives into bid / budget decisions within the Kokai platform…"
+    }
+  ],
+  "competitors": [
+    {
+      "id": "underscored-ai",
+      "name": "Underscore AI",
+      "shortName": "UAI",
+      "tier": "startup",
+      "category": "AI Infra",
+      "watchLevel": "radar",
+      "focus": [
+        "Bidding agents",
+        "LLM decisioning",
+        "Agents"
+      ],
+      "hq": "San Francisco, CA",
+      "employees": "25–50",
+      "summary": "Early-stage agentic bidding infra; watch for talent and partnership moves that could leapfrog incumbent DSPs.",
+      "capabilityScores": {
+        "creative": 40,
+        "identity": 45,
+        "ctv": 35,
+        "retailMedia": 30,
+        "aiOptimization": 88,
+        "measurement": 42,
+        "mobileHighImpact": 20
+      },
+      "recentMoves": 2,
+      "opportunityScore": 58
+    },
+    {
+      "id": "the-trade-desk",
+      "name": "The Trade Desk",
+      "shortName": "TTD",
+      "tier": "direct",
+      "category": "DSP",
+      "watchLevel": "focus",
+      "focus": [
+        "CTV",
+        "UID2",
+        "Kokai",
+        "OpenPath",
+        "AI bidding"
+      ],
+      "hq": "Ventura, CA",
+      "employees": "3,000+",
+      "summary": "Largest independent DSP pushing AI-driven optimization (Kokai) and identity (UID2) across CTV and open web.",
+      "capabilityScores": {
+        "creative": 72,
+        "identity": 94,
+        "ctv": 96,
+        "retailMedia": 68,
+        "aiOptimization": 93,
+        "measurement": 88,
+        "mobileHighImpact": 55
+      },
+      "recentMoves": 6,
+      "opportunityScore": 86
+    }
+  ],
+  "sources": [
+    {
+      "id": "crunchbase",
+      "name": "Funding Announcements",
+      "type": "funding",
+      "url": "https://news.crunchbase.com/example-underscore-ai"
+    },
+    {
+      "id": "linkedin-jobs",
+      "name": "LinkedIn Job Postings",
+      "type": "job_postings",
+      "url": "https://www.linkedin.com/jobs/view/example-kokai-ml"
+    }
+  ],
+  "learnings": [
+    {
+      "id": "learn-005",
+      "from": "Underscore AI",
+      "role": "Emerging startup",
+      "title": "Agents will buy media in plain language",
+      "lesson": "Public Series A capital is chasing autonomous buying agents.",
+      "quickWin": "Spike a brand-safe agent that only proposes Kargo premium inventory.",
+      "effort": "High",
+      "impact": "Medium",
+      "opportunityId": "opp-005",
+      "evidenceIds": [
+        "sig-005"
+      ],
+      "sourceNames": [
+        "Funding Announcements"
+      ],
+      "confidence": 0.69
+    }
+  ],
+  "confidenceBreakdown": {
+    "overall": 0.69,
+    "evidenceCount": 2,
+    "strongEvidence": 2,
+    "avgSignalConfidence": 0.92,
+    "note": "Public sources only. Confidence = corroboration across independent marked sources."
+  }
+}

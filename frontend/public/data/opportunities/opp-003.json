@@ -1,0 +1,241 @@
+{
+  "opportunity": {
+    "id": "opp-003",
+    "title": "Bridge retail media offsite",
+    "priority": "high",
+    "confidence": 0.88,
+    "effort": "Low",
+    "impact": "High",
+    "horizon": "6–12 months",
+    "category": "market",
+    "thesis": "Retail media pulls brand dollars. Kargo should activate shopper audiences offsite.",
+    "whyItMatters": "Public Criteo ARR and RMN offsite deals show where budgets are going.",
+    "move": "Partner 1–2 RMNs for high-impact offsite; skip rebuilding onsite retail.",
+    "kargoGap": "retailMedia",
+    "expectedImpact": "Capture brand spend leaving pure open web.",
+    "recommendedActions": [
+      "RMN partnership for offsite activation",
+      "Shoppable / product-synced formats",
+      "Co-publish one closed-loop case study"
+    ],
+    "evidenceIds": [
+      "sig-003",
+      "sig-008",
+      "sig-010",
+      "sig-004"
+    ],
+    "competitorsPressuring": [
+      "criteo",
+      "amazon-ads"
+    ],
+    "capabilityDelta": -40,
+    "status": "open"
+  },
+  "evidence": [
+    {
+      "id": "sig-003",
+      "title": "Criteo patent: “Shopper graph linking in-store and open-web events”",
+      "competitorId": "criteo",
+      "competitorName": "Criteo",
+      "sourceId": "uspto",
+      "sourceName": "USPTO Patents",
+      "sourceType": "patents",
+      "sourceUrl": "https://patents.google.com/patent/example-criteo-graph",
+      "publishedAt": "2026-07-10T00:00:00Z",
+      "ingestedAt": "2026-07-11T06:30:00Z",
+      "category": "ip",
+      "tags": [
+        "retail media",
+        "identity",
+        "first-party"
+      ],
+      "summary": "IP filing reinforces Criteo’s commerce identity graph; highlights an opportunity for Kargo to bridge retail audiences into high-impact offsite creative.",
+      "confidence": 0.88,
+      "evidenceStrength": "strong",
+      "impactOnKargo": "medium",
+      "rawExcerpt": "Methods for linking hashed transaction identifiers with anonymized open-web engagement events for bid-time audience resolution…"
+    },
+    {
+      "id": "sig-008",
+      "title": "Criteo Q2: Retail Media ARR up 18% YoY",
+      "competitorId": "criteo",
+      "competitorName": "Criteo",
+      "sourceId": "sec-filings",
+      "sourceName": "SEC / Earnings",
+      "sourceType": "press_releases",
+      "sourceUrl": "https://www.sec.gov/example-criteo-q2",
+      "publishedAt": "2026-07-08T21:00:00Z",
+      "ingestedAt": "2026-07-08T21:30:00Z",
+      "category": "financial",
+      "tags": [
+        "retail media",
+        "ARR"
+      ],
+      "summary": "Hard financial evidence of retail media pull; validates adjacent category growth that Kargo should address or partner into.",
+      "confidence": 0.97,
+      "evidenceStrength": "strong",
+      "impactOnKargo": "high",
+      "rawExcerpt": "Retail Media net revenue increased 18% year over year, driven by onsite and offsite commerce media…"
+    },
+    {
+      "id": "sig-010",
+      "title": "Walmart Connect + Criteo expand offsite retail media inventory",
+      "competitorId": "criteo",
+      "competitorName": "Criteo",
+      "sourceId": "retail-media-wire",
+      "sourceName": "Retail Media Wire",
+      "sourceType": "press_releases",
+      "sourceUrl": "https://www.adexchanger.com/example-walmart-criteo",
+      "publishedAt": "2026-07-11T11:00:00Z",
+      "ingestedAt": "2026-07-11T11:25:00Z",
+      "category": "partnership",
+      "tags": [
+        "retail media",
+        "offsite"
+      ],
+      "summary": "Partnership deepens offsite commerce media—another pull of brand budgets toward closed retail graphs.",
+      "confidence": 0.9,
+      "evidenceStrength": "strong",
+      "impactOnKargo": "medium",
+      "rawExcerpt": "Walmart Connect advertisers can activate shopper audiences across Criteo’s offsite network with unified reporting…"
+    },
+    {
+      "id": "sig-004",
+      "title": "Amazon Ads case study: AMC + streaming TV drives 22% ROAS lift",
+      "competitorId": "amazon-ads",
+      "competitorName": "Amazon Ads",
+      "sourceId": "case-studies",
+      "sourceName": "Customer Case Studies",
+      "sourceType": "case_studies",
+      "sourceUrl": "https://advertising.amazon.com/library/example-amc-stv",
+      "publishedAt": "2026-07-14T12:00:00Z",
+      "ingestedAt": "2026-07-14T12:40:00Z",
+      "category": "customer_proof",
+      "tags": [
+        "retail media",
+        "CTV",
+        "measurement"
+      ],
+      "summary": "Published outcome claims strengthen Amazon’s closed-loop narrative; brands may consolidate spend inside AMC-measured environments.",
+      "confidence": 0.76,
+      "evidenceStrength": "moderate",
+      "impactOnKargo": "medium",
+      "rawExcerpt": "Using AMC audiences activated across streaming TV and sponsored display, the brand reported a 22% ROAS lift…"
+    }
+  ],
+  "competitors": [
+    {
+      "id": "criteo",
+      "name": "Criteo",
+      "shortName": "CRTO",
+      "tier": "direct",
+      "category": "Commerce Media",
+      "watchLevel": "watch",
+      "focus": [
+        "Retail media",
+        "Commerce display",
+        "First-party data",
+        "AI recommendations"
+      ],
+      "hq": "Paris, France",
+      "employees": "3,500+",
+      "summary": "Pivoted hard into retail media and commerce audiences; strong first-party graph, weaker brand creative story.",
+      "capabilityScores": {
+        "creative": 58,
+        "identity": 86,
+        "ctv": 52,
+        "retailMedia": 95,
+        "aiOptimization": 80,
+        "measurement": 83,
+        "mobileHighImpact": 48
+      },
+      "recentMoves": 4,
+      "opportunityScore": 71
+    },
+    {
+      "id": "amazon-ads",
+      "name": "Amazon Ads",
+      "shortName": "AMZ",
+      "tier": "adjacent",
+      "category": "Retail Media",
+      "watchLevel": "focus",
+      "focus": [
+        "Sponsored ads",
+        "DSP",
+        "AMC",
+        "Streaming TV"
+      ],
+      "hq": "Seattle, WA",
+      "employees": "N/A",
+      "summary": "Retail media gravity well; AMC and streaming TV expand Amazon from shelf to living room.",
+      "capabilityScores": {
+        "creative": 62,
+        "identity": 88,
+        "ctv": 85,
+        "retailMedia": 99,
+        "aiOptimization": 87,
+        "measurement": 92,
+        "mobileHighImpact": 45
+      },
+      "recentMoves": 5,
+      "opportunityScore": 74
+    }
+  ],
+  "sources": [
+    {
+      "id": "uspto",
+      "name": "USPTO Patents",
+      "type": "patents",
+      "url": "https://patents.google.com/patent/example-criteo-graph"
+    },
+    {
+      "id": "sec-filings",
+      "name": "SEC / Earnings",
+      "type": "press_releases",
+      "url": "https://www.sec.gov/example-criteo-q2"
+    },
+    {
+      "id": "retail-media-wire",
+      "name": "Retail Media Wire",
+      "type": "press_releases",
+      "url": "https://www.adexchanger.com/example-walmart-criteo"
+    },
+    {
+      "id": "case-studies",
+      "name": "Customer Case Studies",
+      "type": "case_studies",
+      "url": "https://advertising.amazon.com/library/example-amc-stv"
+    }
+  ],
+  "learnings": [
+    {
+      "id": "learn-003",
+      "from": "Criteo",
+      "role": "Direct competitor",
+      "title": "Retail media is pulling brand dollars",
+      "lesson": "Public ARR growth + Walmart offsite deals show commerce graph gravity.",
+      "quickWin": "Partner one RMN for offsite high-impact; don’t rebuild onsite retail.",
+      "effort": "Low",
+      "impact": "High",
+      "opportunityId": "opp-003",
+      "evidenceIds": [
+        "sig-008",
+        "sig-010",
+        "sig-003"
+      ],
+      "sourceNames": [
+        "SEC / Earnings",
+        "Retail Media Wire",
+        "USPTO Patents"
+      ],
+      "confidence": 0.92
+    }
+  ],
+  "confidenceBreakdown": {
+    "overall": 0.88,
+    "evidenceCount": 4,
+    "strongEvidence": 3,
+    "avgSignalConfidence": 0.88,
+    "note": "Public sources only. Confidence = corroboration across independent marked sources."
+  }
+}

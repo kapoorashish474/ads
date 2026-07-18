@@ -1,0 +1,39 @@
+{
+  "signal": {
+    "id": "sig-004",
+    "title": "Amazon Ads case study: AMC + streaming TV drives 22% ROAS lift",
+    "competitorId": "amazon-ads",
+    "competitorName": "Amazon Ads",
+    "sourceId": "case-studies",
+    "sourceName": "Customer Case Studies",
+    "sourceType": "case_studies",
+    "sourceUrl": "https://advertising.amazon.com/library/example-amc-stv",
+    "publishedAt": "2026-07-14T12:00:00Z",
+    "ingestedAt": "2026-07-14T12:40:00Z",
+    "category": "customer_proof",
+    "tags": [
+      "retail media",
+      "CTV",
+      "measurement"
+    ],
+    "summary": "Published outcome claims strengthen Amazon’s closed-loop narrative; brands may consolidate spend inside AMC-measured environments.",
+    "confidence": 0.76,
+    "evidenceStrength": "moderate",
+    "impactOnKargo": "medium",
+    "rawExcerpt": "Using AMC audiences activated across streaming TV and sponsored display, the brand reported a 22% ROAS lift…"
+  },
+  "source": {
+    "id": "case-studies",
+    "name": "Customer Case Studies",
+    "category": "customers",
+    "type": "case_studies",
+    "description": "Published brand outcomes, vertical wins, and format performance claims.",
+    "url": "https://www.kargo.com",
+    "cadence": "Daily",
+    "coverage": "Competitor marketing sites + agency blogs",
+    "reliability": 0.79,
+    "signalsIngested": 54,
+    "lastSync": "2026-07-18T09:30:00Z",
+    "status": "active"
+  }
+}

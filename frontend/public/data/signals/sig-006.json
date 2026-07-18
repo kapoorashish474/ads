@@ -1,0 +1,39 @@
+{
+  "signal": {
+    "id": "sig-006",
+    "title": "TTD eng blog: “Feature store for real-time creative selection”",
+    "competitorId": "the-trade-desk",
+    "competitorName": "The Trade Desk",
+    "sourceId": "eng-blogs",
+    "sourceName": "Engineering Blogs",
+    "sourceType": "engineering_blogs",
+    "sourceUrl": "https://www.thetradedesk.com/us/news/example-feature-store",
+    "publishedAt": "2026-07-12T10:00:00Z",
+    "ingestedAt": "2026-07-12T11:05:00Z",
+    "category": "capability",
+    "tags": [
+      "creative",
+      "ML infra",
+      "CTV"
+    ],
+    "summary": "Technical post confirms investment in low-latency creative ranking—blurs line between DSP optimization and creative intelligence.",
+    "confidence": 0.89,
+    "evidenceStrength": "strong",
+    "impactOnKargo": "high",
+    "rawExcerpt": "We describe a feature store that serves creative embeddings to bid-time models under 8ms p99…"
+  },
+  "source": {
+    "id": "eng-blogs",
+    "name": "Engineering Blogs",
+    "category": "product",
+    "type": "engineering_blogs",
+    "description": "Technical deep-dives on bidding, ML, identity, and creative systems.",
+    "url": "https://www.thetradedesk.com/us/news",
+    "cadence": "Daily",
+    "coverage": "TTD, Criteo, StackAdapt, Magnite, PubMatic",
+    "reliability": 0.91,
+    "signalsIngested": 42,
+    "lastSync": "2026-07-18T08:00:00Z",
+    "status": "active"
+  }
+}
