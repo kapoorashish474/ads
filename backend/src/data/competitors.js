@@ -196,7 +196,7 @@ const competitors = [
 /** Kargo baseline used for gap analysis */
 const kargoBaseline = {
   id: 'kargo',
-  name: 'Baseline',
+  name: 'Kargo',
   capabilityScores: {
     creative: 92,
     identity: 68,

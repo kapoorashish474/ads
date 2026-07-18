@@ -40,7 +40,7 @@ export default function Competitors() {
           <p className="eyebrow">Direct · Adjacent · Emerging</p>
           <h1>Peer map</h1>
           <p className="lede lede--short">
-            Track peers against your baseline. Opportunity score ranks where learning is richest.
+            Track peers against Kargo’s baseline. Opportunity score ranks where learning is richest.
           </p>
         </div>
         <div className="filters">
@@ -63,7 +63,7 @@ export default function Competitors() {
           <RankList items={ranked} />
         </section>
 
-        <div className="baseline-panel panel">
+        <div className="kargo-baseline panel">
           <div>
             <p className="eyebrow">Baseline</p>
             <h2>{SUBJECT_LABEL}</h2>

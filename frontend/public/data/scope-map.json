@@ -3,7 +3,7 @@
   "policy": "Public sources only. No confidential, internal, or customer data. Scores from public signal clusters.",
   "kargo": {
     "id": "kargo",
-    "name": "Baseline",
+    "name": "Kargo",
     "capabilityScores": {
       "creative": 92,
       "identity": 68,
@@ -159,5 +159,5 @@
       "publicOnly": true
     }
   ],
-  "method": "Scope to improve = peer max − baseline. Derived from public signal clusters only — not private data."
+  "method": "Scope to improve = peer max − Kargo. Derived from public signal clusters only — not private data."
 }

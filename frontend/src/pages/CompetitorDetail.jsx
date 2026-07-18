@@ -65,7 +65,7 @@ export default function CompetitorDetail() {
                   <div className="bar">
                     <span>{SUBJECT_LABEL}</span>
                     <div className="bar__track">
-                      <i style={{ width: `${row.kargo}%` }} className="bar__fill bar__fill--baseline" />
+                      <i style={{ width: `${row.kargo}%` }} className="bar__fill bar__fill--kargo" />
                     </div>
                     <em>{row.kargo}</em>
                   </div>

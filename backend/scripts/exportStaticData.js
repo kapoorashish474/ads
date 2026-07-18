@@ -69,8 +69,8 @@ writeJson('sources.json', {
 
 writeJson('scope-map.json', {
   ...scopeMap(),
-  method:
-    'Scope to improve = peer max − baseline. Derived from public signal clusters only — not private data.',
+    method:
+      'Scope to improve = peer max − Kargo. Derived from public signal clusters only — not private data.',
 });
 
 writeJson('quarters.json', quartersPayload());

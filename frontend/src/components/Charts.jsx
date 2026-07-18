@@ -87,7 +87,7 @@ export function ScopeBars({ rows = [], onSelect }) {
                 <div className="scope-dual__col">
                   <span>{SUBJECT_LABEL}</span>
                   <div className="bar__track">
-                    <i style={{ width: `${kargo}%` }} className="bar__fill bar__fill--baseline" />
+                    <i style={{ width: `${kargo}%` }} className="bar__fill bar__fill--kargo" />
                   </div>
                   <em>{kargo}</em>
                 </div>
@@ -147,7 +147,7 @@ export function RankList({ items = [], valueKey = 'value', labelKey = 'label', m
             <div className="bar__track">
               <i
                 style={{ width: `${((item[valueKey] || 0) / top) * 100}%` }}
-                className="bar__fill bar__fill--baseline"
+                className="bar__fill bar__fill--kargo"
               />
             </div>
             {item.hint && <span className="muted">{item.hint}</span>}

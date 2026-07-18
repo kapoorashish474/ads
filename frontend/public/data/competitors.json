@@ -1,7 +1,7 @@
 {
   "kargo": {
     "id": "kargo",
-    "name": "Baseline",
+    "name": "Kargo",
     "capabilityScores": {
       "creative": 92,
       "identity": 68,

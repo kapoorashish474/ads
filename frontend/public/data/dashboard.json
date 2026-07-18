@@ -1,7 +1,7 @@
 {
-  "headline": "What should we build next to stay ahead?",
+  "headline": "What should Kargo build next to stay ahead?",
   "policy": "Public sources only — every claim is source-marked with confidence.",
-  "generatedAt": "2026-07-18T19:35:32.607Z",
+  "generatedAt": "2026-07-18T19:39:40.806Z",
   "metrics": {
     "competitorsTracked": 8,
     "activeSources": 10,
@@ -517,7 +517,7 @@
   ],
   "kargo": {
     "id": "kargo",
-    "name": "Baseline",
+    "name": "Kargo",
     "capabilityScores": {
       "creative": 92,
       "identity": 68,

@@ -19,9 +19,9 @@ export default function ScopePage() {
 
   const radarSeries = [
     {
-      id: 'baseline',
+      id: 'kargo',
       name: SUBJECT_LABEL,
-      tone: 'baseline',
+      tone: 'kargo',
       points: Object.entries(data.kargo.capabilityScores).map(([dimension, value]) => ({
         label: dimension.replace(/([A-Z])/g, ' $1').replace(/^./, (s) => s.toUpperCase()).split(' ')[0],
         value,

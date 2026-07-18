@@ -52,9 +52,9 @@ export default function Dashboard() {
   const radarSeries = data.radar
     ? [
         {
-          id: 'baseline',
+          id: 'kargo',
           name: SUBJECT_LABEL,
-          tone: 'baseline',
+          tone: 'kargo',
           points: data.radar.kargo.map((p) => ({ label: p.label, value: p.value })),
         },
         {
@@ -70,7 +70,7 @@ export default function Dashboard() {
     <div className="page page--dashboard">
       <section className="hero-panel hero-panel--tight animate-in">
         <div className="policy-chip">Public sources only · every claim is marked</div>
-        <p className="eyebrow">Capability radar</p>
+        <p className="eyebrow">Kargo radar</p>
         <h1>{data.headline}</h1>
         <p className="lede lede--short">Three moves with public evidence. Scope to improve, not speculation.</p>
       </section>

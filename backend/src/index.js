@@ -112,7 +112,7 @@ app.get('/api/analysis/gaps', (_req, res) => {
   res.json({
     ...scopeMap(),
     method:
-      'Scope to improve = peer max − baseline. Derived from public signal clusters only — not private data.',
+      'Scope to improve = peer max − Kargo. Derived from public signal clusters only — not private data.',
   });
 });
 
