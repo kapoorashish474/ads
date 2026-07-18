@@ -15,7 +15,7 @@ const {
   learnings,
 } = require('../src/data/analysis');
 
-const outDir = path.join(__dirname, '../../Frontend/public/data');
+const outDir = path.join(__dirname, '../../frontend/public/data');
 
 function writeJson(relativePath, data) {
   const full = path.join(outDir, relativePath);
