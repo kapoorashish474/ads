@@ -107,6 +107,7 @@ app.get('/api/companies/:slug/benefit', async (req) => {
     snapshot,
     usage,
     refreshCount: snapshot.refreshes || 0,
+    policy: data.benefitPolicy || '',
   };
 });
 
@@ -131,20 +132,12 @@ app.post('/api/usage', async (req, reply) => {
     createdAt: new Date().toISOString(),
   });
   if (companySlug && eventType === 'view_company') {
-    if (!data.benefit[companySlug]) {
-      data.benefit[companySlug] = {
-        views: 0,
-        refreshes: 0,
-        suggestionsAccepted: 0,
-        researchHoursSaved: 0,
-        validatedSignals: 0,
-        highlights: [],
-      };
+    const snap = data.benefit[companySlug];
+    if (snap) {
+      snap.views = (snap.views || 0) + 1;
+      const baseline = snap.researchBaselineHours || 56;
+      snap.researchHoursSaved = baseline + 1;
     }
-    data.benefit[companySlug].views += 1;
-    data.benefit[companySlug].researchHoursSaved = Math.round(
-      data.benefit[companySlug].views * 0.4
-    );
   }
   saveStore();
   return { ok: true };

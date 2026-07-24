@@ -3,8 +3,17 @@ import { Card, Stat, Loading, ErrorState, Pill, Empty } from '../components/ui';
 import { BarChart } from '../components/Charts';
 import { SourceBadge, SourceFootnote } from '../components/Source';
 import { FilterBar, FilterRow } from '../components/FilterBar';
+import IntelCompareTable from '../components/IntelCompareTable';
 import { useCompany } from '../context/CompanyContext';
 import { api } from '../api';
+import {
+  compareRows,
+  countByField,
+  countBySlug,
+  deltaVsPeers,
+  focusRank,
+  peerAverage,
+} from '../utils/intelCompare';
 
 function formatPosted(iso) {
   if (!iso) return '—';
@@ -12,7 +21,7 @@ function formatPosted(iso) {
 }
 
 export default function XPage() {
-  const { slug, data, loading: ctxLoading, error: ctxError } = useCompany();
+  const { slug, data, loading: ctxLoading, error: ctxError, compareMode } = useCompany();
   const [posts, setPosts] = useState([]);
   const [policy, setPolicy] = useState('');
   const [loading, setLoading] = useState(true);
@@ -67,6 +76,20 @@ export default function XPage() {
   const companyPosts = posts.filter((p) => p.company_slug === slug);
   const reportedCount = companyPosts.filter((p) => p.confidence === 'reported').length;
 
+  const company = data?.company;
+  const postCounts = countBySlug(posts);
+  const themeBreakdown = countByField(posts, 'company_slug', 'theme');
+  const compareList = company
+    ? compareRows(company, peers, postCounts).map((row) => ({
+        ...row,
+        breakdown: themeBreakdown[row.slug] || {},
+      }))
+    : [];
+  const avgPeerPosts = peerAverage(peers, postCounts);
+  const postDelta = deltaVsPeers(companyPosts.length, avgPeerPosts);
+  const postRank = focusRank(compareList, slug);
+  const compareColumns = themes.slice(0, 4).map(([t]) => ({ key: t, label: t }));
+
   if (ctxLoading || loading) return <Loading />;
   if (ctxError || error) return <ErrorState message={ctxError || error} />;
 
@@ -75,8 +98,9 @@ export default function XPage() {
       <div className="hero hero--compact">
         <h1>X presence</h1>
         <p className="lede">
-          Verified X profile links for {companyName} and peers. Themes come from public press and company
-          pages — not scraped tweet text.
+          {compareMode
+            ? `X presence vs peers — public themes and activity for ${companyName}.`
+            : <>Verified X profile links for {companyName} and peers. Themes come from public press and company pages — not scraped tweet text.</>}
         </p>
         {xProfile?.profileUrl && (
           <p className="lede" style={{ marginTop: '0.5rem' }}>
@@ -90,6 +114,38 @@ export default function XPage() {
         )}
       </div>
 
+      {compareMode && company && (
+        <>
+          <div className="grid grid--stats grid--stats-4">
+            <Stat label={`${companyName} themes`} value={companyPosts.length} hint={postDelta.text} />
+            <Stat label="Peer average" value={avgPeerPosts} hint="Themes tracked per peer" />
+            <Stat label="Your rank" value={postRank ? `#${postRank}` : '—'} hint="Among watch list" />
+            <Stat label="From press" value={reportedCount} hint={`${companyName} reported items`} />
+          </div>
+
+          <div className="grid grid--2">
+            <Card title="X activity by company" subtitle="Public themes tracked">
+              <BarChart
+                horizontal
+                categories={compareList.map((r) => r.name)}
+                series={[{ name: 'Themes', data: compareList.map((r) => r.count) }]}
+                height={Math.max(220, compareList.length * 40)}
+              />
+            </Card>
+            <Card title="Theme mix by company" subtitle="Top public themes per company">
+              <IntelCompareTable
+                rows={compareList}
+                columns={compareColumns}
+                focusSlug={slug}
+                valueLabel="Total"
+              />
+            </Card>
+          </div>
+        </>
+      )}
+
+      {!compareMode && (
+      <>
       <div className="grid grid--stats grid--stats-4">
         <Stat label="X handle" value={`@${xProfile?.handle || '—'}`} hint="Verified profile URL" />
         <Stat label="Themes tracked" value={themes.length} hint="Across company + peers" />
@@ -138,8 +194,10 @@ export default function XPage() {
           )}
         </Card>
       </div>
+      </>
+      )}
 
-      <Card title="Public themes & press" subtitle={`${filtered.length} of ${posts.length} shown`}>
+      <Card title={compareMode ? 'All public themes' : 'Public themes & press'} subtitle={`${filtered.length} of ${posts.length} shown`}>
         <FilterBar
           summary={[
             scopeFilter === 'all' ? 'All' : scopeFilter === 'company' ? companyName : 'Peers',

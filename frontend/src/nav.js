@@ -3,33 +3,33 @@ export const navGroups = [
     id: 'dashboard',
     label: 'Dashboard',
     items: [
-      { to: '/', label: 'Overview', end: true },
-      { to: '/revenue', label: 'Revenue' },
-      { to: '/products', label: 'Products' },
+      { to: '/', label: 'Overview', icon: 'overview', end: true },
+      { to: '/revenue', label: 'Revenue', icon: 'revenue' },
+      { to: '/products', label: 'Products', icon: 'products' },
     ],
   },
   {
     id: 'intel',
     label: 'Market intel',
     items: [
-      { to: '/signals', label: 'Signals' },
-      { to: '/search', label: 'Search' },
-      { to: '/linkedin', label: 'LinkedIn' },
-      { to: '/x', label: 'X' },
+      { to: '/signals', label: 'Signals', icon: 'signals' },
+      { to: '/search', label: 'Search', icon: 'search' },
+      { to: '/linkedin', label: 'LinkedIn', icon: 'linkedin' },
+      { to: '/x', label: 'X', icon: 'x' },
     ],
   },
   {
     id: 'planning',
     label: 'Planning',
     items: [
-      { to: '/suggestions', label: 'Suggestions' },
-      { to: '/benefit', label: 'Benefit' },
+      { to: '/suggestions', label: 'Suggestions', icon: 'suggestions' },
+      { to: '/benefit', label: 'Benefit', icon: 'benefit' },
     ],
   },
   {
     id: 'reference',
     label: 'Reference',
-    items: [{ to: '/sources', label: 'Sources' }],
+    items: [{ to: '/sources', label: 'Sources', icon: 'sources' }],
   },
 ];
 

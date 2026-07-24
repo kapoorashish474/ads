@@ -1,5 +1,15 @@
 import { useState } from 'react';
 
+export function CollapseChevron({ open }) {
+  return (
+    <span className={`collapse-chevron ${open ? 'collapse-chevron--open' : ''}`} aria-hidden>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+        <path d="m6 9 6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    </span>
+  );
+}
+
 export function Card({
   title,
   subtitle,
@@ -10,28 +20,47 @@ export function Card({
 }) {
   const [open, setOpen] = useState(defaultOpen);
 
-  return (
-    <section className={`card ${collapsible && !open ? 'card--collapsed' : ''} ${className}`}>
-      {(title || subtitle) && (
-        <header className={`card__head ${collapsible ? 'card__head--toggle' : ''}`}>
-          <div className="card__head-text">
-            {title && <h3>{title}</h3>}
-            {subtitle && <p>{subtitle}</p>}
-          </div>
-          {collapsible && (
-            <button
-              type="button"
-              className="card__toggle"
-              onClick={() => setOpen((v) => !v)}
-              aria-expanded={open}
-              aria-label={open ? 'Collapse section' : 'Expand section'}
-            >
-              {open ? '−' : '+'}
-            </button>
-          )}
-        </header>
+  const headContent = (
+    <>
+      <div className="card__head-text">
+        {title && <h3>{title}</h3>}
+        {subtitle && <p>{subtitle}</p>}
+      </div>
+      {collapsible && (
+        <span className="collapse-control">
+          <span className="collapse-control__label">{open ? 'Collapse' : 'Expand'}</span>
+          <CollapseChevron open={open} />
+        </span>
       )}
-      {(!collapsible || open) && <div className="card__body">{children}</div>}
+    </>
+  );
+
+  return (
+    <section
+      className={`card ${collapsible ? 'card--collapsible' : ''} ${collapsible && !open ? 'card--collapsed' : ''} ${className}`}
+    >
+      {collapsible ? (
+        <button
+          type="button"
+          className="card__head card__head--toggle"
+          onClick={() => setOpen((v) => !v)}
+          aria-expanded={open}
+        >
+          {headContent}
+        </button>
+      ) : (
+        (title || subtitle) && <header className="card__head">{headContent}</header>
+      )}
+
+      {collapsible ? (
+        <div className={`card__collapse ${open ? 'card__collapse--open' : ''}`}>
+          <div className="card__collapse-inner">
+            <div className="card__body">{children}</div>
+          </div>
+        </div>
+      ) : (
+        <div className="card__body">{children}</div>
+      )}
     </section>
   );
 }
@@ -56,7 +85,12 @@ export function Pill({ tone = 'default', children }) {
 }
 
 export function Loading() {
-  return <div className="state">Loading…</div>;
+  return (
+    <div className="state state--loading">
+      <span className="spinner" aria-hidden />
+      <span>Loading intelligence…</span>
+    </div>
+  );
 }
 
 export function ErrorState({ message }) {

@@ -2,8 +2,18 @@ import { useEffect, useMemo, useState } from 'react';
 import { Card, Stat, Loading, ErrorState, Pill, Empty } from '../components/ui';
 import { SourceFootnote } from '../components/Source';
 import { FilterBar, FilterRow } from '../components/FilterBar';
+import { BarChart } from '../components/Charts';
+import IntelCompareTable from '../components/IntelCompareTable';
 import { useCompany } from '../context/CompanyContext';
 import { api } from '../api';
+import {
+  compareRows,
+  countByField,
+  countBySlug,
+  deltaVsPeers,
+  focusRank,
+  peerAverage,
+} from '../utils/intelCompare';
 
 const TYPE_LABELS = {
   launch: 'Launch',
@@ -25,7 +35,7 @@ function slugToName(slug, nameMap) {
 }
 
 export default function Signals() {
-  const { slug, data, loading: ctxLoading, error: ctxError } = useCompany();
+  const { slug, data, loading: ctxLoading, error: ctxError, compareMode } = useCompany();
   const [signals, setSignals] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -81,6 +91,26 @@ export default function Signals() {
   const peerSignalCount = signals.length - companySignalCount;
   const latestDate = signals[0]?.published_at;
 
+  const company = data?.company;
+  const peers = data?.peers || [];
+  const typeBreakdown = countByField(signals, 'company_slug', 'type');
+  const signalCounts = countBySlug(signals);
+  const compareList = company
+    ? compareRows(company, peers, signalCounts).map((row) => ({
+        ...row,
+        breakdown: typeBreakdown[row.slug] || {},
+      }))
+    : [];
+  const avgPeerSignals = peerAverage(peers, signalCounts);
+  const signalDelta = deltaVsPeers(companySignalCount, avgPeerSignals);
+  const signalRank = focusRank(compareList, slug);
+
+  const compareColumns = [
+    { key: 'launch', label: 'Launch' },
+    { key: 'product', label: 'Product' },
+    { key: 'partnership', label: 'Partnership' },
+  ];
+
   if (ctxLoading || loading) return <Loading />;
   if (ctxError || error) return <ErrorState message={ctxError || error} />;
 
@@ -91,18 +121,52 @@ export default function Signals() {
       <div className="hero hero--compact">
         <h1>Signals</h1>
         <p className="lede">
-          Public moves from <strong>{companyName}</strong> and {data?.peers?.length || 0} peers —
-          launches, products, and partnerships with sources cited.
+          {compareMode
+            ? `Side-by-side signal activity — ${companyName} vs ${peers.length} peers.`
+            : <>Public moves from <strong>{companyName}</strong> and {peers.length} peers — launches, products, and partnerships with sources cited.</>}
         </p>
       </div>
 
+      {compareMode && company && (
+        <>
+          <div className="grid grid--stats grid--stats-4">
+            <Stat label={`${companyName} signals`} value={companySignalCount} hint={signalDelta.text} />
+            <Stat label="Peer average" value={avgPeerSignals} hint="Signals per peer" />
+            <Stat label="Your rank" value={signalRank ? `#${signalRank}` : '—'} hint="Among watch list" />
+            <Stat label="Most active" value={compareList[0]?.name || '—'} hint={`${compareList[0]?.count || 0} signals`} />
+          </div>
+
+          <div className="grid grid--2">
+            <Card title="Signal volume vs peers" subtitle="Total public moves tracked">
+              <BarChart
+                horizontal
+                categories={compareList.map((r) => r.name)}
+                series={[{ name: 'Signals', data: compareList.map((r) => r.count) }]}
+                height={Math.max(220, compareList.length * 40)}
+              />
+            </Card>
+            <Card title="Signal mix by company" subtitle="Launch · product · partnership">
+              <IntelCompareTable
+                rows={compareList}
+                columns={compareColumns}
+                focusSlug={slug}
+                valueLabel="Total"
+              />
+            </Card>
+          </div>
+        </>
+      )}
+
+      {!compareMode && (
       <div className="grid grid--stats grid--stats-4">
         <Stat label="Total signals" value={signals.length} hint="In your watch list" />
         <Stat label={`About ${companyName}`} value={companySignalCount} hint="Direct company news" />
         <Stat label="Peer moves" value={peerSignalCount} hint="Competitive intel" />
         <Stat label="Latest" value={latestDate ? formatSignalDate(latestDate) : '—'} hint="Most recent item" />
       </div>
+      )}
 
+      {!compareMode && (
       <div className="grid grid--2">
         <Card title="By type" subtitle="What kind of moves" collapsible defaultOpen>
           <table className="table table--compact">
@@ -144,8 +208,9 @@ export default function Signals() {
           </table>
         </Card>
       </div>
+      )}
 
-      <Card title="Signal feed" subtitle={`${filtered.length} of ${signals.length} shown`}>
+      <Card title={compareMode ? 'Full signal feed' : 'Signal feed'} subtitle={`${filtered.length} of ${signals.length} shown`}>
         <FilterBar
           summary={`${typeFilter !== 'all' ? TYPE_LABELS[typeFilter] || typeFilter : 'All types'} · ${scopeFilter === 'all' ? 'All' : scopeFilter === 'company' ? companyName : 'Peers'}`}
         >

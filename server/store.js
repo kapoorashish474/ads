@@ -65,8 +65,60 @@ export function loadStore() {
     migrated = true;
   }
 
+  if (
+    seed.suggestionsVersion &&
+    store.suggestionsVersion !== seed.suggestionsVersion &&
+    seed.suggestions?.length
+  ) {
+    store.suggestions = seed.suggestions;
+    store.suggestionsPolicy = seed.suggestionsPolicy;
+    store.suggestionsVersion = seed.suggestionsVersion;
+    for (const company of store.companies) {
+      const seedCo = seed.companies.find((c) => c.slug === company.slug);
+      if (seedCo?.suggestionSummary) {
+        company.suggestionSummary = seedCo.suggestionSummary;
+      }
+    }
+    migrated = true;
+  } else if (!store.suggestions?.length && seed.suggestions?.length) {
+    store.suggestions = seed.suggestions;
+    store.suggestionsPolicy = seed.suggestionsPolicy;
+    store.suggestionsVersion = seed.suggestionsVersion;
+    migrated = true;
+  }
+
+  if (seed.researchVersion && store.researchVersion !== seed.researchVersion) {
+    store.signals = seed.signals;
+    store.hiring = seed.hiring;
+    store.hiringPolicy = seed.hiringPolicy;
+    store.xPosts = seed.xPosts;
+    store.xPolicy = seed.xPolicy;
+    store.researchPolicy = seed.researchPolicy;
+    store.researchVersion = seed.researchVersion;
+    for (const company of store.companies) {
+      const seedCo = seed.companies.find((c) => c.slug === company.slug);
+      if (!seedCo) continue;
+      if (seedCo.revenueSegments) company.revenueSegments = seedCo.revenueSegments;
+      if (seedCo.winning) company.winning = seedCo.winning;
+      if (seedCo.products) company.products = seedCo.products;
+      if (seedCo.searchMetrics) company.searchMetrics = seedCo.searchMetrics;
+    }
+    migrated = true;
+  }
+
+  if (seed.benefitVersion && store.benefitVersion !== seed.benefitVersion) {
+    store.benefit = seed.benefit;
+    store.benefitPolicy = seed.benefitPolicy;
+    store.benefitVersion = seed.benefitVersion;
+    migrated = true;
+  }
+
   for (const company of store.companies) {
     const seedCo = seed.companies.find((c) => c.slug === company.slug);
+    if (seedCo?.peerSlugs && JSON.stringify(company.peerSlugs) !== JSON.stringify(seedCo.peerSlugs)) {
+      company.peerSlugs = seedCo.peerSlugs;
+      migrated = true;
+    }
     if (seedCo?.linkedin && !company.linkedin) {
       company.linkedin = seedCo.linkedin;
       if (company.dataSources && seedCo.dataSources?.hiring) {
