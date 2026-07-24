@@ -113,6 +113,13 @@ export function loadStore() {
     migrated = true;
   }
 
+  if (seed.executiveVersion && store.executiveVersion !== seed.executiveVersion) {
+    store.executive = seed.executive;
+    store.executivePolicy = seed.executivePolicy;
+    store.executiveVersion = seed.executiveVersion;
+    migrated = true;
+  }
+
   for (const company of store.companies) {
     const seedCo = seed.companies.find((c) => c.slug === company.slug);
     if (seedCo?.peerSlugs && JSON.stringify(company.peerSlugs) !== JSON.stringify(seedCo.peerSlugs)) {

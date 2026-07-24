@@ -5,6 +5,7 @@ import fastifyStatic from '@fastify/static';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { loadStore, saveStore, getCompany, refreshCompany } from './store.js';
+import { buildExecutivePayload } from './executive.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PORT = Number(process.env.PORT || 8080);
@@ -109,6 +110,15 @@ app.get('/api/companies/:slug/benefit', async (req) => {
     refreshCount: snapshot.refreshes || 0,
     policy: data.benefitPolicy || '',
   };
+});
+
+app.get('/api/companies/:slug/executive', async (req, reply) => {
+  const company = getCompany(req.params.slug);
+  if (!company) return reply.code(404).send({ error: 'Company not found' });
+  const { companies } = loadStore();
+  const peers = companies.filter((c) => company.peerSlugs.includes(c.slug));
+  const data = loadStore();
+  return buildExecutivePayload(data, company, peers);
 });
 
 app.post('/api/companies/:slug/refresh', async (req, reply) => {

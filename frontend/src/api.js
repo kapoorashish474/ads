@@ -28,6 +28,7 @@ export const api = {
   xPosts: (slug) => request(`/api/companies/${slug}/x`),
   suggestions: (slug) => request(`/api/companies/${slug}/suggestions`),
   benefit: (slug) => request(`/api/companies/${slug}/benefit`),
+  executive: (slug) => request(`/api/companies/${slug}/executive`),
   refresh: (slug) => request(`/api/companies/${slug}/refresh`, { method: 'POST' }),
   updateSuggestion: (id, status) =>
     request(`/api/suggestions/${id}`, {

@@ -1994,6 +1994,128 @@ a.page-tab.active .nav-icon--tab {
   color: var(--primary);
 }
 
+/* Executive views */
+.hero--executive {
+  background: linear-gradient(135deg, var(--surface) 0%, color-mix(in srgb, var(--primary) 8%, var(--surface)) 100%);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.lede--executive {
+  font-size: 1.15rem;
+  max-width: 52ch;
+}
+
+.hero__cta {
+  margin-top: 1rem;
+  display: inline-flex;
+}
+
+.card--decision {
+  border-color: color-mix(in srgb, var(--primary) 35%, var(--border));
+  background: color-mix(in srgb, var(--primary) 5%, var(--surface));
+}
+
+.decision-text {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.brief-list,
+.gap-list,
+.leadership-list,
+.momentum-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.brief-list__item,
+.gap-list__item,
+.leadership-list__item {
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.brief-list__meta,
+.gap-list__meta,
+.leadership-list__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+}
+
+.brief-list__item p,
+.gap-list__item p,
+.leadership-list__item p {
+  margin: 0.35rem 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.leadership-list__co {
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.momentum-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  font-size: 0.9rem;
+}
+
+.table-note {
+  margin: 0.25rem 0 0;
+  font-size: 0.85rem;
+}
+
+.card-link {
+  display: inline-block;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.card-link:hover {
+  text-decoration: underline;
+}
+
+.link-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.75rem;
+}
+
+.link-card {
+  display: block;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.link-card:hover {
+  border-color: var(--primary);
+  background: color-mix(in srgb, var(--primary) 6%, var(--surface));
+}
+
 @media (max-width: 960px) {
   .app {
     grid-template-columns: 1fr;

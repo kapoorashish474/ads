@@ -65,6 +65,36 @@ const icons = {
       <path d="M14 2v6h6" {...stroke} />
     </svg>
   ),
+  brief: (
+    <svg viewBox="0 0 24 24" aria-hidden>
+      <path d="M6 4h12v16H6z" {...stroke} />
+      <path d="M9 8h6M9 12h6M9 16h4" {...stroke} />
+    </svg>
+  ),
+  threats: (
+    <svg viewBox="0 0 24 24" aria-hidden>
+      <path d="M12 9v4M12 17h.01" {...stroke} />
+      <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z" {...stroke} />
+    </svg>
+  ),
+  momentum: (
+    <svg viewBox="0 0 24 24" aria-hidden>
+      <path d="M3 17l6-6 4 4 8-10" {...stroke} />
+      <path d="M17 5h4v4" {...stroke} />
+    </svg>
+  ),
+  gaps: (
+    <svg viewBox="0 0 24 24" aria-hidden>
+      <circle cx="12" cy="12" r="9" {...stroke} />
+      <path d="M12 8v5M12 16h.01" {...stroke} />
+    </svg>
+  ),
+  leadership: (
+    <svg viewBox="0 0 24 24" aria-hidden>
+      <circle cx="12" cy="8" r="4" {...stroke} />
+      <path d="M4 20c0-4 3.6-6 8-6s8 2 8 6" {...stroke} />
+    </svg>
+  ),
 };
 
 export function NavIcon({ name, variant = 'sidebar' }) {

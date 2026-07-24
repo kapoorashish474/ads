@@ -1,5 +1,16 @@
 export const navGroups = [
   {
+    id: 'executive',
+    label: 'Executive',
+    items: [
+      { to: '/brief', label: 'Brief', icon: 'brief', end: true },
+      { to: '/threats', label: 'Threats', icon: 'threats' },
+      { to: '/momentum', label: 'Momentum', icon: 'momentum' },
+      { to: '/gaps', label: 'Gaps', icon: 'gaps' },
+      { to: '/leadership', label: 'Leadership', icon: 'leadership' },
+    ],
+  },
+  {
     id: 'dashboard',
     label: 'Dashboard',
     items: [

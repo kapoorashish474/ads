@@ -34,6 +34,7 @@ UI: http://localhost:5173 · API: http://localhost:8080
 ## Features
 
 - Pick a **company** — all tabs compare vs peers
+- **Executive** — Brief · Threats · Momentum · Gaps · Leadership (CEO decision cockpit)
 - **Refresh data** — instant update (no queue, no DB)
 - Tabs: Overview · Revenue · Products · Signals · **LinkedIn** · **X** · Search · Suggestions · Benefit · **Sources**
 - **LinkedIn hiring** — where each company and peers are hiring (public job listings by region, team, and role)
@@ -44,6 +45,12 @@ UI: http://localhost:5173 · API: http://localhost:8080
 ## Data
 
 Seed lives in `server/data/store.json`. Edit directly or refresh in the UI to simulate updates. Docker volume `app-data` persists changes.
+
+Re-seed executive data:
+
+```bash
+node server/scripts/enrich-executive.js
+```
 
 ## Repo
 
