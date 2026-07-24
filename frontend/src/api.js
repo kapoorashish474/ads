@@ -1,135 +1,58 @@
-const USE_STATIC =
-  import.meta.env.VITE_USE_STATIC_DATA === 'true' ||
-  (import.meta.env.PROD && import.meta.env.BASE_URL !== '/');
-const BASE = import.meta.env.BASE_URL || '/';
+const BASE = import.meta.env.VITE_API_URL || '';
 
-const API_URL =
-  import.meta.env.VITE_API_URL !== undefined
-    ? import.meta.env.VITE_API_URL
-    : 'http://localhost:5001';
+async function request(path, options = {}) {
+  const { body, headers, ...rest } = options;
+  const fetchHeaders = { ...headers };
+  if (body !== undefined) {
+    fetchHeaders['Content-Type'] = 'application/json';
+  }
 
-let signalsCache = null;
-let opportunitiesCache = null;
-
-async function loadJson(path) {
-  const res = await fetch(`${BASE}data/${path}`);
-  if (!res.ok) throw new Error(`Static data ${res.status}: ${path}`);
+  const res = await fetch(`${BASE}${path}`, {
+    ...rest,
+    headers: fetchHeaders,
+    body,
+  });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.error || err.message || `Request failed: ${res.status}`);
+  }
   return res.json();
-}
-
-async function getStatic(path, params = {}) {
-  if (path === '/api/dashboard') return loadJson('dashboard.json');
-  if (path === '/api/competitors') {
-    const data = await loadJson('competitors.json');
-    if (params.tier) {
-      return {
-        ...data,
-        competitors: data.competitors.filter((c) => c.tier === params.tier),
-      };
-    }
-    return data;
-  }
-  if (path.startsWith('/api/competitors/')) {
-    const id = path.split('/').pop();
-    return loadJson(`competitors/${id}.json`);
-  }
-  if (path === '/api/signals') {
-    if (!signalsCache) signalsCache = await loadJson('signals.json');
-    let list = [...signalsCache.signals];
-    const { competitorId, sourceId, impact, category, q } = params;
-    if (competitorId) list = list.filter((s) => s.competitorId === competitorId);
-    if (sourceId) list = list.filter((s) => s.sourceId === sourceId);
-    if (impact) list = list.filter((s) => s.impactOnKargo === impact);
-    if (category) list = list.filter((s) => s.category === category);
-    if (q) {
-      const needle = String(q).toLowerCase();
-      list = list.filter(
-        (s) =>
-          s.title.toLowerCase().includes(needle) ||
-          s.summary.toLowerCase().includes(needle) ||
-          s.tags.some((t) => t.toLowerCase().includes(needle))
-      );
-    }
-    list.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
-    return { count: list.length, signals: list, dataPolicy: 'public-sources-only' };
-  }
-  if (path.startsWith('/api/signals/')) {
-    const id = path.split('/').pop();
-    return loadJson(`signals/${id}.json`);
-  }
-  if (path === '/api/opportunities') {
-    if (!opportunitiesCache) opportunitiesCache = await loadJson('opportunities.json');
-    let list = [...opportunitiesCache.opportunities];
-    const { priority, status } = params;
-    if (priority) list = list.filter((o) => o.priority === priority);
-    if (status) list = list.filter((o) => o.status === status);
-    list.sort((a, b) => {
-      const p = { critical: 0, high: 1, medium: 2, low: 3 };
-      return p[a.priority] - p[b.priority] || b.confidence - a.confidence;
-    });
-    return { count: list.length, opportunities: list, dataPolicy: 'public-sources-only' };
-  }
-  if (path.startsWith('/api/opportunities/')) {
-    const id = path.split('/').pop();
-    return loadJson(`opportunities/${id}.json`);
-  }
-  if (path === '/api/sources') return loadJson('sources.json');
-  if (path === '/api/analysis/gaps' || path === '/api/scope-map' || path === '/api/lag-map') {
-    return loadJson('scope-map.json');
-  }
-  if (path === '/api/quarters') {
-    const quarter = params.quarter;
-    if (quarter) return loadJson(`quarters/${quarter}.json`);
-    return loadJson('quarters.json');
-  }
-  if (path === '/api/learnings') return loadJson('learnings.json');
-  if (path === '/api/evidence') {
-    const ids = String(params.ids || '')
-      .split(',')
-      .map((s) => s.trim())
-      .filter(Boolean);
-    if (!signalsCache) signalsCache = await loadJson('signals.json');
-    const evidence = ids.map((id) => signalsCache.signals.find((s) => s.id === id)).filter(Boolean);
-    const sourceMap = new Map();
-    evidence.forEach((e) => {
-      sourceMap.set(e.sourceId, {
-        id: e.sourceId,
-        name: e.sourceName,
-        type: e.sourceType,
-        url: e.sourceUrl,
-      });
-    });
-    return { policy: 'Public sources only.', evidence, sources: [...sourceMap.values()] };
-  }
-  throw new Error(`No static handler for ${path}`);
-}
-
-async function getLive(path, params = {}) {
-  const qs = new URLSearchParams(params).toString();
-  const url = `${API_URL}${path}${qs ? `?${qs}` : ''}`;
-  const res = await fetch(url);
-  if (!res.ok) throw new Error(`API ${res.status}: ${path}`);
-  return res.json();
-}
-
-async function get(path, params = {}) {
-  if (USE_STATIC) return getStatic(path, params);
-  return getLive(path, params);
 }
 
 export const api = {
-  dashboard: () => get('/api/dashboard'),
-  competitors: (tier) => get('/api/competitors', tier ? { tier } : {}),
-  competitor: (id) => get(`/api/competitors/${id}`),
-  signals: (params = {}) => get('/api/signals', params),
-  signal: (id) => get(`/api/signals/${id}`),
-  opportunities: (params = {}) => get('/api/opportunities', params),
-  opportunity: (id) => get(`/api/opportunities/${id}`),
-  sources: () => get('/api/sources'),
-  gaps: () => get('/api/analysis/gaps'),
-  lagMap: () => get('/api/scope-map'),
-  scopeMap: () => get('/api/scope-map'),
-  quarters: (quarter) => get('/api/quarters', quarter ? { quarter } : {}),
-  learnings: () => get('/api/learnings'),
-  evidence: (ids = []) => get('/api/evidence', { ids: ids.join(',') }),
+  companies: () => request('/api/companies'),
+  company: (slug) => request(`/api/companies/${slug}`),
+  peers: (slug) => request(`/api/companies/${slug}/peers`),
+  signals: (slug) => request(`/api/companies/${slug}/signals`),
+  hiring: (slug) => request(`/api/companies/${slug}/hiring`),
+  xPosts: (slug) => request(`/api/companies/${slug}/x`),
+  suggestions: (slug) => request(`/api/companies/${slug}/suggestions`),
+  benefit: (slug) => request(`/api/companies/${slug}/benefit`),
+  refresh: (slug) => request(`/api/companies/${slug}/refresh`, { method: 'POST' }),
+  updateSuggestion: (id, status) =>
+    request(`/api/suggestions/${id}`, {
+      method: 'PATCH',
+      body: JSON.stringify({ status }),
+    }),
+  track: (eventType, companySlug, meta = {}) =>
+    request('/api/usage', {
+      method: 'POST',
+      body: JSON.stringify({ eventType, companySlug, meta }),
+    }),
 };
+
+export function formatUsd(n) {
+  if (n >= 1e9) return `$${(n / 1e9).toFixed(1)}B`;
+  if (n >= 1e6) return `$${(n / 1e6).toFixed(0)}M`;
+  return `$${n.toLocaleString()}`;
+}
+
+export function formatDate(iso) {
+  if (!iso) return '—';
+  return new Date(iso).toLocaleString(undefined, {
+    month: 'short',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  });
+}

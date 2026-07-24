@@ -1,45 +1,123 @@
-import { NavLink, Outlet } from 'react-router-dom'
-import { APP_NAME, APP_TAGLINE } from '../brand'
-import './Layout.css'
+import { useEffect, useState } from 'react';
+import { NavLink, Outlet, useLocation } from 'react-router-dom';
+import { useCompany } from '../context/CompanyContext';
+import { formatDate } from '../api';
+import { activeNavGroup, matchNavPath, navGroups } from '../nav';
 
-const links = [
-  { to: '/', label: 'Radar', end: true },
-  { to: '/quarters', label: 'Quarters' },
-  { to: '/scope', label: 'Scope' },
-  { to: '/learnings', label: 'Playbooks' },
-  { to: '/opportunities', label: 'Moves' },
-  { to: '/competitors', label: 'Peers' },
-  { to: '/signals', label: 'Signals' },
-  { to: '/sources', label: 'Sources' },
-]
+function NavGroup({ group, pathname, expanded, onToggle }) {
+  const isActiveGroup = group.items.some((item) => matchNavPath(pathname, item.to, item.end));
+  const isOpen = expanded[group.id] ?? isActiveGroup;
 
-export default function Layout() {
   return (
-    <div className="shell">
-      <div className="shell__glow" aria-hidden="true" />
-      <header className="topbar">
-        <div className="brand">
-          <span className="brand__mark">I</span>
-          <div className="brand__text">
-            <strong>{APP_NAME}</strong>
-            <span>{APP_TAGLINE}</span>
-          </div>
-        </div>
-        <nav className="nav" aria-label="Primary">
-          {links.map((l) => (
-            <NavLink key={l.to} to={l.to} end={l.end} className={({ isActive }) => (isActive ? 'nav__link is-active' : 'nav__link')}>
-              {l.label}
+    <div className={`nav-group ${isActiveGroup ? 'nav-group--active' : ''}`}>
+      <button
+        type="button"
+        className="nav-group__toggle"
+        onClick={() => onToggle(group.id)}
+        aria-expanded={isOpen}
+      >
+        <span>{group.label}</span>
+        <span className="nav-group__chevron">{isOpen ? '▾' : '▸'}</span>
+      </button>
+      {isOpen && (
+        <div className="nav-group__items">
+          {group.items.map((item) => (
+            <NavLink
+              key={item.to}
+              to={item.to}
+              end={item.end}
+              className={({ isActive }) => (isActive ? 'nav__link active' : 'nav__link')}
+            >
+              {item.label}
             </NavLink>
           ))}
-        </nav>
-        <div className="topbar__meta">
-          <span className="live-dot" />
-          Public only
         </div>
-      </header>
-      <main className="main">
-        <Outlet />
-      </main>
+      )}
     </div>
-  )
+  );
+}
+
+export default function Layout() {
+  const { companies, slug, setSlug, data, refreshing, refresh, loading } = useCompany();
+  const company = data?.company;
+  const location = useLocation();
+  const activeGroup = activeNavGroup(location.pathname);
+
+  const [expanded, setExpanded] = useState(() => ({ [activeGroup.id]: true }));
+
+  useEffect(() => {
+    setExpanded((prev) => ({ ...prev, [activeGroup.id]: true }));
+  }, [activeGroup.id]);
+
+  function toggleGroup(id) {
+    setExpanded((prev) => ({ ...prev, [id]: !prev[id] }));
+  }
+
+  return (
+    <div className="app">
+      <aside className="sidebar">
+        <div className="brand">
+          <span className="brand__mark">A</span>
+          <div>
+            <strong>Ads Research</strong>
+            <span>Competitive intelligence</span>
+          </div>
+        </div>
+
+        <nav className="sidebar-nav scroll-y" aria-label="Main navigation">
+          {navGroups.map((group) => (
+            <NavGroup
+              key={group.id}
+              group={group}
+              pathname={location.pathname}
+              expanded={expanded}
+              onToggle={toggleGroup}
+            />
+          ))}
+        </nav>
+      </aside>
+
+      <div className="main">
+        <header className="topbar">
+          <div className="topbar__left">
+            <label className="field">
+              <span>Company</span>
+              <select value={slug} onChange={(e) => setSlug(e.target.value)} disabled={loading}>
+                {companies.map((c) => (
+                  <option key={c.slug} value={c.slug}>
+                    {c.name}
+                  </option>
+                ))}
+              </select>
+            </label>
+            {company && (
+              <p className="meta">
+                {company.type} · Updated {formatDate(company.refreshedAt)}
+              </p>
+            )}
+          </div>
+          <button type="button" className="btn" onClick={refresh} disabled={refreshing || loading}>
+            {refreshing ? 'Refreshing…' : 'Refresh data'}
+          </button>
+        </header>
+
+        <div className="page-tabs scroll-x" role="tablist" aria-label={`${activeGroup.label} pages`}>
+          {activeGroup.items.map((item) => (
+            <NavLink
+              key={item.to}
+              to={item.to}
+              end={item.end}
+              className={({ isActive }) => (isActive ? 'page-tab active' : 'page-tab')}
+            >
+              {item.label}
+            </NavLink>
+          ))}
+        </div>
+
+        <div className="content">
+          <Outlet />
+        </div>
+      </div>
+    </div>
+  );
 }

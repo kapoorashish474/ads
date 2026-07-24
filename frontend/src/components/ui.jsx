@@ -1,55 +1,68 @@
-export function ConfidenceBadge({ value, size = 'md' }) {
-  const pct = Math.round(value * 100)
-  const tone = pct >= 85 ? 'high' : pct >= 70 ? 'mid' : 'low'
+import { useState } from 'react';
+
+export function Card({
+  title,
+  subtitle,
+  children,
+  className = '',
+  collapsible = false,
+  defaultOpen = true,
+}) {
+  const [open, setOpen] = useState(defaultOpen);
+
   return (
-    <span className={`confidence confidence--${tone} confidence--${size}`} title="Public-source confidence">
-      <span className="confidence__bar" style={{ '--pct': `${pct}%` }} />
-      <span className="confidence__label">{size === 'sm' ? `${pct}%` : `${pct}% conf.`}</span>
-    </span>
-  )
+    <section className={`card ${collapsible && !open ? 'card--collapsed' : ''} ${className}`}>
+      {(title || subtitle) && (
+        <header className={`card__head ${collapsible ? 'card__head--toggle' : ''}`}>
+          <div className="card__head-text">
+            {title && <h3>{title}</h3>}
+            {subtitle && <p>{subtitle}</p>}
+          </div>
+          {collapsible && (
+            <button
+              type="button"
+              className="card__toggle"
+              onClick={() => setOpen((v) => !v)}
+              aria-expanded={open}
+              aria-label={open ? 'Collapse section' : 'Expand section'}
+            >
+              {open ? '−' : '+'}
+            </button>
+          )}
+        </header>
+      )}
+      {(!collapsible || open) && <div className="card__body">{children}</div>}
+    </section>
+  );
 }
 
-export function PriorityBadge({ priority }) {
-  return <span className={`pill pill--${priority}`}>{priority}</span>
-}
-
-export function ImpactBadge({ impact }) {
-  return <span className={`pill pill--impact-${impact}`}>{impact} impact</span>
-}
-
-export function SourceChip({ name, type, url }) {
+export function Stat({ label, value, hint, source }) {
   return (
-    <a className="source-chip" href={url} target="_blank" rel="noreferrer" title={type}>
-      <span className="source-chip__type">{type?.replace(/_/g, ' ')}</span>
-      <span className="source-chip__name">{name}</span>
-    </a>
-  )
-}
-
-export function Metric({ label, value, hint }) {
-  return (
-    <div className="metric">
-      <span className="metric__label">{label}</span>
-      <strong className="metric__value">{value}</strong>
-      {hint ? <span className="metric__hint">{hint}</span> : null}
+    <div className="stat">
+      <span className="stat__label">{label}</span>
+      <strong className="stat__value">{value}</strong>
+      {hint && <span className="stat__hint">{hint}</span>}
+      {source && (
+        <span className="stat__source">
+          {source.confidence && <span className={`pill pill--conf-${source.confidence}`}>{source.confidence}</span>}
+        </span>
+      )}
     </div>
-  )
+  );
+}
+
+export function Pill({ tone = 'default', children }) {
+  return <span className={`pill pill--${tone}`}>{children}</span>;
 }
 
 export function Loading() {
-  return <div className="state">Loading intelligence…</div>
+  return <div className="state">Loading…</div>;
 }
 
 export function ErrorState({ message }) {
-  return <div className="state state--error">{message || 'Could not reach the API. Start the backend on port 5000.'}</div>
+  return <div className="state state--error">{message}</div>;
 }
 
-export function formatDate(iso) {
-  return new Date(iso).toLocaleString(undefined, {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-  })
+export function Empty({ message = 'No data yet.' }) {
+  return <div className="state state--empty">{message}</div>;
 }

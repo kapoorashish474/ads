@@ -1,37 +1,36 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Layout from './components/Layout'
-import Dashboard from './pages/Dashboard'
-import Opportunities from './pages/Opportunities'
-import OpportunityDetail from './pages/OpportunityDetail'
-import Competitors from './pages/Competitors'
-import CompetitorDetail from './pages/CompetitorDetail'
-import Signals from './pages/Signals'
-import Sources from './pages/Sources'
-import Quarters from './pages/Quarters'
-import ScopePage from './pages/ScopePage'
-import Learnings from './pages/Learnings'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { CompanyProvider } from './context/CompanyContext';
+import Layout from './components/Layout';
+import Overview from './pages/Overview';
+import Revenue from './pages/Revenue';
+import Products from './pages/Products';
+import Signals from './pages/Signals';
+import SearchPage from './pages/SearchPage';
+import Suggestions from './pages/Suggestions';
+import Benefit from './pages/Benefit';
+import SourcesPage from './pages/SourcesPage';
+import LinkedInPage from './pages/LinkedInPage';
+import XPage from './pages/XPage';
 
 export default function App() {
-  const base = import.meta.env.BASE_URL ?? '/'
-  const basename = base === '/' ? undefined : base.replace(/\/$/, '')
-
   return (
-    <BrowserRouter basename={basename}>
-      <Routes>
-        <Route element={<Layout />}>
-          <Route index element={<Dashboard />} />
-          <Route path="opportunities" element={<Opportunities />} />
-          <Route path="opportunities/:id" element={<OpportunityDetail />} />
-          <Route path="competitors" element={<Competitors />} />
-          <Route path="competitors/:id" element={<CompetitorDetail />} />
-          <Route path="quarters" element={<Quarters />} />
-          <Route path="scope" element={<ScopePage />} />
-          <Route path="lag" element={<ScopePage />} />
-          <Route path="learnings" element={<Learnings />} />
-          <Route path="signals" element={<Signals />} />
-          <Route path="sources" element={<Sources />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
-  )
+    <CompanyProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route index element={<Overview />} />
+            <Route path="revenue" element={<Revenue />} />
+            <Route path="products" element={<Products />} />
+            <Route path="signals" element={<Signals />} />
+            <Route path="linkedin" element={<LinkedInPage />} />
+            <Route path="x" element={<XPage />} />
+            <Route path="search" element={<SearchPage />} />
+            <Route path="suggestions" element={<Suggestions />} />
+            <Route path="benefit" element={<Benefit />} />
+            <Route path="sources" element={<SourcesPage />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </CompanyProvider>
+  );
 }

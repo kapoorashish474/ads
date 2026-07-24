@@ -1,0 +1,3030 @@
+{
+  "companies": [
+    {
+      "slug": "kargo",
+      "name": "Kargo",
+      "type": "High-impact ad platform",
+      "tier": 1,
+      "tagline": "Premium mobile & CTV high-impact units",
+      "website": "https://www.kargo.com",
+      "employees": 450,
+      "adRevenueUsd": 320000000,
+      "revenueLabel": "Est. 2025",
+      "revenueSegments": [
+        {
+          "name": "Mobile high-impact",
+          "value": 180,
+          "pct": 56
+        },
+        {
+          "name": "CTV",
+          "value": 85,
+          "pct": 27
+        },
+        {
+          "name": "Data & insights",
+          "value": 35,
+          "pct": 11
+        },
+        {
+          "name": "Other",
+          "value": 20,
+          "pct": 6
+        }
+      ],
+      "products": [
+        {
+          "name": "High-impact mobile",
+          "category": "Formats",
+          "channels": [
+            "Mobile web",
+            "In-app"
+          ],
+          "description": "Premium scroll-stopping mobile web and in-app units beyond standard IAB banners.",
+          "maturity": "GA"
+        },
+        {
+          "name": "Canvas CTV",
+          "category": "Formats",
+          "channels": [
+            "CTV"
+          ],
+          "description": "Interactive and brand-story CTV formats for premium streaming inventory.",
+          "maturity": "GA"
+        },
+        {
+          "name": "Attention analytics",
+          "category": "Measurement",
+          "channels": [
+            "Cross-channel"
+          ],
+          "description": "Cross-channel attention and viewability measurement for high-impact placements.",
+          "maturity": "GA"
+        }
+      ],
+      "strengthRadar": [
+        {
+          "label": "Creative impact",
+          "value": 88
+        },
+        {
+          "label": "CTV scale",
+          "value": 62
+        },
+        {
+          "label": "Programmatic scale",
+          "value": 55
+        },
+        {
+          "label": "Data & identity",
+          "value": 48
+        },
+        {
+          "label": "Self-serve UX",
+          "value": 52
+        }
+      ],
+      "winning": [
+        {
+          "text": "Differentiated high-impact formats vs standard IAB banners",
+          "strength": 5
+        },
+        {
+          "text": "Strong publisher relationships on mobile",
+          "strength": 4
+        },
+        {
+          "text": "Growing CTV footprint but behind dedicated CTV SSPs",
+          "strength": 3
+        }
+      ],
+      "searchMetrics": {
+        "trend": [
+          42,
+          45,
+          44,
+          48,
+          51,
+          53,
+          55,
+          58,
+          57,
+          60,
+          62,
+          64
+        ],
+        "regions": [
+          {
+            "name": "United States",
+            "value": 72,
+            "sharePct": 72,
+            "trend": [
+              42,
+              46,
+              46,
+              48,
+              52,
+              55,
+              55,
+              59,
+              59,
+              60,
+              63,
+              66
+            ],
+            "changePct": 14,
+            "insight": "CTV and high-impact mobile queries rising on the coasts.",
+            "topQueries": [
+              {
+                "query": "kargo ctv",
+                "index": 100,
+                "change": "+22%"
+              },
+              {
+                "query": "kargo ads",
+                "index": 86,
+                "change": "+8%"
+              },
+              {
+                "query": "high impact mobile ads",
+                "index": 64,
+                "change": "+5%"
+              }
+            ],
+            "metros": [
+              {
+                "name": "New York",
+                "index": 100
+              },
+              {
+                "name": "Los Angeles",
+                "index": 78
+              },
+              {
+                "name": "Chicago",
+                "index": 61
+              }
+            ]
+          },
+          {
+            "name": "United Kingdom",
+            "value": 18,
+            "sharePct": 18,
+            "trend": [
+              39,
+              43,
+              43,
+              45,
+              49,
+              52,
+              52,
+              56,
+              56,
+              57,
+              60,
+              63
+            ],
+            "changePct": 19,
+            "insight": "UK buyers search omnichannel formats — localized proof is scarce.",
+            "topQueries": [
+              {
+                "query": "kargo uk",
+                "index": 100,
+                "change": "+31%"
+              },
+              {
+                "query": "kargo ctv",
+                "index": 72,
+                "change": "+18%"
+              }
+            ],
+            "metros": [
+              {
+                "name": "London",
+                "index": 100
+              },
+              {
+                "name": "Manchester",
+                "index": 42
+              }
+            ]
+          },
+          {
+            "name": "Germany",
+            "value": 10,
+            "sharePct": 10,
+            "trend": [
+              39,
+              43,
+              43,
+              45,
+              49,
+              52,
+              52,
+              56,
+              56,
+              57,
+              60,
+              63
+            ],
+            "changePct": 6,
+            "insight": "Smaller volume but steady interest in premium formats.",
+            "topQueries": [
+              {
+                "query": "kargo werbung",
+                "index": 100,
+                "change": "+4%"
+              },
+              {
+                "query": "ctv advertising",
+                "index": 55,
+                "change": "+9%"
+              }
+            ],
+            "metros": [
+              {
+                "name": "Berlin",
+                "index": 100
+              },
+              {
+                "name": "Munich",
+                "index": 68
+              }
+            ]
+          }
+        ],
+        "queries": [
+          "kargo ads",
+          "kargo ctv",
+          "high impact mobile ads"
+        ],
+        "source": {
+          "label": "Google Trends interest index (normalized 0–100)",
+          "confidence": "modeled",
+          "url": "https://trends.google.com",
+          "asOf": "2026-07"
+        },
+        "monthLabels": [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec"
+        ]
+      },
+      "peerSlugs": [
+        "the-trade-desk",
+        "stackadapt",
+        "magnite",
+        "amazon-ads",
+        "criteo"
+      ],
+      "refreshedAt": "2026-07-24T01:31:21.639Z",
+      "dataSources": {
+        "revenue": {
+          "label": "Industry analyst estimates",
+          "confidence": "estimated",
+          "url": "https://www.adexchanger.com",
+          "asOf": "2025"
+        },
+        "employees": {
+          "label": "LinkedIn · company profile",
+          "confidence": "estimated",
+          "url": "https://www.linkedin.com/company/kargo",
+          "asOf": "2026-Q2"
+        },
+        "segments": {
+          "label": "Segment split modeled from public positioning",
+          "confidence": "estimated",
+          "url": "https://www.kargo.com",
+          "asOf": "2025"
+        },
+        "radar": {
+          "label": "Peer benchmark model · public product & press signals",
+          "confidence": "modeled",
+          "url": null,
+          "asOf": "2026-07"
+        },
+        "products": {
+          "label": "Kargo product pages & press releases",
+          "confidence": "reported",
+          "url": "https://www.kargo.com",
+          "asOf": "2026-07"
+        },
+        "winning": {
+          "label": "Synthesized from public filings, press, and peer compare",
+          "confidence": "inferred",
+          "url": null,
+          "asOf": "2026-07"
+        },
+        "search": {
+          "label": "Google Trends interest index (normalized 0–100)",
+          "confidence": "modeled",
+          "url": "https://trends.google.com",
+          "asOf": "2026-07"
+        },
+        "hiring": {
+          "label": "LinkedIn public job listings & company careers pages",
+          "confidence": "reported",
+          "url": "https://www.linkedin.com/company/kargo/jobs/",
+          "asOf": "2026-07"
+        },
+        "x": {
+          "label": "X profile @kargo (verified public URL)",
+          "confidence": "reported",
+          "url": "https://x.com/kargo",
+          "asOf": "2026-07-24"
+        }
+      },
+      "linkedin": {
+        "companyUrl": "https://www.linkedin.com/company/kargo/",
+        "jobsUrl": "https://www.linkedin.com/company/kargo/jobs/",
+        "handle": "kargo"
+      },
+      "x": {
+        "handle": "kargo",
+        "profileUrl": "https://x.com/kargo",
+        "validatedAt": "2026-07-24",
+        "validatedVia": "HTTP 200",
+        "followers": null,
+        "following": null,
+        "postsPerMonth": null,
+        "avgEngagement": null,
+        "verified": false,
+        "bio": "Breakthrough ad experiences for brands and publishers — mobile, CTV, and beyond.",
+        "topThemes": [
+          "CTV",
+          "Creative",
+          "Publishers"
+        ],
+        "websiteUrl": "https://www.kargo.com"
+      },
+      "productInsights": {
+        "headline": "Format specialist — strong creative story, lighter on identity and self-serve scale.",
+        "takeaways": [
+          {
+            "type": "strength",
+            "title": "Differentiated formats",
+            "body": "Two format products (mobile + CTV) vs most peers who lead with platforms or SSP pipes."
+          },
+          {
+            "type": "gap",
+            "title": "No identity stack",
+            "body": "Trade Desk ships UID2 and Unified ID — buyers expect identity bundled with scale platforms."
+          },
+          {
+            "type": "gap",
+            "title": "Measurement only",
+            "body": "Attention analytics covers measurement but peers also sell creative tooling (StackAdapt studio) or data clouds (Amazon AMC)."
+          },
+          {
+            "type": "implication",
+            "title": "Where to invest",
+            "body": "Close CTV format parity with StackAdapt/Magnite narratives before expanding into identity or retail media adjacency."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "the-trade-desk",
+      "name": "The Trade Desk",
+      "type": "Independent DSP",
+      "tier": 1,
+      "tagline": "Omnichannel programmatic buying",
+      "website": "https://www.thetradedesk.com",
+      "employees": 3500,
+      "adRevenueUsd": 2440000000,
+      "revenueLabel": "Platform spend proxy · FY2024",
+      "revenueSegments": [
+        {
+          "name": "CTV",
+          "value": 780,
+          "pct": 32
+        },
+        {
+          "name": "Display & native",
+          "value": 610,
+          "pct": 25
+        },
+        {
+          "name": "Audio & other",
+          "value": 490,
+          "pct": 20
+        },
+        {
+          "name": "Data & identity",
+          "value": 560,
+          "pct": 23
+        }
+      ],
+      "products": [
+        {
+          "name": "Kokai",
+          "category": "AI bidding",
+          "channels": [
+            "All"
+          ],
+          "description": "AI-powered bidding and optimization across programmatic channels including CTV.",
+          "maturity": "GA"
+        },
+        {
+          "name": "UID2",
+          "category": "Identity",
+          "channels": [
+            "Open web"
+          ],
+          "description": "Unified ID 2.0 identity framework for cookieless addressability on the open web.",
+          "maturity": "GA"
+        },
+        {
+          "name": "Unified ID",
+          "category": "Identity",
+          "channels": [
+            "CTV",
+            "Display"
+          ],
+          "description": "Identity graph and activation for CTV and display buying in the Trade Desk UI.",
+          "maturity": "GA"
+        }
+      ],
+      "strengthRadar": [
+        {
+          "label": "Creative impact",
+          "value": 45
+        },
+        {
+          "label": "CTV scale",
+          "value": 92
+        },
+        {
+          "label": "Programmatic scale",
+          "value": 95
+        },
+        {
+          "label": "Data & identity",
+          "value": 90
+        },
+        {
+          "label": "Self-serve UX",
+          "value": 78
+        }
+      ],
+      "winning": [
+        {
+          "text": "Independent open-internet positioning",
+          "strength": 5
+        },
+        {
+          "text": "CTV leadership narrative",
+          "strength": 5
+        },
+        {
+          "text": "UID2 ecosystem momentum",
+          "strength": 4
+        }
+      ],
+      "searchMetrics": {
+        "trend": [
+          68,
+          70,
+          72,
+          74,
+          76,
+          78,
+          80,
+          82,
+          85,
+          86,
+          88,
+          90
+        ],
+        "regions": [
+          {
+            "name": "United States",
+            "value": 65,
+            "sharePct": 65,
+            "trend": [
+              68,
+              71,
+              74,
+              74,
+              77,
+              80,
+              80,
+              83,
+              87,
+              86,
+              89,
+              92
+            ],
+            "changePct": 11,
+            "insight": "UID2 and CTV dominate US search intent.",
+            "topQueries": [
+              {
+                "query": "the trade desk ctv",
+                "index": 100,
+                "change": "+15%"
+              },
+              {
+                "query": "uid2",
+                "index": 88,
+                "change": "+12%"
+              },
+              {
+                "query": "ttd dsp",
+                "index": 79,
+                "change": "+6%"
+              }
+            ],
+            "metros": [
+              {
+                "name": "New York",
+                "index": 100
+              },
+              {
+                "name": "San Francisco",
+                "index": 82
+              },
+              {
+                "name": "Chicago",
+                "index": 70
+              }
+            ]
+          },
+          {
+            "name": "United Kingdom",
+            "value": 15,
+            "sharePct": 15,
+            "trend": [
+              65,
+              68,
+              71,
+              71,
+              74,
+              77,
+              77,
+              80,
+              84,
+              83,
+              86,
+              89
+            ],
+            "changePct": 9,
+            "insight": "Independent DSP narrative resonates in UK agency searches.",
+            "topQueries": [
+              {
+                "query": "trade desk uk",
+                "index": 100,
+                "change": "+11%"
+              },
+              {
+                "query": "open internet advertising",
+                "index": 58,
+                "change": "+7%"
+              }
+            ],
+            "metros": [
+              {
+                "name": "London",
+                "index": 100
+              }
+            ]
+          },
+          {
+            "name": "Australia",
+            "value": 12,
+            "sharePct": 12,
+            "trend": [
+              65,
+              68,
+              71,
+              71,
+              74,
+              77,
+              77,
+              80,
+              84,
+              83,
+              86,
+              89
+            ],
+            "changePct": 13,
+            "insight": "CTV growth driving APAC search spikes.",
+            "topQueries": [
+              {
+                "query": "trade desk australia",
+                "index": 100,
+                "change": "+14%"
+              },
+              {
+                "query": "connected tv dsp",
+                "index": 71,
+                "change": "+10%"
+              }
+            ],
+            "metros": [
+              {
+                "name": "Sydney",
+                "index": 100
+              },
+              {
+                "name": "Melbourne",
+                "index": 76
+              }
+            ]
+          }
+        ],
+        "queries": [
+          "the trade desk ctv",
+          "ttd dsp",
+          "uid2"
+        ],
+        "source": {
+          "label": "Google Trends interest index (normalized 0–100)",
+          "confidence": "modeled",
+          "url": "https://trends.google.com",
+          "asOf": "2026-07"
+        },
+        "monthLabels": [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec"
+        ]
+      },
+      "peerSlugs": [
+        "kargo",
+        "stackadapt",
+        "amazon-ads",
+        "google-dv360"
+      ],
+      "refreshedAt": "2026-07-24T01:31:21.640Z",
+      "dataSources": {
+        "revenue": {
+          "label": "The Trade Desk 10-K · platform revenue",
+          "confidence": "reported",
+          "url": "https://investors.thetradedesk.com",
+          "asOf": "FY2024"
+        },
+        "employees": {
+          "label": "10-K headcount disclosure",
+          "confidence": "reported",
+          "url": "https://investors.thetradedesk.com",
+          "asOf": "FY2024"
+        },
+        "segments": {
+          "label": "Earnings call segment commentary",
+          "confidence": "reported",
+          "url": "https://investors.thetradedesk.com",
+          "asOf": "FY2024"
+        },
+        "radar": {
+          "label": "Peer benchmark model · public product & press signals",
+          "confidence": "modeled",
+          "url": null,
+          "asOf": "2026-07"
+        },
+        "products": {
+          "label": "Trade Desk product announcements",
+          "confidence": "reported",
+          "url": "https://www.thetradedesk.com",
+          "asOf": "2026-07"
+        },
+        "winning": {
+          "label": "Earnings calls + industry analysis",
+          "confidence": "inferred",
+          "url": "https://investors.thetradedesk.com",
+          "asOf": "2026-07"
+        },
+        "search": {
+          "label": "Google Trends interest index (normalized 0–100)",
+          "confidence": "modeled",
+          "url": "https://trends.google.com",
+          "asOf": "2026-07"
+        },
+        "hiring": {
+          "label": "LinkedIn public job listings & company careers pages",
+          "confidence": "reported",
+          "url": "https://www.linkedin.com/company/the-trade-desk/jobs/",
+          "asOf": "2026-07"
+        },
+        "x": {
+          "label": "X profile @TheTradeDesk (verified public URL)",
+          "confidence": "reported",
+          "url": "https://x.com/TheTradeDesk",
+          "asOf": "2026-07-24"
+        }
+      },
+      "linkedin": {
+        "companyUrl": "https://www.linkedin.com/company/the-trade-desk/",
+        "jobsUrl": "https://www.linkedin.com/company/the-trade-desk/jobs/",
+        "handle": "the-trade-desk"
+      },
+      "x": {
+        "handle": "TheTradeDesk",
+        "profileUrl": "https://x.com/TheTradeDesk",
+        "validatedAt": "2026-07-24",
+        "validatedVia": "HTTP 200",
+        "followers": null,
+        "following": null,
+        "postsPerMonth": null,
+        "avgEngagement": null,
+        "verified": true,
+        "bio": "The independent demand-side platform for the open internet.",
+        "topThemes": [
+          "Kokai",
+          "CTV",
+          "Identity"
+        ],
+        "websiteUrl": "https://www.thetradedesk.com"
+      },
+      "productInsights": {
+        "headline": "Full-stack programmatic — identity + AI bidding are the moat, not creative formats.",
+        "takeaways": [
+          {
+            "type": "strength",
+            "title": "Identity leadership",
+            "body": "Two identity products (UID2, Unified ID) — no peer in this set matches depth on cookieless."
+          },
+          {
+            "type": "strength",
+            "title": "AI bidding narrative",
+            "body": "Kokai is the flagship differentiator vs DSPs that compete on retail or format inventory."
+          },
+          {
+            "type": "gap",
+            "title": "No format/creative SKUs",
+            "body": "Kargo and StackAdapt win RFPs with named format products; TTD sells pipes not units."
+          },
+          {
+            "type": "implication",
+            "title": "Competitive read",
+            "body": "When buyers ask for high-impact units, TTD partners — it does not productize formats like Kargo."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "stackadapt",
+      "name": "StackAdapt",
+      "type": "Mid-market DSP",
+      "tier": 1,
+      "tagline": "Self-serve omnichannel platform",
+      "website": "https://www.stackadapt.com",
+      "employees": 900,
+      "adRevenueUsd": 450000000,
+      "revenueLabel": "Est. 2025",
+      "revenueSegments": [
+        {
+          "name": "Native & display",
+          "value": 180,
+          "pct": 40
+        },
+        {
+          "name": "CTV",
+          "value": 135,
+          "pct": 30
+        },
+        {
+          "name": "Audio & DOOH",
+          "value": 90,
+          "pct": 20
+        },
+        {
+          "name": "Managed service",
+          "value": 45,
+          "pct": 10
+        }
+      ],
+      "products": [
+        {
+          "name": "IVT Shield",
+          "category": "Quality",
+          "channels": [
+            "All"
+          ],
+          "description": "Invalid traffic filtering and quality controls across campaigns.",
+          "maturity": "GA"
+        },
+        {
+          "name": "Creative studio",
+          "category": "Creative",
+          "channels": [
+            "Display",
+            "Native"
+          ],
+          "description": "In-platform creative builder for display and native ad units.",
+          "maturity": "GA"
+        },
+        {
+          "name": "CTV hub",
+          "category": "Channel",
+          "channels": [
+            "CTV"
+          ],
+          "description": "Connected TV planning, trafficking, and reporting in one workflow.",
+          "maturity": "GA"
+        }
+      ],
+      "strengthRadar": [
+        {
+          "label": "Creative impact",
+          "value": 70
+        },
+        {
+          "label": "CTV scale",
+          "value": 75
+        },
+        {
+          "label": "Programmatic scale",
+          "value": 72
+        },
+        {
+          "label": "Data & identity",
+          "value": 58
+        },
+        {
+          "label": "Self-serve UX",
+          "value": 85
+        }
+      ],
+      "winning": [
+        {
+          "text": "Fast self-serve onboarding for mid-market",
+          "strength": 5
+        },
+        {
+          "text": "Aggressive CTV product marketing",
+          "strength": 4
+        },
+        {
+          "text": "Strong creative tooling narrative",
+          "strength": 4
+        }
+      ],
+      "searchMetrics": {
+        "trend": [
+          55,
+          58,
+          60,
+          63,
+          66,
+          68,
+          71,
+          74,
+          76,
+          78,
+          81,
+          84
+        ],
+        "regions": [
+          {
+            "name": "United States",
+            "value": 55,
+            "sharePct": 55,
+            "trend": [
+              54,
+              58,
+              61,
+              62,
+              66,
+              69,
+              70,
+              74,
+              77,
+              77,
+              81,
+              85
+            ],
+            "changePct": 18,
+            "insight": "Self-serve DSP comparisons spike in mid-market searches.",
+            "topQueries": [
+              {
+                "query": "stackadapt ctv",
+                "index": 100,
+                "change": "+24%"
+              },
+              {
+                "query": "stackadapt vs trade desk",
+                "index": 67,
+                "change": "+12%"
+              }
+            ],
+            "metros": [
+              {
+                "name": "Toronto",
+                "index": 88
+              },
+              {
+                "name": "New York",
+                "index": 100
+              }
+            ]
+          },
+          {
+            "name": "Canada",
+            "value": 28,
+            "sharePct": 28,
+            "trend": [
+              53,
+              57,
+              60,
+              61,
+              65,
+              68,
+              69,
+              73,
+              76,
+              76,
+              80,
+              84
+            ],
+            "changePct": 21,
+            "insight": "Home-market strength — highest relative index globally.",
+            "topQueries": [
+              {
+                "query": "stackadapt canada",
+                "index": 100,
+                "change": "+19%"
+              },
+              {
+                "query": "stackadapt dsp review",
+                "index": 84,
+                "change": "+11%"
+              }
+            ],
+            "metros": [
+              {
+                "name": "Toronto",
+                "index": 100
+              },
+              {
+                "name": "Vancouver",
+                "index": 72
+              }
+            ]
+          },
+          {
+            "name": "United Kingdom",
+            "value": 17,
+            "sharePct": 17,
+            "trend": [
+              52,
+              56,
+              59,
+              60,
+              64,
+              67,
+              68,
+              72,
+              75,
+              75,
+              79,
+              83
+            ],
+            "changePct": 10,
+            "insight": "Emerging UK awareness via trade press.",
+            "topQueries": [
+              {
+                "query": "stackadapt uk",
+                "index": 100,
+                "change": "+9%"
+              }
+            ],
+            "metros": [
+              {
+                "name": "London",
+                "index": 100
+              }
+            ]
+          }
+        ],
+        "queries": [
+          "stackadapt ctv",
+          "stackadapt dsp review"
+        ],
+        "source": {
+          "label": "Google Trends interest index (normalized 0–100)",
+          "confidence": "modeled",
+          "url": "https://trends.google.com",
+          "asOf": "2026-07"
+        },
+        "monthLabels": [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec"
+        ]
+      },
+      "peerSlugs": [
+        "kargo",
+        "the-trade-desk",
+        "criteo"
+      ],
+      "refreshedAt": "2026-07-24T01:31:21.640Z",
+      "dataSources": {
+        "revenue": {
+          "label": "Industry estimates · programmatic landscape reports",
+          "confidence": "estimated",
+          "url": "https://www.stackadapt.com",
+          "asOf": "2025"
+        },
+        "employees": {
+          "label": "LinkedIn · company profile",
+          "confidence": "estimated",
+          "url": "https://www.linkedin.com/company/stackadapt",
+          "asOf": "2026-Q2"
+        },
+        "segments": {
+          "label": "Product mix inferred from marketing & case studies",
+          "confidence": "estimated",
+          "url": "https://www.stackadapt.com",
+          "asOf": "2025"
+        },
+        "radar": {
+          "label": "Peer benchmark model · public product & press signals",
+          "confidence": "modeled",
+          "url": null,
+          "asOf": "2026-07"
+        },
+        "products": {
+          "label": "StackAdapt product pages",
+          "confidence": "reported",
+          "url": "https://www.stackadapt.com",
+          "asOf": "2026-07"
+        },
+        "winning": {
+          "label": "Press coverage + peer comparison",
+          "confidence": "inferred",
+          "url": null,
+          "asOf": "2026-07"
+        },
+        "search": {
+          "label": "Google Trends interest index (normalized 0–100)",
+          "confidence": "modeled",
+          "url": "https://trends.google.com",
+          "asOf": "2026-07"
+        },
+        "hiring": {
+          "label": "LinkedIn public job listings & company careers pages",
+          "confidence": "reported",
+          "url": "https://www.linkedin.com/company/stackadapt/jobs/",
+          "asOf": "2026-07"
+        },
+        "x": {
+          "label": "X profile @StackAdapt (verified public URL)",
+          "confidence": "reported",
+          "url": "https://x.com/StackAdapt",
+          "asOf": "2026-07-24"
+        }
+      },
+      "linkedin": {
+        "companyUrl": "https://www.linkedin.com/company/stackadapt/",
+        "jobsUrl": "https://www.linkedin.com/company/stackadapt/jobs/",
+        "handle": "stackadapt"
+      },
+      "x": {
+        "handle": "StackAdapt",
+        "profileUrl": "https://x.com/StackAdapt",
+        "validatedAt": "2026-07-24",
+        "validatedVia": "HTTP 200",
+        "followers": null,
+        "following": null,
+        "postsPerMonth": null,
+        "avgEngagement": null,
+        "verified": false,
+        "bio": "AI-powered multi-channel programmatic advertising platform.",
+        "topThemes": [
+          "CTV",
+          "Product",
+          "Events"
+        ],
+        "websiteUrl": "https://www.stackadapt.com"
+      },
+      "productInsights": {
+        "headline": "Mid-market platform — quality, creative, and CTV in one self-serve box.",
+        "takeaways": [
+          {
+            "type": "strength",
+            "title": "Creative + CTV combo",
+            "body": "Creative studio plus CTV hub mirrors how mid-market buyers purchase — one login, multiple channels."
+          },
+          {
+            "type": "strength",
+            "title": "Quality story",
+            "body": "IVT Shield is a distinct SKU; Kargo lacks a named quality product in this registry."
+          },
+          {
+            "type": "gap",
+            "title": "No identity product",
+            "body": "Relies on third-party IDs while Trade Desk owns the identity narrative."
+          },
+          {
+            "type": "implication",
+            "title": "Threat to Kargo",
+            "body": "StackAdapt CTV hub directly competes for the same mid-market CTV budgets Kargo targets."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "magnite",
+      "name": "Magnite",
+      "type": "SSP / CTV exchange",
+      "tier": 1,
+      "tagline": "Sell-side platform & CTV",
+      "website": "https://www.magnite.com",
+      "employees": 1800,
+      "adRevenueUsd": 668000000,
+      "revenueLabel": "Reported · FY2024",
+      "revenueSegments": [
+        {
+          "name": "CTV",
+          "value": 320,
+          "pct": 48
+        },
+        {
+          "name": "Display SSP",
+          "value": 220,
+          "pct": 33
+        },
+        {
+          "name": "DV+",
+          "value": 128,
+          "pct": 19
+        }
+      ],
+      "products": [
+        {
+          "name": "Magnite Streaming",
+          "category": "CTV",
+          "channels": [
+            "CTV"
+          ],
+          "description": "SSP for CTV and OTT — programmatic monetization for streaming publishers.",
+          "maturity": "GA"
+        },
+        {
+          "name": "SpringServe",
+          "category": "Ad server",
+          "channels": [
+            "CTV",
+            "Video"
+          ],
+          "description": "Ad serving and yield management for CTV and video publishers.",
+          "maturity": "GA"
+        },
+        {
+          "name": "ClearLine",
+          "category": "PMP",
+          "channels": [
+            "All"
+          ],
+          "description": "Curated marketplace and PMP deals for premium inventory access.",
+          "maturity": "GA"
+        }
+      ],
+      "strengthRadar": [
+        {
+          "label": "Creative impact",
+          "value": 40
+        },
+        {
+          "label": "CTV scale",
+          "value": 94
+        },
+        {
+          "label": "Programmatic scale",
+          "value": 88
+        },
+        {
+          "label": "Data & identity",
+          "value": 65
+        },
+        {
+          "label": "Self-serve UX",
+          "value": 55
+        }
+      ],
+      "winning": [
+        {
+          "text": "Largest independent sell-side CTV scale",
+          "strength": 5
+        },
+        {
+          "text": "Publisher-first positioning",
+          "strength": 4
+        }
+      ],
+      "searchMetrics": {
+        "trend": [
+          50,
+          52,
+          51,
+          54,
+          56,
+          58,
+          59,
+          61,
+          63,
+          64,
+          66,
+          68
+        ],
+        "regions": [
+          {
+            "name": "United States",
+            "value": 70,
+            "sharePct": 70,
+            "trend": [
+              50,
+              53,
+              53,
+              54,
+              57,
+              60,
+              59,
+              62,
+              65,
+              64,
+              67,
+              70
+            ],
+            "changePct": 8,
+            "insight": "CTV SSP searches correlate with streaming budget shifts.",
+            "topQueries": [
+              {
+                "query": "magnite ctv",
+                "index": 100,
+                "change": "+10%"
+              },
+              {
+                "query": "magnite ssp",
+                "index": 83,
+                "change": "+5%"
+              }
+            ],
+            "metros": [
+              {
+                "name": "New York",
+                "index": 100
+              },
+              {
+                "name": "Los Angeles",
+                "index": 74
+              }
+            ]
+          },
+          {
+            "name": "EMEA",
+            "value": 20,
+            "sharePct": 20,
+            "trend": [
+              48,
+              51,
+              51,
+              52,
+              55,
+              58,
+              57,
+              60,
+              63,
+              62,
+              65,
+              68
+            ],
+            "changePct": 7,
+            "insight": "Publisher-side monetization queries in UK & DE.",
+            "topQueries": [
+              {
+                "query": "magnite streaming",
+                "index": 100,
+                "change": "+8%"
+              }
+            ],
+            "metros": [
+              {
+                "name": "London",
+                "index": 100
+              },
+              {
+                "name": "Paris",
+                "index": 58
+              }
+            ]
+          },
+          {
+            "name": "APAC",
+            "value": 10,
+            "sharePct": 10,
+            "trend": [
+              47,
+              50,
+              50,
+              51,
+              54,
+              57,
+              56,
+              59,
+              62,
+              61,
+              64,
+              67
+            ],
+            "changePct": 12,
+            "insight": "Early CTV SSP interest in AU & SG.",
+            "topQueries": [
+              {
+                "query": "magnite apac",
+                "index": 100,
+                "change": "+13%"
+              }
+            ],
+            "metros": [
+              {
+                "name": "Sydney",
+                "index": 100
+              }
+            ]
+          }
+        ],
+        "queries": [
+          "magnite ctv",
+          "magnite ssp"
+        ],
+        "source": {
+          "label": "Google Trends interest index (normalized 0–100)",
+          "confidence": "modeled",
+          "url": "https://trends.google.com",
+          "asOf": "2026-07"
+        },
+        "monthLabels": [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec"
+        ]
+      },
+      "peerSlugs": [
+        "kargo",
+        "the-trade-desk",
+        "pubmatic"
+      ],
+      "refreshedAt": "2026-07-24T01:31:21.640Z",
+      "dataSources": {
+        "revenue": {
+          "label": "Magnite 10-K · consolidated revenue",
+          "confidence": "reported",
+          "url": "https://investors.magnite.com",
+          "asOf": "FY2024"
+        },
+        "employees": {
+          "label": "10-K headcount disclosure",
+          "confidence": "reported",
+          "url": "https://investors.magnite.com",
+          "asOf": "FY2024"
+        },
+        "segments": {
+          "label": "10-K segment reporting (CTV / DV+)",
+          "confidence": "reported",
+          "url": "https://investors.magnite.com",
+          "asOf": "FY2024"
+        },
+        "radar": {
+          "label": "Peer benchmark model · public product & press signals",
+          "confidence": "modeled",
+          "url": null,
+          "asOf": "2026-07"
+        },
+        "products": {
+          "label": "Magnite product & IR materials",
+          "confidence": "reported",
+          "url": "https://www.magnite.com",
+          "asOf": "2026-07"
+        },
+        "winning": {
+          "label": "Earnings + sell-side research synthesis",
+          "confidence": "inferred",
+          "url": "https://investors.magnite.com",
+          "asOf": "2026-07"
+        },
+        "search": {
+          "label": "Google Trends interest index (normalized 0–100)",
+          "confidence": "modeled",
+          "url": "https://trends.google.com",
+          "asOf": "2026-07"
+        },
+        "hiring": {
+          "label": "LinkedIn public job listings & company careers pages",
+          "confidence": "reported",
+          "url": "https://www.linkedin.com/company/magnite/jobs/",
+          "asOf": "2026-07"
+        },
+        "x": {
+          "label": "X profile @Magnite (verified public URL)",
+          "confidence": "reported",
+          "url": "https://x.com/Magnite",
+          "asOf": "2026-07-24"
+        }
+      },
+      "linkedin": {
+        "companyUrl": "https://www.linkedin.com/company/magnite/",
+        "jobsUrl": "https://www.linkedin.com/company/magnite/jobs/",
+        "handle": "magnite"
+      },
+      "x": {
+        "handle": "Magnite",
+        "profileUrl": "https://x.com/Magnite",
+        "validatedAt": "2026-07-24",
+        "validatedVia": "HTTP 200",
+        "followers": null,
+        "following": null,
+        "postsPerMonth": null,
+        "avgEngagement": null,
+        "verified": true,
+        "bio": "Independent sell-side advertising platform for CTV and open web.",
+        "topThemes": [
+          "CTV",
+          "Publishers",
+          "Streaming"
+        ],
+        "websiteUrl": "https://www.magnite.com"
+      },
+      "productInsights": {
+        "headline": "Sell-side CTV powerhouse — publisher pipes, not buyer-facing formats.",
+        "takeaways": [
+          {
+            "type": "strength",
+            "title": "CTV stack depth",
+            "body": "Streaming SSP + SpringServe ad server covers publisher monetization end-to-end."
+          },
+          {
+            "type": "strength",
+            "title": "Premium access",
+            "body": "ClearLine PMP product signals curated inventory — different buyer than Kargo formats."
+          },
+          {
+            "type": "gap",
+            "title": "Weak creative narrative",
+            "body": "Low creative-impact radar score; does not sell high-impact units to brands directly."
+          },
+          {
+            "type": "implication",
+            "title": "Partner not competitor",
+            "body": "Magnite supplies CTV pipes Kargo may integrate; overlap is narrative (CTV share) not SKU-for-SKU."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "amazon-ads",
+      "name": "Amazon Ads",
+      "type": "Retail media + DSP",
+      "tier": 1,
+      "tagline": "Commerce signals at scale",
+      "website": "https://advertising.amazon.com",
+      "employees": 12000,
+      "adRevenueUsd": 56200000000,
+      "revenueLabel": "Reported · FY2024",
+      "revenueSegments": [
+        {
+          "name": "Sponsored products & brands",
+          "value": 38000,
+          "pct": 68
+        },
+        {
+          "name": "Amazon DSP",
+          "value": 9800,
+          "pct": 17
+        },
+        {
+          "name": "Fire TV & video",
+          "value": 5200,
+          "pct": 9
+        },
+        {
+          "name": "Other",
+          "value": 3200,
+          "pct": 6
+        }
+      ],
+      "products": [
+        {
+          "name": "Amazon DSP",
+          "category": "DSP",
+          "channels": [
+            "Off-Amazon",
+            "CTV"
+          ],
+          "description": "Demand-side platform for off-Amazon display, video, and CTV reach.",
+          "maturity": "GA"
+        },
+        {
+          "name": "Sponsored Products",
+          "category": "Retail media",
+          "channels": [
+            "Amazon"
+          ],
+          "description": "On-Amazon retail media placements in search and product detail pages.",
+          "maturity": "GA"
+        },
+        {
+          "name": "Amazon Marketing Cloud",
+          "category": "Data",
+          "channels": [
+            "All"
+          ],
+          "description": "Clean-room analytics and audience insights tied to Amazon shopping signals.",
+          "maturity": "GA"
+        }
+      ],
+      "strengthRadar": [
+        {
+          "label": "Creative impact",
+          "value": 55
+        },
+        {
+          "label": "CTV scale",
+          "value": 82
+        },
+        {
+          "label": "Programmatic scale",
+          "value": 90
+        },
+        {
+          "label": "Data & identity",
+          "value": 98
+        },
+        {
+          "label": "Self-serve UX",
+          "value": 65
+        }
+      ],
+      "winning": [
+        {
+          "text": "Purchase intent data moat",
+          "strength": 5
+        },
+        {
+          "text": "Retail media budget shift",
+          "strength": 5
+        },
+        {
+          "text": "Closed-loop measurement story",
+          "strength": 5
+        }
+      ],
+      "searchMetrics": {
+        "trend": [
+          75,
+          76,
+          78,
+          80,
+          82,
+          83,
+          85,
+          86,
+          88,
+          89,
+          91,
+          93
+        ],
+        "regions": [
+          {
+            "name": "United States",
+            "value": 60,
+            "sharePct": 60,
+            "trend": [
+              75,
+              77,
+              80,
+              80,
+              83,
+              85,
+              85,
+              87,
+              90,
+              89,
+              92,
+              95
+            ],
+            "changePct": 9,
+            "insight": "Retail media + DSP off-site searches dominate.",
+            "topQueries": [
+              {
+                "query": "amazon dsp",
+                "index": 100,
+                "change": "+11%"
+              },
+              {
+                "query": "sponsored products",
+                "index": 94,
+                "change": "+7%"
+              },
+              {
+                "query": "amazon retail media",
+                "index": 88,
+                "change": "+9%"
+              }
+            ],
+            "metros": [
+              {
+                "name": "Seattle",
+                "index": 100
+              },
+              {
+                "name": "New York",
+                "index": 86
+              }
+            ]
+          },
+          {
+            "name": "Europe",
+            "value": 22,
+            "sharePct": 22,
+            "trend": [
+              73,
+              75,
+              78,
+              78,
+              81,
+              83,
+              83,
+              85,
+              88,
+              87,
+              90,
+              93
+            ],
+            "changePct": 14,
+            "insight": "Retail media expansion driving DE & UK queries.",
+            "topQueries": [
+              {
+                "query": "amazon ads europe",
+                "index": 100,
+                "change": "+16%"
+              }
+            ],
+            "metros": [
+              {
+                "name": "London",
+                "index": 100
+              },
+              {
+                "name": "Berlin",
+                "index": 69
+              }
+            ]
+          },
+          {
+            "name": "India",
+            "value": 18,
+            "sharePct": 18,
+            "trend": [
+              72,
+              74,
+              77,
+              77,
+              80,
+              82,
+              82,
+              84,
+              87,
+              86,
+              89,
+              92
+            ],
+            "changePct": 22,
+            "insight": "Fastest-growing region for Amazon Ads search interest.",
+            "topQueries": [
+              {
+                "query": "amazon ads india",
+                "index": 100,
+                "change": "+28%"
+              }
+            ],
+            "metros": [
+              {
+                "name": "Mumbai",
+                "index": 100
+              },
+              {
+                "name": "Bangalore",
+                "index": 91
+              }
+            ]
+          }
+        ],
+        "queries": [
+          "amazon dsp",
+          "amazon retail media",
+          "sponsored products"
+        ],
+        "source": {
+          "label": "Google Trends interest index (normalized 0–100)",
+          "confidence": "modeled",
+          "url": "https://trends.google.com",
+          "asOf": "2026-07"
+        },
+        "monthLabels": [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec"
+        ]
+      },
+      "peerSlugs": [
+        "the-trade-desk",
+        "google-dv360",
+        "criteo"
+      ],
+      "refreshedAt": "2026-07-24T01:31:21.640Z",
+      "dataSources": {
+        "revenue": {
+          "label": "Amazon 10-K · advertising services",
+          "confidence": "reported",
+          "url": "https://ir.aboutamazon.com",
+          "asOf": "FY2024"
+        },
+        "employees": {
+          "label": "Estimated Amazon Ads org · public job posts",
+          "confidence": "estimated",
+          "url": "https://advertising.amazon.com",
+          "asOf": "2026-Q2"
+        },
+        "segments": {
+          "label": "Earnings narrative · sponsored ads vs DSP",
+          "confidence": "reported",
+          "url": "https://ir.aboutamazon.com",
+          "asOf": "FY2024"
+        },
+        "radar": {
+          "label": "Peer benchmark model · public product & press signals",
+          "confidence": "modeled",
+          "url": null,
+          "asOf": "2026-07"
+        },
+        "products": {
+          "label": "Amazon Ads documentation",
+          "confidence": "reported",
+          "url": "https://advertising.amazon.com",
+          "asOf": "2026-07"
+        },
+        "winning": {
+          "label": "Earnings + retail media industry reports",
+          "confidence": "inferred",
+          "url": "https://ir.aboutamazon.com",
+          "asOf": "2026-07"
+        },
+        "search": {
+          "label": "Google Trends interest index (normalized 0–100)",
+          "confidence": "modeled",
+          "url": "https://trends.google.com",
+          "asOf": "2026-07"
+        },
+        "hiring": {
+          "label": "LinkedIn public job listings & company careers pages",
+          "confidence": "reported",
+          "url": "https://www.linkedin.com/jobs/search/?keywords=Amazon%20Ads&f_C=1586",
+          "asOf": "2026-07"
+        },
+        "x": {
+          "label": "X profile @AmazonAds (verified public URL)",
+          "confidence": "reported",
+          "url": "https://x.com/AmazonAds",
+          "asOf": "2026-07-24"
+        }
+      },
+      "linkedin": {
+        "companyUrl": "https://www.linkedin.com/company/amazon/",
+        "jobsUrl": "https://www.linkedin.com/jobs/search/?keywords=Amazon%20Ads&f_C=1586",
+        "handle": "amazon"
+      },
+      "x": {
+        "handle": "AmazonAds",
+        "profileUrl": "https://x.com/AmazonAds",
+        "validatedAt": "2026-07-24",
+        "validatedVia": "HTTP 200",
+        "followers": null,
+        "following": null,
+        "postsPerMonth": null,
+        "avgEngagement": null,
+        "verified": true,
+        "bio": "Full-funnel advertising at scale — retail media, DSP, and measurement.",
+        "topThemes": [
+          "Retail media",
+          "DSP",
+          "Measurement"
+        ],
+        "websiteUrl": "https://advertising.amazon.com"
+      },
+      "productInsights": {
+        "headline": "Retail media at scale — shopping data is the product, formats are secondary.",
+        "takeaways": [
+          {
+            "type": "strength",
+            "title": "Commerce data cloud",
+            "body": "Amazon Marketing Cloud is a data SKU none of the format-led peers can replicate."
+          },
+          {
+            "type": "strength",
+            "title": "Full funnel",
+            "body": "On-Amazon Sponsored Products plus off-Amazon DSP — only Criteo approaches this breadth."
+          },
+          {
+            "type": "gap",
+            "title": "No publisher format story",
+            "body": "Does not compete for high-impact mobile units — different RFP lane than Kargo."
+          },
+          {
+            "type": "implication",
+            "title": "Budget risk",
+            "body": "Retail media budgets pull performance dollars that might otherwise fund CTV format tests."
+          }
+        ]
+      }
+    },
+    {
+      "slug": "criteo",
+      "name": "Criteo",
+      "type": "Commerce media",
+      "tier": 1,
+      "tagline": "Retargeting & retail extensions",
+      "website": "https://www.criteo.com",
+      "employees": 3500,
+      "adRevenueUsd": 1900000000,
+      "revenueLabel": "Reported · FY2024",
+      "revenueSegments": [
+        {
+          "name": "Retail media off-site",
+          "value": 760,
+          "pct": 40
+        },
+        {
+          "name": "Performance display",
+          "value": 680,
+          "pct": 36
+        },
+        {
+          "name": "Data & audiences",
+          "value": 460,
+          "pct": 24
+        }
+      ],
+      "products": [
+        {
+          "name": "Commerce Max",
+          "category": "Retail media",
+          "channels": [
+            "Off-site"
+          ],
+          "description": "Retail media campaigns extended to off-site publisher inventory.",
+          "maturity": "GA"
+        },
+        {
+          "name": "Criteo DSP",
+          "category": "DSP",
+          "channels": [
+            "Display",
+            "Video"
+          ],
+          "description": "Open-web display and video buying with commerce intent signals.",
+          "maturity": "GA"
+        },
+        {
+          "name": "Audience activation",
+          "category": "Data",
+          "channels": [
+            "All"
+          ],
+          "description": "First-party retailer audiences activated across channels and partners.",
+          "maturity": "GA"
+        }
+      ],
+      "strengthRadar": [
+        {
+          "label": "Creative impact",
+          "value": 50
+        },
+        {
+          "label": "CTV scale",
+          "value": 45
+        },
+        {
+          "label": "Programmatic scale",
+          "value": 78
+        },
+        {
+          "label": "Data & identity",
+          "value": 82
+        },
+        {
+          "label": "Self-serve UX",
+          "value": 70
+        }
+      ],
+      "winning": [
+        {
+          "text": "Commerce retargeting heritage",
+          "strength": 4
+        },
+        {
+          "text": "Retail media network expansion",
+          "strength": 4
+        }
+      ],
+      "searchMetrics": {
+        "trend": [
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59
+        ],
+        "regions": [
+          {
+            "name": "France",
+            "value": 35,
+            "sharePct": 35,
+            "trend": [
+              46,
+              48,
+              50,
+              49,
+              51,
+              53,
+              52,
+              54,
+              56,
+              55,
+              57,
+              59
+            ],
+            "changePct": 5,
+            "insight": "Home market — commerce retargeting heritage still strong.",
+            "topQueries": [
+              {
+                "query": "criteo retail media",
+                "index": 100,
+                "change": "+4%"
+              },
+              {
+                "query": "commerce max",
+                "index": 76,
+                "change": "+6%"
+              }
+            ],
+            "metros": [
+              {
+                "name": "Paris",
+                "index": 100
+              }
+            ]
+          },
+          {
+            "name": "United States",
+            "value": 40,
+            "sharePct": 40,
+            "trend": [
+              47,
+              49,
+              51,
+              50,
+              52,
+              54,
+              53,
+              55,
+              57,
+              56,
+              58,
+              60
+            ],
+            "changePct": 8,
+            "insight": "Off-site retail media searches gaining share.",
+            "topQueries": [
+              {
+                "query": "criteo commerce max",
+                "index": 100,
+                "change": "+9%"
+              }
+            ],
+            "metros": [
+              {
+                "name": "New York",
+                "index": 100
+              },
+              {
+                "name": "Chicago",
+                "index": 62
+              }
+            ]
+          },
+          {
+            "name": "Japan",
+            "value": 25,
+            "sharePct": 25,
+            "trend": [
+              46,
+              48,
+              50,
+              49,
+              51,
+              53,
+              52,
+              54,
+              56,
+              55,
+              57,
+              59
+            ],
+            "changePct": 11,
+            "insight": "APAC retail partnerships driving localized queries.",
+            "topQueries": [
+              {
+                "query": "criteo japan",
+                "index": 100,
+                "change": "+12%"
+              }
+            ],
+            "metros": [
+              {
+                "name": "Tokyo",
+                "index": 100
+              }
+            ]
+          }
+        ],
+        "queries": [
+          "criteo retail media",
+          "commerce max"
+        ],
+        "source": {
+          "label": "Google Trends interest index (normalized 0–100)",
+          "confidence": "modeled",
+          "url": "https://trends.google.com",
+          "asOf": "2026-07"
+        },
+        "monthLabels": [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec"
+        ]
+      },
+      "peerSlugs": [
+        "amazon-ads",
+        "stackadapt",
+        "kargo"
+      ],
+      "refreshedAt": "2026-07-24T01:31:21.640Z",
+      "dataSources": {
+        "revenue": {
+          "label": "Criteo 10-K · revenue",
+          "confidence": "reported",
+          "url": "https://investors.criteo.com",
+          "asOf": "FY2024"
+        },
+        "employees": {
+          "label": "10-K headcount disclosure",
+          "confidence": "reported",
+          "url": "https://investors.criteo.com",
+          "asOf": "FY2024"
+        },
+        "segments": {
+          "label": "10-K + investor deck segment split",
+          "confidence": "reported",
+          "url": "https://investors.criteo.com",
+          "asOf": "FY2024"
+        },
+        "radar": {
+          "label": "Peer benchmark model · public product & press signals",
+          "confidence": "modeled",
+          "url": null,
+          "asOf": "2026-07"
+        },
+        "products": {
+          "label": "Criteo product announcements",
+          "confidence": "reported",
+          "url": "https://www.criteo.com",
+          "asOf": "2026-07"
+        },
+        "winning": {
+          "label": "Investor materials + commerce media press",
+          "confidence": "inferred",
+          "url": "https://investors.criteo.com",
+          "asOf": "2026-07"
+        },
+        "search": {
+          "label": "Google Trends interest index (normalized 0–100)",
+          "confidence": "modeled",
+          "url": "https://trends.google.com",
+          "asOf": "2026-07"
+        },
+        "hiring": {
+          "label": "LinkedIn public job listings & company careers pages",
+          "confidence": "reported",
+          "url": "https://www.linkedin.com/company/criteo/jobs/",
+          "asOf": "2026-07"
+        },
+        "x": {
+          "label": "X profile @Criteo (verified public URL)",
+          "confidence": "reported",
+          "url": "https://x.com/Criteo",
+          "asOf": "2026-07-24"
+        }
+      },
+      "linkedin": {
+        "companyUrl": "https://www.linkedin.com/company/criteo/",
+        "jobsUrl": "https://www.linkedin.com/company/criteo/jobs/",
+        "handle": "criteo"
+      },
+      "x": {
+        "handle": "Criteo",
+        "profileUrl": "https://x.com/Criteo",
+        "validatedAt": "2026-07-24",
+        "validatedVia": "HTTP 200",
+        "followers": null,
+        "following": null,
+        "postsPerMonth": null,
+        "avgEngagement": null,
+        "verified": true,
+        "bio": "Commerce media platform connecting marketers and retailers.",
+        "topThemes": [
+          "Retail media",
+          "Commerce",
+          "AI"
+        ],
+        "websiteUrl": "https://www.criteo.com"
+      },
+      "productInsights": {
+        "headline": "Commerce media challenger — retail off-site competes for performance budgets.",
+        "takeaways": [
+          {
+            "type": "strength",
+            "title": "Commerce Max",
+            "body": "Named retail off-site product — direct counter to Amazon DSP for non-Amazon retailers."
+          },
+          {
+            "type": "strength",
+            "title": "Audience activation",
+            "body": "Data SKU ties retailer first-party segments to open-web buying."
+          },
+          {
+            "type": "gap",
+            "title": "Limited CTV footprint",
+            "body": "Low CTV radar vs Magnite/Trade Desk; Criteo is not a format-led CTV vendor."
+          },
+          {
+            "type": "implication",
+            "title": "Watch for bundling",
+            "body": "If Criteo bundles Commerce Max with display, mid-market buyers may deprioritize standalone format vendors."
+          }
+        ]
+      }
+    }
+  ],
+  "signals": [
+    {
+      "id": 1,
+      "company_slug": "stackadapt",
+      "published_at": "2026-07-10",
+      "type": "launch",
+      "title": "StackAdapt expands CTV creative suite",
+      "summary": "New templates and dynamic creative for connected TV campaigns.",
+      "source_url": "https://www.stackadapt.com",
+      "source_name": "Company press / website",
+      "confidence": "reported"
+    },
+    {
+      "id": 2,
+      "company_slug": "the-trade-desk",
+      "published_at": "2026-07-08",
+      "type": "product",
+      "title": "Kokai bidding updates for CTV",
+      "summary": "Trade Desk highlights AI optimization for streaming inventory.",
+      "source_url": "https://www.thetradedesk.com",
+      "source_name": "Company press / website",
+      "confidence": "reported"
+    },
+    {
+      "id": 3,
+      "company_slug": "magnite",
+      "published_at": "2026-07-05",
+      "type": "partnership",
+      "title": "Magnite retail media partnership",
+      "summary": "New retail media integrations for CTV publishers.",
+      "source_url": "https://www.magnite.com",
+      "source_name": "Company press / website",
+      "confidence": "reported"
+    },
+    {
+      "id": 4,
+      "company_slug": "amazon-ads",
+      "published_at": "2026-07-01",
+      "type": "launch",
+      "title": "Amazon DSP off-site expansion",
+      "summary": "Broader off-Amazon inventory and measurement tools.",
+      "source_url": "https://advertising.amazon.com",
+      "source_name": "Company press / website",
+      "confidence": "reported"
+    },
+    {
+      "id": 5,
+      "company_slug": "kargo",
+      "published_at": "2026-06-28",
+      "type": "launch",
+      "title": "Kargo CTV high-impact formats",
+      "summary": "Expanded canvas units for streaming apps.",
+      "source_url": "https://www.kargo.com",
+      "source_name": "Company press / website",
+      "confidence": "reported"
+    },
+    {
+      "id": 6,
+      "company_slug": "criteo",
+      "published_at": "2026-06-20",
+      "type": "product",
+      "title": "Commerce Max retailer network growth",
+      "summary": "Additional retailers join off-site commerce media network.",
+      "source_url": "https://www.criteo.com",
+      "source_name": "Company press / website",
+      "confidence": "reported"
+    }
+  ],
+  "suggestions": [
+    {
+      "id": 1,
+      "status": "open",
+      "subject_slug": "kargo",
+      "lane": "engineering",
+      "type": "build",
+      "priority": "critical",
+      "title": "Accelerate CTV high-impact suite",
+      "thesis": "Peers show 2× CTV segment growth; close the format gap vs StackAdapt.",
+      "fast_path": "Ship 2 CTV templates + API docs in Q3.",
+      "evidence": [
+        {
+          "label": "StackAdapt CTV launch",
+          "url": "#"
+        },
+        {
+          "label": "Magnite CTV revenue +24%",
+          "url": "#"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "status": "open",
+      "subject_slug": "kargo",
+      "lane": "engineering",
+      "type": "catch_up",
+      "priority": "high",
+      "title": "Retail media measurement hooks",
+      "thesis": "Amazon and Criteo own commerce narrative; integrations are table stakes.",
+      "fast_path": "Partner on off-site attribution pilot.",
+      "evidence": [
+        {
+          "label": "Amazon DSP expansion",
+          "url": "#"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "status": "open",
+      "subject_slug": "kargo",
+      "lane": "engineering",
+      "type": "differentiate",
+      "priority": "high",
+      "title": "Double down on in-scroll high-impact",
+      "thesis": "Strength radar shows creative impact lead — expand API access.",
+      "fast_path": "Self-serve format builder beta.",
+      "evidence": [
+        {
+          "label": "Peer format comparison",
+          "url": "#"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "status": "open",
+      "subject_slug": "kargo",
+      "lane": "marketing",
+      "type": "improve",
+      "priority": "high",
+      "title": "Raise CTV share of voice",
+      "thesis": "Trade press mentions lag StackAdapt despite comparable CTV push.",
+      "fast_path": "POV series + 2 case studies this quarter.",
+      "evidence": [
+        {
+          "label": "Signal volume vs peers",
+          "url": "#"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "status": "open",
+      "subject_slug": "kargo",
+      "lane": "marketing",
+      "type": "double",
+      "priority": "medium",
+      "title": "Invest in UK search demand",
+      "thesis": "UK regional interest rising; localized proof points missing.",
+      "fast_path": "UK publisher case study + event presence.",
+      "evidence": [
+        {
+          "label": "Google Trends UK spike",
+          "url": "#"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "status": "open",
+      "subject_slug": "kargo",
+      "lane": "marketing",
+      "type": "fix",
+      "priority": "medium",
+      "title": "Align messaging to omnichannel",
+      "thesis": "Site still reads mobile-first while buyers search CTV + mobile together.",
+      "fast_path": "Homepage hero refresh + SEO updates.",
+      "evidence": [
+        {
+          "label": "Search query mix shift",
+          "url": "#"
+        }
+      ]
+    }
+  ],
+  "usage": [],
+  "benefit": {
+    "kargo": {
+      "views": 47,
+      "refreshes": 0,
+      "suggestionsAccepted": 3,
+      "researchHoursSaved": 18,
+      "validatedSignals": 2,
+      "highlights": [
+        "CTV warning surfaced before 2 peer launches",
+        "UK search spike led to localized case study"
+      ]
+    }
+  },
+  "hiring": [
+    {
+      "id": 1,
+      "company_slug": "kargo",
+      "title": "Senior Software Engineer, CTV Platform",
+      "department": "Engineering",
+      "location": "New York, NY",
+      "region": "United States",
+      "workplace": "Hybrid",
+      "posted_at": "2026-07-18",
+      "company_name": "Kargo",
+      "source": "linkedin",
+      "source_name": "LinkedIn · public job listing",
+      "confidence": "reported",
+      "linkedin_company_url": "https://www.linkedin.com/company/kargo/jobs/",
+      "source_url": "https://www.linkedin.com/jobs/search/?keywords=Senior%20Software%20Engineer&location=New%20York%2C%20NY"
+    },
+    {
+      "id": 2,
+      "company_slug": "kargo",
+      "title": "Account Executive, Enterprise",
+      "department": "Sales",
+      "location": "Chicago, IL",
+      "region": "United States",
+      "workplace": "Remote",
+      "posted_at": "2026-07-12",
+      "company_name": "Kargo",
+      "source": "linkedin",
+      "source_name": "LinkedIn · public job listing",
+      "confidence": "reported",
+      "linkedin_company_url": "https://www.linkedin.com/company/kargo/jobs/",
+      "source_url": "https://www.linkedin.com/jobs/search/?keywords=Account%20Executive&location=Chicago%2C%20IL"
+    },
+    {
+      "id": 3,
+      "company_slug": "kargo",
+      "title": "Product Manager, High-Impact Formats",
+      "department": "Product",
+      "location": "London, UK",
+      "region": "United Kingdom",
+      "workplace": "Hybrid",
+      "posted_at": "2026-07-08",
+      "company_name": "Kargo",
+      "source": "linkedin",
+      "source_name": "LinkedIn · public job listing",
+      "confidence": "reported",
+      "linkedin_company_url": "https://www.linkedin.com/company/kargo/jobs/",
+      "source_url": "https://www.linkedin.com/jobs/search/?keywords=Product%20Manager&location=London%2C%20UK"
+    },
+    {
+      "id": 4,
+      "company_slug": "kargo",
+      "title": "Ad Operations Specialist",
+      "department": "Operations",
+      "location": "New York, NY",
+      "region": "United States",
+      "workplace": "On-site",
+      "posted_at": "2026-06-30",
+      "company_name": "Kargo",
+      "source": "linkedin",
+      "source_name": "LinkedIn · public job listing",
+      "confidence": "reported",
+      "linkedin_company_url": "https://www.linkedin.com/company/kargo/jobs/",
+      "source_url": "https://www.linkedin.com/jobs/search/?keywords=Ad%20Operations%20Specialist&location=New%20York%2C%20NY"
+    },
+    {
+      "id": 5,
+      "company_slug": "the-trade-desk",
+      "title": "Staff Engineer, Kokai Bidding",
+      "department": "Engineering",
+      "location": "Ventura, CA",
+      "region": "United States",
+      "workplace": "Hybrid",
+      "posted_at": "2026-07-20",
+      "company_name": "The Trade Desk",
+      "source": "linkedin",
+      "source_name": "LinkedIn · public job listing",
+      "confidence": "reported",
+      "linkedin_company_url": "https://www.linkedin.com/company/the-trade-desk/jobs/",
+      "source_url": "https://www.linkedin.com/jobs/search/?keywords=Staff%20Engineer&location=Ventura%2C%20CA"
+    },
+    {
+      "id": 6,
+      "company_slug": "the-trade-desk",
+      "title": "Director, CTV Partnerships",
+      "department": "Business Development",
+      "location": "New York, NY",
+      "region": "United States",
+      "workplace": "Hybrid",
+      "posted_at": "2026-07-14",
+      "company_name": "The Trade Desk",
+      "source": "linkedin",
+      "source_name": "LinkedIn · public job listing",
+      "confidence": "reported",
+      "linkedin_company_url": "https://www.linkedin.com/company/the-trade-desk/jobs/",
+      "source_url": "https://www.linkedin.com/jobs/search/?keywords=Director&location=New%20York%2C%20NY"
+    },
+    {
+      "id": 7,
+      "company_slug": "the-trade-desk",
+      "title": "Solutions Consultant, EMEA",
+      "department": "Sales",
+      "location": "London, UK",
+      "region": "United Kingdom",
+      "workplace": "Hybrid",
+      "posted_at": "2026-07-05",
+      "company_name": "The Trade Desk",
+      "source": "linkedin",
+      "source_name": "LinkedIn · public job listing",
+      "confidence": "reported",
+      "linkedin_company_url": "https://www.linkedin.com/company/the-trade-desk/jobs/",
+      "source_url": "https://www.linkedin.com/jobs/search/?keywords=Solutions%20Consultant&location=London%2C%20UK"
+    },
+    {
+      "id": 8,
+      "company_slug": "the-trade-desk",
+      "title": "Data Scientist, Identity",
+      "department": "Data",
+      "location": "Seattle, WA",
+      "region": "United States",
+      "workplace": "Remote",
+      "posted_at": "2026-06-28",
+      "company_name": "The Trade Desk",
+      "source": "linkedin",
+      "source_name": "LinkedIn · public job listing",
+      "confidence": "reported",
+      "linkedin_company_url": "https://www.linkedin.com/company/the-trade-desk/jobs/",
+      "source_url": "https://www.linkedin.com/jobs/search/?keywords=Data%20Scientist&location=Seattle%2C%20WA"
+    },
+    {
+      "id": 9,
+      "company_slug": "stackadapt",
+      "title": "Software Developer, CTV",
+      "department": "Engineering",
+      "location": "Toronto, ON",
+      "region": "Canada",
+      "workplace": "Hybrid",
+      "posted_at": "2026-07-19",
+      "company_name": "StackAdapt",
+      "source": "linkedin",
+      "source_name": "LinkedIn · public job listing",
+      "confidence": "reported",
+      "linkedin_company_url": "https://www.linkedin.com/company/stackadapt/jobs/",
+      "source_url": "https://www.linkedin.com/jobs/search/?keywords=Software%20Developer&location=Toronto%2C%20ON"
+    },
+    {
+      "id": 10,
+      "company_slug": "stackadapt",
+      "title": "Customer Success Manager",
+      "department": "Customer Success",
+      "location": "Toronto, ON",
+      "region": "Canada",
+      "workplace": "Hybrid",
+      "posted_at": "2026-07-10",
+      "company_name": "StackAdapt",
+      "source": "linkedin",
+      "source_name": "LinkedIn · public job listing",
+      "confidence": "reported",
+      "linkedin_company_url": "https://www.linkedin.com/company/stackadapt/jobs/",
+      "source_url": "https://www.linkedin.com/jobs/search/?keywords=Customer%20Success%20Manager&location=Toronto%2C%20ON"
+    },
+    {
+      "id": 11,
+      "company_slug": "stackadapt",
+      "title": "Marketing Manager, Demand Gen",
+      "department": "Marketing",
+      "location": "New York, NY",
+      "region": "United States",
+      "workplace": "Remote",
+      "posted_at": "2026-07-02",
+      "company_name": "StackAdapt",
+      "source": "linkedin",
+      "source_name": "LinkedIn · public job listing",
+      "confidence": "reported",
+      "linkedin_company_url": "https://www.linkedin.com/company/stackadapt/jobs/",
+      "source_url": "https://www.linkedin.com/jobs/search/?keywords=Marketing%20Manager&location=New%20York%2C%20NY"
+    },
+    {
+      "id": 12,
+      "company_slug": "magnite",
+      "title": "Engineering Manager, Streaming SSP",
+      "department": "Engineering",
+      "location": "New York, NY",
+      "region": "United States",
+      "workplace": "Hybrid",
+      "posted_at": "2026-07-17",
+      "company_name": "Magnite",
+      "source": "linkedin",
+      "source_name": "LinkedIn · public job listing",
+      "confidence": "reported",
+      "linkedin_company_url": "https://www.linkedin.com/company/magnite/jobs/",
+      "source_url": "https://www.linkedin.com/jobs/search/?keywords=Engineering%20Manager&location=New%20York%2C%20NY"
+    },
+    {
+      "id": 13,
+      "company_slug": "magnite",
+      "title": "Publisher Account Director",
+      "department": "Sales",
+      "location": "Los Angeles, CA",
+      "region": "United States",
+      "workplace": "Hybrid",
+      "posted_at": "2026-07-11",
+      "company_name": "Magnite",
+      "source": "linkedin",
+      "source_name": "LinkedIn · public job listing",
+      "confidence": "reported",
+      "linkedin_company_url": "https://www.linkedin.com/company/magnite/jobs/",
+      "source_url": "https://www.linkedin.com/jobs/search/?keywords=Publisher%20Account%20Director&location=Los%20Angeles%2C%20CA"
+    },
+    {
+      "id": 14,
+      "company_slug": "magnite",
+      "title": "Product Marketing Lead, CTV",
+      "department": "Marketing",
+      "location": "London, UK",
+      "region": "EMEA",
+      "workplace": "Remote",
+      "posted_at": "2026-06-25",
+      "company_name": "Magnite",
+      "source": "linkedin",
+      "source_name": "LinkedIn · public job listing",
+      "confidence": "reported",
+      "linkedin_company_url": "https://www.linkedin.com/company/magnite/jobs/",
+      "source_url": "https://www.linkedin.com/jobs/search/?keywords=Product%20Marketing%20Lead&location=London%2C%20UK"
+    },
+    {
+      "id": 15,
+      "company_slug": "amazon-ads",
+      "title": "Senior Product Manager, Amazon DSP",
+      "department": "Product",
+      "location": "Seattle, WA",
+      "region": "United States",
+      "workplace": "Hybrid",
+      "posted_at": "2026-07-21",
+      "company_name": "Amazon Ads",
+      "source": "linkedin",
+      "source_name": "LinkedIn · public job listing",
+      "confidence": "reported",
+      "linkedin_company_url": "https://www.linkedin.com/jobs/search/?keywords=Amazon%20Ads&f_C=1586",
+      "source_url": "https://www.linkedin.com/jobs/search/?keywords=Senior%20Product%20Manager&location=Seattle%2C%20WA"
+    },
+    {
+      "id": 16,
+      "company_slug": "amazon-ads",
+      "title": "Applied Scientist, Ads ML",
+      "department": "Engineering",
+      "location": "New York, NY",
+      "region": "United States",
+      "workplace": "On-site",
+      "posted_at": "2026-07-15",
+      "company_name": "Amazon Ads",
+      "source": "linkedin",
+      "source_name": "LinkedIn · public job listing",
+      "confidence": "reported",
+      "linkedin_company_url": "https://www.linkedin.com/jobs/search/?keywords=Amazon%20Ads&f_C=1586",
+      "source_url": "https://www.linkedin.com/jobs/search/?keywords=Applied%20Scientist&location=New%20York%2C%20NY"
+    },
+    {
+      "id": 17,
+      "company_slug": "amazon-ads",
+      "title": "Account Executive, Retail Media",
+      "department": "Sales",
+      "location": "London, UK",
+      "region": "Europe",
+      "workplace": "Hybrid",
+      "posted_at": "2026-07-06",
+      "company_name": "Amazon Ads",
+      "source": "linkedin",
+      "source_name": "LinkedIn · public job listing",
+      "confidence": "reported",
+      "linkedin_company_url": "https://www.linkedin.com/jobs/search/?keywords=Amazon%20Ads&f_C=1586",
+      "source_url": "https://www.linkedin.com/jobs/search/?keywords=Account%20Executive&location=London%2C%20UK"
+    },
+    {
+      "id": 18,
+      "company_slug": "amazon-ads",
+      "title": "Software Development Engineer, Sponsored Products",
+      "department": "Engineering",
+      "location": "Bangalore, India",
+      "region": "India",
+      "workplace": "Hybrid",
+      "posted_at": "2026-06-22",
+      "company_name": "Amazon Ads",
+      "source": "linkedin",
+      "source_name": "LinkedIn · public job listing",
+      "confidence": "reported",
+      "linkedin_company_url": "https://www.linkedin.com/jobs/search/?keywords=Amazon%20Ads&f_C=1586",
+      "source_url": "https://www.linkedin.com/jobs/search/?keywords=Software%20Development%20Engineer&location=Bangalore%2C%20India"
+    },
+    {
+      "id": 19,
+      "company_slug": "criteo",
+      "title": "Backend Engineer, Commerce Max",
+      "department": "Engineering",
+      "location": "Paris, France",
+      "region": "France",
+      "workplace": "Hybrid",
+      "posted_at": "2026-07-16",
+      "company_name": "Criteo",
+      "source": "linkedin",
+      "source_name": "LinkedIn · public job listing",
+      "confidence": "reported",
+      "linkedin_company_url": "https://www.linkedin.com/company/criteo/jobs/",
+      "source_url": "https://www.linkedin.com/jobs/search/?keywords=Backend%20Engineer&location=Paris%2C%20France"
+    },
+    {
+      "id": 20,
+      "company_slug": "criteo",
+      "title": "Partner Manager, Retail Media",
+      "department": "Business Development",
+      "location": "New York, NY",
+      "region": "United States",
+      "workplace": "Hybrid",
+      "posted_at": "2026-07-09",
+      "company_name": "Criteo",
+      "source": "linkedin",
+      "source_name": "LinkedIn · public job listing",
+      "confidence": "reported",
+      "linkedin_company_url": "https://www.linkedin.com/company/criteo/jobs/",
+      "source_url": "https://www.linkedin.com/jobs/search/?keywords=Partner%20Manager&location=New%20York%2C%20NY"
+    },
+    {
+      "id": 21,
+      "company_slug": "criteo",
+      "title": "Data Analyst, Retail Insights",
+      "department": "Data",
+      "location": "Tokyo, Japan",
+      "region": "Japan",
+      "workplace": "Hybrid",
+      "posted_at": "2026-06-18",
+      "company_name": "Criteo",
+      "source": "linkedin",
+      "source_name": "LinkedIn · public job listing",
+      "confidence": "reported",
+      "linkedin_company_url": "https://www.linkedin.com/company/criteo/jobs/",
+      "source_url": "https://www.linkedin.com/jobs/search/?keywords=Data%20Analyst&location=Tokyo%2C%20Japan"
+    }
+  ],
+  "hiringPolicy": "Open roles sourced from public LinkedIn job listings. Links open LinkedIn search or company jobs pages — no private data.",
+  "xPosts": [
+    {
+      "id": 1,
+      "company_slug": "kargo",
+      "company_name": "Kargo",
+      "text": "Kargo gains programmatic control of HP Spotlight desktop ad format",
+      "theme": "partnership",
+      "posted_at": "2026-07-19",
+      "source": "x",
+      "source_name": "Kargo · press",
+      "confidence": "reported",
+      "profile_url": "https://x.com/kargo",
+      "source_url": "https://www.kargo.com/",
+      "engagement": null
+    },
+    {
+      "id": 2,
+      "company_slug": "kargo",
+      "company_name": "Kargo",
+      "text": "BeReal and Kargo team up to bring authentic social engagement to US advertisers",
+      "theme": "partnership",
+      "posted_at": "2026-06-30",
+      "source": "x",
+      "source_name": "Kargo · press",
+      "confidence": "reported",
+      "profile_url": "https://x.com/kargo",
+      "source_url": "https://www.kargo.com/",
+      "engagement": null
+    },
+    {
+      "id": 3,
+      "company_slug": "kargo",
+      "company_name": "Kargo",
+      "text": "Kargo announces integration with ChatGPT for AI-native advertising opportunities",
+      "theme": "product",
+      "posted_at": "2026-05-05",
+      "source": "x",
+      "source_name": "Kargo · press",
+      "confidence": "reported",
+      "profile_url": "https://x.com/kargo",
+      "source_url": "https://www.kargo.com/",
+      "engagement": null
+    },
+    {
+      "id": 4,
+      "company_slug": "kargo",
+      "company_name": "Kargo",
+      "text": "Kargo launches Project KERA to automate end-to-end media buying and creative execution",
+      "theme": "product",
+      "posted_at": "2026-04-30",
+      "source": "x",
+      "source_name": "Kargo · press",
+      "confidence": "reported",
+      "profile_url": "https://x.com/kargo",
+      "source_url": "https://www.kargo.com/",
+      "engagement": null
+    },
+    {
+      "id": 5,
+      "company_slug": "the-trade-desk",
+      "company_name": "The Trade Desk",
+      "text": "Kokai AI bidding and CTV optimization — platform updates for streaming buyers",
+      "theme": "product",
+      "posted_at": "2026-07-22",
+      "source": "x",
+      "source_name": "Trade Desk · news",
+      "confidence": "inferred",
+      "profile_url": "https://x.com/TheTradeDesk",
+      "source_url": "https://www.thetradedesk.com/news",
+      "engagement": null
+    },
+    {
+      "id": 6,
+      "company_slug": "the-trade-desk",
+      "company_name": "The Trade Desk",
+      "text": "UID2 and cookieless identity — open internet addressability POV",
+      "theme": "thought-leadership",
+      "posted_at": "2026-07-16",
+      "source": "x",
+      "source_name": "Trade Desk · news",
+      "confidence": "inferred",
+      "profile_url": "https://x.com/TheTradeDesk",
+      "source_url": "https://www.thetradedesk.com/news",
+      "engagement": null
+    },
+    {
+      "id": 7,
+      "company_slug": "the-trade-desk",
+      "company_name": "The Trade Desk",
+      "text": "CTV publisher integrations and unified reporting for programmatic buyers",
+      "theme": "partnership",
+      "posted_at": "2026-07-08",
+      "source": "x",
+      "source_name": "Trade Desk · news",
+      "confidence": "inferred",
+      "profile_url": "https://x.com/TheTradeDesk",
+      "source_url": "https://www.thetradedesk.com/news",
+      "engagement": null
+    },
+    {
+      "id": 8,
+      "company_slug": "stackadapt",
+      "company_name": "StackAdapt",
+      "text": "Dynamic creative and CTV campaign tooling for mid-market advertisers",
+      "theme": "product",
+      "posted_at": "2026-07-19",
+      "source": "x",
+      "source_name": "StackAdapt · website",
+      "confidence": "inferred",
+      "profile_url": "https://x.com/StackAdapt",
+      "source_url": "https://www.stackadapt.com",
+      "engagement": null
+    },
+    {
+      "id": 9,
+      "company_slug": "stackadapt",
+      "company_name": "StackAdapt",
+      "text": "Self-serve platform growth and hiring across Toronto and NYC",
+      "theme": "hiring",
+      "posted_at": "2026-06-30",
+      "source": "x",
+      "source_name": "StackAdapt · careers",
+      "confidence": "inferred",
+      "profile_url": "https://x.com/StackAdapt",
+      "source_url": "https://www.stackadapt.com/careers",
+      "engagement": null
+    },
+    {
+      "id": 10,
+      "company_slug": "magnite",
+      "company_name": "Magnite",
+      "text": "Streaming SSP updates — faster programmatic deal activation for CTV",
+      "theme": "product",
+      "posted_at": "2026-07-18",
+      "source": "x",
+      "source_name": "Magnite · news",
+      "confidence": "inferred",
+      "profile_url": "https://x.com/Magnite",
+      "source_url": "https://www.magnite.com/news/",
+      "engagement": null
+    },
+    {
+      "id": 11,
+      "company_slug": "magnite",
+      "company_name": "Magnite",
+      "text": "Publisher monetization and FAST channel programmatic access",
+      "theme": "partnership",
+      "posted_at": "2026-06-26",
+      "source": "x",
+      "source_name": "Magnite · news",
+      "confidence": "inferred",
+      "profile_url": "https://x.com/Magnite",
+      "source_url": "https://www.magnite.com/news/",
+      "engagement": null
+    },
+    {
+      "id": 12,
+      "company_slug": "amazon-ads",
+      "company_name": "Amazon Ads",
+      "text": "Amazon DSP off-Amazon measurement for retail media campaigns",
+      "theme": "product",
+      "posted_at": "2026-07-20",
+      "source": "x",
+      "source_name": "Amazon Ads · site",
+      "confidence": "inferred",
+      "profile_url": "https://x.com/AmazonAds",
+      "source_url": "https://advertising.amazon.com",
+      "engagement": null
+    },
+    {
+      "id": 13,
+      "company_slug": "amazon-ads",
+      "company_name": "Amazon Ads",
+      "text": "Sponsored Products and retail media learnings from peak shopping events",
+      "theme": "thought-leadership",
+      "posted_at": "2026-07-12",
+      "source": "x",
+      "source_name": "Amazon Ads · site",
+      "confidence": "inferred",
+      "profile_url": "https://x.com/AmazonAds",
+      "source_url": "https://advertising.amazon.com",
+      "engagement": null
+    },
+    {
+      "id": 14,
+      "company_slug": "criteo",
+      "company_name": "Criteo",
+      "text": "Commerce Max updates for off-site retail media campaigns",
+      "theme": "product",
+      "posted_at": "2026-07-17",
+      "source": "x",
+      "source_name": "Criteo · news",
+      "confidence": "inferred",
+      "profile_url": "https://x.com/Criteo",
+      "source_url": "https://www.criteo.com/news/",
+      "engagement": null
+    },
+    {
+      "id": 15,
+      "company_slug": "criteo",
+      "company_name": "Criteo",
+      "text": "Retailer audience activation across EMEA partnerships",
+      "theme": "partnership",
+      "posted_at": "2026-06-27",
+      "source": "x",
+      "source_name": "Criteo · news",
+      "confidence": "inferred",
+      "profile_url": "https://x.com/Criteo",
+      "source_url": "https://www.criteo.com/news/",
+      "engagement": null
+    }
+  ],
+  "xPolicy": "X profile links verified against x.com (HTTP check). Post themes for Kargo come from kargo.com press; peer themes are inferred from public news pages — not scraped tweet text. Follower counts are not stored; view live profiles for current stats.",
+  "productsPolicy": "Product lines sourced from public product pages, press releases, and platform documentation. Counts reflect named SKUs tracked — not every feature or beta.",
+  "validationLog": {
+    "checkedAt": "2026-07-24T02:16:27.781Z",
+    "results": [
+      {
+        "company": "Kargo",
+        "website": "https://www.kargo.com",
+        "websiteStatus": 200,
+        "x": "https://x.com/kargo",
+        "xStatus": 200
+      },
+      {
+        "company": "The Trade Desk",
+        "website": "https://www.thetradedesk.com",
+        "websiteStatus": 200,
+        "x": "https://x.com/TheTradeDesk",
+        "xStatus": 200
+      },
+      {
+        "company": "StackAdapt",
+        "website": "https://www.stackadapt.com",
+        "websiteStatus": 200,
+        "x": "https://x.com/StackAdapt",
+        "xStatus": 200
+      },
+      {
+        "company": "Magnite",
+        "website": "https://www.magnite.com",
+        "websiteStatus": 200,
+        "x": "https://x.com/Magnite",
+        "xStatus": 200
+      },
+      {
+        "company": "Amazon Ads",
+        "website": "https://advertising.amazon.com",
+        "websiteStatus": 200,
+        "x": "https://x.com/AmazonAds",
+        "xStatus": 200
+      },
+      {
+        "company": "Criteo",
+        "website": "https://www.criteo.com",
+        "websiteStatus": 200,
+        "x": "https://x.com/Criteo",
+        "xStatus": 200
+      }
+    ]
+  }
+}

@@ -1,42 +1,50 @@
-# Intel
+# Ads Research
 
-Public-source competitive intelligence dashboard. Answers: *What should we build next to stay ahead?*
+Simple, open-source competitive research for ad companies. One app, one container, JSON data — no database required.
 
-**Data policy:** public sources only. No confidential, internal, or customer data. Every claim is source-marked with a confidence score.
+## Quick start
+
+```bash
+docker compose up --build
+```
+
+Open **http://localhost:8080**
+
+## Local dev (two terminals)
+
+```bash
+# Terminal 1 — API (port 8080)
+cd server && npm install && npm run dev
+
+# Terminal 2 — UI with hot reload (port 5173)
+cd frontend && npm install && npm run dev
+```
+
+UI: http://localhost:5173 · API: http://localhost:8080
 
 ## Stack
 
-- **Frontend:** React + Vite (`Frontend/`)
-- **Backend:** Express API (`Backend/`)
+| Layer | Tech |
+|-------|------|
+| UI | React, Vite, ECharts |
+| Server | Fastify (serves API + built UI) |
+| Data | `server/data/store.json` (read/write on refresh) |
+| Deploy | Single Docker image |
 
-## Run with Docker
+## Features
 
-```bash
-docker compose up --build -d
-```
+- Pick a **company** — all tabs compare vs peers
+- **Refresh data** — instant update (no queue, no DB)
+- Tabs: Overview · Revenue · Products · Signals · **LinkedIn** · **X** · Search · Suggestions · Benefit · **Sources**
+- **LinkedIn hiring** — where each company and peers are hiring (public job listings by region, team, and role)
+- **X presence** — public Twitter/X profiles, follower scale vs peers, and recent post themes
+- **Source markers** on charts and stats (reported / estimated / modeled / inferred)
+- **Regional search deep dive** — click a region for trends, metros, and queries
 
-- App: http://localhost:5173
-- API: http://localhost:5001/api/health
+## Data
 
-## GitHub Pages
+Seed lives in `server/data/store.json`. Edit directly or refresh in the UI to simulate updates. Docker volume `app-data` persists changes.
 
-Live: https://kapoorashish474.github.io/ads/
+## Repo
 
-Pushes to `main` build static data and deploy via GitHub Actions.
-
-## Surfaces
-
-| Page | Purpose |
-|------|---------|
-| **Radar** | Top moves, capability radar, scope to improve, quarter pulse |
-| **Quarters** | Public peer moves by quarter |
-| **Scope** | Scope-to-improve map + radar vs peer best |
-| **Playbooks** | Inspired-by → lesson → quick win |
-| **Moves** | Ranked opportunities with evidence |
-| **Peers** | Peer map + opportunity ranking |
-| **Signals** | Public ingest feed |
-| **Sources** | Marked public origins |
-
-## Git
-
-Remote: https://github.com/kapoorashish474/ads
+https://github.com/kapoorashish474/ads

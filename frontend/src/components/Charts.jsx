@@ -1,159 +1,121 @@
-/**
- * Capability radar + compare charts — visual first, minimal text.
- */
-import { SUBJECT_LABEL } from '../brand'
+import { useEffect, useRef } from 'react';
+import * as echarts from 'echarts/core';
+import { BarChart as EBarChart, LineChart as ELineChart, PieChart, RadarChart as ERadarChart } from 'echarts/charts';
+import {
+  GridComponent,
+  LegendComponent,
+  TitleComponent,
+  TooltipComponent,
+} from 'echarts/components';
+import { CanvasRenderer } from 'echarts/renderers';
 
-function polar(cx, cy, r, angleDeg) {
-  const a = ((angleDeg - 90) * Math.PI) / 180
-  return [cx + r * Math.cos(a), cy + r * Math.sin(a)]
+echarts.use([
+  EBarChart,
+  ELineChart,
+  PieChart,
+  ERadarChart,
+  GridComponent,
+  LegendComponent,
+  TitleComponent,
+  TooltipComponent,
+  CanvasRenderer,
+]);
+
+const palette = ['#2563eb', '#7c3aed', '#0891b2', '#059669', '#d97706', '#64748b'];
+
+function Chart({ option, height = 280 }) {
+  const ref = useRef(null);
+  const instance = useRef(null);
+
+  useEffect(() => {
+    if (!ref.current) return;
+    instance.current = echarts.init(ref.current);
+    const onResize = () => instance.current?.resize();
+    window.addEventListener('resize', onResize);
+    return () => {
+      window.removeEventListener('resize', onResize);
+      instance.current?.dispose();
+    };
+  }, []);
+
+  useEffect(() => {
+    instance.current?.setOption(option, true);
+  }, [option]);
+
+  return <div ref={ref} style={{ height, width: '100%' }} />;
 }
 
-export function CapabilityRadar({ series = [], size = 280 }) {
-  const dims = series[0]?.points?.map((p) => p.label) || []
-  if (!dims.length) return null
-
-  const cx = size / 2
-  const cy = size / 2
-  const maxR = size * 0.36
-  const step = 360 / dims.length
-
-  const rings = [0.25, 0.5, 0.75, 1]
-
-  function pathFor(points) {
-    return points
-      .map((p, i) => {
-        const [x, y] = polar(cx, cy, (p.value / 100) * maxR, i * step)
-        return `${i === 0 ? 'M' : 'L'}${x.toFixed(1)},${y.toFixed(1)}`
-      })
-      .join(' ') + ' Z'
-  }
-
-  return (
-    <div className="chart-wrap">
-      <svg viewBox={`0 0 ${size} ${size}`} className="radar-svg" role="img" aria-label="Capability radar">
-        {rings.map((r) => (
-          <polygon
-            key={r}
-            className="radar-ring"
-            points={dims
-              .map((_, i) => polar(cx, cy, maxR * r, i * step).join(','))
-              .join(' ')}
-          />
-        ))}
-        {dims.map((label, i) => {
-          const [x1, y1] = polar(cx, cy, maxR, i * step)
-          const [lx, ly] = polar(cx, cy, maxR + 18, i * step)
-          return (
-            <g key={label}>
-              <line className="radar-axis" x1={cx} y1={cy} x2={x1} y2={y1} />
-              <text className="radar-label" x={lx} y={ly} textAnchor="middle" dominantBaseline="middle">
-                {label}
-              </text>
-            </g>
-          )
-        })}
-        {series.map((s) => (
-          <path key={s.id} className={`radar-fill radar-fill--${s.tone || 'peer'}`} d={pathFor(s.points)} />
-        ))}
-      </svg>
-      <div className="chart-legend">
-        {series.map((s) => (
-          <span key={s.id} className={`legend-dot legend-dot--${s.tone || 'peer'}`}>
-            {s.name}
-          </span>
-        ))}
-      </div>
-    </div>
-  )
+export function DonutChart({ title, data, height = 280 }) {
+  const option = {
+    color: palette,
+    title: title ? { text: title, left: 0, textStyle: { fontSize: 13, fontWeight: 500, color: '#64748b' } } : undefined,
+    tooltip: { trigger: 'item', formatter: '{b}: {c}%' },
+    series: [
+      {
+        type: 'pie',
+        radius: ['48%', '72%'],
+        center: ['50%', '55%'],
+        itemStyle: { borderRadius: 4, borderColor: '#fff', borderWidth: 2 },
+        label: { formatter: '{b}\n{d}%', fontSize: 11 },
+        data: data.map((d) => ({ name: d.name, value: d.pct ?? d.value })),
+      },
+    ],
+  };
+  return <Chart option={option} height={height} />;
 }
 
-export function ScopeBars({ rows = [], onSelect }) {
-  return (
-    <ul className="scope-bars">
-      {rows.map((row) => {
-        const scope = Math.max(0, -row.gapToLeader)
-        const lead = row.leaderScore
-        const kargo = row.kargo
-        return (
-          <li key={row.dimension}>
-            <button type="button" className="scope-bar-row" onClick={() => onSelect?.(row)}>
-              <div className="scope-bar-row__head">
-                <strong>{row.label}</strong>
-                <span className="scope-pill">
-                  {scope === 0 ? 'Leading' : `Scope +${scope}`}
-                </span>
-              </div>
-              <div className="scope-dual">
-                <div className="scope-dual__col">
-                  <span>{SUBJECT_LABEL}</span>
-                  <div className="bar__track">
-                    <i style={{ width: `${kargo}%` }} className="bar__fill bar__fill--kargo" />
-                  </div>
-                  <em>{kargo}</em>
-                </div>
-                <div className="scope-dual__col">
-                  <span>{row.leaderName?.split(' ')[0] || 'Peer'}</span>
-                  <div className="bar__track">
-                    <i style={{ width: `${lead}%` }} className="bar__fill bar__fill--peer" />
-                  </div>
-                  <em>{lead}</em>
-                </div>
-              </div>
-            </button>
-          </li>
-        )
-      })}
-    </ul>
-  )
+export function BarChart({ title, categories, series, height = 300, horizontal = false }) {
+  const option = {
+    color: palette,
+    title: title ? { text: title, left: 0, textStyle: { fontSize: 13, fontWeight: 500, color: '#64748b' } } : undefined,
+    tooltip: { trigger: 'axis' },
+    grid: { left: horizontal ? 100 : 40, right: 20, top: title ? 40 : 20, bottom: 30 },
+    xAxis: horizontal ? { type: 'value' } : { type: 'category', data: categories, axisLabel: { fontSize: 11 } },
+    yAxis: horizontal ? { type: 'category', data: categories, axisLabel: { fontSize: 11 } } : { type: 'value' },
+    series: series.map((s) => ({
+      name: s.name,
+      type: 'bar',
+      data: s.data,
+      barMaxWidth: 32,
+      itemStyle: { borderRadius: horizontal ? [0, 4, 4, 0] : [4, 4, 0, 0] },
+    })),
+  };
+  return <Chart option={option} height={height} />;
 }
 
-export function QuarterBars({ moves = [] }) {
-  const byType = moves.reduce((acc, m) => {
-    acc[m.type] = (acc[m.type] || 0) + 1
-    return acc
-  }, {})
-  const entries = Object.entries(byType).sort((a, b) => b[1] - a[1])
-  const max = Math.max(...entries.map(([, n]) => n), 1)
-
-  if (!entries.length) return null
-
-  return (
-    <div className="q-bars" aria-label="Moves by type">
-      {entries.map(([type, n]) => (
-        <div key={type} className="q-bar">
-          <span className="q-bar__label">{type.replace(/_/g, ' ')}</span>
-          <div className="q-bar__track">
-            <i style={{ width: `${(n / max) * 100}%` }} />
-          </div>
-          <em>{n}</em>
-        </div>
-      ))}
-    </div>
-  )
+export function LineChart({ title, labels, series, height = 280 }) {
+  const option = {
+    color: palette,
+    title: title ? { text: title, left: 0, textStyle: { fontSize: 13, fontWeight: 500, color: '#64748b' } } : undefined,
+    tooltip: { trigger: 'axis' },
+    legend: series.length > 1 ? { bottom: 0 } : undefined,
+    grid: { left: 40, right: 20, top: title ? 40 : 20, bottom: series.length > 1 ? 50 : 30 },
+    xAxis: { type: 'category', data: labels, boundaryGap: false },
+    yAxis: { type: 'value', min: 0 },
+    series: series.map((s) => ({
+      name: s.name,
+      type: 'line',
+      smooth: true,
+      data: s.data,
+      symbol: 'circle',
+      symbolSize: 6,
+    })),
+  };
+  return <Chart option={option} height={height} />;
 }
 
-export function RankList({ items = [], valueKey = 'value', labelKey = 'label', max }) {
-  const top = max || Math.max(...items.map((i) => i[valueKey] || 0), 1)
-  return (
-    <ol className="rank-list">
-      {items.map((item, idx) => (
-        <li key={item.id || item[labelKey]}>
-          <span className="rank-list__n">{idx + 1}</span>
-          <div className="rank-list__body">
-            <div className="rank-list__head">
-              <strong>{item[labelKey]}</strong>
-              <em>{item[valueKey]}</em>
-            </div>
-            <div className="bar__track">
-              <i
-                style={{ width: `${((item[valueKey] || 0) / top) * 100}%` }}
-                className="bar__fill bar__fill--kargo"
-              />
-            </div>
-            {item.hint && <span className="muted">{item.hint}</span>}
-          </div>
-        </li>
-      ))}
-    </ol>
-  )
+export function RadarChart({ title, indicators, series, height = 320 }) {
+  const option = {
+    color: palette,
+    title: title ? { text: title, left: 0, textStyle: { fontSize: 13, fontWeight: 500, color: '#64748b' } } : undefined,
+    tooltip: {},
+    legend: series.length > 1 ? { bottom: 0 } : undefined,
+    radar: {
+      indicator: indicators.map((i) => ({ name: i.label, max: 100 })),
+      radius: '58%',
+      splitNumber: 4,
+    },
+    series: [{ type: 'radar', data: series.map((s) => ({ name: s.name, value: s.values })) }],
+  };
+  return <Chart option={option} height={height} />;
 }
