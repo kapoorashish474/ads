@@ -8,6 +8,16 @@ Simple, open-source competitive research for ad companies. One app, JSON data �
 
 Static hosting — all research data ships with the site. Refresh and suggestion updates work in your browser session but reset on reload.
 
+### Enable Pages (one-time)
+
+The deploy workflow (`.github/workflows/deploy-pages.yml`) runs on every push to `main`. To publish:
+
+1. Open [Repository Settings → Pages](https://github.com/kapoorashish474/ads/settings/pages)
+2. Set **Source** to **GitHub Actions**
+3. Re-run the latest **Deploy GitHub Pages** workflow if needed
+
+**Note:** This repo is currently **private**. Free GitHub Pages works on **public** repositories. For a private repo you need a paid GitHub plan with Pages, or make the repo public under Settings → General → Danger zone.
+
 ## Quick start (local Docker)
 
 ```bash
