@@ -10,13 +10,9 @@ Static hosting — all research data ships with the site. Refresh and suggestion
 
 ### Enable Pages (one-time)
 
-The deploy workflow (`.github/workflows/deploy-pages.yml`) runs on every push to `main`. To publish:
+Pages is enabled with **GitHub Actions** as the source. Each push to `main` runs `.github/workflows/deploy-pages.yml` automatically.
 
-1. Open [Repository Settings → Pages](https://github.com/kapoorashish474/ads/settings/pages)
-2. Set **Source** to **GitHub Actions**
-3. Re-run the latest **Deploy GitHub Pages** workflow if needed
-
-**Note:** This repo is currently **private**. Free GitHub Pages works on **public** repositories. For a private repo you need a paid GitHub plan with Pages, or make the repo public under Settings → General → Danger zone.
+This repository is **public** so GitHub Pages is free. If you fork into a private repo, you need a paid plan or must make it public again.
 
 ## Quick start (local Docker)
 
