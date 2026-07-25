@@ -11,9 +11,12 @@ import Benefit from './pages/Benefit';
 import SourcesPage from './pages/SourcesPage';
 
 export default function App() {
+  const base = import.meta.env.BASE_URL ?? '/';
+  const basename = base === '/' ? undefined : base.replace(/\/$/, '');
+
   return (
     <CompanyProvider>
-      <BrowserRouter>
+      <BrowserRouter basename={basename}>
         <Routes>
           <Route element={<Layout />}>
             <Route path="brief" element={<Brief />} />

@@ -7,4 +7,5 @@ build/
 .DS_Store
 *.log
 .vite/
+frontend/public/data/store.json
 coverage/

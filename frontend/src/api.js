@@ -1,3 +1,9 @@
+import { staticApi } from './staticApi';
+
+export const isStaticMode =
+  import.meta.env.VITE_USE_STATIC_DATA === 'true' ||
+  (import.meta.env.PROD && import.meta.env.BASE_URL !== '/');
+
 const BASE = import.meta.env.VITE_API_URL || '';
 
 async function request(path, options = {}) {
@@ -20,28 +26,38 @@ async function request(path, options = {}) {
 }
 
 export const api = {
-  companies: () => request('/api/companies'),
-  company: (slug) => request(`/api/companies/${slug}`),
-  peers: (slug) => request(`/api/companies/${slug}/peers`),
-  signals: (slug) => request(`/api/companies/${slug}/signals`),
-  hiring: (slug) => request(`/api/companies/${slug}/hiring`),
-  xPosts: (slug) => request(`/api/companies/${slug}/x`),
-  suggestions: (slug) => request(`/api/companies/${slug}/suggestions`),
-  benefitCorpus: () => request('/api/benefit'),
-  benefit: (slug) => request(`/api/companies/${slug}/benefit`),
-  executive: (slug) => request(`/api/companies/${slug}/executive`),
-  policies: () => request('/api/policies'),
-  refresh: (slug) => request(`/api/companies/${slug}/refresh`, { method: 'POST' }),
+  companies: () => (isStaticMode ? staticApi.companies() : request('/api/companies')),
+  company: (slug) => (isStaticMode ? staticApi.company(slug) : request(`/api/companies/${slug}`)),
+  peers: (slug) => (isStaticMode ? staticApi.peers(slug) : request(`/api/companies/${slug}/peers`)),
+  signals: (slug) => (isStaticMode ? staticApi.signals(slug) : request(`/api/companies/${slug}/signals`)),
+  hiring: (slug) => (isStaticMode ? staticApi.hiring(slug) : request(`/api/companies/${slug}/hiring`)),
+  xPosts: (slug) => (isStaticMode ? staticApi.xPosts(slug) : request(`/api/companies/${slug}/x`)),
+  suggestions: (slug) =>
+    isStaticMode ? staticApi.suggestions(slug) : request(`/api/companies/${slug}/suggestions`),
+  benefitCorpus: () => (isStaticMode ? staticApi.benefitCorpus() : request('/api/benefit')),
+  benefit: (slug) =>
+    isStaticMode ? staticApi.benefit(slug) : request(`/api/companies/${slug}/benefit`),
+  executive: (slug) =>
+    isStaticMode ? staticApi.executive(slug) : request(`/api/companies/${slug}/executive`),
+  policies: () => (isStaticMode ? staticApi.policies() : request('/api/policies')),
+  refresh: (slug) =>
+    isStaticMode
+      ? staticApi.refresh(slug)
+      : request(`/api/companies/${slug}/refresh`, { method: 'POST' }),
   updateSuggestion: (id, status) =>
-    request(`/api/suggestions/${id}`, {
-      method: 'PATCH',
-      body: JSON.stringify({ status }),
-    }),
+    isStaticMode
+      ? staticApi.updateSuggestion(id, status)
+      : request(`/api/suggestions/${id}`, {
+          method: 'PATCH',
+          body: JSON.stringify({ status }),
+        }),
   track: (eventType, companySlug, meta = {}) =>
-    request('/api/usage', {
-      method: 'POST',
-      body: JSON.stringify({ eventType, companySlug, meta }),
-    }),
+    isStaticMode
+      ? staticApi.track(eventType, companySlug, meta)
+      : request('/api/usage', {
+          method: 'POST',
+          body: JSON.stringify({ eventType, companySlug, meta }),
+        }),
 };
 
 export function formatUsd(n) {

@@ -1,8 +1,14 @@
 # Ads Research
 
-Simple, open-source competitive research for ad companies. One app, one container, JSON data — no database required.
+Simple, open-source competitive research for ad companies. One app, JSON data — no database required.
 
-## Quick start
+## Live demo (GitHub Pages)
+
+**https://kapoorashish474.github.io/ads/**
+
+Static hosting — all research data ships with the site. Refresh and suggestion updates work in your browser session but reset on reload.
+
+## Quick start (local Docker)
 
 ```bash
 docker compose up --build
@@ -22,29 +28,35 @@ cd frontend && npm install && npm run dev
 
 UI: http://localhost:5173 · API: http://localhost:8080
 
+### Preview GitHub Pages build locally
+
+```bash
+node scripts/prepare-pages-build.js
+cd frontend && VITE_USE_STATIC_DATA=true VITE_BASE_PATH=/ads/ npm run build
+npm run preview -- --base /ads/
+```
+
 ## Stack
 
 | Layer | Tech |
 |-------|------|
 | UI | React, Vite, ECharts |
-| Server | Fastify (serves API + built UI) |
-| Data | `server/data/store.json` (read/write on refresh) |
-| Deploy | Single Docker image |
+| Server | Fastify (local Docker only) |
+| Data | `server/data/store.json` |
+| Deploy | GitHub Pages (static) or Docker (full API) |
 
 ## Features
 
-- Pick a **company** — all tabs compare vs peers
-- **Executive** — Brief · Threats · Momentum · Gaps · Leadership (CEO decision cockpit)
-- **Refresh data** — instant update (no queue, no DB)
-- Tabs: Overview · Revenue · Products · Signals · **LinkedIn** · **X** · Search · Suggestions · Benefit · **Sources**
-- **LinkedIn hiring** — where each company and peers are hiring (public job listings by region, team, and role)
-- **X presence** — public Twitter/X profiles, follower scale vs peers, and recent post themes
+- Pick a **company** — all views compare vs peers
+- **Executive Brief** — decision, signals, threats, gaps, leadership
+- **Market intel** — Signals · Search · Social (LinkedIn + X)
+- **Dashboard** — Overview · Revenue · Products
+- **Planning** — Suggestions · Benefit (corpus)
 - **Source markers** on charts and stats (reported / estimated / modeled / inferred)
-- **Regional search deep dive** — click a region for trends, metros, and queries
 
 ## Data
 
-Seed lives in `server/data/store.json`. Edit directly or refresh in the UI to simulate updates. Docker volume `app-data` persists changes.
+Seed lives in `server/data/store.json`. Edit directly or run enrich scripts. Docker volume `app-data` persists changes when self-hosting.
 
 Re-seed executive data:
 
