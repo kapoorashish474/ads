@@ -6,6 +6,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { loadStore, saveStore, getCompany, refreshCompany } from './store.js';
 import { buildExecutivePayload } from './executive.js';
+import { buildBenefitCorpus, BENEFIT_POLICY } from './benefit.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PORT = Number(process.env.PORT || 8080);
@@ -85,30 +86,41 @@ app.get('/api/companies/:slug/suggestions', async (req) => {
   return { suggestions: list };
 });
 
+app.get('/api/benefit', async () => {
+  const data = loadStore();
+  return {
+    corpus: buildBenefitCorpus(data),
+    policy: BENEFIT_POLICY,
+  };
+});
+
 app.get('/api/companies/:slug/benefit', async (req) => {
   const data = loadStore();
   const slug = req.params.slug;
-  const snapshot = data.benefit[slug] || {
+  const usage = data.benefit?.[slug] || {
     views: 0,
     refreshes: 0,
     suggestionsAccepted: 0,
-    researchHoursSaved: 0,
     validatedSignals: 0,
-    highlights: [],
   };
-  const usage = data.usage
-    .filter((u) => u.companySlug === slug)
-    .reduce((acc, u) => {
-      const row = acc.find((x) => x.event_type === u.eventType);
-      if (row) row.count += 1;
-      else acc.push({ event_type: u.eventType, count: 1 });
-      return acc;
-    }, []);
   return {
-    snapshot,
     usage,
-    refreshCount: snapshot.refreshes || 0,
-    policy: data.benefitPolicy || '',
+    corpus: buildBenefitCorpus(data),
+    policy: BENEFIT_POLICY,
+  };
+});
+
+app.get('/api/policies', async () => {
+  const data = loadStore();
+  return {
+    research: data.researchPolicy || '',
+    hiring: data.hiringPolicy || '',
+    x: data.xPolicy || '',
+    products: data.productsPolicy || '',
+    suggestions: data.suggestionsPolicy || '',
+    benefit: data.benefitPolicy || '',
+    executive: data.executivePolicy || '',
+    sources: data.sourcesPolicy || '',
   };
 });
 
@@ -142,12 +154,10 @@ app.post('/api/usage', async (req, reply) => {
     createdAt: new Date().toISOString(),
   });
   if (companySlug && eventType === 'view_company') {
-    const snap = data.benefit[companySlug];
-    if (snap) {
-      snap.views = (snap.views || 0) + 1;
-      const baseline = snap.researchBaselineHours || 56;
-      snap.researchHoursSaved = baseline + 1;
+    if (!data.benefit[companySlug]) {
+      data.benefit[companySlug] = { views: 0, refreshes: 0, suggestionsAccepted: 0, validatedSignals: 0 };
     }
+    data.benefit[companySlug].views = (data.benefit[companySlug].views || 0) + 1;
   }
   saveStore();
   return { ok: true };
@@ -164,7 +174,9 @@ app.patch('/api/suggestions/:id', async (req, reply) => {
   suggestion.status = status;
   if (status === 'accepted') {
     const slug = suggestion.subject_slug;
-    if (!data.benefit[slug]) data.benefit[slug] = { views: 0, refreshes: 0, suggestionsAccepted: 0, researchHoursSaved: 0, validatedSignals: 0, highlights: [] };
+    if (!data.benefit[slug]) {
+      data.benefit[slug] = { views: 0, refreshes: 0, suggestionsAccepted: 0, validatedSignals: 0 };
+    }
     data.benefit[slug].suggestionsAccepted += 1;
   }
   data.usage.push({

@@ -1,9 +1,16 @@
 import { Link } from 'react-router-dom';
-import { Card, Stat, Loading, ErrorState, Pill } from '../components/ui';
+import { Card, Loading, ErrorState, Pill, Empty } from '../components/ui';
 import { SourceFootnote } from '../components/Source';
 import { useCompany } from '../context/CompanyContext';
-import { useExecutive } from '../hooks/useExecutive';
+import { useExecutive, severityTone } from '../hooks/useExecutive';
 import { formatDate } from '../api';
+
+const HORIZON_LABELS = { near: '0–6 mo', mid: '6–18 mo', far: '18+ mo' };
+const TYPE_LABELS = {
+  hire: 'New hire',
+  peer_move: 'Peer move',
+  departure: 'Departure',
+};
 
 export default function Brief() {
   const { slug, data, loading: ctxLoading, error: ctxError } = useCompany();
@@ -13,103 +20,199 @@ export default function Brief() {
   if (ctxError || error) return <ErrorState message={ctxError || error} />;
   if (!data || !executive) return null;
 
-  const { company } = data;
+  const { company, peers } = data;
   const { brief, momentum, policy } = executive;
+  const threats = executive.threats || [];
+  const gaps = executive.gaps || [];
+  const moves = executive.leadership || [];
+  const changes = brief.changes || [];
+  const nameMap = Object.fromEntries([company, ...peers].map((c) => [c.slug, c.name]));
 
   return (
     <div className="page page--brief">
       <div className="hero hero--executive">
-        <p className="eyebrow">Executive brief · {formatDate(brief.asOf || company.refreshedAt)}</p>
+        <p className="eyebrow">
+          Executive brief · {formatDate(brief.asOf || company.refreshedAt)} · Momentum{' '}
+          {momentum.overallScore}/100 ({momentum.direction})
+        </p>
         <h1>{company.name}</h1>
         <p className="lede lede--executive">{brief.headline}</p>
       </div>
 
-      <div className="grid grid--stats grid--stats-4">
-        <Stat
-          label="Momentum score"
-          value={`${momentum.overallScore}/100`}
-          hint={`Trend ${momentum.direction}`}
-        />
-        <Stat label="Active threats" value={executive.threats.length} hint="Ranked by severity" />
-        <Stat label="Strategic gaps" value={executive.gaps.length} hint="Radar + product gaps" />
-        <Stat label="Leadership moves" value={executive.leadership.length} hint="Hires & peer shifts" />
-      </div>
-
       <Card title="Recommended decision" subtitle="One move to prioritize this cycle" className="card--decision" collapsible defaultOpen>
-        <p className="decision-text">{brief.decision}</p>
-      </Card>
-
-      <div className="grid grid--2">
-        <Card title="What changed" subtitle="Latest signals in your watch list" collapsible defaultOpen>
-          {(brief.changes || []).length === 0 ? (
-            <p className="muted">No recent signals in corpus.</p>
-          ) : (
-            <ul className="brief-list">
-              {brief.changes.map((c) => (
-                <li key={`${c.date}-${c.title}`} className="brief-list__item">
-                  <div className="brief-list__meta">
-                    <Pill tone="launch">{c.company || company.name}</Pill>
-                    <span className="muted">{c.date}</span>
-                  </div>
-                  <strong>{c.title}</strong>
-                  <p>{c.summary}</p>
-                </li>
-              ))}
-            </ul>
-          )}
-        </Card>
-
-        <Card title="Top threats" subtitle="What could hurt you" collapsible defaultOpen>
-          {(brief.threats || []).length === 0 ? (
-            <p className="muted">No threats flagged.</p>
-          ) : (
-            <ul className="brief-list">
-              {brief.threats.map((t) => (
-                <li key={t.title} className="brief-list__item">
-                  <div className="brief-list__meta">
-                    <Pill tone={t.severity === 'critical' ? 'critical' : 'launch'}>{t.severity}</Pill>
-                    <span className="muted">{t.category}</span>
-                  </div>
-                  <strong>{t.title}</strong>
-                  <p>{t.summary}</p>
-                </li>
-              ))}
-            </ul>
-          )}
-          <Link to="/threats" className="card-link">
-            View all threats →
-          </Link>
-        </Card>
-      </div>
-
-      <Card title="Opportunities" subtitle="Where you can win" collapsible defaultOpen>
-        <ul className="takeaway-list">
-          {(brief.opportunities || []).map((o) => (
-            <li key={o.title} className="takeaway takeaway--strength">
-              <strong>{o.title}</strong>
-              <p>{o.summary}</p>
-            </li>
-          ))}
-        </ul>
-      </Card>
-
-      <Card title="Quick links" subtitle="Drill into detail" collapsible defaultOpen={false}>
-        <div className="link-grid">
-          <Link to="/momentum" className="link-card">
-            Momentum metrics
-          </Link>
-          <Link to="/gaps" className="link-card">
-            Strategic gaps
-          </Link>
-          <Link to="/leadership" className="link-card">
-            Leadership moves
-          </Link>
-          <Link to="/suggestions" className="link-card">
-            Action suggestions
-          </Link>
+        <div className="table-wrap table-wrap--flat">
+          <table className="table table--compact">
+            <thead>
+              <tr>
+                <th>Priority</th>
+                <th>Recommendation</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>This cycle</td>
+                <td className="cell-signal">
+                  <strong>{brief.decision}</strong>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <SourceFootnote source={{ label: policy, confidence: 'mixed', asOf: '2026-07' }} />
       </Card>
+
+      <Card title="What changed" subtitle={`${changes.length} recent signals`} collapsible defaultOpen>
+        {changes.length === 0 ? (
+          <p className="muted">No recent signals in corpus.</p>
+        ) : (
+          <div className="table-wrap table-wrap--flat">
+            <table className="table table--compact table--signals">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Company</th>
+                  <th>Signal</th>
+                  <th>Summary</th>
+                </tr>
+              </thead>
+              <tbody>
+                {changes.map((c) => (
+                  <tr key={`${c.date}-${c.title}`}>
+                    <td className="cell-date">{c.date}</td>
+                    <td>{c.company || company.name}</td>
+                    <td className="cell-signal">
+                      <strong>{c.title}</strong>
+                    </td>
+                    <td>{c.summary}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+        <Link to="/intel?section=signals" className="card-link">
+          Full signal feed →
+        </Link>
+      </Card>
+
+      <Card title="Risk register" subtitle={`${threats.length} ranked threats`} collapsible defaultOpen>
+        {threats.length === 0 ? (
+          <Empty message="No threats flagged for this company." />
+        ) : (
+          <div className="table-wrap table-wrap--flat">
+            <table className="table table--compact">
+              <thead>
+                <tr>
+                  <th>Severity</th>
+                  <th>Horizon</th>
+                  <th>Category</th>
+                  <th>Threat</th>
+                  <th>Summary</th>
+                </tr>
+              </thead>
+              <tbody>
+                {threats.map((t) => (
+                  <tr key={t.title}>
+                    <td>
+                      <Pill tone={severityTone(t.severity)}>{t.severity}</Pill>
+                    </td>
+                    <td>{HORIZON_LABELS[t.horizon] || t.horizon}</td>
+                    <td>{t.category || '—'}</td>
+                    <td>
+                      <strong>{t.title}</strong>
+                    </td>
+                    <td>{t.summary}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </Card>
+
+      {gaps.length > 0 && (
+        <Card title="Strategic gaps" subtitle={`${gaps.length} gaps vs peers`} collapsible defaultOpen={false}>
+          <div className="table-wrap table-wrap--flat">
+            <table className="table table--compact">
+              <thead>
+                <tr>
+                  <th>Severity</th>
+                  <th>Source</th>
+                  <th>Area</th>
+                  <th>Summary</th>
+                  <th>Score</th>
+                </tr>
+              </thead>
+              <tbody>
+                {gaps.map((g) => (
+                  <tr key={`${g.area}-${g.source}`}>
+                    <td>
+                      <Pill tone={severityTone(g.severity)}>{g.severity}</Pill>
+                    </td>
+                    <td>{g.source}</td>
+                    <td>
+                      <strong>{g.area}</strong>
+                    </td>
+                    <td>{g.summary}</td>
+                    <td>
+                      {g.score != null ? `${g.score} vs ${g.peerAvg} peer avg` : '—'}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="brief-details__links">
+            <Link to="/products">Product landscape →</Link>
+            {' · '}
+            <Link to="/suggestions">Suggested actions →</Link>
+          </p>
+        </Card>
+      )}
+
+      {moves.length > 0 && (
+        <Card title="Leadership moves" subtitle={`${moves.length} curated moves`} collapsible defaultOpen={false}>
+          <div className="table-wrap table-wrap--flat">
+            <table className="table table--compact">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Type</th>
+                  <th>Company</th>
+                  <th>Name</th>
+                  <th>Role</th>
+                  <th>Summary</th>
+                </tr>
+              </thead>
+              <tbody>
+                {moves.map((m) => (
+                  <tr key={`${m.date}-${m.name}-${m.company_slug}`}>
+                    <td className="cell-date">{m.date}</td>
+                    <td>
+                      <Pill tone={m.type === 'peer_move' ? 'launch' : 'partnership'}>
+                        {TYPE_LABELS[m.type] || m.type}
+                      </Pill>
+                    </td>
+                    <td>{nameMap[m.company_slug] || m.company_slug}</td>
+                    <td>
+                      <strong>{m.name}</strong>
+                    </td>
+                    <td>{m.role}</td>
+                    <td>{m.summary}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <Link to="/intel?section=social&channel=linkedin" className="card-link">
+            Open roles on LinkedIn →
+          </Link>
+        </Card>
+      )}
+
+      <details className="benefit-details">
+        <summary>Methodology</summary>
+        <SourceFootnote source={{ label: policy, confidence: 'mixed', asOf: '2026-07' }} />
+      </details>
     </div>
   );
 }

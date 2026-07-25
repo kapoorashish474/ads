@@ -1,16 +1,5 @@
 export const navGroups = [
   {
-    id: 'executive',
-    label: 'Executive',
-    items: [
-      { to: '/brief', label: 'Brief', icon: 'brief', end: true },
-      { to: '/threats', label: 'Threats', icon: 'threats' },
-      { to: '/momentum', label: 'Momentum', icon: 'momentum' },
-      { to: '/gaps', label: 'Gaps', icon: 'gaps' },
-      { to: '/leadership', label: 'Leadership', icon: 'leadership' },
-    ],
-  },
-  {
     id: 'dashboard',
     label: 'Dashboard',
     items: [
@@ -20,21 +9,21 @@ export const navGroups = [
     ],
   },
   {
+    id: 'executive',
+    label: 'Executive',
+    items: [{ to: '/brief', label: 'Brief', icon: 'brief', end: true }],
+  },
+  {
     id: 'intel',
     label: 'Market intel',
-    items: [
-      { to: '/signals', label: 'Signals', icon: 'signals' },
-      { to: '/search', label: 'Search', icon: 'search' },
-      { to: '/linkedin', label: 'LinkedIn', icon: 'linkedin' },
-      { to: '/x', label: 'X', icon: 'x' },
-    ],
+    items: [{ to: '/intel', label: 'Feed', icon: 'signals', end: true }],
   },
   {
     id: 'planning',
     label: 'Planning',
     items: [
       { to: '/suggestions', label: 'Suggestions', icon: 'suggestions' },
-      { to: '/benefit', label: 'Benefit', icon: 'benefit' },
+      { to: '/benefit', label: 'Benefit', icon: 'benefit', scope: 'corpus' },
     ],
   },
   {
@@ -51,6 +40,17 @@ export function matchNavPath(pathname, to, end) {
 
 export function activeNavGroup(pathname) {
   return navGroups.find((g) => g.items.some((item) => matchNavPath(pathname, item.to, item.end))) || navGroups[0];
+}
+
+export function pageScope(pathname) {
+  for (const group of navGroups) {
+    for (const item of group.items) {
+      if (matchNavPath(pathname, item.to, item.end)) {
+        return item.scope || 'company';
+      }
+    }
+  }
+  return 'company';
 }
 
 export function allNavItems() {

@@ -207,11 +207,6 @@
                 "query": "kargo ctv",
                 "index": 72,
                 "change": "+18%"
-              },
-              {
-                "query": "kargo united",
-                "index": 100,
-                "change": "+12%"
               }
             ],
             "metros": [
@@ -222,10 +217,6 @@
               {
                 "name": "Manchester",
                 "index": 42
-              },
-              {
-                "name": "Birmingham",
-                "index": 64
               }
             ]
           },
@@ -259,11 +250,6 @@
                 "query": "ctv advertising",
                 "index": 55,
                 "change": "+9%"
-              },
-              {
-                "query": "kargo germany",
-                "index": 100,
-                "change": "+12%"
               }
             ],
             "metros": [
@@ -274,10 +260,6 @@
               {
                 "name": "Munich",
                 "index": 68
-              },
-              {
-                "name": "Hamburg",
-                "index": 64
               }
             ]
           }
@@ -288,10 +270,13 @@
           "high impact mobile ads"
         ],
         "source": {
-          "label": "Google Trends interest index (normalized 0–100)",
+          "label": "Google Trends-style interest index (normalized 0–100)",
           "confidence": "modeled",
           "url": "https://trends.google.com",
-          "asOf": "2026-07"
+          "asOf": "2026-07",
+          "category": "Market intel",
+          "tab": "Search",
+          "note": "Regional drill-down uses modeled metro/query indices"
         },
         "monthLabels": [
           "Jan",
@@ -318,64 +303,121 @@
       "refreshedAt": "2026-07-24T01:31:21.639Z",
       "dataSources": {
         "revenue": {
-          "label": "Industry analyst estimates",
+          "label": "Industry analyst estimates · ad platform landscape",
           "confidence": "estimated",
           "url": "https://www.adexchanger.com",
-          "asOf": "2025"
+          "asOf": "2025",
+          "category": "Dashboard",
+          "tab": "Revenue",
+          "note": ""
         },
         "employees": {
-          "label": "LinkedIn · company profile",
+          "label": "LinkedIn · company profile headcount band",
           "confidence": "estimated",
           "url": "https://www.linkedin.com/company/kargo",
-          "asOf": "2026-Q2"
+          "asOf": "2026-Q2",
+          "category": "Dashboard",
+          "tab": "Overview",
+          "note": ""
         },
         "segments": {
-          "label": "Segment split modeled from public positioning",
+          "label": "Segment split modeled from public positioning & product mix",
           "confidence": "estimated",
           "url": "https://www.kargo.com",
-          "asOf": "2025"
+          "asOf": "2025",
+          "category": "Dashboard",
+          "tab": "Revenue",
+          "note": ""
         },
         "radar": {
-          "label": "Peer benchmark model · public product & press signals",
+          "label": "Peer benchmark model · product pages, press, and radar inputs",
           "confidence": "modeled",
           "url": null,
-          "asOf": "2026-07"
+          "asOf": "2026-07",
+          "category": "Dashboard",
+          "tab": "Overview",
+          "note": "Scores normalized 0–100 vs peer set"
         },
         "products": {
-          "label": "Kargo product pages & press releases",
+          "label": "Kargo product pages & public documentation",
           "confidence": "reported",
           "url": "https://www.kargo.com",
-          "asOf": "2026-07"
+          "asOf": "2026-07",
+          "category": "Dashboard",
+          "tab": "Products",
+          "note": ""
         },
         "winning": {
-          "label": "Synthesized from public filings, press, and peer compare",
+          "label": "Synthesized winning thesis from filings, press, and peer compare",
           "confidence": "inferred",
           "url": null,
-          "asOf": "2026-07"
+          "asOf": "2026-07",
+          "category": "Dashboard",
+          "tab": "Overview",
+          "note": ""
         },
         "search": {
-          "label": "Google Trends interest index (normalized 0–100)",
+          "label": "Google Trends-style interest index (normalized 0–100)",
           "confidence": "modeled",
           "url": "https://trends.google.com",
-          "asOf": "2026-07"
-        },
-        "hiring": {
-          "label": "LinkedIn public job listings & company careers pages",
-          "confidence": "reported",
-          "url": "https://www.linkedin.com/company/kargo/jobs/",
-          "asOf": "2026-07"
-        },
-        "x": {
-          "label": "X profile @kargo (verified public URL)",
-          "confidence": "reported",
-          "url": "https://x.com/kargo",
-          "asOf": "2026-07-24"
+          "asOf": "2026-07",
+          "category": "Market intel",
+          "tab": "Search",
+          "note": "Regional drill-down uses modeled metro/query indices"
         },
         "signals": {
           "label": "Public press, product pages, and industry news synthesis",
           "confidence": "mixed",
           "url": "https://www.kargo.com",
-          "asOf": "2026-07"
+          "asOf": "2026-07",
+          "category": "Market intel",
+          "tab": "Signals",
+          "note": "Each signal cites its own source URL on the Signals tab"
+        },
+        "hiring": {
+          "label": "LinkedIn public job listings & company careers pages",
+          "confidence": "reported",
+          "url": "https://www.linkedin.com/company/kargo/jobs/",
+          "asOf": "2026-07",
+          "category": "Market intel",
+          "tab": "LinkedIn",
+          "note": ""
+        },
+        "x": {
+          "label": "X profile @kargo (verified public URL)",
+          "confidence": "reported",
+          "url": "https://x.com/kargo",
+          "asOf": "2026-07-24",
+          "category": "Market intel",
+          "tab": "X",
+          "note": "Themes inferred from public news — not scraped tweet text"
+        },
+        "suggestions": {
+          "label": "Peer gaps, search trends, product coverage, and public signals",
+          "confidence": "inferred",
+          "url": null,
+          "asOf": "2026-07",
+          "category": "Planning",
+          "tab": "Suggestions",
+          "note": "Priorities are directional — validate before resourcing"
+        },
+        "benefit": {
+          "label": "Manual research time model for corpus depth + usage activity",
+          "confidence": "modeled",
+          "url": null,
+          "asOf": "2026-07",
+          "category": "Planning",
+          "tab": "Benefit",
+          "note": ""
+        },
+        "executive": {
+          "label": "Brief, threats, gaps, momentum, and leadership synthesis",
+          "confidence": "mixed",
+          "url": null,
+          "asOf": "2026-07",
+          "category": "Executive",
+          "tab": "Brief",
+          "note": "Momentum scores computed from live store metrics"
         }
       },
       "linkedin": {
@@ -642,25 +684,12 @@
                 "query": "open internet advertising",
                 "index": 58,
                 "change": "+7%"
-              },
-              {
-                "query": "the trade desk united",
-                "index": 100,
-                "change": "+12%"
               }
             ],
             "metros": [
               {
                 "name": "London",
                 "index": 100
-              },
-              {
-                "name": "Manchester",
-                "index": 82
-              },
-              {
-                "name": "Birmingham",
-                "index": 64
               }
             ]
           },
@@ -694,11 +723,6 @@
                 "query": "connected tv dsp",
                 "index": 71,
                 "change": "+10%"
-              },
-              {
-                "query": "the trade desk australia",
-                "index": 100,
-                "change": "+12%"
               }
             ],
             "metros": [
@@ -709,10 +733,6 @@
               {
                 "name": "Melbourne",
                 "index": 76
-              },
-              {
-                "name": "London",
-                "index": 100
               }
             ]
           }
@@ -723,10 +743,13 @@
           "uid2"
         ],
         "source": {
-          "label": "Google Trends interest index (normalized 0–100)",
+          "label": "Google Trends-style interest index (normalized 0–100)",
           "confidence": "modeled",
           "url": "https://trends.google.com",
-          "asOf": "2026-07"
+          "asOf": "2026-07",
+          "category": "Market intel",
+          "tab": "Search",
+          "note": "Regional drill-down uses modeled metro/query indices"
         },
         "monthLabels": [
           "Jan",
@@ -756,61 +779,118 @@
           "label": "The Trade Desk 10-K · platform revenue",
           "confidence": "reported",
           "url": "https://investors.thetradedesk.com",
-          "asOf": "FY2024"
+          "asOf": "FY2024",
+          "category": "Dashboard",
+          "tab": "Revenue",
+          "note": ""
         },
         "employees": {
           "label": "10-K headcount disclosure",
           "confidence": "reported",
           "url": "https://investors.thetradedesk.com",
-          "asOf": "FY2024"
+          "asOf": "FY2024",
+          "category": "Dashboard",
+          "tab": "Overview",
+          "note": ""
         },
         "segments": {
           "label": "Earnings call segment commentary",
           "confidence": "reported",
           "url": "https://investors.thetradedesk.com",
-          "asOf": "FY2024"
+          "asOf": "FY2024",
+          "category": "Dashboard",
+          "tab": "Revenue",
+          "note": ""
         },
         "radar": {
-          "label": "Peer benchmark model · public product & press signals",
+          "label": "Peer benchmark model · product pages, press, and radar inputs",
           "confidence": "modeled",
           "url": null,
-          "asOf": "2026-07"
+          "asOf": "2026-07",
+          "category": "Dashboard",
+          "tab": "Overview",
+          "note": "Scores normalized 0–100 vs peer set"
         },
         "products": {
-          "label": "Trade Desk product announcements",
+          "label": "The Trade Desk product pages & public documentation",
           "confidence": "reported",
           "url": "https://www.thetradedesk.com",
-          "asOf": "2026-07"
+          "asOf": "2026-07",
+          "category": "Dashboard",
+          "tab": "Products",
+          "note": ""
         },
         "winning": {
-          "label": "Earnings calls + industry analysis",
+          "label": "Synthesized winning thesis from filings, press, and peer compare",
           "confidence": "inferred",
-          "url": "https://investors.thetradedesk.com",
-          "asOf": "2026-07"
+          "url": null,
+          "asOf": "2026-07",
+          "category": "Dashboard",
+          "tab": "Overview",
+          "note": ""
         },
         "search": {
-          "label": "Google Trends interest index (normalized 0–100)",
+          "label": "Google Trends-style interest index (normalized 0–100)",
           "confidence": "modeled",
           "url": "https://trends.google.com",
-          "asOf": "2026-07"
-        },
-        "hiring": {
-          "label": "LinkedIn public job listings & company careers pages",
-          "confidence": "reported",
-          "url": "https://www.linkedin.com/company/the-trade-desk/jobs/",
-          "asOf": "2026-07"
-        },
-        "x": {
-          "label": "X profile @TheTradeDesk (verified public URL)",
-          "confidence": "reported",
-          "url": "https://x.com/TheTradeDesk",
-          "asOf": "2026-07-24"
+          "asOf": "2026-07",
+          "category": "Market intel",
+          "tab": "Search",
+          "note": "Regional drill-down uses modeled metro/query indices"
         },
         "signals": {
           "label": "Public press, product pages, and industry news synthesis",
           "confidence": "mixed",
           "url": "https://www.thetradedesk.com",
-          "asOf": "2026-07"
+          "asOf": "2026-07",
+          "category": "Market intel",
+          "tab": "Signals",
+          "note": "Each signal cites its own source URL on the Signals tab"
+        },
+        "hiring": {
+          "label": "LinkedIn public job listings & company careers pages",
+          "confidence": "reported",
+          "url": "https://www.linkedin.com/company/the-trade-desk/jobs/",
+          "asOf": "2026-07",
+          "category": "Market intel",
+          "tab": "LinkedIn",
+          "note": ""
+        },
+        "x": {
+          "label": "X profile @TheTradeDesk (verified public URL)",
+          "confidence": "reported",
+          "url": "https://x.com/TheTradeDesk",
+          "asOf": "2026-07-24",
+          "category": "Market intel",
+          "tab": "X",
+          "note": "Themes inferred from public news — not scraped tweet text"
+        },
+        "suggestions": {
+          "label": "Peer gaps, search trends, product coverage, and public signals",
+          "confidence": "inferred",
+          "url": null,
+          "asOf": "2026-07",
+          "category": "Planning",
+          "tab": "Suggestions",
+          "note": "Priorities are directional — validate before resourcing"
+        },
+        "benefit": {
+          "label": "Manual research time model for corpus depth + usage activity",
+          "confidence": "modeled",
+          "url": null,
+          "asOf": "2026-07",
+          "category": "Planning",
+          "tab": "Benefit",
+          "note": ""
+        },
+        "executive": {
+          "label": "Brief, threats, gaps, momentum, and leadership synthesis",
+          "confidence": "mixed",
+          "url": null,
+          "asOf": "2026-07",
+          "category": "Executive",
+          "tab": "Brief",
+          "note": "Momentum scores computed from live store metrics"
         }
       },
       "linkedin": {
@@ -1023,11 +1103,6 @@
                 "query": "stackadapt vs trade desk",
                 "index": 67,
                 "change": "+12%"
-              },
-              {
-                "query": "stackadapt united",
-                "index": 100,
-                "change": "+12%"
               }
             ],
             "metros": [
@@ -1038,10 +1113,6 @@
               {
                 "name": "New York",
                 "index": 100
-              },
-              {
-                "name": "Los Angeles",
-                "index": 82
               }
             ]
           },
@@ -1075,11 +1146,6 @@
                 "query": "stackadapt dsp review",
                 "index": 84,
                 "change": "+11%"
-              },
-              {
-                "query": "stackadapt advertising",
-                "index": 78,
-                "change": "+8%"
               }
             ],
             "metros": [
@@ -1090,10 +1156,6 @@
               {
                 "name": "Vancouver",
                 "index": 72
-              },
-              {
-                "name": "Montreal",
-                "index": 64
               }
             ]
           },
@@ -1122,30 +1184,12 @@
                 "query": "stackadapt uk",
                 "index": 100,
                 "change": "+9%"
-              },
-              {
-                "query": "stackadapt united",
-                "index": 100,
-                "change": "+12%"
-              },
-              {
-                "query": "stackadapt advertising",
-                "index": 78,
-                "change": "+8%"
               }
             ],
             "metros": [
               {
                 "name": "London",
                 "index": 100
-              },
-              {
-                "name": "Manchester",
-                "index": 82
-              },
-              {
-                "name": "Birmingham",
-                "index": 64
               }
             ]
           }
@@ -1155,10 +1199,13 @@
           "stackadapt dsp review"
         ],
         "source": {
-          "label": "Google Trends interest index (normalized 0–100)",
+          "label": "Google Trends-style interest index (normalized 0–100)",
           "confidence": "modeled",
           "url": "https://trends.google.com",
-          "asOf": "2026-07"
+          "asOf": "2026-07",
+          "category": "Market intel",
+          "tab": "Search",
+          "note": "Regional drill-down uses modeled metro/query indices"
         },
         "monthLabels": [
           "Jan",
@@ -1188,61 +1235,118 @@
           "label": "Industry estimates · programmatic landscape reports",
           "confidence": "estimated",
           "url": "https://www.stackadapt.com",
-          "asOf": "2025"
+          "asOf": "2025",
+          "category": "Dashboard",
+          "tab": "Revenue",
+          "note": ""
         },
         "employees": {
-          "label": "LinkedIn · company profile",
+          "label": "LinkedIn · company profile headcount band",
           "confidence": "estimated",
           "url": "https://www.linkedin.com/company/stackadapt",
-          "asOf": "2026-Q2"
+          "asOf": "2026-Q2",
+          "category": "Dashboard",
+          "tab": "Overview",
+          "note": ""
         },
         "segments": {
           "label": "Product mix inferred from marketing & case studies",
           "confidence": "estimated",
           "url": "https://www.stackadapt.com",
-          "asOf": "2025"
+          "asOf": "2025",
+          "category": "Dashboard",
+          "tab": "Revenue",
+          "note": ""
         },
         "radar": {
-          "label": "Peer benchmark model · public product & press signals",
+          "label": "Peer benchmark model · product pages, press, and radar inputs",
           "confidence": "modeled",
           "url": null,
-          "asOf": "2026-07"
+          "asOf": "2026-07",
+          "category": "Dashboard",
+          "tab": "Overview",
+          "note": "Scores normalized 0–100 vs peer set"
         },
         "products": {
-          "label": "StackAdapt product pages",
+          "label": "StackAdapt product pages & public documentation",
           "confidence": "reported",
           "url": "https://www.stackadapt.com",
-          "asOf": "2026-07"
+          "asOf": "2026-07",
+          "category": "Dashboard",
+          "tab": "Products",
+          "note": ""
         },
         "winning": {
-          "label": "Press coverage + peer comparison",
+          "label": "Synthesized winning thesis from filings, press, and peer compare",
           "confidence": "inferred",
           "url": null,
-          "asOf": "2026-07"
+          "asOf": "2026-07",
+          "category": "Dashboard",
+          "tab": "Overview",
+          "note": ""
         },
         "search": {
-          "label": "Google Trends interest index (normalized 0–100)",
+          "label": "Google Trends-style interest index (normalized 0–100)",
           "confidence": "modeled",
           "url": "https://trends.google.com",
-          "asOf": "2026-07"
-        },
-        "hiring": {
-          "label": "LinkedIn public job listings & company careers pages",
-          "confidence": "reported",
-          "url": "https://www.linkedin.com/company/stackadapt/jobs/",
-          "asOf": "2026-07"
-        },
-        "x": {
-          "label": "X profile @StackAdapt (verified public URL)",
-          "confidence": "reported",
-          "url": "https://x.com/StackAdapt",
-          "asOf": "2026-07-24"
+          "asOf": "2026-07",
+          "category": "Market intel",
+          "tab": "Search",
+          "note": "Regional drill-down uses modeled metro/query indices"
         },
         "signals": {
           "label": "Public press, product pages, and industry news synthesis",
           "confidence": "mixed",
           "url": "https://www.stackadapt.com",
-          "asOf": "2026-07"
+          "asOf": "2026-07",
+          "category": "Market intel",
+          "tab": "Signals",
+          "note": "Each signal cites its own source URL on the Signals tab"
+        },
+        "hiring": {
+          "label": "LinkedIn public job listings & company careers pages",
+          "confidence": "reported",
+          "url": "https://www.linkedin.com/company/stackadapt/jobs/",
+          "asOf": "2026-07",
+          "category": "Market intel",
+          "tab": "LinkedIn",
+          "note": ""
+        },
+        "x": {
+          "label": "X profile @StackAdapt (verified public URL)",
+          "confidence": "reported",
+          "url": "https://x.com/StackAdapt",
+          "asOf": "2026-07-24",
+          "category": "Market intel",
+          "tab": "X",
+          "note": "Themes inferred from public news — not scraped tweet text"
+        },
+        "suggestions": {
+          "label": "Peer gaps, search trends, product coverage, and public signals",
+          "confidence": "inferred",
+          "url": null,
+          "asOf": "2026-07",
+          "category": "Planning",
+          "tab": "Suggestions",
+          "note": "Priorities are directional — validate before resourcing"
+        },
+        "benefit": {
+          "label": "Manual research time model for corpus depth + usage activity",
+          "confidence": "modeled",
+          "url": null,
+          "asOf": "2026-07",
+          "category": "Planning",
+          "tab": "Benefit",
+          "note": ""
+        },
+        "executive": {
+          "label": "Brief, threats, gaps, momentum, and leadership synthesis",
+          "confidence": "mixed",
+          "url": null,
+          "asOf": "2026-07",
+          "category": "Executive",
+          "tab": "Brief",
+          "note": "Momentum scores computed from live store metrics"
         }
       },
       "linkedin": {
@@ -1456,11 +1560,6 @@
                 "query": "magnite ssp",
                 "index": 83,
                 "change": "+5%"
-              },
-              {
-                "query": "magnite united",
-                "index": 100,
-                "change": "+12%"
               }
             ],
             "metros": [
@@ -1471,10 +1570,6 @@
               {
                 "name": "Los Angeles",
                 "index": 74
-              },
-              {
-                "name": "Chicago",
-                "index": 64
               }
             ]
           },
@@ -1503,16 +1598,6 @@
                 "query": "magnite streaming",
                 "index": 100,
                 "change": "+8%"
-              },
-              {
-                "query": "magnite emea",
-                "index": 100,
-                "change": "+12%"
-              },
-              {
-                "query": "magnite advertising",
-                "index": 78,
-                "change": "+8%"
               }
             ],
             "metros": [
@@ -1523,10 +1608,6 @@
               {
                 "name": "Paris",
                 "index": 58
-              },
-              {
-                "name": "Berlin",
-                "index": 64
               }
             ]
           },
@@ -1555,30 +1636,12 @@
                 "query": "magnite apac",
                 "index": 100,
                 "change": "+13%"
-              },
-              {
-                "query": "magnite advertising",
-                "index": 78,
-                "change": "+8%"
-              },
-              {
-                "query": "magnite programmatic",
-                "index": 62,
-                "change": "+5%"
               }
             ],
             "metros": [
               {
                 "name": "Sydney",
                 "index": 100
-              },
-              {
-                "name": "Singapore",
-                "index": 100
-              },
-              {
-                "name": "Tokyo",
-                "index": 64
               }
             ]
           }
@@ -1588,10 +1651,13 @@
           "magnite ssp"
         ],
         "source": {
-          "label": "Google Trends interest index (normalized 0–100)",
+          "label": "Google Trends-style interest index (normalized 0–100)",
           "confidence": "modeled",
           "url": "https://trends.google.com",
-          "asOf": "2026-07"
+          "asOf": "2026-07",
+          "category": "Market intel",
+          "tab": "Search",
+          "note": "Regional drill-down uses modeled metro/query indices"
         },
         "monthLabels": [
           "Jan",
@@ -1621,61 +1687,118 @@
           "label": "Magnite 10-K · consolidated revenue",
           "confidence": "reported",
           "url": "https://investors.magnite.com",
-          "asOf": "FY2024"
+          "asOf": "FY2024",
+          "category": "Dashboard",
+          "tab": "Revenue",
+          "note": ""
         },
         "employees": {
           "label": "10-K headcount disclosure",
           "confidence": "reported",
           "url": "https://investors.magnite.com",
-          "asOf": "FY2024"
+          "asOf": "FY2024",
+          "category": "Dashboard",
+          "tab": "Overview",
+          "note": ""
         },
         "segments": {
           "label": "10-K segment reporting (CTV / DV+)",
           "confidence": "reported",
           "url": "https://investors.magnite.com",
-          "asOf": "FY2024"
+          "asOf": "FY2024",
+          "category": "Dashboard",
+          "tab": "Revenue",
+          "note": ""
         },
         "radar": {
-          "label": "Peer benchmark model · public product & press signals",
+          "label": "Peer benchmark model · product pages, press, and radar inputs",
           "confidence": "modeled",
           "url": null,
-          "asOf": "2026-07"
+          "asOf": "2026-07",
+          "category": "Dashboard",
+          "tab": "Overview",
+          "note": "Scores normalized 0–100 vs peer set"
         },
         "products": {
-          "label": "Magnite product & IR materials",
+          "label": "Magnite product pages & public documentation",
           "confidence": "reported",
           "url": "https://www.magnite.com",
-          "asOf": "2026-07"
+          "asOf": "2026-07",
+          "category": "Dashboard",
+          "tab": "Products",
+          "note": ""
         },
         "winning": {
-          "label": "Earnings + sell-side research synthesis",
+          "label": "Synthesized winning thesis from filings, press, and peer compare",
           "confidence": "inferred",
-          "url": "https://investors.magnite.com",
-          "asOf": "2026-07"
+          "url": null,
+          "asOf": "2026-07",
+          "category": "Dashboard",
+          "tab": "Overview",
+          "note": ""
         },
         "search": {
-          "label": "Google Trends interest index (normalized 0–100)",
+          "label": "Google Trends-style interest index (normalized 0–100)",
           "confidence": "modeled",
           "url": "https://trends.google.com",
-          "asOf": "2026-07"
-        },
-        "hiring": {
-          "label": "LinkedIn public job listings & company careers pages",
-          "confidence": "reported",
-          "url": "https://www.linkedin.com/company/magnite/jobs/",
-          "asOf": "2026-07"
-        },
-        "x": {
-          "label": "X profile @Magnite (verified public URL)",
-          "confidence": "reported",
-          "url": "https://x.com/Magnite",
-          "asOf": "2026-07-24"
+          "asOf": "2026-07",
+          "category": "Market intel",
+          "tab": "Search",
+          "note": "Regional drill-down uses modeled metro/query indices"
         },
         "signals": {
           "label": "Public press, product pages, and industry news synthesis",
           "confidence": "mixed",
           "url": "https://www.magnite.com",
-          "asOf": "2026-07"
+          "asOf": "2026-07",
+          "category": "Market intel",
+          "tab": "Signals",
+          "note": "Each signal cites its own source URL on the Signals tab"
+        },
+        "hiring": {
+          "label": "LinkedIn public job listings & company careers pages",
+          "confidence": "reported",
+          "url": "https://www.linkedin.com/company/magnite/jobs/",
+          "asOf": "2026-07",
+          "category": "Market intel",
+          "tab": "LinkedIn",
+          "note": ""
+        },
+        "x": {
+          "label": "X profile @Magnite (verified public URL)",
+          "confidence": "reported",
+          "url": "https://x.com/Magnite",
+          "asOf": "2026-07-24",
+          "category": "Market intel",
+          "tab": "X",
+          "note": "Themes inferred from public news — not scraped tweet text"
+        },
+        "suggestions": {
+          "label": "Peer gaps, search trends, product coverage, and public signals",
+          "confidence": "inferred",
+          "url": null,
+          "asOf": "2026-07",
+          "category": "Planning",
+          "tab": "Suggestions",
+          "note": "Priorities are directional — validate before resourcing"
+        },
+        "benefit": {
+          "label": "Manual research time model for corpus depth + usage activity",
+          "confidence": "modeled",
+          "url": null,
+          "asOf": "2026-07",
+          "category": "Planning",
+          "tab": "Benefit",
+          "note": ""
+        },
+        "executive": {
+          "label": "Brief, threats, gaps, momentum, and leadership synthesis",
+          "confidence": "mixed",
+          "url": null,
+          "asOf": "2026-07",
+          "category": "Executive",
+          "tab": "Brief",
+          "note": "Momentum scores computed from live store metrics"
         }
       },
       "linkedin": {
@@ -1903,10 +2026,6 @@
               {
                 "name": "New York",
                 "index": 86
-              },
-              {
-                "name": "Los Angeles",
-                "index": 82
               }
             ]
           },
@@ -1935,16 +2054,6 @@
                 "query": "amazon ads europe",
                 "index": 100,
                 "change": "+16%"
-              },
-              {
-                "query": "amazon ads advertising",
-                "index": 78,
-                "change": "+8%"
-              },
-              {
-                "query": "amazon ads programmatic",
-                "index": 62,
-                "change": "+5%"
               }
             ],
             "metros": [
@@ -1955,10 +2064,6 @@
               {
                 "name": "Berlin",
                 "index": 69
-              },
-              {
-                "name": "Paris",
-                "index": 100
               }
             ]
           },
@@ -1987,16 +2092,6 @@
                 "query": "amazon ads india",
                 "index": 100,
                 "change": "+28%"
-              },
-              {
-                "query": "amazon ads advertising",
-                "index": 78,
-                "change": "+8%"
-              },
-              {
-                "query": "amazon ads programmatic",
-                "index": 62,
-                "change": "+5%"
               }
             ],
             "metros": [
@@ -2007,10 +2102,6 @@
               {
                 "name": "Bangalore",
                 "index": 91
-              },
-              {
-                "name": "Delhi",
-                "index": 64
               }
             ]
           }
@@ -2021,10 +2112,13 @@
           "sponsored products"
         ],
         "source": {
-          "label": "Google Trends interest index (normalized 0–100)",
+          "label": "Google Trends-style interest index (normalized 0–100)",
           "confidence": "modeled",
           "url": "https://trends.google.com",
-          "asOf": "2026-07"
+          "asOf": "2026-07",
+          "category": "Market intel",
+          "tab": "Search",
+          "note": "Regional drill-down uses modeled metro/query indices"
         },
         "monthLabels": [
           "Jan",
@@ -2051,64 +2145,121 @@
       "refreshedAt": "2026-07-24T01:31:21.640Z",
       "dataSources": {
         "revenue": {
-          "label": "Amazon 10-K · advertising services",
+          "label": "Amazon 10-K · advertising services revenue",
           "confidence": "reported",
           "url": "https://ir.aboutamazon.com",
-          "asOf": "FY2024"
+          "asOf": "FY2024",
+          "category": "Dashboard",
+          "tab": "Revenue",
+          "note": ""
         },
         "employees": {
           "label": "Estimated Amazon Ads org · public job posts",
           "confidence": "estimated",
           "url": "https://advertising.amazon.com",
-          "asOf": "2026-Q2"
+          "asOf": "2026-Q2",
+          "category": "Dashboard",
+          "tab": "Overview",
+          "note": ""
         },
         "segments": {
           "label": "Earnings narrative · sponsored ads vs DSP",
           "confidence": "reported",
           "url": "https://ir.aboutamazon.com",
-          "asOf": "FY2024"
+          "asOf": "FY2024",
+          "category": "Dashboard",
+          "tab": "Revenue",
+          "note": ""
         },
         "radar": {
-          "label": "Peer benchmark model · public product & press signals",
+          "label": "Peer benchmark model · product pages, press, and radar inputs",
           "confidence": "modeled",
           "url": null,
-          "asOf": "2026-07"
+          "asOf": "2026-07",
+          "category": "Dashboard",
+          "tab": "Overview",
+          "note": "Scores normalized 0–100 vs peer set"
         },
         "products": {
-          "label": "Amazon Ads documentation",
+          "label": "Amazon Ads product pages & public documentation",
           "confidence": "reported",
           "url": "https://advertising.amazon.com",
-          "asOf": "2026-07"
+          "asOf": "2026-07",
+          "category": "Dashboard",
+          "tab": "Products",
+          "note": ""
         },
         "winning": {
-          "label": "Earnings + retail media industry reports",
+          "label": "Synthesized winning thesis from filings, press, and peer compare",
           "confidence": "inferred",
-          "url": "https://ir.aboutamazon.com",
-          "asOf": "2026-07"
+          "url": null,
+          "asOf": "2026-07",
+          "category": "Dashboard",
+          "tab": "Overview",
+          "note": ""
         },
         "search": {
-          "label": "Google Trends interest index (normalized 0–100)",
+          "label": "Google Trends-style interest index (normalized 0–100)",
           "confidence": "modeled",
           "url": "https://trends.google.com",
-          "asOf": "2026-07"
-        },
-        "hiring": {
-          "label": "LinkedIn public job listings & company careers pages",
-          "confidence": "reported",
-          "url": "https://www.linkedin.com/jobs/search/?keywords=Amazon%20Ads&f_C=1586",
-          "asOf": "2026-07"
-        },
-        "x": {
-          "label": "X profile @AmazonAds (verified public URL)",
-          "confidence": "reported",
-          "url": "https://x.com/AmazonAds",
-          "asOf": "2026-07-24"
+          "asOf": "2026-07",
+          "category": "Market intel",
+          "tab": "Search",
+          "note": "Regional drill-down uses modeled metro/query indices"
         },
         "signals": {
           "label": "Public press, product pages, and industry news synthesis",
           "confidence": "mixed",
           "url": "https://advertising.amazon.com",
-          "asOf": "2026-07"
+          "asOf": "2026-07",
+          "category": "Market intel",
+          "tab": "Signals",
+          "note": "Each signal cites its own source URL on the Signals tab"
+        },
+        "hiring": {
+          "label": "LinkedIn public job listings & company careers pages",
+          "confidence": "reported",
+          "url": "https://www.linkedin.com/jobs/search/?keywords=Amazon%20Ads&f_C=1586",
+          "asOf": "2026-07",
+          "category": "Market intel",
+          "tab": "LinkedIn",
+          "note": ""
+        },
+        "x": {
+          "label": "X profile @AmazonAds (verified public URL)",
+          "confidence": "reported",
+          "url": "https://x.com/AmazonAds",
+          "asOf": "2026-07-24",
+          "category": "Market intel",
+          "tab": "X",
+          "note": "Themes inferred from public news — not scraped tweet text"
+        },
+        "suggestions": {
+          "label": "Peer gaps, search trends, product coverage, and public signals",
+          "confidence": "inferred",
+          "url": null,
+          "asOf": "2026-07",
+          "category": "Planning",
+          "tab": "Suggestions",
+          "note": "Priorities are directional — validate before resourcing"
+        },
+        "benefit": {
+          "label": "Manual research time model for corpus depth + usage activity",
+          "confidence": "modeled",
+          "url": null,
+          "asOf": "2026-07",
+          "category": "Planning",
+          "tab": "Benefit",
+          "note": ""
+        },
+        "executive": {
+          "label": "Brief, threats, gaps, momentum, and leadership synthesis",
+          "confidence": "mixed",
+          "url": null,
+          "asOf": "2026-07",
+          "category": "Executive",
+          "tab": "Brief",
+          "note": "Momentum scores computed from live store metrics"
         }
       },
       "linkedin": {
@@ -2322,25 +2473,12 @@
                 "query": "commerce max",
                 "index": 76,
                 "change": "+6%"
-              },
-              {
-                "query": "criteo france",
-                "index": 100,
-                "change": "+12%"
               }
             ],
             "metros": [
               {
                 "name": "Paris",
                 "index": 100
-              },
-              {
-                "name": "Lyon",
-                "index": 82
-              },
-              {
-                "name": "Marseille",
-                "index": 64
               }
             ]
           },
@@ -2369,16 +2507,6 @@
                 "query": "criteo commerce max",
                 "index": 100,
                 "change": "+9%"
-              },
-              {
-                "query": "criteo united",
-                "index": 100,
-                "change": "+12%"
-              },
-              {
-                "query": "criteo advertising",
-                "index": 78,
-                "change": "+8%"
               }
             ],
             "metros": [
@@ -2389,10 +2517,6 @@
               {
                 "name": "Chicago",
                 "index": 62
-              },
-              {
-                "name": "Los Angeles",
-                "index": 82
               }
             ]
           },
@@ -2421,30 +2545,12 @@
                 "query": "criteo japan",
                 "index": 100,
                 "change": "+12%"
-              },
-              {
-                "query": "criteo advertising",
-                "index": 78,
-                "change": "+8%"
-              },
-              {
-                "query": "criteo programmatic",
-                "index": 62,
-                "change": "+5%"
               }
             ],
             "metros": [
               {
                 "name": "Tokyo",
                 "index": 100
-              },
-              {
-                "name": "Osaka",
-                "index": 82
-              },
-              {
-                "name": "Nagoya",
-                "index": 64
               }
             ]
           }
@@ -2454,10 +2560,13 @@
           "commerce max"
         ],
         "source": {
-          "label": "Google Trends interest index (normalized 0–100)",
+          "label": "Google Trends-style interest index (normalized 0–100)",
           "confidence": "modeled",
           "url": "https://trends.google.com",
-          "asOf": "2026-07"
+          "asOf": "2026-07",
+          "category": "Market intel",
+          "tab": "Search",
+          "note": "Regional drill-down uses modeled metro/query indices"
         },
         "monthLabels": [
           "Jan",
@@ -2487,61 +2596,118 @@
           "label": "Criteo 10-K · revenue",
           "confidence": "reported",
           "url": "https://investors.criteo.com",
-          "asOf": "FY2024"
+          "asOf": "FY2024",
+          "category": "Dashboard",
+          "tab": "Revenue",
+          "note": ""
         },
         "employees": {
           "label": "10-K headcount disclosure",
           "confidence": "reported",
           "url": "https://investors.criteo.com",
-          "asOf": "FY2024"
+          "asOf": "FY2024",
+          "category": "Dashboard",
+          "tab": "Overview",
+          "note": ""
         },
         "segments": {
           "label": "10-K + investor deck segment split",
           "confidence": "reported",
           "url": "https://investors.criteo.com",
-          "asOf": "FY2024"
+          "asOf": "FY2024",
+          "category": "Dashboard",
+          "tab": "Revenue",
+          "note": ""
         },
         "radar": {
-          "label": "Peer benchmark model · public product & press signals",
+          "label": "Peer benchmark model · product pages, press, and radar inputs",
           "confidence": "modeled",
           "url": null,
-          "asOf": "2026-07"
+          "asOf": "2026-07",
+          "category": "Dashboard",
+          "tab": "Overview",
+          "note": "Scores normalized 0–100 vs peer set"
         },
         "products": {
-          "label": "Criteo product announcements",
+          "label": "Criteo product pages & public documentation",
           "confidence": "reported",
           "url": "https://www.criteo.com",
-          "asOf": "2026-07"
+          "asOf": "2026-07",
+          "category": "Dashboard",
+          "tab": "Products",
+          "note": ""
         },
         "winning": {
-          "label": "Investor materials + commerce media press",
+          "label": "Synthesized winning thesis from filings, press, and peer compare",
           "confidence": "inferred",
-          "url": "https://investors.criteo.com",
-          "asOf": "2026-07"
+          "url": null,
+          "asOf": "2026-07",
+          "category": "Dashboard",
+          "tab": "Overview",
+          "note": ""
         },
         "search": {
-          "label": "Google Trends interest index (normalized 0–100)",
+          "label": "Google Trends-style interest index (normalized 0–100)",
           "confidence": "modeled",
           "url": "https://trends.google.com",
-          "asOf": "2026-07"
-        },
-        "hiring": {
-          "label": "LinkedIn public job listings & company careers pages",
-          "confidence": "reported",
-          "url": "https://www.linkedin.com/company/criteo/jobs/",
-          "asOf": "2026-07"
-        },
-        "x": {
-          "label": "X profile @Criteo (verified public URL)",
-          "confidence": "reported",
-          "url": "https://x.com/Criteo",
-          "asOf": "2026-07-24"
+          "asOf": "2026-07",
+          "category": "Market intel",
+          "tab": "Search",
+          "note": "Regional drill-down uses modeled metro/query indices"
         },
         "signals": {
           "label": "Public press, product pages, and industry news synthesis",
           "confidence": "mixed",
           "url": "https://www.criteo.com",
-          "asOf": "2026-07"
+          "asOf": "2026-07",
+          "category": "Market intel",
+          "tab": "Signals",
+          "note": "Each signal cites its own source URL on the Signals tab"
+        },
+        "hiring": {
+          "label": "LinkedIn public job listings & company careers pages",
+          "confidence": "reported",
+          "url": "https://www.linkedin.com/company/criteo/jobs/",
+          "asOf": "2026-07",
+          "category": "Market intel",
+          "tab": "LinkedIn",
+          "note": ""
+        },
+        "x": {
+          "label": "X profile @Criteo (verified public URL)",
+          "confidence": "reported",
+          "url": "https://x.com/Criteo",
+          "asOf": "2026-07-24",
+          "category": "Market intel",
+          "tab": "X",
+          "note": "Themes inferred from public news — not scraped tweet text"
+        },
+        "suggestions": {
+          "label": "Peer gaps, search trends, product coverage, and public signals",
+          "confidence": "inferred",
+          "url": null,
+          "asOf": "2026-07",
+          "category": "Planning",
+          "tab": "Suggestions",
+          "note": "Priorities are directional — validate before resourcing"
+        },
+        "benefit": {
+          "label": "Manual research time model for corpus depth + usage activity",
+          "confidence": "modeled",
+          "url": null,
+          "asOf": "2026-07",
+          "category": "Planning",
+          "tab": "Benefit",
+          "note": ""
+        },
+        "executive": {
+          "label": "Brief, threats, gaps, momentum, and leadership synthesis",
+          "confidence": "mixed",
+          "url": null,
+          "asOf": "2026-07",
+          "category": "Executive",
+          "tab": "Brief",
+          "note": "Momentum scores computed from live store metrics"
         }
       },
       "linkedin": {
@@ -5455,8 +5621,8 @@
   "suggestionsPolicy": "Suggestions synthesized from peer compare, product gaps, search trends, and public signals. Priorities are directional — validate against your pipeline before resourcing.",
   "researchPolicy": "Competitive research corpus v2 — balanced depth across all tracked companies: 8 signals, 8 hiring roles, 6 X themes, 4 products, 4 revenue segments, and full regional search drill-down per company. Sources marked reported / inferred / modeled.",
   "researchVersion": 2,
-  "benefitPolicy": "Time saved estimates what manual competitive research would take to replicate this dashboard — signals sourced, hiring scanned, products mapped, peers compared, and suggestions drafted. Baseline is per company from corpus depth; usage adds a small bonus.",
-  "benefitVersion": 3,
+  "benefitPolicy": "Time saved is a corpus-level estimate: the manual research effort to build one company profile at the standard depth in this watch list. Every company receives the same coverage — switch to Brief or Suggestions for company-specific priorities.",
+  "benefitVersion": 4,
   "executive": {
     "kargo": {
       "brief": {
@@ -5728,5 +5894,7 @@
     }
   },
   "executivePolicy": "Executive views synthesize public research in this corpus — signals, hiring, search trends, product gaps, and curated leadership moves. Momentum scores are computed from live store data.",
-  "executiveVersion": 1
+  "executiveVersion": 1,
+  "sourcesPolicy": "All metrics use public sources only — SEC filings, company sites, LinkedIn, X profiles, trade press, and modeled indices. Confidence tags mark how directly each field is sourced.",
+  "sourcesVersion": 2
 }

@@ -1,14 +1,32 @@
 import { useEffect, useState } from 'react';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import { useCompany } from '../context/CompanyContext';
-import { formatDate } from '../api';
-import { activeNavGroup, matchNavPath, navGroups } from '../nav';
-import CompareModeBar from './CompareModeBar';
+import { activeNavGroup, matchNavPath, navGroups, pageScope } from '../nav';
 import { NavIcon } from './NavIcon';
 
 function NavGroup({ group, pathname, expanded, onToggle }) {
   const isActiveGroup = group.items.some((item) => matchNavPath(pathname, item.to, item.end));
   const isOpen = expanded[group.id] ?? isActiveGroup;
+  const isSingle = group.items.length === 1;
+
+  if (isSingle) {
+    const item = group.items[0];
+    return (
+      <div className={`nav-group nav-group--single ${isActiveGroup ? 'nav-group--active' : ''}`}>
+        <span className="nav-group__label">{group.label}</span>
+        <NavLink
+          to={item.to}
+          end={item.end}
+          className={({ isActive }) => (isActive ? 'nav__link active' : 'nav__link')}
+        >
+          <span className="nav__icon" aria-hidden>
+            <NavIcon name={item.icon} variant="sidebar" />
+          </span>
+          {item.label}
+        </NavLink>
+      </div>
+    );
+  }
 
   return (
     <div className={`nav-group ${isActiveGroup ? 'nav-group--active' : ''}`}>
@@ -47,15 +65,23 @@ function NavGroup({ group, pathname, expanded, onToggle }) {
 }
 
 export default function Layout() {
-  const { companies, slug, setSlug, data, refreshing, refresh, loading, compareMode, setCompareMode } = useCompany();
-  const company = data?.company;
+  const { companies, slug, setSlug, refreshing, refresh, loading } = useCompany();
   const location = useLocation();
   const activeGroup = activeNavGroup(location.pathname);
+  const isCorpusPage = pageScope(location.pathname) === 'corpus';
 
-  const [expanded, setExpanded] = useState(() => ({ [activeGroup.id]: true }));
+  const [expanded, setExpanded] = useState(() =>
+    Object.fromEntries(
+      navGroups.filter((g) => g.items.length > 1).map((g) => [g.id, g.id === activeGroup.id])
+    )
+  );
 
   useEffect(() => {
-    setExpanded((prev) => ({ ...prev, [activeGroup.id]: true }));
+    setExpanded(
+      Object.fromEntries(
+        navGroups.filter((g) => g.items.length > 1).map((g) => [g.id, g.id === activeGroup.id])
+      )
+    );
   }, [activeGroup.id]);
 
   function toggleGroup(id) {
@@ -94,28 +120,35 @@ export default function Layout() {
       <div className="main">
         <header className="topbar">
           <div className="topbar__left">
-            <label className="field">
-              <span>Company</span>
-              <select value={slug} onChange={(e) => setSlug(e.target.value)} disabled={loading}>
-                {companies.map((c) => (
-                  <option key={c.slug} value={c.slug}>
-                    {c.name}
-                  </option>
-                ))}
-              </select>
-            </label>
-            {company && (
-              <p className="meta">
-                {company.type} · Updated {formatDate(company.refreshedAt)}
+            {isCorpusPage ? (
+              <p className="topbar__scope">
+                <span className="topbar__scope-label">Scope</span>
+                All companies · same research depth
               </p>
+            ) : (
+              <>
+                <label className="field">
+                  <span>Company</span>
+                  <select value={slug} onChange={(e) => setSlug(e.target.value)} disabled={loading}>
+                    {companies.map((c) => (
+                      <option key={c.slug} value={c.slug}>
+                        {c.name}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+              </>
             )}
           </div>
-          <button type="button" className="btn btn--primary" onClick={refresh} disabled={refreshing || loading}>
-            <span className={`btn__icon ${refreshing ? 'btn__icon--spin' : ''}`} aria-hidden>↻</span>
-            {refreshing ? 'Refreshing…' : 'Refresh data'}
-          </button>
+          {!isCorpusPage && (
+            <button type="button" className="btn btn--primary" onClick={refresh} disabled={refreshing || loading}>
+              <span className={`btn__icon ${refreshing ? 'btn__icon--spin' : ''}`} aria-hidden>↻</span>
+              {refreshing ? 'Refreshing…' : 'Refresh data'}
+            </button>
+          )}
         </header>
 
+        {activeGroup.items.length > 1 && (
         <div className="page-tabs scroll-x" role="tablist" aria-label={`${activeGroup.label} pages`}>
           <div className="page-tabs__inner">
             <div className="page-tabs__track">
@@ -135,15 +168,9 @@ export default function Layout() {
                 </NavLink>
               ))}
             </div>
-            {activeGroup.id === 'intel' && (
-              <CompareModeBar
-                compareMode={compareMode}
-                onChange={setCompareMode}
-                peerCount={data?.peers?.length || 0}
-              />
-            )}
           </div>
         </div>
+        )}
 
         <div className="content">
           <Outlet />

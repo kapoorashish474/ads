@@ -1,13 +1,3 @@
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const storePath = path.join(__dirname, '../data/store.json');
-const store = JSON.parse(fs.readFileSync(storePath, 'utf8'));
-
-export const BENEFIT_VERSION = 4;
-
 const STANDARD_COVERAGE = {
   companySignals: 8,
   peerSignals: 40,
@@ -19,6 +9,18 @@ const STANDARD_COVERAGE = {
   searchRegions: 3,
   sourceFields: 13,
 };
+
+const TARGET_BASELINE_HOURS = 56;
+
+const CORPUS_INCLUDES = [
+  'Signals, hiring, products, search, and X themes at the same depth for every company',
+  'Five peers monitored per company with balanced intel coverage',
+  'Evidence-backed suggestions drafted from peer gaps and public signals',
+  'Executive brief, threats, gaps, and leadership views synthesized per company',
+];
+
+export const BENEFIT_POLICY =
+  'Time saved is a corpus-level estimate: the manual research effort to build one company profile at the standard depth in this watch list. Every company receives the same coverage — switch to Brief or Suggestions for company-specific priorities.';
 
 function timeBreakdown(metrics) {
   return [
@@ -77,7 +79,6 @@ function scaleBreakdown(breakdown, targetHours) {
   return scaled;
 }
 
-const TARGET_BASELINE_HOURS = 56;
 const TARGET_DATA_POINTS =
   STANDARD_COVERAGE.companySignals +
   STANDARD_COVERAGE.peerSignals +
@@ -86,42 +87,16 @@ const TARGET_DATA_POINTS =
   STANDARD_COVERAGE.suggestions +
   STANDARD_COVERAGE.products;
 
-const rawBreakdown = timeBreakdown(STANDARD_COVERAGE);
-const breakdown = scaleBreakdown(rawBreakdown, TARGET_BASELINE_HOURS);
+export function buildBenefitCorpus(store) {
+  if (store.benefitCorpus) return store.benefitCorpus;
 
-store.benefitCorpus = {
-  researchBaselineHours: TARGET_BASELINE_HOURS,
-  researchCoverage: STANDARD_COVERAGE,
-  timeBreakdown: breakdown,
-  dataPointsTracked: TARGET_DATA_POINTS,
-  companyCount: store.companies.length,
-  includes: [
-    'Signals, hiring, products, search, and X themes at the same depth for every company',
-    'Five peers monitored per company with balanced intel coverage',
-    'Evidence-backed suggestions drafted from peer gaps and public signals',
-    'Executive brief, threats, gaps, and leadership views synthesized per company',
-  ],
-};
-
-store.benefitPolicy =
-  'Time saved is a corpus-level estimate: the manual research effort to build one company profile at the standard depth in this watch list. Every company receives the same coverage — switch to Brief or Suggestions for company-specific priorities.';
-
-store.benefit = {};
-for (const company of store.companies) {
-  const existing = store.benefit?.[company.slug] || {};
-  store.benefit[company.slug] = {
-    views: existing.views || 0,
-    refreshes: existing.refreshes || 0,
-    suggestionsAccepted: existing.suggestionsAccepted || 0,
-    validatedSignals: existing.validatedSignals || 0,
+  const breakdown = scaleBreakdown(timeBreakdown(STANDARD_COVERAGE), TARGET_BASELINE_HOURS);
+  return {
+    researchBaselineHours: TARGET_BASELINE_HOURS,
+    researchCoverage: STANDARD_COVERAGE,
+    timeBreakdown: breakdown,
+    dataPointsTracked: TARGET_DATA_POINTS,
+    companyCount: store.companies?.length || 0,
+    includes: CORPUS_INCLUDES,
   };
 }
-
-store.benefitVersion = BENEFIT_VERSION;
-
-fs.writeFileSync(storePath, JSON.stringify(store, null, 2));
-
-console.log(
-  `Corpus baseline: ${store.benefitCorpus.researchBaselineHours}h · ${store.benefitCorpus.dataPointsTracked} data points · ${store.benefitCorpus.companyCount} companies`
-);
-console.log(`Benefit v${BENEFIT_VERSION} applied`);

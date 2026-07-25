@@ -108,6 +108,7 @@ export function loadStore() {
 
   if (seed.benefitVersion && store.benefitVersion !== seed.benefitVersion) {
     store.benefit = seed.benefit;
+    store.benefitCorpus = seed.benefitCorpus;
     store.benefitPolicy = seed.benefitPolicy;
     store.benefitVersion = seed.benefitVersion;
     migrated = true;
@@ -117,6 +118,19 @@ export function loadStore() {
     store.executive = seed.executive;
     store.executivePolicy = seed.executivePolicy;
     store.executiveVersion = seed.executiveVersion;
+    migrated = true;
+  }
+
+  if (seed.sourcesVersion && store.sourcesVersion !== seed.sourcesVersion) {
+    for (const company of store.companies) {
+      const seedCo = seed.companies.find((c) => c.slug === company.slug);
+      if (seedCo?.dataSources) {
+        company.dataSources = seedCo.dataSources;
+        migrated = true;
+      }
+    }
+    store.sourcesPolicy = seed.sourcesPolicy;
+    store.sourcesVersion = seed.sourcesVersion;
     migrated = true;
   }
 
@@ -213,9 +227,7 @@ export function refreshCompany(slug) {
       views: 0,
       refreshes: 0,
       suggestionsAccepted: 0,
-      researchHoursSaved: 0,
       validatedSignals: 0,
-      highlights: [],
     };
   }
   data.benefit[slug].refreshes = (data.benefit[slug].refreshes || 0) + 1;

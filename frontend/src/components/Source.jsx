@@ -5,6 +5,7 @@ const confidenceLabels = {
   estimated: 'Estimated',
   modeled: 'Modeled',
   inferred: 'Inferred',
+  mixed: 'Mixed',
 };
 
 export function SourceBadge({ confidence }) {
@@ -61,6 +62,10 @@ function formatField(key) {
     search: 'Search interest',
     hiring: 'LinkedIn hiring',
     x: 'X (Twitter) presence',
+    signals: 'Market signals',
+    suggestions: 'Suggestions',
+    benefit: 'Benefit estimates',
+    executive: 'Executive views',
   };
   return map[key] || key;
 }

@@ -31,6 +31,14 @@ const icons = {
       <path d="M13 2 3 14h8l-1 8 10-12h-8l1-8Z" {...stroke} />
     </svg>
   ),
+  social: (
+    <svg viewBox="0 0 24 24" aria-hidden>
+      <circle cx="18" cy="5" r="3" {...stroke} />
+      <circle cx="6" cy="12" r="3" {...stroke} />
+      <circle cx="18" cy="19" r="3" {...stroke} />
+      <path d="M8.59 13.51 15.42 17.49M15.41 6.51 8.59 10.49" {...stroke} />
+    </svg>
+  ),
   search: (
     <svg viewBox="0 0 24 24" aria-hidden>
       <circle cx="11" cy="11" r="6" {...stroke} />
@@ -55,8 +63,8 @@ const icons = {
   ),
   benefit: (
     <svg viewBox="0 0 24 24" aria-hidden>
-      <path d="M4 18V8l8-4 8 4v10" {...stroke} />
-      <path d="M9 14l2 2 4-4" {...stroke} />
+      <path d="M4 19V5M4 19h16" {...stroke} />
+      <path d="M7 15l3-3 3 2 5-6" {...stroke} />
     </svg>
   ),
   sources: (

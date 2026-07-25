@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { Card, Stat, Loading, ErrorState, Pill, Empty } from '../components/ui';
 import { BarChart } from '../components/Charts';
 import { SourceBadge, SourceFootnote } from '../components/Source';
-import { FilterBar, FilterRow } from '../components/FilterBar';
+import { FilterBar, FilterSelect } from '../components/FilterBar';
 import IntelCompareTable from '../components/IntelCompareTable';
 import { useCompany } from '../context/CompanyContext';
 import { api } from '../api';
@@ -20,7 +20,7 @@ function formatPosted(iso) {
   return new Date(iso).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
 }
 
-export default function XPage() {
+export default function XPage({ embedded = false }) {
   const { slug, data, loading: ctxLoading, error: ctxError, compareMode } = useCompany();
   const [posts, setPosts] = useState([]);
   const [policy, setPolicy] = useState('');
@@ -94,25 +94,37 @@ export default function XPage() {
   if (ctxError || error) return <ErrorState message={ctxError || error} />;
 
   return (
-    <div className="page">
-      <div className="hero hero--compact">
-        <h1>X presence</h1>
-        <p className="lede">
-          {compareMode
-            ? `X presence vs peers — public themes and activity for ${companyName}.`
-            : <>Verified X profile links for {companyName} and peers. Themes come from public press and company pages — not scraped tweet text.</>}
-        </p>
-        {xProfile?.profileUrl && (
-          <p className="lede" style={{ marginTop: '0.5rem' }}>
-            <a href={xProfile.profileUrl} target="_blank" rel="noreferrer">
-              @{xProfile.handle} on X →
-            </a>
-            {xProfile.validatedAt && (
-              <span className="muted"> · profile verified {xProfile.validatedAt}</span>
-            )}
+    <div className={embedded ? 'intel-panel' : 'page'}>
+      {!embedded && (
+        <div className="hero hero--compact">
+          <h1>X presence</h1>
+          <p className="lede">
+            {compareMode
+              ? `X presence vs peers — public themes and activity for ${companyName}.`
+              : <>Verified X profile links for {companyName} and peers. Themes come from public press and company pages — not scraped tweet text.</>}
           </p>
-        )}
-      </div>
+          {xProfile?.profileUrl && (
+            <p className="lede" style={{ marginTop: '0.5rem' }}>
+              <a href={xProfile.profileUrl} target="_blank" rel="noreferrer">
+                @{xProfile.handle} on X →
+              </a>
+              {xProfile.validatedAt && (
+                <span className="muted"> · profile verified {xProfile.validatedAt}</span>
+              )}
+            </p>
+          )}
+        </div>
+      )}
+      {embedded && xProfile?.profileUrl && (
+        <p className="intel-panel__link">
+          <a href={xProfile.profileUrl} target="_blank" rel="noreferrer">
+            @{xProfile.handle} on X →
+          </a>
+          {xProfile.validatedAt && (
+            <span className="muted"> · profile verified {xProfile.validatedAt}</span>
+          )}
+        </p>
+      )}
 
       {compareMode && company && (
         <>
@@ -146,11 +158,10 @@ export default function XPage() {
 
       {!compareMode && (
       <>
-      <div className="grid grid--stats grid--stats-4">
+      <div className="grid grid--stats grid--stats-3">
         <Stat label="X handle" value={`@${xProfile?.handle || '—'}`} hint="Verified profile URL" />
         <Stat label="Themes tracked" value={themes.length} hint="Across company + peers" />
         <Stat label={`${companyName} items`} value={companyPosts.length} hint={`${reportedCount} from press`} />
-        <Stat label="Live stats" value="On X" hint="Follower counts not stored — view profile" />
       </div>
 
       <div className="grid grid--2">
@@ -198,43 +209,26 @@ export default function XPage() {
       )}
 
       <Card title={compareMode ? 'All public themes' : 'Public themes & press'} subtitle={`${filtered.length} of ${posts.length} shown`}>
-        <FilterBar
-          summary={[
-            scopeFilter === 'all' ? 'All' : scopeFilter === 'company' ? companyName : 'Peers',
-            themeFilter === 'all' ? 'All themes' : themeFilter,
-          ].join(' · ')}
-        >
-          <FilterRow label="Scope">
-            {[
-              ['all', 'All'],
-              ['company', companyName],
-              ['peers', 'Peers only'],
-            ].map(([key, label]) => (
-              <button
-                key={key}
-                type="button"
-                className={scopeFilter === key ? 'chip active' : 'chip'}
-                onClick={() => setScopeFilter(key)}
-              >
-                {label}
-              </button>
-            ))}
-          </FilterRow>
-          <FilterRow label="Theme">
-            <button type="button" className={themeFilter === 'all' ? 'chip active' : 'chip'} onClick={() => setThemeFilter('all')}>
-              All themes
-            </button>
-            {themes.map(([t]) => (
-              <button
-                key={t}
-                type="button"
-                className={themeFilter === t ? 'chip active' : 'chip'}
-                onClick={() => setThemeFilter(t)}
-              >
-                {t}
-              </button>
-            ))}
-          </FilterRow>
+        <FilterBar className="filter-toolbar--inset">
+          <FilterSelect
+            label="Scope"
+            value={scopeFilter}
+            onChange={setScopeFilter}
+            options={[
+              { value: 'all', label: 'All' },
+              { value: 'company', label: companyName },
+              { value: 'peers', label: 'Peers only' },
+            ]}
+          />
+          <FilterSelect
+            label="Theme"
+            value={themeFilter}
+            onChange={setThemeFilter}
+            options={[
+              { value: 'all', label: 'All themes' },
+              ...themes.map(([t]) => ({ value: t, label: t })),
+            ]}
+          />
         </FilterBar>
 
         {filtered.length === 0 ? (

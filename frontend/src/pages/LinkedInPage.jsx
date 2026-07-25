@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { Card, Stat, Loading, ErrorState, Pill, Empty } from '../components/ui';
 import { BarChart } from '../components/Charts';
 import { SourceFootnote } from '../components/Source';
-import { FilterBar, FilterRow } from '../components/FilterBar';
+import { FilterBar, FilterSelect } from '../components/FilterBar';
 import IntelCompareTable from '../components/IntelCompareTable';
 import { useCompany } from '../context/CompanyContext';
 import { api } from '../api';
@@ -20,7 +20,7 @@ function formatPosted(iso) {
   return new Date(iso).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
 }
 
-export default function LinkedInPage() {
+export default function LinkedInPage({ embedded = false }) {
   const { slug, data, loading: ctxLoading, error: ctxError, compareMode } = useCompany();
   const [jobs, setJobs] = useState([]);
   const [policy, setPolicy] = useState('');
@@ -93,22 +93,31 @@ export default function LinkedInPage() {
   if (ctxError || error) return <ErrorState message={ctxError || error} />;
 
   return (
-    <div className="page">
-      <div className="hero hero--compact">
-        <h1>LinkedIn hiring</h1>
-        <p className="lede">
-          {compareMode
-            ? `Hiring intensity — ${companyName} vs ${peers.length} peers by open roles and team.`
-            : `Where ${companyName} and peers are hiring — public LinkedIn listings by role, team, and region.`}
-        </p>
-        {linkedin?.jobsUrl && (
-          <p className="lede" style={{ marginTop: '0.5rem' }}>
-            <a href={linkedin.jobsUrl} target="_blank" rel="noreferrer">
-              View all {companyName} roles on LinkedIn →
-            </a>
+    <div className={embedded ? 'intel-panel' : 'page'}>
+      {!embedded && (
+        <div className="hero hero--compact">
+          <h1>LinkedIn hiring</h1>
+          <p className="lede">
+            {compareMode
+              ? `Hiring intensity — ${companyName} vs ${peers.length} peers by open roles and team.`
+              : `Where ${companyName} and peers are hiring — public LinkedIn listings by role, team, and region.`}
           </p>
-        )}
-      </div>
+          {linkedin?.jobsUrl && (
+            <p className="lede" style={{ marginTop: '0.5rem' }}>
+              <a href={linkedin.jobsUrl} target="_blank" rel="noreferrer">
+                View all {companyName} roles on LinkedIn →
+              </a>
+            </p>
+          )}
+        </div>
+      )}
+      {embedded && linkedin?.jobsUrl && (
+        <p className="intel-panel__link">
+          <a href={linkedin.jobsUrl} target="_blank" rel="noreferrer">
+            View all {companyName} roles on LinkedIn →
+          </a>
+        </p>
+      )}
 
       {compareMode && company && (
         <>
@@ -181,59 +190,36 @@ export default function LinkedInPage() {
       )}
 
       <Card title={compareMode ? 'All open roles' : 'Open roles'} subtitle={`${filtered.length} of ${jobs.length} shown · public LinkedIn listings`}>
-        <FilterBar
-          summary={[
-            scopeFilter === 'all' ? 'All' : scopeFilter === 'company' ? companyName : 'Peers',
-            regionFilter === 'all' ? 'All regions' : regionFilter,
-            deptFilter === 'all' ? 'All teams' : deptFilter,
-          ].join(' · ')}
-        >
-          <FilterRow label="Scope">
-            {[
-              ['all', 'All'],
-              ['company', companyName],
-              ['peers', 'Peers only'],
-            ].map(([key, label]) => (
-              <button
-                key={key}
-                type="button"
-                className={scopeFilter === key ? 'chip active' : 'chip'}
-                onClick={() => setScopeFilter(key)}
-              >
-                {label}
-              </button>
-            ))}
-          </FilterRow>
-          <FilterRow label="Region">
-            <button type="button" className={regionFilter === 'all' ? 'chip active' : 'chip'} onClick={() => setRegionFilter('all')}>
-              All regions
-            </button>
-            {regions.map(([r]) => (
-              <button
-                key={r}
-                type="button"
-                className={regionFilter === r ? 'chip active' : 'chip'}
-                onClick={() => setRegionFilter(r)}
-              >
-                {r}
-              </button>
-            ))}
-          </FilterRow>
-          <FilterRow label="Team">
-            <button type="button" className={deptFilter === 'all' ? 'chip active' : 'chip'} onClick={() => setDeptFilter('all')}>
-              All teams
-            </button>
-            {departments.map(([d]) => (
-              <button
-                key={d}
-                type="button"
-                className={deptFilter === d ? 'chip active' : 'chip'}
-                onClick={() => setDeptFilter(d)}
-              >
-                {d}
-              </button>
-            ))}
-          </FilterRow>
+        <FilterBar className="filter-toolbar--inset">
+          <FilterSelect
+            label="Scope"
+            value={scopeFilter}
+            onChange={setScopeFilter}
+            className="filter-select--wide"
+            options={[
+              { value: 'all', label: 'All' },
+              { value: 'company', label: companyName },
+              { value: 'peers', label: 'Peers only' },
+            ]}
+          />
+          <FilterSelect
+            label="Region"
+            value={regionFilter}
+            onChange={setRegionFilter}
+            options={[
+              { value: 'all', label: 'All regions' },
+              ...regions.map(([r]) => ({ value: r, label: r })),
+            ]}
+          />
+          <FilterSelect
+            label="Team"
+            value={deptFilter}
+            onChange={setDeptFilter}
+            options={[
+              { value: 'all', label: 'All teams' },
+              ...departments.map(([d]) => ({ value: d, label: d })),
+            ]}
+          />
         </FilterBar>
 
         {filtered.length === 0 ? (

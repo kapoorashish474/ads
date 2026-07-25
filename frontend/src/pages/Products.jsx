@@ -9,12 +9,6 @@ const TAKEAWAY_LABELS = {
   implication: 'Implication',
 };
 
-function peerAvgCount(peers) {
-  if (!peers.length) return 0;
-  const total = peers.reduce((s, p) => s + (p.products || []).length, 0);
-  return Math.round((total / peers.length) * 10) / 10;
-}
-
 export default function Products() {
   const { data, loading, error } = useCompany();
   if (loading) return <Loading />;
@@ -40,7 +34,6 @@ export default function Products() {
 
   const gaps = categoryRows.filter((r) => !r.has && r.peerCount > 0);
   const coveredCategories = new Set(products.map((p) => p.category)).size;
-  const peerAvg = peerAvgCount(peers);
 
   const landscape = [company, ...peers].flatMap((c) =>
     (c.products || []).map((p) => ({
@@ -67,15 +60,14 @@ export default function Products() {
         </p>
       </div>
 
-      <div className="grid grid--stats grid--stats-4">
+      <div className="grid grid--stats grid--stats-3">
         <Stat
           label="Products tracked"
           value={products.length}
-          hint="Named SKUs from public pages — not every feature"
+          hint="Named SKUs from public pages"
         />
-        <Stat label="Categories covered" value={coveredCategories} hint="Distinct product types you ship" />
+        <Stat label="Categories covered" value={coveredCategories} />
         <Stat label="Category gaps" value={gaps.length} hint="Peer categories you don't have" />
-        <Stat label="Peer average" value={peerAvg} hint="Avg product lines per peer" />
       </div>
 
       {insights && (

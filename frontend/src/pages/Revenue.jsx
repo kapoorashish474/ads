@@ -1,5 +1,5 @@
 import { Card, Stat, Loading, ErrorState, Empty } from '../components/ui';
-import { DonutChart, StackedBarChart, LineChart } from '../components/Charts';
+import { DonutChart, StackedBarChart } from '../components/Charts';
 import { CardSources, SourceFootnote } from '../components/Source';
 import { useCompany } from '../context/CompanyContext';
 import { formatUsd } from '../api';
@@ -30,29 +30,17 @@ export default function Revenue() {
     data: compareSet.map((c) => normalizeSegmentMix(c)[bucket]),
   })).filter((s) => s.data.some((v) => v > 0));
 
-  const labels = company.searchMetrics?.monthLabels || [
-    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
-  ];
-  const trendSeries = [
-    { name: company.name, data: company.searchMetrics?.trend || [] },
-    ...(peers[0] ? [{ name: peers[0].name, data: peers[0].searchMetrics?.trend || [] }] : []),
-  ];
-
   return (
     <div className="page page--revenue">
       <div className="hero hero--compact">
         <h1>Revenue</h1>
-        <p className="lede">
-          {formatUsd(company.adRevenueUsd)} total · {company.revenueLabel}
-        </p>
-        <SourceFootnote source={ds.revenue} />
+        <p className="lede">Segment mix and peer benchmarks for {company.name}.</p>
       </div>
 
-      <div className="grid grid--stats grid--stats-4">
+      <div className="grid grid--stats grid--stats-3">
         <Stat label="Ad revenue" value={formatUsd(company.adRevenueUsd)} hint={company.revenueLabel} />
-        <Stat label="Revenue segments" value={segments.length} hint="Reported or estimated mix" />
+        <Stat label="Segments" value={segments.length} hint="Reported or estimated mix" />
         <Stat label="Peers compared" value={peers.length} hint={peerNames || 'None configured'} />
-        <Stat label="Categories in mix" value={comparison.length} hint="Normalized buckets with data" />
       </div>
 
       <div className="grid grid--2">
@@ -84,7 +72,7 @@ export default function Revenue() {
 
       <Card
         title="Segment mix vs peers"
-        subtitle={`${company.name} vs ${peers.length} peers · normalized categories`}
+        subtitle={`Normalized categories · ${peers.length} peers`}
         collapsible
         defaultOpen
       >
@@ -92,77 +80,60 @@ export default function Revenue() {
           <Empty message="No peers configured — segment comparison unavailable." />
         ) : (
           <>
-        {(insights?.over || insights?.under) && (
-          <div className="segment-insights">
-            {insights.over && <p className="segment-insights__item segment-insights__item--up">{insights.over}</p>}
-            {insights.under && (
-              <p className="segment-insights__item segment-insights__item--down">{insights.under}</p>
+            {(insights?.over || insights?.under) && (
+              <div className="segment-insights">
+                {insights.over && <p className="segment-insights__item segment-insights__item--up">{insights.over}</p>}
+                {insights.under && (
+                  <p className="segment-insights__item segment-insights__item--down">{insights.under}</p>
+                )}
+              </div>
             )}
-          </div>
-        )}
 
-        <StackedBarChart
-          categories={stackedCategories}
-          series={stackedSeries}
-          height={Math.max(260, compareSet.length * 44)}
-        />
+            <StackedBarChart
+              categories={stackedCategories}
+              series={stackedSeries}
+              height={Math.max(260, compareSet.length * 44)}
+            />
 
-        <p className="card-note muted">
-          Raw segment labels differ by company (e.g. &quot;Mobile high-impact&quot; vs &quot;Native &amp; display&quot;).
-          We map them into shared buckets for peer comparison.
-        </p>
+            <p className="card-note muted">
+              Raw segment labels differ by company. We map them into shared buckets for peer comparison.
+            </p>
 
-        <div className="table-wrap table-wrap--scroll segment-compare-wrap">
-          <table className="table table--compact segment-compare">
-            <thead>
-              <tr>
-                <th>Category</th>
-                <th>{company.name}</th>
-                <th>Peer avg</th>
-                <th>Delta</th>
-                <th>Mix</th>
-              </tr>
-            </thead>
-            <tbody>
-              {comparison.map((row) => (
-                <tr key={row.bucket} className={Math.abs(row.delta) >= 8 ? 'row--focus' : ''}>
-                  <td>{row.bucket}</td>
-                  <td>{row.yours}%</td>
-                  <td className="muted">{row.peerAvg}%</td>
-                  <td>
-                    <span
-                      className={
-                        row.delta > 0 ? 'segment-delta segment-delta--up' : row.delta < 0 ? 'segment-delta segment-delta--down' : 'segment-delta'
-                      }
-                    >
-                      {row.delta > 0 ? '+' : ''}
-                      {row.delta} pts
-                    </span>
-                  </td>
-                  <td className="segment-compare__bar-cell">
-                    <div className="segment-compare__bar" aria-hidden>
-                      <span className="segment-compare__bar-you" style={{ width: `${row.yours}%` }} />
-                      <span className="segment-compare__bar-peer" style={{ width: `${row.peerAvg}%` }} />
-                    </div>
-                    <span className="segment-compare__legend">
-                      <span className="segment-compare__dot segment-compare__dot--you" /> You
-                      <span className="segment-compare__dot segment-compare__dot--peer" /> Peers
-                    </span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+            <div className="table-wrap table-wrap--scroll segment-compare-wrap">
+              <table className="table table--compact segment-compare">
+                <thead>
+                  <tr>
+                    <th>Category</th>
+                    <th>{company.name}</th>
+                    <th>Peer avg</th>
+                    <th>Delta</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {comparison.map((row) => (
+                    <tr key={row.bucket} className={Math.abs(row.delta) >= 8 ? 'row--focus' : ''}>
+                      <td>{row.bucket}</td>
+                      <td>{row.yours}%</td>
+                      <td className="muted">{row.peerAvg}%</td>
+                      <td>
+                        <span
+                          className={
+                            row.delta > 0 ? 'segment-delta segment-delta--up' : row.delta < 0 ? 'segment-delta segment-delta--down' : 'segment-delta'
+                          }
+                        >
+                          {row.delta > 0 ? '+' : ''}
+                          {row.delta} pts
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
 
-        <SourceFootnote source={ds.segments} field="Segments" />
+            <SourceFootnote source={ds.segments} field="Segments" />
           </>
         )}
-      </Card>
-
-      <Card title="Market attention proxy" subtitle="Search interest index (12 mo)">
-        <LineChart labels={labels} series={trendSeries} />
-        <SourceFootnote source={ds.search} field="Search" />
       </Card>
     </div>
   );

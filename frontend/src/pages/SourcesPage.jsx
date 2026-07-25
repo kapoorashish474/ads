@@ -1,113 +1,173 @@
-import { useMemo } from 'react';
-import { Card, Stat, Loading, ErrorState } from '../components/ui';
-import { SourceBadge, formatField, confidenceLabels } from '../components/Source';
+import { useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Loading, ErrorState } from '../components/ui';
+import { SourceBadge, formatField } from '../components/Source';
 import { useCompany } from '../context/CompanyContext';
-import { formatDate } from '../api';
 
-const CONFIDENCE_LEVELS = [
-  { key: 'reported', desc: 'SEC filings, earnings, company IR' },
-  { key: 'estimated', desc: 'Industry reports, LinkedIn, analyst models' },
-  { key: 'modeled', desc: 'Normalized indices — search trends, radar scores' },
-  { key: 'inferred', desc: 'Synthesis across multiple public signals' },
-];
+const CATEGORY_ORDER = ['Dashboard', 'Executive', 'Market intel', 'Planning', 'Reference'];
+
+const TAB_ROUTES = {
+  Overview: '/',
+  Revenue: '/revenue',
+  Products: '/products',
+  Signals: '/intel?section=signals',
+  Search: '/intel?section=search',
+  LinkedIn: '/intel?section=social&channel=linkedin',
+  X: '/intel?section=social&channel=x',
+  Suggestions: '/suggestions',
+  Benefit: '/benefit',
+  Brief: '/brief',
+};
+
+function sortRows(a, b) {
+  const cat = CATEGORY_ORDER.indexOf(a.category) - CATEGORY_ORDER.indexOf(b.category);
+  if (cat !== 0) return cat;
+  return (a.tab || '').localeCompare(b.tab || '') || a.key.localeCompare(b.key);
+}
+
+function SourceRow({ row }) {
+  return (
+    <tr>
+      <td className="sources-row__field">
+        <strong>{formatField(row.key)}</strong>
+        {row.note && <span className="sources-row__note">{row.note}</span>}
+      </td>
+      <td className="sources-row__tab">
+        {row.tab && TAB_ROUTES[row.tab] ? (
+          <Link to={TAB_ROUTES[row.tab]}>{row.tab}</Link>
+        ) : (
+          row.tab || '—'
+        )}
+      </td>
+      <td className="sources-row__source">
+        {row.url ? (
+          <a href={row.url} target="_blank" rel="noreferrer">
+            {row.label}
+          </a>
+        ) : (
+          row.label
+        )}
+      </td>
+      <td>
+        <SourceBadge confidence={row.confidence} />
+      </td>
+      <td className="sources-row__asof">{row.asOf || '—'}</td>
+    </tr>
+  );
+}
 
 export default function SourcesPage() {
   const { data, loading, error } = useCompany();
+  const [query, setQuery] = useState('');
+
   const sources = data?.company?.dataSources;
 
-  const confidenceCounts = useMemo(() => {
-    const counts = { reported: 0, estimated: 0, modeled: 0, inferred: 0 };
-    if (!sources) return counts;
-    Object.values(sources).forEach((src) => {
-      if (src.confidence && counts[src.confidence] !== undefined) {
-        counts[src.confidence] += 1;
-      }
-    });
-    return counts;
-  }, [sources]);
-
-  const topConfidence = useMemo(
-    () => Object.entries(confidenceCounts).sort((a, b) => b[1] - a[1])[0]?.[0] || '—',
-    [confidenceCounts]
+  const rows = useMemo(
+    () =>
+      Object.entries(sources || {})
+        .map(([key, src]) => ({ key, ...src }))
+        .sort(sortRows),
+    [sources]
   );
+
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q) return rows;
+    return rows.filter((row) => {
+      const haystack = [formatField(row.key), row.tab, row.label, row.note, row.category]
+        .filter(Boolean)
+        .join(' ')
+        .toLowerCase();
+      return haystack.includes(q);
+    });
+  }, [rows, query]);
+
+  const grouped = useMemo(() => {
+    const map = {};
+    filtered.forEach((row) => {
+      const cat = row.category || 'Other';
+      if (!map[cat]) map[cat] = [];
+      map[cat].push(row);
+    });
+    return CATEGORY_ORDER.filter((c) => map[c]?.length).map((category) => ({
+      category,
+      rows: map[category],
+    }));
+  }, [filtered]);
 
   if (loading) return <Loading />;
   if (error) return <ErrorState message={error} />;
   if (!data) return null;
 
   const { company } = data;
-  const entries = Object.entries(sources || {});
 
   return (
     <div className="page page--sources">
-      <div className="hero hero--compact">
-        <h1>Sources</h1>
-        <p className="lede">
-          Public origins and confidence levels for every metric tracked on {company.name}.
-        </p>
-      </div>
-
-      <div className="grid grid--stats grid--stats-3">
-        <Stat label="Fields tracked" value={entries.length} hint="Across all tabs" />
-        <Stat
-          label="Most common level"
-          value={confidenceLabels[topConfidence] || topConfidence}
-          hint="Confidence tag"
-        />
-        <Stat label="Last refresh" value={formatDate(company.refreshedAt)} hint="Profile data" />
-      </div>
-
-      <div className="confidence-legend">
-        {CONFIDENCE_LEVELS.map((level) => (
-          <div key={level.key} className="confidence-legend__item">
-            <SourceBadge confidence={level.key} />
-            <p>{level.desc}</p>
-            <span className="confidence-legend__count">{confidenceCounts[level.key]} fields</span>
-          </div>
-        ))}
-      </div>
-
-      <Card title="Source registry" subtitle={`${company.name} · ${entries.length} data fields`}>
-        <div className="table-wrap table-wrap--flat">
-          <table className="table source-registry">
-            <thead>
-              <tr>
-                <th>Field</th>
-                <th>Source</th>
-                <th>Confidence</th>
-                <th>As of</th>
-              </tr>
-            </thead>
-            <tbody>
-              {entries.map(([key, src]) => (
-                <tr key={key}>
-                  <td className="source-registry__field">{formatField(key)}</td>
-                  <td className="source-registry__label">
-                    {src.url ? (
-                      <a href={src.url} target="_blank" rel="noreferrer">
-                        {src.label}
-                      </a>
-                    ) : (
-                      src.label
-                    )}
-                  </td>
-                  <td className="source-registry__badge">
-                    <SourceBadge confidence={src.confidence} />
-                  </td>
-                  <td className="source-registry__asof">{src.asOf || '—'}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        <footer className="sources-footer">
-          <p>
-            <strong>Signals</strong> cite press pages and trade coverage on the Signals tab.{' '}
-            <strong>LinkedIn</strong> and <strong>X</strong> link to public social profiles — no private APIs.
+      <header className="sources-header">
+        <div>
+          <h1>Sources</h1>
+          <p className="sources-header__lede">
+            Public data origins for {company.name} — {rows.length} fields across the app.
           </p>
-        </footer>
-      </Card>
+        </div>
+        <div className="sources-header__search">
+          <input
+            type="search"
+            className="sources-search"
+            placeholder="Search field or source…"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            aria-label="Search sources"
+          />
+        </div>
+      </header>
+
+      <div className="sources-registry">
+        {grouped.length === 0 ? (
+          <p className="muted sources-empty">No fields match your search.</p>
+        ) : (
+          grouped.map(({ category, rows: sectionRows }) => (
+            <section key={category} className="sources-section">
+              <div className="sources-section__head">
+                <h2>{category}</h2>
+              </div>
+              <div className="sources-section__table">
+                <table className="table table--compact sources-table">
+                  <thead>
+                    <tr>
+                      <th>Field</th>
+                      <th>Tab</th>
+                      <th>Source</th>
+                      <th>Level</th>
+                      <th>As of</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {sectionRows.map((row) => (
+                      <SourceRow key={row.key} row={row} />
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          ))
+        )}
+      </div>
+
+      <details className="sources-methodology">
+        <summary>About confidence levels & methodology</summary>
+        <ul>
+          <li>
+            <strong>Reported</strong> — filings, IR, verified profiles.{' '}
+            <strong>Estimated</strong> — industry reports, LinkedIn bands.{' '}
+            <strong>Modeled</strong> — indices & scores.{' '}
+            <strong>Inferred</strong> — synthesized from public signals.{' '}
+            <strong>Mixed</strong> — reported + modeled.
+          </li>
+          <li>All metrics use public sources only — no private APIs or scraped social text.</li>
+          <li>Each chart and stat elsewhere in the app shows the same confidence tag at point of use.</li>
+        </ul>
+      </details>
     </div>
   );
 }

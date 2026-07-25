@@ -5,7 +5,7 @@ import { SourceFootnote } from '../components/Source';
 import { useCompany } from '../context/CompanyContext';
 import { compareRows, deltaVsPeers, focusRank, peerAverage } from '../utils/intelCompare';
 
-export default function SearchPage() {
+export default function SearchPage({ embedded = false }) {
   const { data, loading, error, slug, compareMode } = useCompany();
   const [regionName, setRegionName] = useState(null);
 
@@ -63,15 +63,17 @@ export default function SearchPage() {
   });
 
   return (
-    <div className="page">
-      <div className="hero hero--compact">
-        <h1>Search interest</h1>
-        <p className="lede">
-          {compareMode
-            ? `Market attention index — ${company.name} vs ${peers.length} peers globally and by region.`
-            : `How the market finds ${company.name} — global and by region`}
-        </p>
-      </div>
+    <div className={embedded ? 'intel-panel' : 'page'}>
+      {!embedded && (
+        <div className="hero hero--compact">
+          <h1>Search interest</h1>
+          <p className="lede">
+            {compareMode
+              ? `Market attention index — ${company.name} vs ${peers.length} peers globally and by region.`
+              : `How the market finds ${company.name} — global and by region`}
+          </p>
+        </div>
+      )}
 
       {compareMode && (
         <>
@@ -134,98 +136,96 @@ export default function SearchPage() {
       </>
       )}
 
-      <Card title="Regional overview" subtitle="Click a region to drill down">
-        <div className="scroll-strip">
-          <div className="region-grid region-grid--strip">
-            {regions.map((r) => (
-              <button
-                key={r.name}
-                type="button"
-                className={`region-card ${activeRegion?.name === r.name ? 'region-card--active' : ''}`}
-                onClick={() => setRegionName(r.name)}
-              >
-                <strong>{r.name}</strong>
-                <span className="region-card__value">{r.sharePct ?? r.value}% share</span>
-                <span className={`region-card__change ${(r.changePct ?? 0) >= 10 ? 'up' : ''}`}>
-                  {(r.changePct ?? 0) >= 0 ? '+' : ''}
-                  {r.changePct ?? 0}% YoY
-                </span>
-              </button>
-            ))}
-          </div>
-        </div>
-        <BarChart
-          horizontal
-          categories={regions.map((r) => r.name)}
-          series={[{ name: 'Interest share', data: regions.map((r) => r.sharePct ?? r.value) }]}
-          height={Math.max(180, regions.length * 48)}
-        />
-      </Card>
-
-      {activeRegion && (
-        <>
-          <div className="hero hero--compact">
-            <p className="eyebrow">Region deep dive</p>
-            <h2>{activeRegion.name}</h2>
-            <p className="lede">{activeRegion.insight}</p>
-          </div>
-
-          <div className="grid grid--stats">
-            <div className="stat">
-              <span className="stat__label">Share of search</span>
-              <strong className="stat__value">{activeRegion.sharePct ?? activeRegion.value}%</strong>
-            </div>
-            <div className="stat">
-              <span className="stat__label">12-mo change</span>
-              <strong className="stat__value">+{activeRegion.changePct ?? 0}%</strong>
-            </div>
-            <div className="stat">
-              <span className="stat__label">Top metro</span>
-              <strong className="stat__value">{activeRegion.metros?.[0]?.name || '—'}</strong>
-            </div>
-          </div>
-
-          <div className="grid grid--2">
-            <Card title={`${activeRegion.name} — 12-month trend`}>
-              <LineChart
-                labels={labels}
-                series={[{ name: activeRegion.name, data: activeRegion.trend || [] }]}
-              />
-            </Card>
-            <Card title="Top metros" subtitle="Relative interest within region">
-              <BarChart
-                horizontal
-                categories={(activeRegion.metros || []).map((m) => m.name)}
-                series={[{ name: 'Index', data: (activeRegion.metros || []).map((m) => m.index) }]}
-              />
-            </Card>
-          </div>
-
-          <Card title={`Queries in ${activeRegion.name}`} subtitle="What people search for">
-            <table className="table">
-              <thead>
-                <tr>
-                  <th>Query</th>
-                  <th>Index</th>
-                  <th>Change</th>
-                </tr>
-              </thead>
-              <tbody>
-                {(activeRegion.topQueries || []).map((q) => (
-                  <tr key={q.query}>
-                    <td>{q.query}</td>
-                    <td>{q.index}</td>
+      <Card title="Regional search" subtitle="Click a region for detail">
+        <div className="region-table-wrap">
+          <table className="table table--compact region-table">
+            <thead>
+              <tr>
+                <th>Region</th>
+                <th>Share</th>
+                <th>YoY</th>
+              </tr>
+            </thead>
+            <tbody>
+              {regions.map((r) => {
+                const share = r.sharePct ?? r.value ?? 0;
+                const isActive = activeRegion?.name === r.name;
+                return (
+                  <tr
+                    key={r.name}
+                    className={`region-table__row ${isActive ? 'region-table__row--active' : ''}`}
+                    onClick={() => setRegionName(r.name)}
+                  >
+                    <td className="region-table__name">{r.name}</td>
+                    <td className="region-table__share">
+                      <div className="region-table__bar" aria-hidden>
+                        <span className="region-table__fill" style={{ width: `${share}%` }} />
+                      </div>
+                      <span>{share}%</span>
+                    </td>
                     <td>
-                      <Pill tone={q.change?.startsWith('+') ? 'up' : 'default'}>{q.change}</Pill>
+                      <Pill tone={(r.changePct ?? 0) >= 10 ? 'up' : 'default'}>
+                        {(r.changePct ?? 0) >= 0 ? '+' : ''}
+                        {r.changePct ?? 0}%
+                      </Pill>
                     </td>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-            <SourceFootnote source={sm.source || company.dataSources?.search} field="Regional search" />
-          </Card>
-        </>
-      )}
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+
+        {activeRegion && (
+          <div className="region-detail">
+            <p className="region-detail__insight">{activeRegion.insight}</p>
+            <div className="region-detail__grid">
+              <div className="region-detail__panel">
+                <h4>12-month trend</h4>
+                <LineChart
+                  labels={labels}
+                  series={[{ name: activeRegion.name, data: activeRegion.trend || [] }]}
+                  height={200}
+                />
+              </div>
+              <div className="region-detail__panel">
+                <h4>Top metros</h4>
+                <ul className="region-detail__metros">
+                  {(activeRegion.metros || []).map((m) => (
+                    <li key={m.name}>
+                      <span>{m.name}</span>
+                      <span className="region-detail__metro-index">{m.index}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+            {(activeRegion.topQueries || []).length > 0 && (
+              <table className="table table--compact region-detail__queries">
+                <thead>
+                  <tr>
+                    <th>Query</th>
+                    <th>Index</th>
+                    <th>Change</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {activeRegion.topQueries.map((q) => (
+                    <tr key={q.query}>
+                      <td>{q.query}</td>
+                      <td>{q.index}</td>
+                      <td>
+                        <Pill tone={q.change?.startsWith('+') ? 'up' : 'default'}>{q.change}</Pill>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
+          </div>
+        )}
+        <SourceFootnote source={sm.source || company.dataSources?.search} field="Regional search" />
+      </Card>
 
       <Card title="Global top queries">
         <ul className="list list--plain">

@@ -27,8 +27,10 @@ export const api = {
   hiring: (slug) => request(`/api/companies/${slug}/hiring`),
   xPosts: (slug) => request(`/api/companies/${slug}/x`),
   suggestions: (slug) => request(`/api/companies/${slug}/suggestions`),
+  benefitCorpus: () => request('/api/benefit'),
   benefit: (slug) => request(`/api/companies/${slug}/benefit`),
   executive: (slug) => request(`/api/companies/${slug}/executive`),
+  policies: () => request('/api/policies'),
   refresh: (slug) => request(`/api/companies/${slug}/refresh`, { method: 'POST' }),
   updateSuggestion: (id, status) =>
     request(`/api/suggestions/${id}`, {

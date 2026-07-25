@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Card, Stat, Loading, ErrorState, Pill, Empty } from '../components/ui';
 import { SourceFootnote } from '../components/Source';
-import { FilterBar, FilterRow } from '../components/FilterBar';
+import { FilterBar, FilterSelect } from '../components/FilterBar';
 import { BarChart } from '../components/Charts';
 import IntelCompareTable from '../components/IntelCompareTable';
 import { useCompany } from '../context/CompanyContext';
@@ -34,7 +34,7 @@ function slugToName(slug, nameMap) {
   return nameMap[slug] || slug.replace(/-/g, ' ');
 }
 
-export default function Signals() {
+export default function Signals({ embedded = false }) {
   const { slug, data, loading: ctxLoading, error: ctxError, compareMode } = useCompany();
   const [signals, setSignals] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -117,15 +117,17 @@ export default function Signals() {
   const companyName = data?.company?.name || slug;
 
   return (
-    <div className="page">
-      <div className="hero hero--compact">
-        <h1>Signals</h1>
-        <p className="lede">
-          {compareMode
-            ? `Side-by-side signal activity — ${companyName} vs ${peers.length} peers.`
-            : <>Public moves from <strong>{companyName}</strong> and {peers.length} peers — launches, products, and partnerships with sources cited.</>}
-        </p>
-      </div>
+    <div className={embedded ? 'intel-panel' : 'page'}>
+      {!embedded && (
+        <div className="hero hero--compact">
+          <h1>Signals</h1>
+          <p className="lede">
+            {compareMode
+              ? `Side-by-side signal activity — ${companyName} vs ${peers.length} peers.`
+              : <>Public moves from <strong>{companyName}</strong> and {peers.length} peers — launches, products, and partnerships with sources cited.</>}
+          </p>
+        </div>
+      )}
 
       {compareMode && company && (
         <>
@@ -211,37 +213,28 @@ export default function Signals() {
       )}
 
       <Card title={compareMode ? 'Full signal feed' : 'Signal feed'} subtitle={`${filtered.length} of ${signals.length} shown`}>
-        <FilterBar
-          summary={`${typeFilter !== 'all' ? TYPE_LABELS[typeFilter] || typeFilter : 'All types'} · ${scopeFilter === 'all' ? 'All' : scopeFilter === 'company' ? companyName : 'Peers'}`}
-        >
-          <FilterRow label="Type">
-            {['all', 'launch', 'product', 'partnership'].map((t) => (
-              <button
-                key={t}
-                type="button"
-                className={typeFilter === t ? 'chip active' : 'chip'}
-                onClick={() => setTypeFilter(t)}
-              >
-                {t === 'all' ? 'All types' : TYPE_LABELS[t] || t}
-              </button>
-            ))}
-          </FilterRow>
-          <FilterRow label="Scope">
-            {[
-              ['all', 'All'],
-              ['company', companyName],
-              ['peers', 'Peers only'],
-            ].map(([key, label]) => (
-              <button
-                key={key}
-                type="button"
-                className={scopeFilter === key ? 'chip active' : 'chip'}
-                onClick={() => setScopeFilter(key)}
-              >
-                {label}
-              </button>
-            ))}
-          </FilterRow>
+        <FilterBar className="filter-toolbar--inset">
+          <FilterSelect
+            label="Type"
+            value={typeFilter}
+            onChange={setTypeFilter}
+            options={[
+              { value: 'all', label: 'All types' },
+              { value: 'launch', label: TYPE_LABELS.launch },
+              { value: 'product', label: TYPE_LABELS.product },
+              { value: 'partnership', label: TYPE_LABELS.partnership },
+            ]}
+          />
+          <FilterSelect
+            label="Scope"
+            value={scopeFilter}
+            onChange={setScopeFilter}
+            options={[
+              { value: 'all', label: 'All' },
+              { value: 'company', label: companyName },
+              { value: 'peers', label: 'Peers only' },
+            ]}
+          />
         </FilterBar>
 
         {filtered.length === 0 ? (
