@@ -140,24 +140,40 @@ function buildBriefChanges(store, company, peers) {
 }
 
 function buildOpportunities(company, gaps, suggestions) {
-  const opps = [];
-  const strengths = (company.productInsights?.takeaways || []).filter((t) => t.type === 'strength');
-  strengths.slice(0, 2).forEach((t) => {
-    opps.push({ title: t.title, summary: t.body });
-  });
-  suggestions
-    .filter((s) => s.status === 'open' && ['high', 'critical'].includes(s.priority))
+  const priorityOrder = { critical: 0, high: 1, medium: 2, low: 3 };
+
+  const strengths = (company.productInsights?.takeaways || [])
+    .filter((t) => t.type === 'strength')
     .slice(0, 2)
-    .forEach((s) => {
-      opps.push({ title: s.title, summary: s.thesis });
+    .map((t) => ({ title: t.title, summary: t.body }));
+
+  if (strengths.length === 0 && company.winning?.[0]) {
+    strengths.push({
+      title: 'Core advantage',
+      summary: company.winning[0].text,
     });
-  if (gaps.length === 0 && opps.length < 2) {
-    opps.push({
+  }
+
+  const actions = suggestions
+    .filter((s) => s.status === 'open' && ['high', 'critical'].includes(s.priority))
+    .sort((a, b) => priorityOrder[a.priority] - priorityOrder[b.priority])
+    .slice(0, 2)
+    .map((s) => ({
+      title: s.title,
+      summary: s.thesis,
+      priority: s.priority,
+      lane: s.lane,
+      fastPath: s.fast_path,
+    }));
+
+  if (strengths.length === 0 && actions.length === 0 && gaps.length === 0) {
+    strengths.push({
       title: 'Maintain differentiation',
       summary: company.winning?.[0]?.text || 'No critical gaps flagged in current corpus.',
     });
   }
-  return opps.slice(0, 3);
+
+  return { strengths, actions };
 }
 
 export function buildExecutivePayload(store, company, peers) {

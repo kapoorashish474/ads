@@ -148,7 +148,7 @@ export default function Layout() {
           )}
         </header>
 
-        {activeGroup.items.length > 1 && (
+        {activeGroup.items.length > 1 && activeGroup.id !== 'intel' && (
         <div className="page-tabs scroll-x" role="tablist" aria-label={`${activeGroup.label} pages`}>
           <div className="page-tabs__inner">
             <div className="page-tabs__track">

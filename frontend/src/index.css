@@ -2509,7 +2509,62 @@ a.page-tab.active .nav-icon--tab {
   background: linear-gradient(135deg, var(--surface) 0%, color-mix(in srgb, var(--primary) 8%, var(--surface)) 100%);
   border-radius: var(--radius-lg);
   padding: 1.75rem 2rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.momentum-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.65rem;
+  margin-top: 1.25rem;
+}
+
+.momentum-chip {
+  padding: 0.65rem 0.75rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: rgb(255 255 255 / 70%);
+}
+
+.momentum-chip__label {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin-bottom: 0.35rem;
+}
+
+.momentum-chip__score {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: 0.25rem;
+}
+
+.momentum-chip__score strong {
+  font-size: 1.15rem;
+  letter-spacing: -0.02em;
+}
+
+.momentum-chip__detail {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.brief-strip {
+  margin-bottom: 0.75rem;
+}
+
+.brief-strip .stat__hint a {
+  font-weight: 600;
+}
+
+.stat__value--sm {
+  font-size: 1.35rem;
 }
 
 .lede--executive {
@@ -2525,6 +2580,99 @@ a.page-tab.active .nav-icon--tab {
 .card--decision {
   border-color: color-mix(in srgb, var(--primary) 35%, var(--border));
   background: color-mix(in srgb, var(--primary) 5%, var(--surface));
+}
+
+.card--lean {
+  border-color: color-mix(in srgb, var(--accent) 28%, var(--border));
+}
+
+.lean-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.lean-grid--split {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.lean-col__head {
+  margin: 0 0 0.65rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--muted);
+}
+
+.lean-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.lean-item {
+  padding: 0.85rem 0.95rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface-muted);
+}
+
+.lean-item--strength {
+  border-left: 3px solid #16a34a;
+}
+
+.lean-item--action {
+  border-left: 3px solid var(--primary);
+}
+
+.lean-item strong {
+  display: block;
+  margin-top: 0.45rem;
+  line-height: 1.35;
+}
+
+.lean-item p {
+  margin: 0.35rem 0 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.lean-item__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.lean-item__lane {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.lean-fast-path {
+  margin: 0.65rem 0 0;
+  padding: 0.55rem 0.65rem;
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--primary) 8%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--primary) 18%, var(--border));
+  font-size: 0.84rem;
+  line-height: 1.45;
+  color: var(--text);
+}
+
+.lean-fast-path span {
+  display: block;
+  margin-bottom: 0.15rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--primary);
 }
 
 .decision-text {
@@ -2686,6 +2834,14 @@ a.page-tab.active .nav-icon--tab {
 
   .intel-nav {
     flex-wrap: wrap;
+  }
+
+  .momentum-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .lean-grid--split {
+    grid-template-columns: 1fr;
   }
 
   .grid--2,

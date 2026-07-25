@@ -19,19 +19,21 @@ export default function App() {
       <BrowserRouter basename={basename}>
         <Routes>
           <Route element={<Layout />}>
-            <Route path="brief" element={<Brief />} />
-            <Route path="threats" element={<Navigate to="/brief" replace />} />
-            <Route path="momentum" element={<Navigate to="/brief" replace />} />
-            <Route path="gaps" element={<Navigate to="/brief" replace />} />
-            <Route path="leadership" element={<Navigate to="/brief" replace />} />
-            <Route index element={<Overview />} />
+            <Route index element={<Brief />} />
+            <Route path="brief" element={<Navigate to="/" replace />} />
+            <Route path="overview" element={<Overview />} />
+            <Route path="threats" element={<Navigate to="/" replace />} />
+            <Route path="momentum" element={<Navigate to="/" replace />} />
+            <Route path="gaps" element={<Navigate to="/" replace />} />
+            <Route path="leadership" element={<Navigate to="/" replace />} />
             <Route path="revenue" element={<Revenue />} />
             <Route path="products" element={<Products />} />
-            <Route path="intel" element={<IntelPage />} />
-            <Route path="signals" element={<Navigate to="/intel?section=signals" replace />} />
-            <Route path="search" element={<Navigate to="/intel?section=search" replace />} />
-            <Route path="linkedin" element={<Navigate to="/intel?section=social&channel=linkedin" replace />} />
-            <Route path="x" element={<Navigate to="/intel?section=social&channel=x" replace />} />
+            <Route path="intel" element={<Navigate to="/intel/signals" replace />} />
+            <Route path="intel/:section" element={<IntelPage />} />
+            <Route path="signals" element={<Navigate to="/intel/signals" replace />} />
+            <Route path="search" element={<Navigate to="/intel/search" replace />} />
+            <Route path="linkedin" element={<Navigate to="/intel/social?channel=linkedin" replace />} />
+            <Route path="x" element={<Navigate to="/intel/social?channel=x" replace />} />
             <Route path="suggestions" element={<Suggestions />} />
             <Route path="benefit" element={<Benefit />} />
             <Route path="sources" element={<SourcesPage />} />

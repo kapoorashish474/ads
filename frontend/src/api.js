@@ -66,6 +66,35 @@ export function formatUsd(n) {
   return `$${n.toLocaleString()}`;
 }
 
+export function revenuePerEmployee(company) {
+  if (!company?.employees || !company?.adRevenueUsd) return null;
+  return Math.round(company.adRevenueUsd / company.employees);
+}
+
+export function peerAvgRevenuePerEmployee(peers) {
+  const values = peers.map(revenuePerEmployee).filter((v) => v != null);
+  if (!values.length) return null;
+  return Math.round(values.reduce((sum, v) => sum + v, 0) / values.length);
+}
+
+export function formatUsdPerEmployee(n) {
+  if (n == null) return '—';
+  if (n >= 1e6) return `$${(n / 1e6).toFixed(1)}M`;
+  if (n >= 1e3) return `$${Math.round(n / 1e3)}K`;
+  return `$${n.toLocaleString()}`;
+}
+
+export function revenuePerEmployeeHint(company, peers) {
+  const rpe = revenuePerEmployee(company);
+  const peerAvg = peerAvgRevenuePerEmployee(peers);
+  if (rpe == null) return 'Ad revenue ÷ headcount';
+  if (peerAvg == null) return 'Ad revenue ÷ headcount';
+  const delta = Math.round(((rpe - peerAvg) / peerAvg) * 100);
+  if (delta === 0) return `${formatUsdPerEmployee(peerAvg)} peer avg`;
+  const sign = delta > 0 ? '+' : '';
+  return `${sign}${delta}% vs ${formatUsdPerEmployee(peerAvg)} peer avg`;
+}
+
 export function formatDate(iso) {
   if (!iso) return '—';
   return new Date(iso).toLocaleString(undefined, {

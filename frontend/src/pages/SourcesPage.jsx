@@ -7,16 +7,16 @@ import { useCompany } from '../context/CompanyContext';
 const CATEGORY_ORDER = ['Dashboard', 'Executive', 'Market intel', 'Planning', 'Reference'];
 
 const TAB_ROUTES = {
-  Overview: '/',
+  Overview: '/overview',
   Revenue: '/revenue',
   Products: '/products',
-  Signals: '/intel?section=signals',
-  Search: '/intel?section=search',
-  LinkedIn: '/intel?section=social&channel=linkedin',
-  X: '/intel?section=social&channel=x',
+  Signals: '/intel/signals',
+  Search: '/intel/search',
+  LinkedIn: '/intel/social?channel=linkedin',
+  X: '/intel/social?channel=x',
   Suggestions: '/suggestions',
   Benefit: '/benefit',
-  Brief: '/brief',
+  Brief: '/',
 };
 
 function sortRows(a, b) {

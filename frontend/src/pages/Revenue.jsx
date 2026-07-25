@@ -2,7 +2,7 @@ import { Card, Stat, Loading, ErrorState, Empty } from '../components/ui';
 import { DonutChart, StackedBarChart } from '../components/Charts';
 import { CardSources, SourceFootnote } from '../components/Source';
 import { useCompany } from '../context/CompanyContext';
-import { formatUsd } from '../api';
+import { formatUsd, formatUsdPerEmployee, revenuePerEmployee, revenuePerEmployeeHint } from '../api';
 import {
   SEGMENT_BUCKETS,
   normalizeSegmentMix,
@@ -22,7 +22,6 @@ export default function Revenue() {
   const compareSet = [company, ...peers];
   const comparison = segmentComparison(company, peers);
   const insights = segmentInsights(company, peers);
-  const peerNames = peers.map((p) => p.name).join(', ');
 
   const stackedCategories = compareSet.map((c) => c.name);
   const stackedSeries = SEGMENT_BUCKETS.map((bucket) => ({
@@ -38,9 +37,14 @@ export default function Revenue() {
       </div>
 
       <div className="grid grid--stats grid--stats-3">
-        <Stat label="Ad revenue" value={formatUsd(company.adRevenueUsd)} hint={company.revenueLabel} />
-        <Stat label="Segments" value={segments.length} hint="Reported or estimated mix" />
-        <Stat label="Peers compared" value={peers.length} hint={peerNames || 'None configured'} />
+        <Stat label="Ad revenue" value={formatUsd(company.adRevenueUsd)} hint={company.revenueLabel} source={ds.revenue} />
+        <Stat
+          label="Revenue / employee"
+          value={formatUsdPerEmployee(revenuePerEmployee(company))}
+          hint={revenuePerEmployeeHint(company, peers)}
+          source={ds.employees}
+        />
+        <Stat label="Segments" value={segments.length} hint="Reported or estimated mix" source={ds.segments} />
       </div>
 
       <div className="grid grid--2">

@@ -1,35 +1,36 @@
 export const navGroups = [
   {
+    id: 'executive',
+    label: 'Executive',
+    items: [{ to: '/', label: 'Brief', icon: 'brief', end: true }],
+  },
+  {
     id: 'dashboard',
     label: 'Dashboard',
     items: [
-      { to: '/', label: 'Overview', icon: 'overview', end: true },
+      { to: '/overview', label: 'Overview', icon: 'overview', end: true },
       { to: '/revenue', label: 'Revenue', icon: 'revenue' },
       { to: '/products', label: 'Products', icon: 'products' },
     ],
   },
   {
-    id: 'executive',
-    label: 'Executive',
-    items: [{ to: '/brief', label: 'Brief', icon: 'brief', end: true }],
-  },
-  {
     id: 'intel',
     label: 'Market intel',
-    items: [{ to: '/intel', label: 'Feed', icon: 'signals', end: true }],
+    items: [
+      { to: '/intel/signals', label: 'Signals', icon: 'signals', end: true },
+      { to: '/intel/search', label: 'Search', icon: 'search', end: true },
+      { to: '/intel/social', label: 'Social', icon: 'social', end: true },
+    ],
   },
   {
     id: 'planning',
     label: 'Planning',
-    items: [
-      { to: '/suggestions', label: 'Suggestions', icon: 'suggestions' },
-      { to: '/benefit', label: 'Benefit', icon: 'benefit', scope: 'corpus' },
-    ],
+    items: [{ to: '/suggestions', label: 'Suggestions', icon: 'suggestions', end: true }],
   },
   {
     id: 'reference',
     label: 'Reference',
-    items: [{ to: '/sources', label: 'Sources', icon: 'sources' }],
+    items: [{ to: '/sources', label: 'Sources', icon: 'sources', end: true }],
   },
 ];
 

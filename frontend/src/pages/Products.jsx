@@ -1,5 +1,4 @@
 import { Card, Stat, Loading, ErrorState, Pill, Empty } from '../components/ui';
-import { BarChart } from '../components/Charts';
 import { SourceFootnote } from '../components/Source';
 import { useCompany } from '../context/CompanyContext';
 
@@ -33,40 +32,18 @@ export default function Products() {
   });
 
   const gaps = categoryRows.filter((r) => !r.has && r.peerCount > 0);
-  const coveredCategories = new Set(products.map((p) => p.category)).size;
-
-  const landscape = [company, ...peers].flatMap((c) =>
-    (c.products || []).map((p) => ({
-      company: c.name,
-      slug: c.slug,
-      isFocus: c.slug === company.slug,
-      ...p,
-    }))
-  );
-
-  const counts = [company, ...peers].map((c) => ({
-    name: c.name,
-    count: (c.products || []).length,
-    isFocus: c.slug === company.slug,
-  }));
 
   return (
     <div className="page page--products">
       <div className="hero hero--compact">
         <h1>Products</h1>
         <p className="lede">
-          Named product lines {company.name} sells publicly — what each SKU is, how it maps to peer
-          categories, and where you lead or lag.
+          Named product lines for {company.name} — category coverage vs {peers.length} peers.
         </p>
       </div>
 
-      <div className="grid grid--stats grid--stats-3">
-        <Stat
-          label="Products tracked"
-          value={products.length}
-          hint="Named SKUs from public pages"
-        />
-        <Stat label="Categories covered" value={coveredCategories} />
+      <div className="grid grid--stats grid--stats-2">
+        <Stat label="Product lines" value={products.length} hint="Public SKUs tracked" />
         <Stat label="Category gaps" value={gaps.length} hint="Peer categories you don't have" />
       </div>
 
@@ -90,71 +67,41 @@ export default function Products() {
         </Card>
       )}
 
-      <Card
-        title={`${company.name} portfolio`}
-        subtitle="Each row is a publicly marketed product line"
-        collapsible
-        defaultOpen
-      >
-        {products.length === 0 ? (
-          <Empty message="No products tracked for this company." />
-        ) : (
-          <div className="table-wrap table-wrap--flat">
-            <table className="table product-table">
-              <thead>
-                <tr>
-                  <th>Product</th>
-                  <th>What it is</th>
-                  <th>Category</th>
-                  <th>Channels</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                {products.map((p) => (
-                  <tr key={p.name}>
-                    <td className="product-table__name">{p.name}</td>
-                    <td className="product-table__desc">{p.description || '—'}</td>
-                    <td>
-                      <Pill>{p.category}</Pill>
-                    </td>
-                    <td className="muted">{(p.channels || []).join(' · ') || '—'}</td>
-                    <td>
-                      <Pill tone="conf-reported">{p.maturity || 'GA'}</Pill>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
-        <SourceFootnote source={ds} />
-      </Card>
-
       <div className="grid grid--2">
-        <Card
-          title="Product count vs peers"
-          subtitle="Named lines tracked — bar height is SKU count, not revenue"
-          collapsible
-          defaultOpen
-        >
-          <BarChart
-            horizontal
-            categories={counts.map((c) => c.name)}
-            series={[{ name: 'Product lines', data: counts.map((c) => c.count) }]}
-            height={Math.max(200, counts.length * 36)}
-          />
-          <p className="card-note muted">
-            Most peers show <strong>3</strong> because we track three flagship SKUs each — not their full catalog.
-          </p>
+        <Card title={`${company.name} portfolio`} subtitle="Publicly marketed product lines" collapsible defaultOpen>
+          {products.length === 0 ? (
+            <Empty message="No products tracked for this company." />
+          ) : (
+            <div className="table-wrap table-wrap--flat">
+              <table className="table product-table">
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Category</th>
+                    <th>Channels</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {products.map((p) => (
+                    <tr key={p.name}>
+                      <td className="product-table__name">
+                        <strong>{p.name}</strong>
+                        {p.description && <p className="muted table-note">{p.description}</p>}
+                      </td>
+                      <td>
+                        <Pill>{p.category}</Pill>
+                      </td>
+                      <td className="muted">{(p.channels || []).join(' · ') || '—'}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+          <SourceFootnote source={ds} />
         </Card>
 
-        <Card
-          title="Category coverage"
-          subtitle="Do you ship what peers market in each category?"
-          collapsible
-          defaultOpen
-        >
+        <Card title="Category coverage" subtitle="Gaps vs peer set" collapsible defaultOpen>
           <div className="table-wrap table-wrap--scroll">
             <table className="table table--compact coverage-table">
               <thead>
@@ -187,38 +134,6 @@ export default function Products() {
           </div>
         </Card>
       </div>
-
-      <Card
-        title="Peer product landscape"
-        subtitle={`${landscape.length} product lines across ${peers.length + 1} companies`}
-        collapsible
-        defaultOpen={false}
-      >
-        <div className="table-wrap table-wrap--scroll">
-          <table className="table product-table product-table--landscape">
-            <thead>
-              <tr>
-                <th>Company</th>
-                <th>Product</th>
-                <th>Category</th>
-                <th>Channels</th>
-              </tr>
-            </thead>
-            <tbody>
-              {landscape.map((row) => (
-                <tr key={`${row.slug}-${row.name}`} className={row.isFocus ? 'row--focus' : ''}>
-                  <td className="cell-company">{row.company}</td>
-                  <td className="product-table__name">{row.name}</td>
-                  <td>
-                    <Pill>{row.category}</Pill>
-                  </td>
-                  <td className="muted">{(row.channels || []).join(' · ')}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </Card>
     </div>
   );
 }
