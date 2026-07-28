@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { SourceBadge } from './Source';
 
 export function CollapseChevron({ open }) {
   return (
@@ -65,15 +66,23 @@ export function Card({
   );
 }
 
-export function Stat({ label, value, hint, source }) {
+export function Stat({ label, value, hint, source, className = '' }) {
+  const confidence = source?.confidence;
+  const toneClass =
+    confidence === 'modeled' || confidence === 'inferred'
+      ? 'stat--synthetic'
+      : confidence === 'estimated' || confidence === 'mixed'
+        ? 'stat--estimated'
+        : '';
+
   return (
-    <div className="stat">
+    <div className={`stat ${toneClass} ${className}`.trim()}>
       <span className="stat__label">{label}</span>
       <strong className="stat__value">{value}</strong>
       {hint && <span className="stat__hint">{hint}</span>}
-      {source && (
+      {source?.confidence && (
         <span className="stat__source">
-          {source.confidence && <span className={`pill pill--conf-${source.confidence}`}>{source.confidence}</span>}
+          <SourceBadge confidence={source.confidence} />
         </span>
       )}
     </div>

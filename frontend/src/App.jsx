@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { CompanyProvider } from './context/CompanyContext';
 import Layout from './components/Layout';
-import Brief from './pages/Brief';
 import Overview from './pages/Overview';
 import Revenue from './pages/Revenue';
 import Products from './pages/Products';
@@ -19,9 +18,9 @@ export default function App() {
       <BrowserRouter basename={basename}>
         <Routes>
           <Route element={<Layout />}>
-            <Route index element={<Brief />} />
+            <Route index element={<Overview />} />
+            <Route path="overview" element={<Navigate to="/" replace />} />
             <Route path="brief" element={<Navigate to="/" replace />} />
-            <Route path="overview" element={<Overview />} />
             <Route path="threats" element={<Navigate to="/" replace />} />
             <Route path="momentum" element={<Navigate to="/" replace />} />
             <Route path="gaps" element={<Navigate to="/" replace />} />

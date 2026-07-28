@@ -4,10 +4,10 @@ import { Loading, ErrorState } from '../components/ui';
 import { SourceBadge, formatField } from '../components/Source';
 import { useCompany } from '../context/CompanyContext';
 
-const CATEGORY_ORDER = ['Dashboard', 'Executive', 'Market intel', 'Planning', 'Reference'];
+const CATEGORY_ORDER = ['Dashboard', 'Market intel', 'Planning', 'Reference'];
 
 const TAB_ROUTES = {
-  Overview: '/overview',
+  Overview: '/',
   Revenue: '/revenue',
   Products: '/products',
   Signals: '/intel/signals',
@@ -16,7 +16,6 @@ const TAB_ROUTES = {
   X: '/intel/social?channel=x',
   Suggestions: '/suggestions',
   Benefit: '/benefit',
-  Brief: '/',
 };
 
 function sortRows(a, b) {
@@ -164,7 +163,7 @@ export default function SourcesPage() {
             <strong>Inferred</strong> — synthesized from public signals.{' '}
             <strong>Mixed</strong> — reported + modeled.
           </li>
-          <li>All metrics use public sources only — no private APIs or scraped social text.</li>
+          <li>All metrics use public sources only — no private APIs, scraped social text, or simulated refresh.</li>
           <li>Each chart and stat elsewhere in the app shows the same confidence tag at point of use.</li>
         </ul>
       </details>

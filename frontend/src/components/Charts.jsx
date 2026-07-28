@@ -25,6 +25,12 @@ const palette = ['#4f46e5', '#7c3aed', '#0ea5e9', '#10b981', '#f59e0b', '#64748b
 const chartText = '#5c6778';
 const chartGrid = 'rgba(15, 23, 42, 0.06)';
 
+const axisNameStyle = {
+  fontSize: 11,
+  color: chartText,
+  fontWeight: 500,
+};
+
 function Chart({ option, height = 280 }) {
   const ref = useRef(null);
   const instance = useRef(null);
@@ -47,7 +53,68 @@ function Chart({ option, height = 280 }) {
   return <div ref={ref} style={{ height, width: '100%' }} />;
 }
 
-export function DonutChart({ title, data, height = 280 }) {
+function ChartCaption({ xAxisLabel, yAxisLabel, note }) {
+  if (!xAxisLabel && !yAxisLabel && !note) return null;
+
+  return (
+    <p className="chart-caption" aria-label="Chart axes">
+      {xAxisLabel && (
+        <span className="chart-caption__item">
+          <strong>X-axis</strong> {xAxisLabel}
+        </span>
+      )}
+      {yAxisLabel && (
+        <span className="chart-caption__item">
+          <strong>Y-axis</strong> {yAxisLabel}
+        </span>
+      )}
+      {note && <span className="chart-caption__item chart-caption__item--note">{note}</span>}
+    </p>
+  );
+}
+
+function ChartFrame({ children, xAxisLabel, yAxisLabel, note }) {
+  return (
+    <div className="chart-wrap">
+      {children}
+      <ChartCaption xAxisLabel={xAxisLabel} yAxisLabel={yAxisLabel} note={note} />
+    </div>
+  );
+}
+
+function categoryAxis(name, categories) {
+  return {
+    type: 'category',
+    data: categories,
+    name,
+    nameLocation: 'middle',
+    nameGap: 28,
+    nameTextStyle: axisNameStyle,
+    axisLabel: { fontSize: 11, color: chartText },
+    axisLine: { lineStyle: { color: chartGrid } },
+  };
+}
+
+function valueAxis(name, { max, formatter } = {}) {
+  return {
+    type: 'value',
+    min: 0,
+    max,
+    name,
+    nameLocation: 'middle',
+    nameGap: 42,
+    nameTextStyle: axisNameStyle,
+    splitLine: { lineStyle: { color: chartGrid } },
+    axisLabel: formatter ? { formatter, fontSize: 11, color: chartText } : { fontSize: 11, color: chartText },
+  };
+}
+
+export function DonutChart({
+  title,
+  data,
+  height = 280,
+  note = 'Each segment = share of ad revenue (%)',
+}) {
   const option = {
     color: palette,
     title: title ? { text: title, left: 0, textStyle: { fontSize: 13, fontWeight: 600, color: chartText } } : undefined,
@@ -63,21 +130,43 @@ export function DonutChart({ title, data, height = 280 }) {
       },
     ],
   };
-  return <Chart option={option} height={height} />;
+
+  return (
+    <ChartFrame note={note}>
+      <Chart option={option} height={height} />
+    </ChartFrame>
+  );
 }
 
-export function BarChart({ title, categories, series, height = 300, horizontal = false }) {
+export function BarChart({
+  title,
+  categories,
+  series,
+  height = 300,
+  horizontal = false,
+  xAxisLabel,
+  yAxisLabel,
+}) {
+  const xLabel = xAxisLabel ?? (horizontal ? 'Value' : 'Category');
+  const yLabel = yAxisLabel ?? (horizontal ? 'Category' : 'Value');
+
   const option = {
     color: palette,
     title: title ? { text: title, left: 0, textStyle: { fontSize: 13, fontWeight: 600, color: chartText } } : undefined,
     tooltip: { trigger: 'axis' },
-    grid: { left: horizontal ? 100 : 40, right: 20, top: title ? 40 : 20, bottom: 30, containLabel: true },
+    grid: {
+      left: horizontal ? 108 : 52,
+      right: 20,
+      top: title ? 40 : 20,
+      bottom: horizontal ? 40 : 52,
+      containLabel: true,
+    },
     xAxis: horizontal
-      ? { type: 'value', splitLine: { lineStyle: { color: chartGrid } } }
-      : { type: 'category', data: categories, axisLabel: { fontSize: 11, color: chartText }, axisLine: { lineStyle: { color: chartGrid } } },
+      ? valueAxis(xLabel)
+      : categoryAxis(xLabel, categories),
     yAxis: horizontal
-      ? { type: 'category', data: categories, axisLabel: { fontSize: 11, color: chartText }, axisLine: { lineStyle: { color: chartGrid } } }
-      : { type: 'value', splitLine: { lineStyle: { color: chartGrid } } },
+      ? categoryAxis(yLabel, categories)
+      : valueAxis(yLabel),
     series: series.map((s) => ({
       name: s.name,
       type: 'bar',
@@ -86,10 +175,23 @@ export function BarChart({ title, categories, series, height = 300, horizontal =
       itemStyle: { borderRadius: horizontal ? [0, 4, 4, 0] : [4, 4, 0, 0] },
     })),
   };
-  return <Chart option={option} height={height} />;
+
+  return (
+    <ChartFrame xAxisLabel={xLabel} yAxisLabel={yLabel}>
+      <Chart option={option} height={height} />
+    </ChartFrame>
+  );
 }
 
-export function StackedBarChart({ title, categories, series, height = 320, horizontal = true }) {
+export function StackedBarChart({
+  title,
+  categories,
+  series,
+  height = 320,
+  horizontal = true,
+  xAxisLabel = 'Share of revenue (%)',
+  yAxisLabel = 'Company',
+}) {
   const option = {
     color: palette,
     title: title ? { text: title, left: 0, textStyle: { fontSize: 13, fontWeight: 600, color: chartText } } : undefined,
@@ -108,13 +210,13 @@ export function StackedBarChart({ title, categories, series, height = 320, horiz
       },
     },
     legend: { bottom: 0, type: 'scroll' },
-    grid: { left: horizontal ? 120 : 40, right: 20, top: title ? 40 : 16, bottom: 56 },
+    grid: { left: horizontal ? 128 : 52, right: 20, top: title ? 40 : 16, bottom: 56 },
     xAxis: horizontal
-      ? { type: 'value', max: 100, axisLabel: { formatter: '{value}%', fontSize: 11 } }
-      : { type: 'category', data: categories, axisLabel: { fontSize: 11 } },
+      ? valueAxis(xAxisLabel, { max: 100, formatter: '{value}%' })
+      : categoryAxis(xAxisLabel, categories),
     yAxis: horizontal
-      ? { type: 'category', data: categories, axisLabel: { fontSize: 11, width: 110, overflow: 'truncate' } }
-      : { type: 'value', max: 100, axisLabel: { formatter: '{value}%', fontSize: 11 } },
+      ? categoryAxis(yAxisLabel, categories)
+      : valueAxis(yAxisLabel, { max: 100, formatter: '{value}%' }),
     series: series.map((s) => ({
       name: s.name,
       type: 'bar',
@@ -124,18 +226,38 @@ export function StackedBarChart({ title, categories, series, height = 320, horiz
       barMaxWidth: horizontal ? 28 : 48,
     })),
   };
-  return <Chart option={option} height={height} />;
+
+  return (
+    <ChartFrame xAxisLabel={xAxisLabel} yAxisLabel={yAxisLabel}>
+      <Chart option={option} height={height} />
+    </ChartFrame>
+  );
 }
 
-export function LineChart({ title, labels, series, height = 280 }) {
+export function LineChart({
+  title,
+  labels,
+  series,
+  height = 280,
+  xAxisLabel = 'Month',
+  yAxisLabel = 'Index (0–100)',
+}) {
   const option = {
     color: palette,
     title: title ? { text: title, left: 0, textStyle: { fontSize: 13, fontWeight: 600, color: chartText } } : undefined,
     tooltip: { trigger: 'axis' },
     legend: series.length > 1 ? { bottom: 0 } : undefined,
-    grid: { left: 40, right: 20, top: title ? 40 : 20, bottom: series.length > 1 ? 50 : 30 },
-    xAxis: { type: 'category', data: labels, boundaryGap: false },
-    yAxis: { type: 'value', min: 0 },
+    grid: {
+      left: 52,
+      right: 20,
+      top: title ? 40 : 20,
+      bottom: series.length > 1 ? 58 : 48,
+    },
+    xAxis: {
+      ...categoryAxis(xAxisLabel, labels),
+      boundaryGap: false,
+    },
+    yAxis: valueAxis(yAxisLabel),
     series: series.map((s) => ({
       name: s.name,
       type: 'line',
@@ -145,10 +267,21 @@ export function LineChart({ title, labels, series, height = 280 }) {
       symbolSize: 6,
     })),
   };
-  return <Chart option={option} height={height} />;
+
+  return (
+    <ChartFrame xAxisLabel={xAxisLabel} yAxisLabel={yAxisLabel}>
+      <Chart option={option} height={height} />
+    </ChartFrame>
+  );
 }
 
-export function RadarChart({ title, indicators, series, height = 320 }) {
+export function RadarChart({
+  title,
+  indicators,
+  series,
+  height = 320,
+  note = 'Each axis = strength dimension (0–100). Lines compare scores across dimensions.',
+}) {
   const option = {
     color: palette,
     title: title ? { text: title, left: 0, textStyle: { fontSize: 13, fontWeight: 600, color: chartText } } : undefined,
@@ -161,5 +294,10 @@ export function RadarChart({ title, indicators, series, height = 320 }) {
     },
     series: [{ type: 'radar', data: series.map((s) => ({ name: s.name, value: s.values })) }],
   };
-  return <Chart option={option} height={height} />;
+
+  return (
+    <ChartFrame note={note}>
+      <Chart option={option} height={height} />
+    </ChartFrame>
+  );
 }

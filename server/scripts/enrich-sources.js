@@ -6,9 +6,24 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const storePath = path.join(__dirname, '../data/store.json');
 const store = JSON.parse(fs.readFileSync(storePath, 'utf8'));
 
-export const SOURCES_VERSION = 2;
+export const SOURCES_VERSION = 3;
 
-const monthLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const monthLabels = (asOf = '2026-07') => {
+  const match = String(asOf).match(/^(\d{4})-(\d{2})/);
+  const end = match
+    ? new Date(parseInt(match[1], 10), parseInt(match[2], 10) - 1, 1)
+    : new Date();
+  const labels = [];
+  for (let i = 11; i >= 0; i--) {
+    labels.push(
+      new Date(end.getFullYear(), end.getMonth() - i, 1).toLocaleDateString(undefined, {
+        month: 'short',
+        year: 'numeric',
+      })
+    );
+  }
+  return labels;
+};
 
 function shiftTrend(base, delta = 0) {
   return base.map((v, i) => Math.min(100, Math.max(10, v + delta + (i % 3) - 1)));
@@ -430,7 +445,7 @@ for (const company of store.companies) {
 
   const globalTrend = company.searchMetrics?.trend || [];
   company.searchMetrics.source = company.dataSources.search;
-  company.searchMetrics.monthLabels = monthLabels;
+  company.searchMetrics.monthLabels = monthLabels(company.dataSources.search?.asOf);
 
   company.searchMetrics.regions = (company.searchMetrics.regions || []).map((r) => {
     const deep = regionDeepDive[company.slug]?.[r.name] || {};
@@ -461,7 +476,7 @@ for (const signal of store.signals || []) {
 }
 
 store.sourcesPolicy =
-  'All metrics use public sources only — SEC filings, company sites, LinkedIn, X profiles, trade press, and modeled indices. Confidence tags mark how directly each field is sourced.';
+  'Public-source research only. Each field is tagged Reported, Estimated, Modeled, Inferred, or Mixed. Reload fetches the snapshot — it never fabricates new numbers.';
 store.sourcesVersion = SOURCES_VERSION;
 
 fs.writeFileSync(storePath, JSON.stringify(store, null, 2));

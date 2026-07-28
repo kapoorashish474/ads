@@ -22,7 +22,7 @@ const CORPUS_INCLUDES = [
 ];
 
 export const BENEFIT_POLICY =
-  'Time saved is a corpus-level estimate: the manual research effort to build one company profile at the standard depth in this watch list. Every company receives the same coverage — switch to Brief or Suggestions for company-specific priorities.';
+  'Time saved is a corpus-level estimate: the manual research effort to build one company profile at the standard depth in this watch list. Every company receives the same coverage — switch to Overview or Suggestions for company-specific priorities.';
 
 function timeBreakdown(metrics) {
   return [

@@ -145,6 +145,8 @@ export default function Signals({ embedded = false }) {
                 categories={compareList.map((r) => r.name)}
                 series={[{ name: 'Signals', data: compareList.map((r) => r.count) }]}
                 height={Math.max(220, compareList.length * 40)}
+                xAxisLabel="Signal count"
+                yAxisLabel="Company"
               />
             </Card>
             <Card title="Signal mix by company" subtitle="Launch · product · partnership">
@@ -283,8 +285,8 @@ export default function Signals({ embedded = false }) {
 
         <SourceFootnote
           source={{
-            label: 'Company press releases & public websites',
-            confidence: 'reported',
+            label: 'Curated from company press releases, IR pages, and public websites',
+            confidence: 'mixed',
             asOf: '2026-07',
           }}
         />

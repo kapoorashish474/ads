@@ -279,18 +279,18 @@
           "note": "Regional drill-down uses modeled metro/query indices"
         },
         "monthLabels": [
-          "Jan",
-          "Feb",
-          "Mar",
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sep",
-          "Oct",
-          "Nov",
-          "Dec"
+          "Aug 2025",
+          "Sep 2025",
+          "Oct 2025",
+          "Nov 2025",
+          "Dec 2025",
+          "Jan 2026",
+          "Feb 2026",
+          "Mar 2026",
+          "Apr 2026",
+          "May 2026",
+          "Jun 2026",
+          "Jul 2026"
         ]
       },
       "peerSlugs": [
@@ -752,18 +752,18 @@
           "note": "Regional drill-down uses modeled metro/query indices"
         },
         "monthLabels": [
-          "Jan",
-          "Feb",
-          "Mar",
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sep",
-          "Oct",
-          "Nov",
-          "Dec"
+          "Aug 2025",
+          "Sep 2025",
+          "Oct 2025",
+          "Nov 2025",
+          "Dec 2025",
+          "Jan 2026",
+          "Feb 2026",
+          "Mar 2026",
+          "Apr 2026",
+          "May 2026",
+          "Jun 2026",
+          "Jul 2026"
         ]
       },
       "peerSlugs": [
@@ -1208,18 +1208,18 @@
           "note": "Regional drill-down uses modeled metro/query indices"
         },
         "monthLabels": [
-          "Jan",
-          "Feb",
-          "Mar",
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sep",
-          "Oct",
-          "Nov",
-          "Dec"
+          "Aug 2025",
+          "Sep 2025",
+          "Oct 2025",
+          "Nov 2025",
+          "Dec 2025",
+          "Jan 2026",
+          "Feb 2026",
+          "Mar 2026",
+          "Apr 2026",
+          "May 2026",
+          "Jun 2026",
+          "Jul 2026"
         ]
       },
       "peerSlugs": [
@@ -1660,18 +1660,18 @@
           "note": "Regional drill-down uses modeled metro/query indices"
         },
         "monthLabels": [
-          "Jan",
-          "Feb",
-          "Mar",
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sep",
-          "Oct",
-          "Nov",
-          "Dec"
+          "Aug 2025",
+          "Sep 2025",
+          "Oct 2025",
+          "Nov 2025",
+          "Dec 2025",
+          "Jan 2026",
+          "Feb 2026",
+          "Mar 2026",
+          "Apr 2026",
+          "May 2026",
+          "Jun 2026",
+          "Jul 2026"
         ]
       },
       "peerSlugs": [
@@ -2121,18 +2121,18 @@
           "note": "Regional drill-down uses modeled metro/query indices"
         },
         "monthLabels": [
-          "Jan",
-          "Feb",
-          "Mar",
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sep",
-          "Oct",
-          "Nov",
-          "Dec"
+          "Aug 2025",
+          "Sep 2025",
+          "Oct 2025",
+          "Nov 2025",
+          "Dec 2025",
+          "Jan 2026",
+          "Feb 2026",
+          "Mar 2026",
+          "Apr 2026",
+          "May 2026",
+          "Jun 2026",
+          "Jul 2026"
         ]
       },
       "peerSlugs": [
@@ -2569,18 +2569,18 @@
           "note": "Regional drill-down uses modeled metro/query indices"
         },
         "monthLabels": [
-          "Jan",
-          "Feb",
-          "Mar",
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sep",
-          "Oct",
-          "Nov",
-          "Dec"
+          "Aug 2025",
+          "Sep 2025",
+          "Oct 2025",
+          "Nov 2025",
+          "Dec 2025",
+          "Jan 2026",
+          "Feb 2026",
+          "Mar 2026",
+          "Apr 2026",
+          "May 2026",
+          "Jun 2026",
+          "Jul 2026"
         ]
       },
       "peerSlugs": [
@@ -5895,6 +5895,6 @@
   },
   "executivePolicy": "Executive views synthesize public research in this corpus — signals, hiring, search trends, product gaps, and curated leadership moves. Momentum scores are computed from live store data.",
   "executiveVersion": 1,
-  "sourcesPolicy": "All metrics use public sources only — SEC filings, company sites, LinkedIn, X profiles, trade press, and modeled indices. Confidence tags mark how directly each field is sourced.",
-  "sourcesVersion": 2
+  "sourcesPolicy": "Public-source research only. Each field is tagged Reported, Estimated, Modeled, Inferred, or Mixed. Reload fetches the snapshot — it never fabricates new numbers.",
+  "sourcesVersion": 3
 }

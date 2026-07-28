@@ -1,42 +1,31 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import { useCompany } from '../context/CompanyContext';
 import { activeNavGroup, matchNavPath, navGroups, pageScope } from '../nav';
+import { AuthenticityNotice } from './AuthenticityNotice';
 import { NavIcon } from './NavIcon';
 
 function NavGroup({ group, pathname, expanded, onToggle }) {
   const isActiveGroup = group.items.some((item) => matchNavPath(pathname, item.to, item.end));
-  const isOpen = expanded[group.id] ?? isActiveGroup;
-  const isSingle = group.items.length === 1;
-
-  if (isSingle) {
-    const item = group.items[0];
-    return (
-      <div className={`nav-group nav-group--single ${isActiveGroup ? 'nav-group--active' : ''}`}>
-        <span className="nav-group__label">{group.label}</span>
-        <NavLink
-          to={item.to}
-          end={item.end}
-          className={({ isActive }) => (isActive ? 'nav__link active' : 'nav__link')}
-        >
-          <span className="nav__icon" aria-hidden>
-            <NavIcon name={item.icon} variant="sidebar" />
-          </span>
-          {item.label}
-        </NavLink>
-      </div>
-    );
-  }
+  const isOpen = expanded[group.id] ?? false;
+  const activeItem = group.items.find((item) => matchNavPath(pathname, item.to, item.end));
 
   return (
-    <div className={`nav-group ${isActiveGroup ? 'nav-group--active' : ''}`}>
+    <div
+      className={`nav-group ${isActiveGroup ? 'nav-group--active' : ''} ${isOpen ? 'nav-group--open' : 'nav-group--closed'}`}
+    >
       <button
         type="button"
         className="nav-group__toggle"
         onClick={() => onToggle(group.id)}
         aria-expanded={isOpen}
       >
-        <span>{group.label}</span>
+        <span className="nav-group__toggle-text">
+          <span>{group.label}</span>
+          {activeItem && !isOpen && (
+            <span className="nav-group__active-hint">{activeItem.label}</span>
+          )}
+        </span>
         <span className="nav-group__chevron" aria-hidden>
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
             <path d="m6 9 6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -71,18 +60,8 @@ export default function Layout() {
   const isCorpusPage = pageScope(location.pathname) === 'corpus';
 
   const [expanded, setExpanded] = useState(() =>
-    Object.fromEntries(
-      navGroups.filter((g) => g.items.length > 1).map((g) => [g.id, g.id === activeGroup.id])
-    )
+    Object.fromEntries(navGroups.map((g) => [g.id, false]))
   );
-
-  useEffect(() => {
-    setExpanded(
-      Object.fromEntries(
-        navGroups.filter((g) => g.items.length > 1).map((g) => [g.id, g.id === activeGroup.id])
-      )
-    );
-  }, [activeGroup.id]);
 
   function toggleGroup(id) {
     setExpanded((prev) => ({ ...prev, [id]: !prev[id] }));
@@ -143,7 +122,7 @@ export default function Layout() {
           {!isCorpusPage && (
             <button type="button" className="btn btn--primary" onClick={refresh} disabled={refreshing || loading}>
               <span className={`btn__icon ${refreshing ? 'btn__icon--spin' : ''}`} aria-hidden>↻</span>
-              {refreshing ? 'Refreshing…' : 'Refresh data'}
+              {refreshing ? 'Reloading…' : 'Reload snapshot'}
             </button>
           )}
         </header>
@@ -173,6 +152,7 @@ export default function Layout() {
         )}
 
         <div className="content">
+          {!isCorpusPage && <AuthenticityNotice />}
           <Outlet />
         </div>
       </div>

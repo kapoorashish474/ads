@@ -135,6 +135,8 @@ export default function LinkedInPage({ embedded = false }) {
                 categories={compareList.map((r) => r.name)}
                 series={[{ name: 'Open roles', data: compareList.map((r) => r.count) }]}
                 height={Math.max(220, compareList.length * 40)}
+                xAxisLabel="Open role count"
+                yAxisLabel="Company"
               />
             </Card>
             <Card title="Hiring by team" subtitle="Top departments per company">
@@ -165,6 +167,8 @@ export default function LinkedInPage({ embedded = false }) {
             categories={regions.map(([r]) => r)}
             series={[{ name: 'Open roles', data: regions.map(([, n]) => n) }]}
             height={Math.max(180, regions.length * 36)}
+            xAxisLabel="Open role count"
+            yAxisLabel="Region"
           />
         </Card>
         <Card title="Hiring by department" subtitle="What functions are growing">

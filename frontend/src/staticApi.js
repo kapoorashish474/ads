@@ -28,28 +28,15 @@ function getCompany(store, slug) {
   return store.companies.find((c) => c.slug === slug);
 }
 
-function refreshCompany(store, slug) {
+export function clearStoreCache() {
+  storeCache = null;
+  storePromise = null;
+}
+
+function trackRefresh(store, slug) {
   const company = getCompany(store, slug);
   if (!company) throw new Error('Company not found');
 
-  const segments = company.revenueSegments || [];
-  if (segments.length) {
-    const i = Math.floor(Math.random() * segments.length);
-    segments[i] = {
-      ...segments[i],
-      pct: Math.min(99, Math.max(1, segments[i].pct + (Math.random() > 0.5 ? 1 : -1))),
-    };
-  }
-
-  const trend = company.searchMetrics?.trend || [];
-  if (trend.length) {
-    company.searchMetrics.trend = [
-      ...trend.slice(1),
-      Math.min(100, trend[trend.length - 1] + Math.floor(Math.random() * 4)),
-    ];
-  }
-
-  company.refreshedAt = new Date().toISOString();
   store.usage.push({
     id: store.usage.length + 1,
     eventType: 'refresh',
@@ -182,9 +169,10 @@ export const staticApi = {
   },
 
   refresh: async (slug) => {
+    clearStoreCache();
     const store = await loadStore();
-    const company = refreshCompany(store, slug);
-    return { ok: true, refreshedAt: company.refreshedAt };
+    const company = trackRefresh(store, slug);
+    return { ok: true, refreshedAt: company.refreshedAt || company.dataSources?.revenue?.asOf };
   },
 
   updateSuggestion: async (id, status) => {

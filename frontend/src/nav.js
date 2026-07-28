@@ -1,14 +1,9 @@
 export const navGroups = [
   {
-    id: 'executive',
-    label: 'Executive',
-    items: [{ to: '/', label: 'Brief', icon: 'brief', end: true }],
-  },
-  {
     id: 'dashboard',
     label: 'Dashboard',
     items: [
-      { to: '/overview', label: 'Overview', icon: 'overview', end: true },
+      { to: '/', label: 'Overview', icon: 'overview', end: true },
       { to: '/revenue', label: 'Revenue', icon: 'revenue' },
       { to: '/products', label: 'Products', icon: 'products' },
     ],

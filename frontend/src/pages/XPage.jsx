@@ -142,6 +142,8 @@ export default function XPage({ embedded = false }) {
                 categories={compareList.map((r) => r.name)}
                 series={[{ name: 'Themes', data: compareList.map((r) => r.count) }]}
                 height={Math.max(220, compareList.length * 40)}
+                xAxisLabel="Theme count"
+                yAxisLabel="Company"
               />
             </Card>
             <Card title="Theme mix by company" subtitle="Top public themes per company">
@@ -171,6 +173,8 @@ export default function XPage({ embedded = false }) {
             categories={themes.map(([t]) => t)}
             series={[{ name: 'Items', data: themes.map(([, n]) => n) }]}
             height={Math.max(160, themes.length * 36)}
+            xAxisLabel="Post count"
+            yAxisLabel="Theme"
           />
         </Card>
         <Card title="Verified profiles" subtitle="Links checked against x.com">

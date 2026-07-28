@@ -71,10 +71,10 @@ function radarMomentum(company, peers) {
   const direction = delta > 5 ? 'up' : delta < -5 ? 'down' : 'flat';
   return {
     key: 'position',
-    label: 'Competitive position',
+    label: 'Strength benchmark',
     score,
     direction,
-    detail: `${focus}/100 avg radar vs ${peerAvg} peer avg`,
+    detail: `${focus}/100 modeled radar vs ${peerAvg} peer avg`,
   };
 }
 

@@ -128,6 +128,10 @@ export function loadStore() {
         company.dataSources = seedCo.dataSources;
         migrated = true;
       }
+      if (seedCo?.searchMetrics) {
+        company.searchMetrics = seedCo.searchMetrics;
+        migrated = true;
+      }
     }
     store.sourcesPolicy = seed.sourcesPolicy;
     store.sourcesVersion = seed.sourcesVersion;
@@ -197,24 +201,7 @@ export function refreshCompany(slug) {
   const company = data.companies.find((c) => c.slug === slug);
   if (!company) throw new Error('Company not found');
 
-  const segments = company.revenueSegments || [];
-  if (segments.length) {
-    const i = Math.floor(Math.random() * segments.length);
-    segments[i] = {
-      ...segments[i],
-      pct: Math.min(99, Math.max(1, segments[i].pct + (Math.random() > 0.5 ? 1 : -1))),
-    };
-  }
-
-  const trend = company.searchMetrics?.trend || [];
-  if (trend.length) {
-    company.searchMetrics.trend = [
-      ...trend.slice(1),
-      Math.min(100, trend[trend.length - 1] + Math.floor(Math.random() * 4)),
-    ];
-  }
-
-  company.refreshedAt = new Date().toISOString();
+  // Authentic reload only — log usage without mutating research fields.
   data.usage.push({
     id: data.usage.length + 1,
     eventType: 'refresh',

@@ -1,11 +1,20 @@
-export function searchMomentum(trend) {
-  if (!trend?.length) return null;
-  const index = trend[trend.length - 1];
-  if (trend.length < 4) return { index, changePct: null };
-  const recent = trend.slice(-3).reduce((a, b) => a + b, 0) / 3;
-  const prior = trend.slice(0, 3).reduce((a, b) => a + b, 0) / 3;
+import { alignSearchSeries } from './searchLabels';
+
+export function searchMomentum(trend, searchMetrics, fallbackAsOf) {
+  const aligned = searchMetrics
+    ? alignSearchSeries(searchMetrics, fallbackAsOf, trend)
+    : null;
+  if (!aligned?.trend?.length) return null;
+
+  const { focusIndex: index, period } = aligned;
+  const latestMonth = period?.end ?? null;
+  const startMonth = period?.start ?? null;
+  if (aligned.trend.length < 4) return { index, changePct: null, latestMonth, startMonth };
+
+  const recent = aligned.trend.slice(-3).reduce((a, b) => a + b, 0) / 3;
+  const prior = aligned.trend.slice(0, 3).reduce((a, b) => a + b, 0) / 3;
   const changePct = prior ? Math.round(((recent - prior) / prior) * 100) : null;
-  return { index, changePct };
+  return { index, changePct, latestMonth, startMonth };
 }
 
 export function peerRadarAverages(peers, indicators) {
