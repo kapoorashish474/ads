@@ -12,24 +12,34 @@
       "revenueLabel": "Est. 2025",
       "revenueSegments": [
         {
-          "name": "Mobile high-impact",
-          "value": 180,
-          "pct": 56
+          "name": "Mobile in-app high-impact",
+          "pct": 34,
+          "value": 109
         },
         {
-          "name": "CTV",
-          "value": 85,
-          "pct": 27
+          "name": "Mobile web high-impact",
+          "pct": 22,
+          "value": 70
         },
         {
-          "name": "Data & insights",
-          "value": 35,
-          "pct": 11
+          "name": "CTV premium formats",
+          "pct": 24,
+          "value": 77
         },
         {
-          "name": "Other",
-          "value": 20,
-          "pct": 6
+          "name": "Attention & measurement",
+          "pct": 9,
+          "value": 29
+        },
+        {
+          "name": "Publisher yield tools",
+          "pct": 7,
+          "value": 22
+        },
+        {
+          "name": "Platform & services",
+          "pct": 4,
+          "value": 13
         }
       ],
       "products": [
@@ -489,24 +499,39 @@
       "revenueLabel": "Platform spend proxy · FY2024",
       "revenueSegments": [
         {
-          "name": "CTV",
-          "value": 780,
-          "pct": 32
+          "name": "CTV & streaming video",
+          "pct": 32,
+          "value": 781
         },
         {
-          "name": "Display & native",
-          "value": 610,
-          "pct": 25
+          "name": "Open web display",
+          "pct": 18,
+          "value": 439
         },
         {
-          "name": "Audio & other",
-          "value": 490,
-          "pct": 20
+          "name": "Native & in-app",
+          "pct": 12,
+          "value": 293
         },
         {
-          "name": "Data & identity",
-          "value": 560,
-          "pct": 23
+          "name": "Audio & podcast",
+          "pct": 10,
+          "value": 244
+        },
+        {
+          "name": "Identity & data (UID2)",
+          "pct": 15,
+          "value": 366
+        },
+        {
+          "name": "DOOH & advanced TV",
+          "pct": 8,
+          "value": 195
+        },
+        {
+          "name": "OpenPath & supply",
+          "pct": 5,
+          "value": 122
         }
       ],
       "products": [
@@ -962,24 +987,39 @@
       "revenueLabel": "Est. 2025",
       "revenueSegments": [
         {
-          "name": "Native & display",
-          "value": 180,
-          "pct": 40
+          "name": "Native & programmatic display",
+          "pct": 28,
+          "value": 126
         },
         {
-          "name": "CTV",
-          "value": 135,
-          "pct": 30
+          "name": "CTV & online video",
+          "pct": 26,
+          "value": 117
         },
         {
-          "name": "Audio & DOOH",
-          "value": 90,
-          "pct": 20
+          "name": "Audio",
+          "pct": 12,
+          "value": 54
+        },
+        {
+          "name": "Digital out-of-home",
+          "pct": 10,
+          "value": 45
         },
         {
           "name": "Managed service",
-          "value": 45,
-          "pct": 10
+          "pct": 8,
+          "value": 36
+        },
+        {
+          "name": "Creative & measurement",
+          "pct": 9,
+          "value": 41
+        },
+        {
+          "name": "Platform & other",
+          "pct": 7,
+          "value": 32
         }
       ],
       "products": [
@@ -1418,24 +1458,39 @@
       "revenueLabel": "Reported · FY2024",
       "revenueSegments": [
         {
-          "name": "CTV",
-          "value": 320,
-          "pct": 46
+          "name": "CTV streaming (Magnite Streaming)",
+          "pct": 38,
+          "value": 254
         },
         {
-          "name": "Display SSP",
-          "value": 220,
-          "pct": 32
+          "name": "Display & mobile SSP",
+          "pct": 22,
+          "value": 147
         },
         {
-          "name": "DV+",
-          "value": 128,
-          "pct": 19
+          "name": "SpringServe ad serving",
+          "pct": 14,
+          "value": 94
         },
         {
-          "name": "Data & analytics",
-          "value": 22,
-          "pct": 3
+          "name": "DV+ premium video",
+          "pct": 12,
+          "value": 80
+        },
+        {
+          "name": "Live events & sports CTV",
+          "pct": 6,
+          "value": 40
+        },
+        {
+          "name": "Data & identity",
+          "pct": 5,
+          "value": 33
+        },
+        {
+          "name": "Other supply tools",
+          "pct": 3,
+          "value": 20
         }
       ],
       "products": [
@@ -1870,24 +1925,39 @@
       "revenueLabel": "Reported · FY2024",
       "revenueSegments": [
         {
-          "name": "Sponsored products & brands",
-          "value": 38000,
-          "pct": 68
+          "name": "Sponsored Products",
+          "pct": 42,
+          "value": 23604
         },
         {
-          "name": "Amazon DSP",
-          "value": 9800,
-          "pct": 17
+          "name": "Sponsored Brands & Display",
+          "pct": 18,
+          "value": 10116
         },
         {
-          "name": "Fire TV & video",
-          "value": 5200,
-          "pct": 9
+          "name": "Amazon DSP (off-Amazon)",
+          "pct": 14,
+          "value": 7868
         },
         {
-          "name": "Other",
-          "value": 3200,
-          "pct": 6
+          "name": "Fire TV & streaming ads",
+          "pct": 9,
+          "value": 5058
+        },
+        {
+          "name": "Twitch & gaming",
+          "pct": 5,
+          "value": 2810
+        },
+        {
+          "name": "Video & brand+",
+          "pct": 7,
+          "value": 3934
+        },
+        {
+          "name": "Measurement & AMC",
+          "pct": 5,
+          "value": 2810
         }
       ],
       "products": [
@@ -2331,24 +2401,34 @@
       "revenueLabel": "Reported · FY2024",
       "revenueSegments": [
         {
-          "name": "Retail media off-site",
-          "value": 722,
-          "pct": 38
+          "name": "Off-site retail media",
+          "pct": 32,
+          "value": 608
         },
         {
           "name": "Performance display",
-          "value": 646,
-          "pct": 34
-        },
-        {
-          "name": "Data & audiences",
-          "value": 418,
-          "pct": 22
+          "pct": 28,
+          "value": 532
         },
         {
           "name": "On-site retail media",
-          "value": 114,
-          "pct": 6
+          "pct": 14,
+          "value": 266
+        },
+        {
+          "name": "Data & commerce audiences",
+          "pct": 16,
+          "value": 304
+        },
+        {
+          "name": "CTV & video extension",
+          "pct": 6,
+          "value": 114
+        },
+        {
+          "name": "Managed partnerships",
+          "pct": 4,
+          "value": 76
         }
       ],
       "products": [
@@ -5620,7 +5700,7 @@
   "suggestionsVersion": 2,
   "suggestionsPolicy": "Suggestions synthesized from peer compare, product gaps, search trends, and public signals. Priorities are directional — validate against your pipeline before resourcing.",
   "researchPolicy": "Competitive research corpus v2 — balanced depth across all tracked companies: 8 signals, 8 hiring roles, 6 X themes, 4 products, 4 revenue segments, and full regional search drill-down per company. Sources marked reported / inferred / modeled.",
-  "researchVersion": 2,
+  "researchVersion": 3,
   "benefitPolicy": "Time saved is a corpus-level estimate: the manual research effort to build one company profile at the standard depth in this watch list. Every company receives the same coverage — switch to Brief or Suggestions for company-specific priorities.",
   "benefitVersion": 4,
   "executive": {

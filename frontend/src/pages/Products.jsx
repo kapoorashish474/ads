@@ -14,37 +14,20 @@ export default function Products() {
   if (error) return <ErrorState message={error} />;
   if (!data) return null;
 
-  const { company, peers } = data;
+  const { company } = data;
   const products = company.products || [];
   const insights = company.productInsights;
   const ds = company.dataSources?.products;
-
-  const categories = [
-    ...new Set([company, ...peers].flatMap((c) => (c.products || []).map((p) => p.category))),
-  ].sort();
-
-  const categoryRows = categories.map((cat) => {
-    const has = products.some((p) => p.category === cat);
-    const peerNames = peers
-      .filter((p) => (p.products || []).some((x) => x.category === cat))
-      .map((p) => p.name);
-    return { cat, has, peerNames, peerCount: peerNames.length };
-  });
-
-  const gaps = categoryRows.filter((r) => !r.has && r.peerCount > 0);
 
   return (
     <div className="page page--products">
       <div className="hero hero--compact">
         <h1>Products</h1>
-        <p className="lede">
-          Named product lines for {company.name} — category coverage vs {peers.length} peers.
-        </p>
+        <p className="lede">Named product lines publicly marketed by {company.name}.</p>
       </div>
 
-      <div className="grid grid--stats grid--stats-2">
+      <div className="grid grid--stats grid--stats-1">
         <Stat label="Product lines" value={products.length} hint="Public SKUs tracked" />
-        <Stat label="Category gaps" value={gaps.length} hint="Peer categories you don't have" />
       </div>
 
       {insights && (
@@ -67,73 +50,38 @@ export default function Products() {
         </Card>
       )}
 
-      <div className="grid grid--2">
-        <Card title={`${company.name} portfolio`} subtitle="Publicly marketed product lines" collapsible defaultOpen>
-          {products.length === 0 ? (
-            <Empty message="No products tracked for this company." />
-          ) : (
-            <div className="table-wrap table-wrap--flat">
-              <table className="table product-table">
-                <thead>
-                  <tr>
-                    <th>Product</th>
-                    <th>Category</th>
-                    <th>Channels</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {products.map((p) => (
-                    <tr key={p.name}>
-                      <td className="product-table__name">
-                        <strong>{p.name}</strong>
-                        {p.description && <p className="muted table-note">{p.description}</p>}
-                      </td>
-                      <td>
-                        <Pill>{p.category}</Pill>
-                      </td>
-                      <td className="muted">{(p.channels || []).join(' · ') || '—'}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          )}
-          <SourceFootnote source={ds} />
-        </Card>
-
-        <Card title="Category coverage" subtitle="Gaps vs peer set" collapsible defaultOpen>
-          <div className="table-wrap table-wrap--scroll">
-            <table className="table table--compact coverage-table">
+      <Card title="Product portfolio" subtitle="Publicly marketed product lines" collapsible defaultOpen>
+        {products.length === 0 ? (
+          <Empty message="No products tracked for this company." />
+        ) : (
+          <div className="table-wrap table-wrap--flat">
+            <table className="table product-table">
               <thead>
                 <tr>
+                  <th>Product</th>
                   <th>Category</th>
-                  <th>You</th>
-                  <th>Peers with it</th>
+                  <th>Channels</th>
                 </tr>
               </thead>
               <tbody>
-                {categoryRows.map((row) => (
-                  <tr key={row.cat} className={!row.has && row.peerCount > 0 ? 'row--gap' : ''}>
-                    <td>{row.cat}</td>
+                {products.map((p) => (
+                  <tr key={p.name}>
+                    <td className="product-table__name">
+                      <strong>{p.name}</strong>
+                      {p.description && <p className="muted table-note">{p.description}</p>}
+                    </td>
                     <td>
-                      <span className={row.has ? 'coverage-ok' : 'coverage-gap'}>
-                        {row.has ? 'Yes' : 'Gap'}
-                      </span>
+                      <Pill>{p.category}</Pill>
                     </td>
-                    <td className="coverage-peers">
-                      {row.peerCount === 0 ? (
-                        <span className="muted">None in peer set</span>
-                      ) : (
-                        row.peerNames.join(', ')
-                      )}
-                    </td>
+                    <td className="muted">{(p.channels || []).join(' · ') || '—'}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
-        </Card>
-      </div>
+        )}
+        <SourceFootnote source={ds} />
+      </Card>
     </div>
   );
 }

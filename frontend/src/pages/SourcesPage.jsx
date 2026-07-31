@@ -1,22 +1,13 @@
-import { useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Loading, ErrorState } from '../components/ui';
-import { SourceBadge, formatField } from '../components/Source';
+import { useEffect, useMemo, useState } from 'react';
+import { Card, Loading, ErrorState } from '../components/ui';
+import ScrollTable from '../components/ScrollTable';
+import { SourceBadge, formatField, confidenceLabels } from '../components/Source';
 import { useCompany } from '../context/CompanyContext';
+import { api } from '../api';
 
-const CATEGORY_ORDER = ['Dashboard', 'Market intel', 'Planning', 'Reference'];
-
-const TAB_ROUTES = {
-  Overview: '/',
-  Revenue: '/revenue',
-  Products: '/products',
-  Signals: '/intel/signals',
-  Search: '/intel/search',
-  LinkedIn: '/intel/social?channel=linkedin',
-  X: '/intel/social?channel=x',
-  Suggestions: '/suggestions',
-  Benefit: '/benefit',
-};
+const CATEGORY_ORDER = ['Dashboard', 'Market intel', 'Reference'];
+const EXCLUDED_CATEGORIES = new Set(['Planning', 'Executive']);
+const CONFIDENCE_ORDER = ['reported', 'estimated', 'mixed', 'inferred', 'modeled'];
 
 function sortRows(a, b) {
   const cat = CATEGORY_ORDER.indexOf(a.category) - CATEGORY_ORDER.indexOf(b.category);
@@ -31,13 +22,7 @@ function SourceRow({ row }) {
         <strong>{formatField(row.key)}</strong>
         {row.note && <span className="sources-row__note">{row.note}</span>}
       </td>
-      <td className="sources-row__tab">
-        {row.tab && TAB_ROUTES[row.tab] ? (
-          <Link to={TAB_ROUTES[row.tab]}>{row.tab}</Link>
-        ) : (
-          row.tab || '—'
-        )}
-      </td>
+      <td className="sources-row__tab">{row.tab || '—'}</td>
       <td className="sources-row__source">
         {row.url ? (
           <a href={row.url} target="_blank" rel="noreferrer">
@@ -55,9 +40,46 @@ function SourceRow({ row }) {
   );
 }
 
+function SourcesSection({ category, rows, open, onToggle }) {
+  return (
+    <Card
+      className="sources-section-card"
+      title={category}
+      subtitle={`${rows.length} field${rows.length === 1 ? '' : 's'}`}
+      collapsible
+      open={open}
+      onOpenChange={onToggle}
+    >
+      <ScrollTable
+        rows={rows}
+        getRowKey={(row) => row.key}
+        tableClassName="table table--compact sources-table"
+        head={
+          <thead>
+            <tr>
+              <th>Field</th>
+              <th>Planned view</th>
+              <th>Source</th>
+              <th>Level</th>
+              <th>As of</th>
+            </tr>
+          </thead>
+        }
+        renderRow={(row) => <SourceRow row={row} />}
+      />
+    </Card>
+  );
+}
+
 export default function SourcesPage() {
   const { data, loading, error } = useCompany();
   const [query, setQuery] = useState('');
+  const [policy, setPolicy] = useState('');
+  const [expanded, setExpanded] = useState({});
+
+  useEffect(() => {
+    api.policies().then((r) => setPolicy(r.sources || '')).catch(() => {});
+  }, []);
 
   const sources = data?.company?.dataSources;
 
@@ -65,6 +87,7 @@ export default function SourcesPage() {
     () =>
       Object.entries(sources || {})
         .map(([key, src]) => ({ key, ...src }))
+        .filter((row) => !EXCLUDED_CATEGORIES.has(row.category))
         .sort(sortRows),
     [sources]
   );
@@ -94,6 +117,32 @@ export default function SourcesPage() {
     }));
   }, [filtered]);
 
+  useEffect(() => {
+    setExpanded((prev) => {
+      const next = { ...prev };
+      grouped.forEach(({ category }, index) => {
+        if (next[category] === undefined) next[category] = index === 0;
+      });
+      return next;
+    });
+  }, [grouped]);
+
+  const confidenceCounts = useMemo(() => {
+    const counts = {};
+    rows.forEach((row) => {
+      const key = row.confidence || 'unknown';
+      counts[key] = (counts[key] || 0) + 1;
+    });
+    return CONFIDENCE_ORDER.filter((c) => counts[c]).map((c) => [c, counts[c]]);
+  }, [rows]);
+
+  const allExpanded = grouped.length > 0 && grouped.every(({ category }) => expanded[category]);
+
+  const toggleAll = () => {
+    const next = !allExpanded;
+    setExpanded(Object.fromEntries(grouped.map(({ category }) => [category, next])));
+  };
+
   if (loading) return <Loading />;
   if (error) return <ErrorState message={error} />;
   if (!data) return null;
@@ -102,71 +151,76 @@ export default function SourcesPage() {
 
   return (
     <div className="page page--sources">
-      <header className="sources-header">
-        <div>
-          <h1>Sources</h1>
-          <p className="sources-header__lede">
-            Public data origins for {company.name} — {rows.length} fields across the app.
-          </p>
+      <Card className="sources-intro-card">
+        <header className="sources-header">
+          <div className="sources-header__copy">
+            <h1>Data sources</h1>
+            <p className="sources-header__lede">
+              Plan from public origins first — every metric for {company.name} must trace to a URL,
+              confidence level, and as-of date before it appears on a dashboard.
+            </p>
+          </div>
+          <div className="sources-header__search">
+            <input
+              type="search"
+              className="sources-search"
+              placeholder="Search field or source…"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              aria-label="Search sources"
+            />
+          </div>
+        </header>
+
+        <div className="sources-summary">
+          <span className="sources-summary__total">
+            <strong>{rows.length}</strong> fields tracked
+          </span>
+          {confidenceCounts.map(([level, count]) => (
+            <span key={level} className="sources-summary__chip">
+              {count} {confidenceLabels[level] || level}
+            </span>
+          ))}
         </div>
-        <div className="sources-header__search">
-          <input
-            type="search"
-            className="sources-search"
-            placeholder="Search field or source…"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            aria-label="Search sources"
-          />
-        </div>
-      </header>
+
+        {policy && (
+          <details className="sources-policy">
+            <summary>Source policy</summary>
+            <p>{policy}</p>
+          </details>
+        )}
+      </Card>
 
       <div className="sources-registry">
+        <div className="sources-registry__toolbar">
+          <p className="sources-registry__meta">
+            {filtered.length} field{filtered.length === 1 ? '' : 's'}
+            {query.trim() ? ' matching search' : ''} across {grouped.length} section
+            {grouped.length === 1 ? '' : 's'}
+          </p>
+          {grouped.length > 1 && (
+            <button type="button" className="sources-registry__toggle" onClick={toggleAll}>
+              {allExpanded ? 'Collapse all' : 'Expand all'}
+            </button>
+          )}
+        </div>
+
         {grouped.length === 0 ? (
-          <p className="muted sources-empty">No fields match your search.</p>
+          <Card className="sources-empty-card">
+            <p className="muted sources-empty">No fields match your search.</p>
+          </Card>
         ) : (
           grouped.map(({ category, rows: sectionRows }) => (
-            <section key={category} className="sources-section">
-              <div className="sources-section__head">
-                <h2>{category}</h2>
-              </div>
-              <div className="sources-section__table">
-                <table className="table table--compact sources-table">
-                  <thead>
-                    <tr>
-                      <th>Field</th>
-                      <th>Tab</th>
-                      <th>Source</th>
-                      <th>Level</th>
-                      <th>As of</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {sectionRows.map((row) => (
-                      <SourceRow key={row.key} row={row} />
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </section>
+            <SourcesSection
+              key={category}
+              category={category}
+              rows={sectionRows}
+              open={!!expanded[category]}
+              onToggle={(next) => setExpanded((prev) => ({ ...prev, [category]: next }))}
+            />
           ))
         )}
       </div>
-
-      <details className="sources-methodology">
-        <summary>About confidence levels & methodology</summary>
-        <ul>
-          <li>
-            <strong>Reported</strong> — filings, IR, verified profiles.{' '}
-            <strong>Estimated</strong> — industry reports, LinkedIn bands.{' '}
-            <strong>Modeled</strong> — indices & scores.{' '}
-            <strong>Inferred</strong> — synthesized from public signals.{' '}
-            <strong>Mixed</strong> — reported + modeled.
-          </li>
-          <li>All metrics use public sources only — no private APIs, scraped social text, or simulated refresh.</li>
-          <li>Each chart and stat elsewhere in the app shows the same confidence tag at point of use.</li>
-        </ul>
-      </details>
     </div>
   );
 }

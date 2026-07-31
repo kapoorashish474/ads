@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Card, Stat, Loading, ErrorState, Pill, Empty } from '../components/ui';
+import { Card, Loading, ErrorState, Pill, Empty } from '../components/ui';
+import ScrollTable from '../components/ScrollTable';
 import { FilterBar, FilterSelect } from '../components/FilterBar';
 import { SourceFootnote } from '../components/Source';
 import { useCompany } from '../context/CompanyContext';
@@ -21,6 +22,11 @@ const LANE_LABELS = {
 
 const PRIORITY_ORDER = { critical: 0, high: 1, medium: 2, low: 3 };
 
+const TYPE_OPTIONS = [
+  { value: 'all', label: 'All types' },
+  ...Object.entries(TYPE_LABELS).map(([value, label]) => ({ value, label })),
+];
+
 function EvidenceLinks({ items }) {
   if (!items?.length) return <span className="muted">—</span>;
   return (
@@ -40,13 +46,25 @@ function EvidenceLinks({ items }) {
   );
 }
 
+function matchesQuery(item, query) {
+  const q = query.trim().toLowerCase();
+  if (!q) return true;
+  const haystack = [item.title, item.thesis, item.fast_path, item.lane, item.type, item.priority]
+    .filter(Boolean)
+    .join(' ')
+    .toLowerCase();
+  return haystack.includes(q);
+}
+
 export default function Suggestions() {
   const { slug, data, loading: ctxLoading, error: ctxError } = useCompany();
   const [suggestions, setSuggestions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [query, setQuery] = useState('');
   const [priorityFilter, setPriorityFilter] = useState('all');
   const [laneFilter, setLaneFilter] = useState('all');
+  const [typeFilter, setTypeFilter] = useState('all');
 
   useEffect(() => {
     setLoading(true);
@@ -64,16 +82,28 @@ export default function Suggestions() {
       .filter((s) => {
         if (laneFilter !== 'all' && s.lane !== laneFilter) return false;
         if (priorityFilter !== 'all' && s.priority !== priorityFilter) return false;
+        if (typeFilter !== 'all' && s.type !== typeFilter) return false;
+        if (!matchesQuery(s, query)) return false;
         return true;
       })
       .sort((a, b) => {
+        const priorityOrder = PRIORITY_ORDER[a.priority] - PRIORITY_ORDER[b.priority];
+        if (priorityOrder !== 0) return priorityOrder;
         const laneOrder = (a.lane || '').localeCompare(b.lane || '');
         if (laneOrder !== 0) return laneOrder;
-        return PRIORITY_ORDER[a.priority] - PRIORITY_ORDER[b.priority];
+        return (a.title || '').localeCompare(b.title || '');
       });
-  }, [suggestions, laneFilter, priorityFilter]);
+  }, [suggestions, laneFilter, priorityFilter, typeFilter, query]);
 
-  const criticalCount = suggestions.filter((s) => s.priority === 'critical').length;
+  const filtersActive =
+    query.trim() !== '' || laneFilter !== 'all' || priorityFilter !== 'all' || typeFilter !== 'all';
+
+  function clearFilters() {
+    setQuery('');
+    setLaneFilter('all');
+    setPriorityFilter('all');
+    setTypeFilter('all');
+  }
 
   if (ctxLoading || loading) return <Loading />;
   if (ctxError || error) return <ErrorState message={ctxError || error} />;
@@ -83,18 +113,23 @@ export default function Suggestions() {
       <div className="hero hero--compact">
         <h1>Suggestions</h1>
         <p className="lede">
-          Where {companyName} should invest next — evidence-backed priorities from peer gaps and
-          public signals.
+          Where {companyName} should invest next — evidence-backed priorities for this company.
         </p>
       </div>
 
-      <div className="grid grid--stats grid--stats-2">
-        <Stat label="Priorities" value={suggestions.length} />
-        <Stat label="Critical" value={criticalCount} hint="Needs attention now" />
-      </div>
-
       <Card title="Priority register" subtitle={`${filtered.length} of ${suggestions.length}`} collapsible defaultOpen>
-        <FilterBar className="filter-toolbar--inset">
+        <FilterBar className="filter-toolbar--inset suggestions-filters">
+          <label className="filter-search suggestions-filters__search">
+            <span className="filter-select__label">Search</span>
+            <input
+              type="search"
+              className="filter-search__input"
+              placeholder="Title, thesis, fast path…"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              aria-label="Search suggestions"
+            />
+          </label>
           <FilterSelect
             label="Lane"
             value={laneFilter}
@@ -117,13 +152,22 @@ export default function Suggestions() {
               { value: 'low', label: 'Low' },
             ]}
           />
+          <FilterSelect label="Type" value={typeFilter} onChange={setTypeFilter} options={TYPE_OPTIONS} />
+          {filtersActive && (
+            <button type="button" className="suggestions-filters__clear" onClick={clearFilters}>
+              Clear filters
+            </button>
+          )}
         </FilterBar>
 
         {filtered.length === 0 ? (
           <Empty message="No suggestions match these filters." />
         ) : (
-          <div className="table-wrap table-wrap--flat">
-            <table className="table table--compact table--suggestions">
+          <ScrollTable
+            rows={filtered}
+            getRowKey={(item) => item.id}
+            tableClassName="table table--compact table--suggestions"
+            head={
               <thead>
                 <tr>
                   <th>Priority</th>
@@ -134,31 +178,29 @@ export default function Suggestions() {
                   <th>Evidence</th>
                 </tr>
               </thead>
-              <tbody>
-                {filtered.map((item) => (
-                  <tr key={item.id} className={`suggestion-row suggestion-row--${item.priority}`}>
-                    <td>
-                      <Pill tone={item.priority}>{item.priority}</Pill>
-                    </td>
-                    <td>{LANE_LABELS[item.lane] || item.lane}</td>
-                    <td>{TYPE_LABELS[item.type] || item.type}</td>
-                    <td>
-                      <strong>{item.title}</strong>
-                      <p className="muted table-note">{item.thesis}</p>
-                    </td>
-                    <td>{item.fast_path}</td>
-                    <td>
-                      <EvidenceLinks items={item.evidence} />
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+            }
+            renderRow={(item) => (
+              <tr className={`suggestion-row suggestion-row--${item.priority}`}>
+                <td>
+                  <Pill tone={item.priority}>{item.priority}</Pill>
+                </td>
+                <td>{LANE_LABELS[item.lane] || item.lane}</td>
+                <td>{TYPE_LABELS[item.type] || item.type}</td>
+                <td>
+                  <strong>{item.title}</strong>
+                  <p className="muted table-note">{item.thesis}</p>
+                </td>
+                <td>{item.fast_path}</td>
+                <td>
+                  <EvidenceLinks items={item.evidence} />
+                </td>
+              </tr>
+            )}
+          />
         )}
         <SourceFootnote
           source={{
-            label: 'Peer compare + product gaps + search trends + public signals',
+            label: 'Product gaps, search trends, and public signals for this company',
             confidence: 'inferred',
             asOf: '2026-07',
           }}

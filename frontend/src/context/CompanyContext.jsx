@@ -10,7 +10,6 @@ export function CompanyProvider({ children }) {
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [error, setError] = useState(null);
-  const [compareMode, setCompareMode] = useState(false);
 
   useEffect(() => {
     api.companies().then((r) => setCompanies(r.companies)).catch(() => {});
@@ -19,6 +18,7 @@ export function CompanyProvider({ children }) {
   const load = useCallback(async (companySlug) => {
     setLoading(true);
     setError(null);
+    setData(null);
     try {
       const result = await api.peers(companySlug);
       setData(result);
@@ -59,8 +59,6 @@ export function CompanyProvider({ children }) {
         error,
         refresh,
         reload: () => load(slug),
-        compareMode,
-        setCompareMode,
       }}
     >
       {children}

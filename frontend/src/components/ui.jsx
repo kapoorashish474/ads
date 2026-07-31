@@ -18,8 +18,17 @@ export function Card({
   className = '',
   collapsible = false,
   defaultOpen = true,
+  open: controlledOpen,
+  onOpenChange,
 }) {
-  const [open, setOpen] = useState(defaultOpen);
+  const [internalOpen, setInternalOpen] = useState(defaultOpen);
+  const isControlled = controlledOpen !== undefined;
+  const open = isControlled ? controlledOpen : internalOpen;
+  const setOpen = (next) => {
+    const value = typeof next === 'function' ? next(open) : next;
+    if (isControlled) onOpenChange?.(value);
+    else setInternalOpen(value);
+  };
 
   const headContent = (
     <>

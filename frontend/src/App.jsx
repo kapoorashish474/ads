@@ -2,12 +2,9 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { CompanyProvider } from './context/CompanyContext';
 import Layout from './components/Layout';
 import Overview from './pages/Overview';
-import Revenue from './pages/Revenue';
-import Products from './pages/Products';
-import IntelPage from './pages/IntelPage';
-import Suggestions from './pages/Suggestions';
-import Benefit from './pages/Benefit';
 import SourcesPage from './pages/SourcesPage';
+import Suggestions from './pages/Suggestions';
+import IntelPage from './pages/IntelPage';
 
 export default function App() {
   const base = import.meta.env.BASE_URL ?? '/';
@@ -18,24 +15,18 @@ export default function App() {
       <BrowserRouter basename={basename}>
         <Routes>
           <Route element={<Layout />}>
-            <Route index element={<Overview />} />
-            <Route path="overview" element={<Navigate to="/" replace />} />
-            <Route path="brief" element={<Navigate to="/" replace />} />
-            <Route path="threats" element={<Navigate to="/" replace />} />
-            <Route path="momentum" element={<Navigate to="/" replace />} />
-            <Route path="gaps" element={<Navigate to="/" replace />} />
-            <Route path="leadership" element={<Navigate to="/" replace />} />
-            <Route path="revenue" element={<Revenue />} />
-            <Route path="products" element={<Products />} />
-            <Route path="intel" element={<Navigate to="/intel/signals" replace />} />
-            <Route path="intel/:section" element={<IntelPage />} />
-            <Route path="signals" element={<Navigate to="/intel/signals" replace />} />
-            <Route path="search" element={<Navigate to="/intel/search" replace />} />
-            <Route path="linkedin" element={<Navigate to="/intel/social?channel=linkedin" replace />} />
-            <Route path="x" element={<Navigate to="/intel/social?channel=x" replace />} />
-            <Route path="suggestions" element={<Suggestions />} />
-            <Route path="benefit" element={<Benefit />} />
+            <Route index element={<Navigate to="/dashboard" replace />} />
+            <Route path="dashboard" element={<Overview />} />
             <Route path="sources" element={<SourcesPage />} />
+            <Route path="planning" element={<Suggestions />} />
+            <Route path="signals" element={<IntelPage />} />
+            <Route path="search" element={<IntelPage />} />
+            <Route path="social" element={<IntelPage />} />
+            <Route path="suggestions" element={<Navigate to="/planning" replace />} />
+            <Route path="intel/signals" element={<Navigate to="/signals" replace />} />
+            <Route path="intel/search" element={<Navigate to="/search" replace />} />
+            <Route path="intel/social" element={<Navigate to="/social" replace />} />
+            <Route path="*" element={<Navigate to="/dashboard" replace />} />
           </Route>
         </Routes>
       </BrowserRouter>

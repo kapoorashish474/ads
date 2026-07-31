@@ -1,14 +1,8 @@
-import { Card, Stat, Loading, ErrorState, Empty } from '../components/ui';
-import { DonutChart, StackedBarChart } from '../components/Charts';
-import { CardSources, SourceFootnote } from '../components/Source';
+import { Card, Stat, Loading, ErrorState } from '../components/ui';
+import { DonutChart } from '../components/Charts';
+import { CardSources } from '../components/Source';
 import { useCompany } from '../context/CompanyContext';
-import { formatUsd, formatUsdPerEmployee, revenuePerEmployee, revenuePerEmployeeHint } from '../api';
-import {
-  SEGMENT_BUCKETS,
-  normalizeSegmentMix,
-  segmentComparison,
-  segmentInsights,
-} from '../utils/segments';
+import { formatUsd, formatUsdPerEmployee, revenuePerEmployee } from '../api';
 
 export default function Revenue() {
   const { data, loading, error } = useCompany();
@@ -16,24 +10,15 @@ export default function Revenue() {
   if (error) return <ErrorState message={error} />;
   if (!data) return null;
 
-  const { company, peers } = data;
+  const { company } = data;
   const ds = company.dataSources || {};
   const segments = company.revenueSegments || [];
-  const compareSet = [company, ...peers];
-  const comparison = segmentComparison(company, peers);
-  const insights = segmentInsights(company, peers);
-
-  const stackedCategories = compareSet.map((c) => c.name);
-  const stackedSeries = SEGMENT_BUCKETS.map((bucket) => ({
-    name: bucket,
-    data: compareSet.map((c) => normalizeSegmentMix(c)[bucket]),
-  })).filter((s) => s.data.some((v) => v > 0));
 
   return (
     <div className="page page--revenue">
       <div className="hero hero--compact">
         <h1>Revenue</h1>
-        <p className="lede">Segment mix and peer benchmarks for {company.name}.</p>
+        <p className="lede">Segment mix and revenue metrics for {company.name}.</p>
       </div>
 
       <div className="grid grid--stats grid--stats-3">
@@ -41,14 +26,14 @@ export default function Revenue() {
         <Stat
           label="Revenue / employee"
           value={formatUsdPerEmployee(revenuePerEmployee(company))}
-          hint={revenuePerEmployeeHint(company, peers)}
+          hint="Ad revenue ÷ headcount"
           source={ds.employees}
         />
         <Stat label="Segments" value={segments.length} hint="Reported or estimated mix" source={ds.segments} />
       </div>
 
       <div className="grid grid--2">
-        <Card title={`${company.name} — segments`}>
+        <Card title="Revenue segments">
           <DonutChart data={segments} />
           <CardSources company={company} fields={['segments']} />
         </Card>
@@ -73,72 +58,6 @@ export default function Revenue() {
           </table>
         </Card>
       </div>
-
-      <Card
-        title="Segment mix vs peers"
-        subtitle={`Normalized categories · ${peers.length} peers`}
-        collapsible
-        defaultOpen
-      >
-        {peers.length === 0 ? (
-          <Empty message="No peers configured — segment comparison unavailable." />
-        ) : (
-          <>
-            {(insights?.over || insights?.under) && (
-              <div className="segment-insights">
-                {insights.over && <p className="segment-insights__item segment-insights__item--up">{insights.over}</p>}
-                {insights.under && (
-                  <p className="segment-insights__item segment-insights__item--down">{insights.under}</p>
-                )}
-              </div>
-            )}
-
-            <StackedBarChart
-              categories={stackedCategories}
-              series={stackedSeries}
-              height={Math.max(260, compareSet.length * 44)}
-            />
-
-            <p className="card-note muted">
-              Raw segment labels differ by company. We map them into shared buckets for peer comparison.
-            </p>
-
-            <div className="table-wrap table-wrap--scroll segment-compare-wrap">
-              <table className="table table--compact segment-compare">
-                <thead>
-                  <tr>
-                    <th>Category</th>
-                    <th>{company.name}</th>
-                    <th>Peer avg</th>
-                    <th>Delta</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {comparison.map((row) => (
-                    <tr key={row.bucket} className={Math.abs(row.delta) >= 8 ? 'row--focus' : ''}>
-                      <td>{row.bucket}</td>
-                      <td>{row.yours}%</td>
-                      <td className="muted">{row.peerAvg}%</td>
-                      <td>
-                        <span
-                          className={
-                            row.delta > 0 ? 'segment-delta segment-delta--up' : row.delta < 0 ? 'segment-delta segment-delta--down' : 'segment-delta'
-                          }
-                        >
-                          {row.delta > 0 ? '+' : ''}
-                          {row.delta} pts
-                        </span>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-            <SourceFootnote source={ds.segments} field="Segments" />
-          </>
-        )}
-      </Card>
     </div>
   );
 }

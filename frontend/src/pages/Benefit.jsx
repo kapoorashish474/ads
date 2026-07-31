@@ -78,7 +78,7 @@ export default function Benefit() {
           </ul>
           <p className="benefit-company-link muted">
             Company-specific priorities live on{' '}
-            <Link to="/suggestions">Suggestions</Link> and <Link to="/">Overview</Link> — use the
+            <Link to="/planning">Planning</Link> and <Link to="/dashboard">Dashboard</Link> — use the
             company selector there.
           </p>
         </section>

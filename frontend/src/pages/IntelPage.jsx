@@ -1,5 +1,4 @@
-import { Navigate, useParams, useSearchParams } from 'react-router-dom';
-import CompareModeBar from '../components/CompareModeBar';
+import { Navigate, useLocation, useSearchParams } from 'react-router-dom';
 import { NavIcon } from '../components/NavIcon';
 import { useCompany } from '../context/CompanyContext';
 import Signals from './Signals';
@@ -20,13 +19,19 @@ const SOCIAL_CHANNELS = [
 
 const VALID_SECTIONS = ['signals', 'search', 'social'];
 
+function sectionFromPath(pathname) {
+  const segment = pathname.split('/').filter(Boolean).pop();
+  return VALID_SECTIONS.includes(segment) ? segment : null;
+}
+
 export default function IntelPage() {
-  const { section: sectionParam } = useParams();
-  const { data, compareMode, setCompareMode } = useCompany();
+  const { pathname } = useLocation();
+  const sectionParam = sectionFromPath(pathname);
+  const { slug } = useCompany();
   const [params, setParams] = useSearchParams();
 
-  if (!VALID_SECTIONS.includes(sectionParam)) {
-    return <Navigate to="/intel/signals" replace />;
+  if (!sectionParam) {
+    return <Navigate to="/signals" replace />;
   }
 
   const section = sectionParam;
@@ -34,8 +39,14 @@ export default function IntelPage() {
     ? params.get('channel')
     : 'linkedin';
 
-  const companyName = data?.company?.name || 'your company';
-  const peerCount = data?.peers?.length || 0;
+  const channelLabel = SOCIAL_CHANNELS.find((c) => c.id === channel)?.label;
+
+  const sectionMeta =
+    section === 'search'
+      ? 'Modeled market attention · global and regional'
+      : section === 'social' && channelLabel
+        ? `${channelLabel} · this company only`
+        : 'This company only';
 
   function setChannel(next) {
     setParams((prev) => {
@@ -51,16 +62,8 @@ export default function IntelPage() {
         <div className="intel-header__top">
           <div className="intel-header__title">
             <h1>{SECTION_LABELS[section]}</h1>
-            <p className="intel-header__meta">
-              {compareMode ? `${companyName} vs ${peerCount} peers` : companyName}
-            </p>
+            <p className="intel-header__meta">{sectionMeta}</p>
           </div>
-          <CompareModeBar
-            compact
-            compareMode={compareMode}
-            onChange={setCompareMode}
-            peerCount={peerCount}
-          />
         </div>
 
         {section === 'social' && (
@@ -87,10 +90,10 @@ export default function IntelPage() {
       </header>
 
       <div className="intel-content">
-        {section === 'signals' && <Signals embedded />}
-        {section === 'search' && <SearchPage embedded />}
-        {section === 'social' && channel === 'linkedin' && <LinkedInPage embedded />}
-        {section === 'social' && channel === 'x' && <XPage embedded />}
+        {section === 'signals' && <Signals key={slug} embedded />}
+        {section === 'search' && <SearchPage key={slug} embedded />}
+        {section === 'social' && channel === 'linkedin' && <LinkedInPage key={slug} embedded />}
+        {section === 'social' && channel === 'x' && <XPage key={slug} embedded />}
       </div>
     </div>
   );

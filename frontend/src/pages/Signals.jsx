@@ -1,19 +1,10 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Card, Stat, Loading, ErrorState, Pill, Empty } from '../components/ui';
+import { Card, Loading, ErrorState, Pill, Empty } from '../components/ui';
+import ScrollTable from '../components/ScrollTable';
 import { SourceFootnote } from '../components/Source';
 import { FilterBar, FilterSelect } from '../components/FilterBar';
-import { BarChart } from '../components/Charts';
-import IntelCompareTable from '../components/IntelCompareTable';
 import { useCompany } from '../context/CompanyContext';
 import { api } from '../api';
-import {
-  compareRows,
-  countByField,
-  countBySlug,
-  deltaVsPeers,
-  focusRank,
-  peerAverage,
-} from '../utils/intelCompare';
 
 const TYPE_LABELS = {
   launch: 'Launch',
@@ -30,20 +21,16 @@ function formatSignalDate(iso) {
   });
 }
 
-function slugToName(slug, nameMap) {
-  return nameMap[slug] || slug.replace(/-/g, ' ');
-}
-
 export default function Signals({ embedded = false }) {
-  const { slug, data, loading: ctxLoading, error: ctxError, compareMode } = useCompany();
+  const { slug, data, loading: ctxLoading, error: ctxError } = useCompany();
   const [signals, setSignals] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [typeFilter, setTypeFilter] = useState('all');
-  const [scopeFilter, setScopeFilter] = useState('all');
 
   useEffect(() => {
     setLoading(true);
+    setTypeFilter('all');
     api
       .signals(slug)
       .then((r) => setSignals(r.signals))
@@ -51,170 +38,22 @@ export default function Signals({ embedded = false }) {
       .finally(() => setLoading(false));
   }, [slug]);
 
-  const nameMap = useMemo(() => {
-    const map = {};
-    if (data?.company) map[data.company.slug] = data.company.name;
-    (data?.peers || []).forEach((p) => {
-      map[p.slug] = p.name;
-    });
-    return map;
-  }, [data]);
+  const companyName = data?.company?.name || slug;
 
   const filtered = useMemo(() => {
     return signals.filter((s) => {
+      if (s.company_slug !== slug) return false;
       if (typeFilter !== 'all' && s.type !== typeFilter) return false;
-      if (scopeFilter === 'company' && s.company_slug !== slug) return false;
-      if (scopeFilter === 'peers' && s.company_slug === slug) return false;
       return true;
     });
-  }, [signals, typeFilter, scopeFilter, slug]);
-
-  const byType = useMemo(() => {
-    const counts = {};
-    signals.forEach((s) => {
-      counts[s.type] = (counts[s.type] || 0) + 1;
-    });
-    return Object.entries(counts).sort((a, b) => b[1] - a[1]);
-  }, [signals]);
-
-  const byCompany = useMemo(() => {
-    const counts = {};
-    signals.forEach((s) => {
-      counts[s.company_slug] = (counts[s.company_slug] || 0) + 1;
-    });
-    return Object.entries(counts)
-      .map(([s, n]) => ({ slug: s, name: slugToName(s, nameMap), count: n }))
-      .sort((a, b) => b.count - a.count);
-  }, [signals, nameMap]);
-
-  const companySignalCount = signals.filter((s) => s.company_slug === slug).length;
-  const peerSignalCount = signals.length - companySignalCount;
-  const latestDate = signals[0]?.published_at;
-
-  const company = data?.company;
-  const peers = data?.peers || [];
-  const typeBreakdown = countByField(signals, 'company_slug', 'type');
-  const signalCounts = countBySlug(signals);
-  const compareList = company
-    ? compareRows(company, peers, signalCounts).map((row) => ({
-        ...row,
-        breakdown: typeBreakdown[row.slug] || {},
-      }))
-    : [];
-  const avgPeerSignals = peerAverage(peers, signalCounts);
-  const signalDelta = deltaVsPeers(companySignalCount, avgPeerSignals);
-  const signalRank = focusRank(compareList, slug);
-
-  const compareColumns = [
-    { key: 'launch', label: 'Launch' },
-    { key: 'product', label: 'Product' },
-    { key: 'partnership', label: 'Partnership' },
-  ];
+  }, [signals, typeFilter, slug]);
 
   if (ctxLoading || loading) return <Loading />;
   if (ctxError || error) return <ErrorState message={ctxError || error} />;
 
-  const companyName = data?.company?.name || slug;
-
   return (
-    <div className={embedded ? 'intel-panel' : 'page'}>
-      {!embedded && (
-        <div className="hero hero--compact">
-          <h1>Signals</h1>
-          <p className="lede">
-            {compareMode
-              ? `Side-by-side signal activity — ${companyName} vs ${peers.length} peers.`
-              : <>Public moves from <strong>{companyName}</strong> and {peers.length} peers — launches, products, and partnerships with sources cited.</>}
-          </p>
-        </div>
-      )}
-
-      {compareMode && company && (
-        <>
-          <div className="grid grid--stats grid--stats-4">
-            <Stat label={`${companyName} signals`} value={companySignalCount} hint={signalDelta.text} />
-            <Stat label="Peer average" value={avgPeerSignals} hint="Signals per peer" />
-            <Stat label="Your rank" value={signalRank ? `#${signalRank}` : '—'} hint="Among watch list" />
-            <Stat label="Most active" value={compareList[0]?.name || '—'} hint={`${compareList[0]?.count || 0} signals`} />
-          </div>
-
-          <div className="grid grid--2">
-            <Card title="Signal volume vs peers" subtitle="Total public moves tracked">
-              <BarChart
-                horizontal
-                categories={compareList.map((r) => r.name)}
-                series={[{ name: 'Signals', data: compareList.map((r) => r.count) }]}
-                height={Math.max(220, compareList.length * 40)}
-                xAxisLabel="Signal count"
-                yAxisLabel="Company"
-              />
-            </Card>
-            <Card title="Signal mix by company" subtitle="Launch · product · partnership">
-              <IntelCompareTable
-                rows={compareList}
-                columns={compareColumns}
-                focusSlug={slug}
-                valueLabel="Total"
-              />
-            </Card>
-          </div>
-        </>
-      )}
-
-      {!compareMode && (
-      <div className="grid grid--stats grid--stats-4">
-        <Stat label="Total signals" value={signals.length} hint="In your watch list" />
-        <Stat label={`About ${companyName}`} value={companySignalCount} hint="Direct company news" />
-        <Stat label="Peer moves" value={peerSignalCount} hint="Competitive intel" />
-        <Stat label="Latest" value={latestDate ? formatSignalDate(latestDate) : '—'} hint="Most recent item" />
-      </div>
-      )}
-
-      {!compareMode && (
-      <div className="grid grid--2">
-        <Card title="By type" subtitle="What kind of moves" collapsible defaultOpen>
-          <table className="table table--compact">
-            <thead>
-              <tr>
-                <th>Type</th>
-                <th>Count</th>
-              </tr>
-            </thead>
-            <tbody>
-              {byType.map(([type, count]) => (
-                <tr key={type}>
-                  <td>
-                    <Pill tone={type}>{TYPE_LABELS[type] || type}</Pill>
-                  </td>
-                  <td>{count}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </Card>
-
-        <Card title="By company" subtitle="Who is most active" collapsible defaultOpen>
-          <table className="table table--compact">
-            <thead>
-              <tr>
-                <th>Company</th>
-                <th>Signals</th>
-              </tr>
-            </thead>
-            <tbody>
-              {byCompany.map((row) => (
-                <tr key={row.slug} className={row.slug === slug ? 'row--focus' : ''}>
-                  <td>{row.name}</td>
-                  <td>{row.count}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </Card>
-      </div>
-      )}
-
-      <Card title={compareMode ? 'Full signal feed' : 'Signal feed'} subtitle={`${filtered.length} of ${signals.length} shown`}>
+    <div className={embedded ? 'intel-panel' : 'page page--signals'}>
+      <Card title="Signal feed" subtitle={`${filtered.length} for ${companyName}`} collapsible defaultOpen>
         <FilterBar className="filter-toolbar--inset">
           <FilterSelect
             label="Type"
@@ -227,60 +66,47 @@ export default function Signals({ embedded = false }) {
               { value: 'partnership', label: TYPE_LABELS.partnership },
             ]}
           />
-          <FilterSelect
-            label="Scope"
-            value={scopeFilter}
-            onChange={setScopeFilter}
-            options={[
-              { value: 'all', label: 'All' },
-              { value: 'company', label: companyName },
-              { value: 'peers', label: 'Peers only' },
-            ]}
-          />
         </FilterBar>
 
         {filtered.length === 0 ? (
-          <Empty message="No signals match these filters." />
+          <Empty message="No signals for this company match these filters." />
         ) : (
-          <div className="table-wrap">
-            <table className="table table--signals">
+          <ScrollTable
+            rows={filtered}
+            getRowKey={(s) => s.id}
+            tableClassName="table table--signals"
+            head={
               <thead>
                 <tr>
                   <th>Date</th>
-                  <th>Company</th>
                   <th>Type</th>
                   <th>Signal</th>
                   <th>Source</th>
                 </tr>
               </thead>
-              <tbody>
-                {filtered.map((s) => (
-                  <tr key={s.id} className={s.company_slug === slug ? 'row--focus' : ''}>
-                    <td className="cell-date">{formatSignalDate(s.published_at)}</td>
-                    <td className="cell-company">{slugToName(s.company_slug, nameMap)}</td>
-                    <td className="cell-type">
-                      <Pill tone={s.type}>{TYPE_LABELS[s.type] || s.type}</Pill>
-                    </td>
-                    <td className="cell-signal">
-                      <strong>{s.title}</strong>
-                      <p>{s.summary}</p>
-                    </td>
-                    <td className="cell-source">
-                      {s.confidence && (
-                        <Pill tone={`conf-${s.confidence}`}>{s.confidence}</Pill>
-                      )}
-                      <span className="cell-source__name">{s.source_name || 'Public source'}</span>
-                      {s.source_url && (
-                        <a href={s.source_url} target="_blank" rel="noreferrer">
-                          Open
-                        </a>
-                      )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+            }
+            renderRow={(s) => (
+              <tr>
+                <td className="cell-date">{formatSignalDate(s.published_at)}</td>
+                <td className="cell-type">
+                  <Pill tone={s.type}>{TYPE_LABELS[s.type] || s.type}</Pill>
+                </td>
+                <td className="cell-signal">
+                  <strong>{s.title}</strong>
+                  <p>{s.summary}</p>
+                </td>
+                <td className="cell-source">
+                  {s.confidence && <Pill tone={`conf-${s.confidence}`}>{s.confidence}</Pill>}
+                  <span className="cell-source__name">{s.source_name || 'Public source'}</span>
+                  {s.source_url && (
+                    <a href={s.source_url} target="_blank" rel="noreferrer">
+                      Open
+                    </a>
+                  )}
+                </td>
+              </tr>
+            )}
+          />
         )}
 
         <SourceFootnote

@@ -186,10 +186,13 @@ export const xPostsRaw = [
 export const companyPatches = {
   magnite: {
     revenueSegments: [
-      { name: 'CTV', value: 320, pct: 46 },
-      { name: 'Display SSP', value: 220, pct: 32 },
-      { name: 'DV+', value: 128, pct: 19 },
-      { name: 'Data & analytics', value: 22, pct: 3 },
+      { name: 'CTV streaming (Magnite Streaming)', value: 254, pct: 38 },
+      { name: 'Display & mobile SSP', value: 147, pct: 22 },
+      { name: 'SpringServe ad serving', value: 94, pct: 14 },
+      { name: 'DV+ premium video', value: 80, pct: 12 },
+      { name: 'Live events & sports CTV', value: 40, pct: 6 },
+      { name: 'Data & identity', value: 33, pct: 5 },
+      { name: 'Other supply tools', value: 20, pct: 3 },
     ],
     winning: [
       { text: 'Largest independent sell-side CTV scale', strength: 5 },
@@ -206,10 +209,12 @@ export const companyPatches = {
   },
   criteo: {
     revenueSegments: [
-      { name: 'Retail media off-site', value: 722, pct: 38 },
-      { name: 'Performance display', value: 646, pct: 34 },
-      { name: 'Data & audiences', value: 418, pct: 22 },
-      { name: 'On-site retail media', value: 114, pct: 6 },
+      { name: 'Off-site retail media', value: 608, pct: 32 },
+      { name: 'Performance display', value: 532, pct: 28 },
+      { name: 'On-site retail media', value: 266, pct: 14 },
+      { name: 'Data & commerce audiences', value: 304, pct: 16 },
+      { name: 'CTV & video extension', value: 114, pct: 6 },
+      { name: 'Managed partnerships', value: 76, pct: 4 },
     ],
     winning: [
       { text: 'Commerce retargeting heritage', strength: 4 },

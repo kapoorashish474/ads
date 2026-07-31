@@ -8,6 +8,7 @@ export const SEGMENT_BUCKETS = [
 ];
 
 const SEGMENT_MAP = {
+  // Legacy names
   'Mobile high-impact': 'Display & mobile',
   CTV: 'CTV',
   'Data & insights': 'Data & identity',
@@ -26,6 +27,45 @@ const SEGMENT_MAP = {
   'Retail media off-site': 'Retail media',
   'Performance display': 'Display & mobile',
   'Data & audiences': 'Data & identity',
+  'On-site retail media': 'Retail media',
+  // Expanded segment names
+  'Mobile in-app high-impact': 'Display & mobile',
+  'Mobile web high-impact': 'Display & mobile',
+  'CTV premium formats': 'CTV',
+  'Attention & measurement': 'Data & identity',
+  'Publisher yield tools': 'Other',
+  'Platform & services': 'Other',
+  'CTV & streaming video': 'CTV',
+  'Open web display': 'Display & mobile',
+  'Native & in-app': 'Display & mobile',
+  'Audio & podcast': 'Audio & other',
+  'Identity & data (UID2)': 'Data & identity',
+  'DOOH & advanced TV': 'Audio & other',
+  'OpenPath & supply': 'Other',
+  'Native & programmatic display': 'Display & mobile',
+  'CTV & online video': 'CTV',
+  Audio: 'Audio & other',
+  'Digital out-of-home': 'Audio & other',
+  'Creative & measurement': 'Data & identity',
+  'Platform & other': 'Other',
+  'CTV streaming (Magnite Streaming)': 'CTV',
+  'Display & mobile SSP': 'Display & mobile',
+  'SpringServe ad serving': 'Other',
+  'DV+ premium video': 'Other',
+  'Live events & sports CTV': 'CTV',
+  'Data & analytics': 'Data & identity',
+  'Other supply tools': 'Other',
+  'Sponsored Products': 'Retail media',
+  'Sponsored Brands & Display': 'Retail media',
+  'Amazon DSP (off-Amazon)': 'Retail media',
+  'Fire TV & streaming ads': 'CTV',
+  'Twitch & gaming': 'CTV',
+  'Video & brand+': 'CTV',
+  'Measurement & AMC': 'Data & identity',
+  'Off-site retail media': 'Retail media',
+  'Data & commerce audiences': 'Data & identity',
+  'CTV & video extension': 'CTV',
+  'Managed partnerships': 'Other',
 };
 
 export function bucketForSegment(name) {
