@@ -5,7 +5,6 @@ import Overview from './pages/Overview';
 import SourcesPage from './pages/SourcesPage';
 import Suggestions from './pages/Suggestions';
 import ComparePage from './pages/ComparePage';
-import ComparePage from './pages/ComparePage';
 import IntelPage from './pages/IntelPage';
 
 export default function App() {

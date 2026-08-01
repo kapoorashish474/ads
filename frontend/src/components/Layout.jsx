@@ -185,58 +185,6 @@ export default function Layout() {
               )}
               {subtitle && <p className="topbar__subtitle">{subtitle}</p>}
             </div>
-          {navGroups.map((group) =>
-            group.items.length === 1 ? (
-              <NavLink
-                key={group.items[0].to}
-                to={group.items[0].to}
-                end={group.items[0].end}
-                onClick={closeSidebar}
-                className={({ isActive }) => (isActive ? 'nav__link nav__link--solo active' : 'nav__link nav__link--solo')}
-              >
-                <span className="nav__icon" aria-hidden>
-                  <NavIcon name={group.items[0].icon} variant="sidebar" />
-                </span>
-                {group.label}
-              </NavLink>
-            ) : (
-              <NavGroup
-                key={group.id}
-                group={group}
-                pathname={location.pathname}
-                expanded={expanded}
-                onToggle={toggleGroup}
-                onNavigate={closeSidebar}
-              />
-            )
-          )}
-        </nav>
-      </aside>
-
-      <div className="main">
-        <header className="topbar">
-          <div className="topbar__start">
-            <button
-              type="button"
-              className="topbar__menu"
-              aria-label="Open navigation"
-              aria-expanded={sidebarOpen}
-              onClick={() => setSidebarOpen((open) => !open)}
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden>
-                <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-              </svg>
-            </button>
-            <div className="topbar__title">
-              <h1 className="topbar__heading">{pageLabel}</h1>
-              {!isCorpusPage && activeCompany && (
-                <p className="topbar__context">{activeCompany.name}</p>
-              )}
-              {isCorpusPage && (
-                <p className="topbar__context">All companies · shared research depth</p>
-              )}
-              {subtitle && <p className="topbar__subtitle">{subtitle}</p>}
-            </div>
           </div>
           {!isCorpusPage && !NAV_FOCUS.hideReload && (
             <button type="button" className="btn btn--primary topbar__reload" onClick={refresh} disabled={refreshing || loading}>
