@@ -99,7 +99,7 @@ export const staticApi = {
     const list = (store.hiring || [])
       .filter((j) => slugs.includes(j.company_slug))
       .sort((a, b) => b.posted_at.localeCompare(a.posted_at));
-    return { jobs: list, policy: store.hiringPolicy || '' };
+    return { jobs: list, policy: store.hiringPolicy || '', ingestNotes: store.hiringIngestNotes || {} };
   },
 
   xPosts: async (slug) => {

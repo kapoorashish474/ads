@@ -2,38 +2,7 @@
 
 export const RESEARCH_VERSION = 2;
 
-export const linkedinProfiles = {
-  kargo: {
-    companyUrl: 'https://www.linkedin.com/company/kargo/',
-    jobsUrl: 'https://www.linkedin.com/company/kargo/jobs/',
-    handle: 'kargo',
-  },
-  'the-trade-desk': {
-    companyUrl: 'https://www.linkedin.com/company/the-trade-desk/',
-    jobsUrl: 'https://www.linkedin.com/company/the-trade-desk/jobs/',
-    handle: 'the-trade-desk',
-  },
-  stackadapt: {
-    companyUrl: 'https://www.linkedin.com/company/stackadapt/',
-    jobsUrl: 'https://www.linkedin.com/company/stackadapt/jobs/',
-    handle: 'stackadapt',
-  },
-  magnite: {
-    companyUrl: 'https://www.linkedin.com/company/magnite/',
-    jobsUrl: 'https://www.linkedin.com/company/magnite/jobs/',
-    handle: 'magnite',
-  },
-  'amazon-ads': {
-    companyUrl: 'https://www.linkedin.com/company/amazon/',
-    jobsUrl: 'https://www.linkedin.com/jobs/search/?keywords=Amazon%20Ads&f_C=1586',
-    handle: 'amazon',
-  },
-  criteo: {
-    companyUrl: 'https://www.linkedin.com/company/criteo/',
-    jobsUrl: 'https://www.linkedin.com/company/criteo/jobs/',
-    handle: 'criteo',
-  },
-};
+export { linkedinProfiles } from './linkedin-hiring-links.js';
 
 export const signalsRaw = [
   // Kargo (8)
@@ -93,56 +62,8 @@ export const signalsRaw = [
   { company_slug: 'criteo', published_at: '2026-02-18', type: 'launch', title: 'APAC retail media network expansion', summary: 'Japan and Australia retailer onboarding for Commerce Max.', source_url: 'https://www.criteo.com/news/', source_name: 'Criteo · press', confidence: 'inferred' },
 ];
 
-export const hiringRaw = [
-  { company_slug: 'kargo', title: 'Senior Software Engineer, CTV Platform', department: 'Engineering', location: 'New York, NY', region: 'United States', workplace: 'Hybrid', posted_at: '2026-07-18' },
-  { company_slug: 'kargo', title: 'Account Executive, Enterprise', department: 'Sales', location: 'Chicago, IL', region: 'United States', workplace: 'Remote', posted_at: '2026-07-12' },
-  { company_slug: 'kargo', title: 'Product Manager, High-Impact Formats', department: 'Product', location: 'London, UK', region: 'United Kingdom', workplace: 'Hybrid', posted_at: '2026-07-08' },
-  { company_slug: 'kargo', title: 'Ad Operations Specialist', department: 'Operations', location: 'New York, NY', region: 'United States', workplace: 'On-site', posted_at: '2026-06-30' },
-  { company_slug: 'kargo', title: 'Creative Solutions Director', department: 'Marketing', location: 'Los Angeles, CA', region: 'United States', workplace: 'Hybrid', posted_at: '2026-06-15' },
-  { company_slug: 'kargo', title: 'Publisher Partnerships Manager', department: 'Business Development', location: 'Toronto, ON', region: 'Canada', workplace: 'Remote', posted_at: '2026-06-02' },
-  { company_slug: 'kargo', title: 'Data Analyst, Attention Metrics', department: 'Data', location: 'New York, NY', region: 'United States', workplace: 'Hybrid', posted_at: '2026-05-20' },
-  { company_slug: 'kargo', title: 'Solutions Engineer, CTV', department: 'Engineering', location: 'Berlin, Germany', region: 'Germany', workplace: 'Hybrid', posted_at: '2026-05-08' },
-  { company_slug: 'the-trade-desk', title: 'Staff Engineer, Kokai Bidding', department: 'Engineering', location: 'Ventura, CA', region: 'United States', workplace: 'Hybrid', posted_at: '2026-07-20' },
-  { company_slug: 'the-trade-desk', title: 'Director, CTV Partnerships', department: 'Business Development', location: 'New York, NY', region: 'United States', workplace: 'Hybrid', posted_at: '2026-07-14' },
-  { company_slug: 'the-trade-desk', title: 'Solutions Consultant, EMEA', department: 'Sales', location: 'London, UK', region: 'United Kingdom', workplace: 'Hybrid', posted_at: '2026-07-05' },
-  { company_slug: 'the-trade-desk', title: 'Data Scientist, Identity', department: 'Data', location: 'Seattle, WA', region: 'United States', workplace: 'Remote', posted_at: '2026-06-28' },
-  { company_slug: 'the-trade-desk', title: 'Product Manager, UID2', department: 'Product', location: 'San Francisco, CA', region: 'United States', workplace: 'Hybrid', posted_at: '2026-06-12' },
-  { company_slug: 'the-trade-desk', title: 'Enterprise Account Executive', department: 'Sales', location: 'Chicago, IL', region: 'United States', workplace: 'Hybrid', posted_at: '2026-05-25' },
-  { company_slug: 'the-trade-desk', title: 'Software Engineer, Real-Time Bidding', department: 'Engineering', location: 'Denver, CO', region: 'United States', workplace: 'Remote', posted_at: '2026-05-10' },
-  { company_slug: 'the-trade-desk', title: 'Marketing Manager, Kokai Launch', department: 'Marketing', location: 'New York, NY', region: 'United States', workplace: 'Hybrid', posted_at: '2026-04-28' },
-  { company_slug: 'stackadapt', title: 'Software Developer, CTV', department: 'Engineering', location: 'Toronto, ON', region: 'Canada', workplace: 'Hybrid', posted_at: '2026-07-19' },
-  { company_slug: 'stackadapt', title: 'Customer Success Manager', department: 'Customer Success', location: 'Toronto, ON', region: 'Canada', workplace: 'Hybrid', posted_at: '2026-07-10' },
-  { company_slug: 'stackadapt', title: 'Marketing Manager, Demand Gen', department: 'Marketing', location: 'New York, NY', region: 'United States', workplace: 'Remote', posted_at: '2026-07-02' },
-  { company_slug: 'stackadapt', title: 'Account Executive, Mid-Market', department: 'Sales', location: 'Chicago, IL', region: 'United States', workplace: 'Hybrid', posted_at: '2026-06-22' },
-  { company_slug: 'stackadapt', title: 'Product Designer, Creative Studio', department: 'Product', location: 'Toronto, ON', region: 'Canada', workplace: 'Hybrid', posted_at: '2026-06-08' },
-  { company_slug: 'stackadapt', title: 'Data Engineer, Analytics Platform', department: 'Engineering', location: 'Montreal, QC', region: 'Canada', workplace: 'Remote', posted_at: '2026-05-18' },
-  { company_slug: 'stackadapt', title: 'Ad Ops Lead, CTV', department: 'Operations', location: 'Los Angeles, CA', region: 'United States', workplace: 'Hybrid', posted_at: '2026-05-05' },
-  { company_slug: 'stackadapt', title: 'Partnerships Manager, Agencies', department: 'Business Development', location: 'London, UK', region: 'United Kingdom', workplace: 'Remote', posted_at: '2026-04-20' },
-  { company_slug: 'magnite', title: 'Engineering Manager, Streaming SSP', department: 'Engineering', location: 'New York, NY', region: 'United States', workplace: 'Hybrid', posted_at: '2026-07-17' },
-  { company_slug: 'magnite', title: 'Publisher Account Director', department: 'Sales', location: 'Los Angeles, CA', region: 'United States', workplace: 'Hybrid', posted_at: '2026-07-11' },
-  { company_slug: 'magnite', title: 'Product Marketing Lead, CTV', department: 'Marketing', location: 'London, UK', region: 'EMEA', workplace: 'Remote', posted_at: '2026-06-25' },
-  { company_slug: 'magnite', title: 'Solutions Architect, CTV', department: 'Engineering', location: 'Seattle, WA', region: 'United States', workplace: 'Hybrid', posted_at: '2026-06-10' },
-  { company_slug: 'magnite', title: 'Yield Analyst, SpringServe', department: 'Operations', location: 'New York, NY', region: 'United States', workplace: 'Hybrid', posted_at: '2026-05-28' },
-  { company_slug: 'magnite', title: 'Business Development, Retail Media', department: 'Business Development', location: 'Chicago, IL', region: 'United States', workplace: 'Remote', posted_at: '2026-05-12' },
-  { company_slug: 'magnite', title: 'Software Engineer, Ad Server', department: 'Engineering', location: 'Prague, Czech Republic', region: 'Europe', workplace: 'Hybrid', posted_at: '2026-04-30' },
-  { company_slug: 'magnite', title: 'Account Manager, Publisher Success', department: 'Customer Success', location: 'Sydney, Australia', region: 'APAC', workplace: 'Hybrid', posted_at: '2026-04-15' },
-  { company_slug: 'amazon-ads', title: 'Senior Product Manager, Amazon DSP', department: 'Product', location: 'Seattle, WA', region: 'United States', workplace: 'Hybrid', posted_at: '2026-07-21' },
-  { company_slug: 'amazon-ads', title: 'Applied Scientist, Ads ML', department: 'Engineering', location: 'New York, NY', region: 'United States', workplace: 'On-site', posted_at: '2026-07-15' },
-  { company_slug: 'amazon-ads', title: 'Account Executive, Retail Media', department: 'Sales', location: 'London, UK', region: 'Europe', workplace: 'Hybrid', posted_at: '2026-07-06' },
-  { company_slug: 'amazon-ads', title: 'Software Development Engineer, Sponsored Products', department: 'Engineering', location: 'Bangalore, India', region: 'India', workplace: 'Hybrid', posted_at: '2026-06-22' },
-  { company_slug: 'amazon-ads', title: 'Marketing Manager, Amazon Marketing Cloud', department: 'Marketing', location: 'Seattle, WA', region: 'United States', workplace: 'Hybrid', posted_at: '2026-06-08' },
-  { company_slug: 'amazon-ads', title: 'Data Scientist, Measurement', department: 'Data', location: 'Arlington, VA', region: 'United States', workplace: 'On-site', posted_at: '2026-05-20' },
-  { company_slug: 'amazon-ads', title: 'Solutions Architect, DSP Enterprise', department: 'Sales', location: 'Toronto, ON', region: 'Canada', workplace: 'Hybrid', posted_at: '2026-05-05' },
-  { company_slug: 'amazon-ads', title: 'Economist, Ads Marketplace', department: 'Data', location: 'Seattle, WA', region: 'United States', workplace: 'Hybrid', posted_at: '2026-04-18' },
-  { company_slug: 'criteo', title: 'Backend Engineer, Commerce Max', department: 'Engineering', location: 'Paris, France', region: 'France', workplace: 'Hybrid', posted_at: '2026-07-16' },
-  { company_slug: 'criteo', title: 'Partner Manager, Retail Media', department: 'Business Development', location: 'New York, NY', region: 'United States', workplace: 'Hybrid', posted_at: '2026-07-09' },
-  { company_slug: 'criteo', title: 'Data Analyst, Retail Insights', department: 'Data', location: 'Tokyo, Japan', region: 'Japan', workplace: 'Hybrid', posted_at: '2026-06-18' },
-  { company_slug: 'criteo', title: 'Product Manager, Retail Media Platform', department: 'Product', location: 'London, UK', region: 'United Kingdom', workplace: 'Hybrid', posted_at: '2026-06-05' },
-  { company_slug: 'criteo', title: 'Account Executive, Commerce Max', department: 'Sales', location: 'Berlin, Germany', region: 'Germany', workplace: 'Remote', posted_at: '2026-05-22' },
-  { company_slug: 'criteo', title: 'Machine Learning Engineer, Bidding', department: 'Engineering', location: 'Grenoble, France', region: 'France', workplace: 'Hybrid', posted_at: '2026-05-08' },
-  { company_slug: 'criteo', title: 'Marketing Lead, Retail Media EMEA', department: 'Marketing', location: 'Amsterdam, Netherlands', region: 'Europe', workplace: 'Hybrid', posted_at: '2026-04-25' },
-  { company_slug: 'criteo', title: 'Customer Success Manager, APAC Retail', department: 'Customer Success', location: 'Singapore', region: 'APAC', workplace: 'Hybrid', posted_at: '2026-04-10' },
-];
+/** @deprecated Synthetic hiring seed — use `node server/scripts/fetch-verified-hiring.js` instead. */
+export const hiringRaw = [];
 
 export const xPostsRaw = [
   { company_slug: 'kargo', text: 'Kargo gains programmatic control of HP Spotlight desktop ad format', theme: 'partnership', posted_at: '2026-07-19', source_url: 'https://www.kargo.com/', source_name: 'Kargo · press', confidence: 'reported' },

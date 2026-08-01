@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Card, Loading, ErrorState, Pill, Empty } from '../components/ui';
 import ScrollTable from '../components/ScrollTable';
-import { FilterBar, FilterSelect } from '../components/FilterBar';
+import { FilterBar, FilterSelect, FilterSearch } from '../components/FilterBar';
 import { SourceFootnote } from '../components/Source';
 import { useCompany } from '../context/CompanyContext';
 import { api } from '../api';
@@ -75,8 +75,6 @@ export default function Suggestions() {
       .finally(() => setLoading(false));
   }, [slug]);
 
-  const companyName = data?.company?.name || slug;
-
   const filtered = useMemo(() => {
     return suggestions
       .filter((s) => {
@@ -110,26 +108,14 @@ export default function Suggestions() {
 
   return (
     <div className="page page--suggestions">
-      <div className="hero hero--compact">
-        <h1>Suggestions</h1>
-        <p className="lede">
-          Where {companyName} should invest next — evidence-backed priorities for this company.
-        </p>
-      </div>
-
       <Card title="Priority register" subtitle={`${filtered.length} of ${suggestions.length}`} collapsible defaultOpen>
-        <FilterBar className="filter-toolbar--inset suggestions-filters">
-          <label className="filter-search suggestions-filters__search">
-            <span className="filter-select__label">Search</span>
-            <input
-              type="search"
-              className="filter-search__input"
-              placeholder="Title, thesis, fast path…"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              aria-label="Search suggestions"
-            />
-          </label>
+        <FilterBar onClear={clearFilters} showClear={filtersActive}>
+          <FilterSearch
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Title, thesis, fast path…"
+            aria-label="Search suggestions"
+          />
           <FilterSelect
             label="Lane"
             value={laneFilter}
@@ -153,11 +139,6 @@ export default function Suggestions() {
             ]}
           />
           <FilterSelect label="Type" value={typeFilter} onChange={setTypeFilter} options={TYPE_OPTIONS} />
-          {filtersActive && (
-            <button type="button" className="suggestions-filters__clear" onClick={clearFilters}>
-              Clear filters
-            </button>
-          )}
         </FilterBar>
 
         {filtered.length === 0 ? (

@@ -1,7 +1,7 @@
 /** Which sections are visible while we polish one page at a time. */
 export const NAV_FOCUS = {
-  groups: ['reference', 'dashboard', 'planning', 'signals', 'search', 'social'],
-  routes: ['/dashboard', '/sources', '/planning', '/signals', '/search', '/social'],
+  groups: ['reference', 'dashboard', 'planning', 'compare', 'signals', 'search', 'social'],
+  routes: ['/dashboard', '/sources', '/planning', '/compare', '/signals', '/search', '/social'],
   hideReload: true,
 };
 
@@ -14,6 +14,11 @@ const ALL_NAV_GROUPS = [
       { to: '/revenue', label: 'Revenue', icon: 'revenue' },
       { to: '/products', label: 'Products', icon: 'products' },
     ],
+  },
+  {
+    id: 'compare',
+    label: 'Compare',
+    items: [{ to: '/compare', label: 'Compare', icon: 'compare', end: true }],
   },
   {
     id: 'signals',
@@ -82,4 +87,25 @@ export function pageScope(pathname) {
 
 export function allNavItems() {
   return navGroups.flatMap((g) => g.items);
+}
+
+const PAGE_SUBTITLES = {
+  '/dashboard': (ctx) => ctx?.company?.tagline || ctx?.company?.type || null,
+  '/sources': 'Field-level sources, confidence, and as-of dates',
+  '/planning': 'Prioritized build, catch-up, and differentiation ideas',
+  '/compare': (ctx) =>
+    ctx?.company
+      ? `${ctx.company.name} vs peers · 1v1 or full set`
+      : 'Investment, strategy route, and who wins by dimension',
+  '/signals': 'Launches, products, and partnerships',
+  '/search': 'Modeled market attention · global and regional',
+  '/social': 'LinkedIn and X presence for this company',
+};
+
+export function pageSubtitle(pathname, ctx = {}) {
+  const path = pathname.split('?')[0].replace(/\/$/, '') || '/dashboard';
+  const normalized = path.startsWith('/') ? path : `/${path}`;
+  const resolver = PAGE_SUBTITLES[normalized];
+  if (!resolver) return null;
+  return typeof resolver === 'function' ? resolver(ctx) : resolver;
 }

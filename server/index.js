@@ -62,7 +62,7 @@ app.get('/api/companies/:slug/hiring', async (req) => {
   const list = (data.hiring || [])
     .filter((j) => slugs.includes(j.company_slug))
     .sort((a, b) => b.posted_at.localeCompare(a.posted_at));
-  return { jobs: list, policy: data.hiringPolicy || '' };
+  return { jobs: list, policy: data.hiringPolicy || '', ingestNotes: data.hiringIngestNotes || {} };
 });
 
 app.get('/api/companies/:slug/x', async (req) => {

@@ -5,7 +5,6 @@ import {
   RESEARCH_VERSION,
   linkedinProfiles,
   signalsRaw,
-  hiringRaw,
   xPostsRaw,
   companyPatches,
   searchRegionDefaults,
@@ -186,22 +185,8 @@ store.signals = signalsRaw
   .sort((a, b) => b.published_at.localeCompare(a.published_at))
   .map((s, i) => ({ id: i + 1, ...s }));
 
-store.hiring = hiringRaw
-  .sort((a, b) => b.posted_at.localeCompare(a.posted_at))
-  .map((job, i) => {
-    const profile = linkedinProfiles[job.company_slug];
-    const searchUrl = `https://www.linkedin.com/jobs/search/?keywords=${encodeURIComponent(job.title.split(',')[0])}&location=${encodeURIComponent(job.location)}`;
-    return {
-      id: i + 1,
-      ...job,
-      company_name: nameMap[job.company_slug],
-      source: 'linkedin',
-      source_name: 'LinkedIn · public job listing',
-      confidence: 'reported',
-      linkedin_company_url: profile?.jobsUrl,
-      source_url: searchUrl,
-    };
-  });
+// Hiring data comes from verified ATS ingest — run: node server/scripts/fetch-verified-hiring.js
+// enrich-research.js intentionally does not overwrite store.hiring.
 
 store.xPosts = xPostsRaw
   .sort((a, b) => b.posted_at.localeCompare(a.posted_at))
@@ -264,13 +249,14 @@ for (const company of store.companies) {
 }
 
 store.hiringPolicy =
-  'Open roles sourced from public LinkedIn job listings. Links open LinkedIn search or company jobs pages — no private data.';
+  store.hiringPolicy ||
+  'Open roles are live listings from public careers feeds. Re-run `node server/scripts/fetch-verified-hiring.js` to refresh verified data.';
 
 store.xPolicy =
   'X profile links verified against x.com (HTTP check). Post themes for Kargo come from kargo.com press; peer themes are inferred from public news pages — not scraped tweet text. Follower counts are not stored; view live profiles for current stats.';
 
 store.researchPolicy =
-  'Competitive research corpus v2 — balanced depth across all tracked companies: 8 signals, 8 hiring roles, 6 X themes, 4 products, 4 revenue segments, and full regional search drill-down per company. Sources marked reported / inferred / modeled.';
+  'Competitive research corpus v2 — balanced depth across tracked companies: 8 signals, verified hiring from careers feeds, 6 X themes, 4 products, 4 revenue segments, and full regional search drill-down per company. Sources marked reported / inferred / modeled.';
 
 store.researchVersion = RESEARCH_VERSION;
 

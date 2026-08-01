@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "start": "node index.js",
-    "dev": "node --watch index.js"
+    "dev": "node --watch index.js",
+    "fetch-hiring": "node scripts/fetch-verified-hiring.js"
   },
   "dependencies": {
     "@fastify/cors": "^10.0.2",

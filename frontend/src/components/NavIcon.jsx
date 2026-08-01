@@ -26,6 +26,12 @@ const icons = {
       <path d="M12 12 4 8M12 12l8-4M12 12v9" {...stroke} />
     </svg>
   ),
+  compare: (
+    <svg viewBox="0 0 24 24" aria-hidden>
+      <path d="M4 19V5M4 19h16" {...stroke} />
+      <path d="M8 16V9M12 16V6M16 16v-4" {...stroke} />
+    </svg>
+  ),
   signals: (
     <svg viewBox="0 0 24 24" aria-hidden>
       <path d="M13 2 3 14h8l-1 8 10-12h-8l1-8Z" {...stroke} />

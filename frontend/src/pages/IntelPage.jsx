@@ -6,12 +6,6 @@ import SearchPage from './SearchPage';
 import LinkedInPage from './LinkedInPage';
 import XPage from './XPage';
 
-const SECTION_LABELS = {
-  signals: 'Signals',
-  search: 'Search',
-  social: 'Social',
-};
-
 const SOCIAL_CHANNELS = [
   { id: 'linkedin', label: 'LinkedIn', icon: 'linkedin' },
   { id: 'x', label: 'X', icon: 'x' },
@@ -39,15 +33,6 @@ export default function IntelPage() {
     ? params.get('channel')
     : 'linkedin';
 
-  const channelLabel = SOCIAL_CHANNELS.find((c) => c.id === channel)?.label;
-
-  const sectionMeta =
-    section === 'search'
-      ? 'Modeled market attention · global and regional'
-      : section === 'social' && channelLabel
-        ? `${channelLabel} · this company only`
-        : 'This company only';
-
   function setChannel(next) {
     setParams((prev) => {
       const p = new URLSearchParams(prev);
@@ -58,36 +43,27 @@ export default function IntelPage() {
 
   return (
     <div className="page page--intel">
-      <header className="intel-header">
-        <div className="intel-header__top">
-          <div className="intel-header__title">
-            <h1>{SECTION_LABELS[section]}</h1>
-            <p className="intel-header__meta">{sectionMeta}</p>
-          </div>
-        </div>
-
-        {section === 'social' && (
-          <div className="intel-header__nav scroll-x">
-            <div className="intel-nav" role="tablist" aria-label="Social channels">
-              <div className="intel-nav__group intel-nav__group--channels">
-                {SOCIAL_CHANNELS.map((item) => (
-                  <button
-                    key={item.id}
-                    type="button"
-                    role="tab"
-                    aria-selected={channel === item.id}
-                    className={channel === item.id ? 'intel-tab intel-tab--channel active' : 'intel-tab intel-tab--channel'}
-                    onClick={() => setChannel(item.id)}
-                  >
-                    <NavIcon name={item.icon} variant="intel" />
-                    <span>{item.label}</span>
-                  </button>
-                ))}
-              </div>
+      {section === 'social' && (
+        <div className="intel-toolbar scroll-x">
+          <div className="intel-nav" role="tablist" aria-label="Social channels">
+            <div className="intel-nav__group intel-nav__group--channels">
+              {SOCIAL_CHANNELS.map((item) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={channel === item.id}
+                  className={channel === item.id ? 'intel-tab intel-tab--channel active' : 'intel-tab intel-tab--channel'}
+                  onClick={() => setChannel(item.id)}
+                >
+                  <NavIcon name={item.icon} variant="intel" />
+                  <span>{item.label}</span>
+                </button>
+              ))}
             </div>
           </div>
-        )}
-      </header>
+        </div>
+      )}
 
       <div className="intel-content">
         {section === 'signals' && <Signals key={slug} embedded />}

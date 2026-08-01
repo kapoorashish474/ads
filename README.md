@@ -78,6 +78,12 @@ Re-seed executive data:
 node server/scripts/enrich-executive.js
 ```
 
+Refresh verified hiring (live careers feeds):
+
+```bash
+node server/scripts/fetch-verified-hiring.js
+```
+
 ## Repo
 
 https://github.com/kapoorashish474/ads

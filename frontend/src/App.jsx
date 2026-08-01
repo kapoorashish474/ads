@@ -4,6 +4,8 @@ import Layout from './components/Layout';
 import Overview from './pages/Overview';
 import SourcesPage from './pages/SourcesPage';
 import Suggestions from './pages/Suggestions';
+import ComparePage from './pages/ComparePage';
+import ComparePage from './pages/ComparePage';
 import IntelPage from './pages/IntelPage';
 
 export default function App() {
@@ -18,6 +20,7 @@ export default function App() {
             <Route index element={<Navigate to="/dashboard" replace />} />
             <Route path="dashboard" element={<Overview />} />
             <Route path="sources" element={<SourcesPage />} />
+            <Route path="compare" element={<ComparePage />} />
             <Route path="planning" element={<Suggestions />} />
             <Route path="signals" element={<IntelPage />} />
             <Route path="search" element={<IntelPage />} />

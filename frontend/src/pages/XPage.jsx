@@ -152,7 +152,7 @@ export default function XPage({ embedded = false }) {
       </div>
 
       <Card title="Public themes" subtitle={`${filtered.length} shown`}>
-        <FilterBar className="filter-toolbar--inset">
+        <FilterBar>
           <FilterSelect
             label="Theme"
             value={themeFilter}

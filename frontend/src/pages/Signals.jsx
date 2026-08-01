@@ -54,7 +54,7 @@ export default function Signals({ embedded = false }) {
   return (
     <div className={embedded ? 'intel-panel' : 'page page--signals'}>
       <Card title="Signal feed" subtitle={`${filtered.length} for ${companyName}`} collapsible defaultOpen>
-        <FilterBar className="filter-toolbar--inset">
+        <FilterBar>
           <FilterSelect
             label="Type"
             value={typeFilter}
@@ -76,14 +76,22 @@ export default function Signals({ embedded = false }) {
             getRowKey={(s) => s.id}
             tableClassName="table table--signals"
             head={
-              <thead>
-                <tr>
-                  <th>Date</th>
-                  <th>Type</th>
-                  <th>Signal</th>
-                  <th>Source</th>
-                </tr>
-              </thead>
+              <>
+                <colgroup>
+                  <col className="col-date" />
+                  <col className="col-type" />
+                  <col className="col-signal" />
+                  <col className="col-source" />
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Signal</th>
+                    <th>Source</th>
+                  </tr>
+                </thead>
+              </>
             }
             renderRow={(s) => (
               <tr>
@@ -93,16 +101,21 @@ export default function Signals({ embedded = false }) {
                 </td>
                 <td className="cell-signal">
                   <strong>{s.title}</strong>
-                  <p>{s.summary}</p>
+                  {s.summary && <p>{s.summary}</p>}
                 </td>
                 <td className="cell-source">
-                  {s.confidence && <Pill tone={`conf-${s.confidence}`}>{s.confidence}</Pill>}
-                  <span className="cell-source__name">{s.source_name || 'Public source'}</span>
-                  {s.source_url && (
-                    <a href={s.source_url} target="_blank" rel="noreferrer">
-                      Open
-                    </a>
-                  )}
+                  <div className="cell-source__row">
+                    {s.confidence && (
+                      <Pill tone={`conf-${s.confidence}`}>{s.confidence}</Pill>
+                    )}
+                    {s.source_url ? (
+                      <a href={s.source_url} target="_blank" rel="noreferrer">
+                        {s.source_name || 'Open source'}
+                      </a>
+                    ) : (
+                      <span className="cell-source__name">{s.source_name || 'Public source'}</span>
+                    )}
+                  </div>
                 </td>
               </tr>
             )}

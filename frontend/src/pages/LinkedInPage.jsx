@@ -5,6 +5,7 @@ import { SourceFootnote } from '../components/Source';
 import { FilterBar, FilterSelect } from '../components/FilterBar';
 import { useCompany } from '../context/CompanyContext';
 import { api } from '../api';
+import { hiringBoardUrl, hiringListingUrl, hiringSearchUrl } from '../utils/linkedinJobs';
 
 function formatPosted(iso) {
   if (!iso) return '—';
@@ -15,6 +16,7 @@ export default function LinkedInPage({ embedded = false }) {
   const { slug, data, loading: ctxLoading, error: ctxError } = useCompany();
   const [jobs, setJobs] = useState([]);
   const [policy, setPolicy] = useState('');
+  const [ingestNote, setIngestNote] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [regionFilter, setRegionFilter] = useState('all');
@@ -29,6 +31,7 @@ export default function LinkedInPage({ embedded = false }) {
       .then((r) => {
         setJobs(r.jobs);
         setPolicy(r.policy);
+        setIngestNote(r.ingestNotes?.[slug] || '');
       })
       .catch((e) => setError(e.message))
       .finally(() => setLoading(false));
@@ -78,13 +81,18 @@ export default function LinkedInPage({ embedded = false }) {
         <div className="hero hero--compact">
           <h1>LinkedIn hiring</h1>
           <p className="lede">
-            Where {companyName} is hiring — public LinkedIn listings by role, team, and region.
+            Verified open roles for {companyName} — ingested from public careers feeds (Greenhouse, Workday, Amazon Jobs, or company site).
           </p>
           {linkedin?.jobsUrl && (
             <p className="lede" style={{ marginTop: '0.5rem' }}>
               <a href={linkedin.jobsUrl} target="_blank" rel="noreferrer">
-                View all {companyName} roles on LinkedIn →
+                View all {companyName} roles on careers site →
               </a>
+            </p>
+          )}
+          {ingestNote && companyJobs === 0 && (
+            <p className="lede lede--notice" style={{ marginTop: '0.5rem' }}>
+              {ingestNote}
             </p>
           )}
         </div>
@@ -92,9 +100,13 @@ export default function LinkedInPage({ embedded = false }) {
       {embedded && linkedin?.jobsUrl && (
         <p className="intel-panel__link">
           <a href={linkedin.jobsUrl} target="_blank" rel="noreferrer">
-            View all {companyName} roles on LinkedIn →
+            View all {companyName} roles on careers site →
           </a>
         </p>
+      )}
+
+      {ingestNote && companyJobs === 0 && (
+        <p className="lede lede--notice">{ingestNote}</p>
       )}
 
       <div className="grid grid--stats grid--stats-3">
@@ -142,8 +154,8 @@ export default function LinkedInPage({ embedded = false }) {
         </Card>
       </div>
 
-      <Card title="Open roles" subtitle={`${filtered.length} shown · public LinkedIn listings`}>
-        <FilterBar className="filter-toolbar--inset">
+      <Card title="Open roles" subtitle={`${filtered.length} verified listings · ${companyJobs} total for ${companyName}`}>
+        <FilterBar>
           <FilterSelect
             label="Region"
             value={regionFilter}
@@ -165,7 +177,13 @@ export default function LinkedInPage({ embedded = false }) {
         </FilterBar>
 
         {filtered.length === 0 ? (
-          <Empty message="No roles match these filters." />
+          <Empty
+            message={
+              companyJobs === 0
+                ? `No verified listings ingested for ${companyName}. View live roles on the company careers site.`
+                : 'No roles match these filters.'
+            }
+          />
         ) : (
           <div className="table-wrap">
             <table className="table table--signals">
@@ -176,7 +194,7 @@ export default function LinkedInPage({ embedded = false }) {
                   <th>Team</th>
                   <th>Location</th>
                   <th>Region</th>
-                  <th>LinkedIn</th>
+                  <th>Source</th>
                 </tr>
               </thead>
               <tbody>
@@ -193,10 +211,33 @@ export default function LinkedInPage({ embedded = false }) {
                     <td>{j.location}</td>
                     <td>{j.region}</td>
                     <td className="cell-source">
-                      <Pill tone="conf-reported">public</Pill>
-                      <a href={j.source_url} target="_blank" rel="noreferrer">
-                        View on LinkedIn
-                      </a>
+                      <Pill tone="conf-reported">verified</Pill>
+                      <div className="hiring-links">
+                        <a href={hiringListingUrl(j)} target="_blank" rel="noreferrer">
+                          View posting
+                        </a>
+                        {j.linkedin_company_url && (
+                          <a
+                            href={hiringBoardUrl(j)}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="hiring-links__secondary"
+                          >
+                            All company roles
+                          </a>
+                        )}
+                        {j.linkedin_search_url && (
+                          <a
+                            href={hiringSearchUrl(j)}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="hiring-links__secondary"
+                          >
+                            LinkedIn search
+                          </a>
+                        )}
+                      </div>
+                      {j.source_name && <p className="source-note">{j.source_name}</p>}
                     </td>
                   </tr>
                 ))}
@@ -207,10 +248,10 @@ export default function LinkedInPage({ embedded = false }) {
 
         <SourceFootnote
           source={{
-            label: policy || 'LinkedIn public job listings',
+            label: policy || 'Verified company careers listings',
             confidence: 'reported',
-            url: linkedin?.jobsUrl || 'https://www.linkedin.com/jobs/',
-            asOf: '2026-07',
+            url: linkedin?.jobsUrl || companyJobsList[0]?.source_url || 'https://www.linkedin.com/jobs/',
+            asOf: companyJobsList[0]?.verified_at || '2026-08',
           }}
         />
       </Card>
